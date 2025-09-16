@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="main-body">
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'services:service_list' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'mentorship:mentorship_list' %}">Mentorías</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ mentorship.title }}</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="mb-0">{{ mentorship.title }}</h2>
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="badge bg-primary">{{ mentorship.get_category_display }}</span>
+                            <span class="text-muted">{{ mentorship.duration_hours }}h</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ mentorship.description }}</p>
+                        
+                        {% if mentorship.notes %}
+                        <div class="alert alert-info">
+                            <h6><i class="fas fa-info-circle me-1"></i>Información adicional:</h6>
+                            <p class="mb-0">{{ mentorship.notes }}</p>
+                        </div>
+                        {% endif %}
+                        
+                        <hr>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="fas fa-user me-1"></i>Mentor:</h6>
+                                <p>{{ mentorship.mentor.user.get_full_name|default:mentorship.mentor.user.username }}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><i class="fas fa-calendar me-1"></i>Creada:</h6>
+                                <p>{{ mentorship.created_at|date:"d/m/Y" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h3 class="text-primary">${{ mentorship.price }}<small class="text-muted">/hora</small></h3>
+                        <p class="text-muted">Duración: {{ mentorship.duration_hours }} hora{{ mentorship.duration_hours|pluralize }}</p>
+                        
+                        {% if user.is_authenticated %}
+                            {% if is_owner %}
+                                <!-- Owner actions -->
+                                <div class="alert alert-success">
+                                    <i class="fas fa-check-circle me-1"></i>
+                                    Esta es tu mentoría
+                                </div>
+                                <a href="{% url 'mentorship:update_mentorship' mentorship.id %}" class="btn btn-primary btn-block mb-2">
+                                    <i class="fas fa-edit me-1"></i>Editar
+                                </a>
+                                <a href="{% url 'mentorship:delete_mentorship' mentorship.id %}" class="btn btn-outline-danger btn-block">
+                                    <i class="fas fa-trash me-1"></i>Eliminar
+                                </a>
+                            {% else %}
+                                <!-- Non-owner actions -->
+                                {% if mentorship.status == 'AVAILABLE' %}
+                                    <!-- Add to cart button -->
+                                    {% if in_cart %}
+                                        <form method="post" action="{% url 'mentorship:remove_from_cart' mentorship.id %}" class="mb-2">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-warning btn-block">
+                                                <i class="fas fa-shopping-cart me-1"></i>Remover del Carrito
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <form method="post" action="{% url 'mentorship:add_to_cart' mentorship.id %}" class="mb-2">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-success btn-block">
+                                                <i class="fas fa-cart-plus me-1"></i>Agregar al Carrito
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                    
+                                    <!-- Add to wishlist button -->
+                                    {% if in_wishlist %}
+                                        <form method="post" action="{% url 'mentorship:remove_from_wishlist' mentorship.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-outline-danger btn-block">
+                                                <i class="fas fa-heart me-1"></i>Remover de Favoritos
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <form method="post" action="{% url 'mentorship:add_to_wishlist' mentorship.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-outline-primary btn-block">
+                                                <i class="far fa-heart me-1"></i>Agregar a Favoritos
+                                            </button>
+                                        </form>
+                                    {% endif %}
+                                {% else %}
+                                    <div class="alert alert-warning">
+                                        <i class="fas fa-exclamation-triangle me-1"></i>
+                                        Esta mentoría no está disponible
+                                    </div>
+                                {% endif %}
+                            {% endif %}
+                        {% else %}
+                            <div class="alert alert-info">
+                                <a href="{% url 'core:login' %}" class="btn btn-primary">
+                                    Iniciar Sesión para Comprar
+                                </a>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Mentor info card -->
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h6 class="mb-0"><i class="fas fa-user-graduate me-1"></i>Sobre el Mentor</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="avatar-circle me-3">
+                                {{ mentorship.mentor.user.username|slice:":1"|upper }}
+                            </div>
+                            <div>
+                                <h6 class="mb-0">{{ mentorship.mentor.user.get_full_name|default:mentorship.mentor.user.username }}</h6>
+                                <small class="text-muted">Mentor</small>
+                            </div>
+                        </div>
+                        
+                        {% if mentorship.mentor.bio %}
+                        <p class="text-muted small">{{ mentorship.mentor.bio|truncatewords:20 }}</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.avatar-circle {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+</style>
+{% endblock %}

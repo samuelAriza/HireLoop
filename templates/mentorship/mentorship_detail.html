@@ -1,0 +1,256 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ mentorship.title }} - Mentorship{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Mentorship status -->
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        {% if mentorship.status == 'AVAILABLE' %}
+                            <span class="badge bg-success fs-6">Available</span>
+                        {% elif mentorship.status == 'BOOKED' %}
+                            <span class="badge bg-warning fs-6">Booked</span>
+                        {% elif mentorship.status == 'COMPLETED' %}
+                            <span class="badge bg-info fs-6">Completed</span>
+                        {% elif mentorship.status == 'CANCELLED' %}
+                            <span class="badge bg-secondary fs-6">Cancelled</span>
+                        {% endif %}
+                        
+                        <span class="badge bg-primary">{{ mentorship.get_category_display }}</span>
+                    </div>
+                    
+                    <h1 class="card-title">{{ mentorship.title }}</h1>
+                    
+                    <!-- Mentor information -->
+                    <div class="mb-3">
+                        <h6 class="text-muted">Mentor</h6>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-user-tie me-2"></i>
+                            <strong>{{ mentorship.mentor.user.get_full_name|default:mentorship.mentor.user.username }}</strong>
+                        </div>
+                        {% if mentorship.mentor.bio %}
+                            <small class="text-muted">{{ mentorship.mentor.bio|truncatewords:20 }}</small>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Mentee information (if exists) -->
+                    {% if mentorship.mentee and is_mentor or is_mentee %}
+                        <div class="mb-3">
+                            <h6 class="text-muted">Student</h6>
+                            <div class="d-flex align-items-center">
+                                <i class="fas fa-user-graduate me-2"></i>
+                                <strong>{{ mentorship.mentee.user.get_full_name|default:mentorship.mentee.user.username }}</strong>
+                            </div>
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Mentorship details -->
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <h6 class="text-muted">Price</h6>
+                            <h3 class="text-success">${{ mentorship.price }}</h3>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-muted">Duration</h6>
+                            <p><i class="fas fa-clock"></i> {{ mentorship.duration_display }}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-muted">Created</h6>
+                            <p><i class="fas fa-calendar"></i> {{ mentorship.created_at|date:"m/d/Y" }}</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <h5>Description</h5>
+                        <p>{{ mentorship.description|linebreaks }}</p>
+                    </div>
+                    
+                    <!-- Additional notes -->
+                    {% if mentorship.notes %}
+                        <div class="mb-3">
+                            <h6>Additional Notes</h6>
+                            <p class="text-muted">{{ mentorship.notes|linebreaks }}</p>
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Meeting link (only for mentor and mentee) -->
+                    {% if mentorship.meeting_link and is_mentor or is_mentee %}
+                        <div class="mb-3">
+                            <h6>Meeting Link</h6>
+                            <a href="{{ mentorship.meeting_link }}" target="_blank" class="btn btn-outline-primary">
+                                <i class="fas fa-video"></i> Join Meeting
+                            </a>
+                        </div>
+                    {% endif %}
+                    
+                    <!-- Scheduled date (only for mentor and mentee) -->
+                    {% if mentorship.scheduled_datetime and is_mentor or is_mentee %}
+                        <div class="mb-3">
+                            <h6>Scheduled Date</h6>
+                            <p><i class="fas fa-calendar-check"></i> {{ mentorship.scheduled_datetime|date:"m/d/Y H:i" }}</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Existing review or form -->
+            {% if mentorship.status == 'COMPLETED' and is_mentor or is_mentee %}
+                {% if existing_review %}
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5>Review</h5>
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="me-3">
+                                    {% for i in "12345" %}
+                                        <i class="fas fa-star{% if forloop.counter > existing_review.rating %} text-muted{% else %} text-warning{% endif %}"></i>
+                                    {% endfor %}
+                                </div>
+                                <small class="text-muted">By {{ existing_review.reviewer.user.username }}</small>
+                            </div>
+                            {% if existing_review.comment %}
+                                <p>{{ existing_review.comment }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% elif review_form %}
+                    <div class="card mt-4">
+                        <div class="card-body">
+                            <h5>Write a Review</h5>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="review">
+                                <div class="mb-3">
+                                    {{ review_form.rating.label_tag }}
+                                    {{ review_form.rating }}
+                                </div>
+                                <div class="mb-3">
+                                    {{ review_form.comment.label_tag }}
+                                    {{ review_form.comment }}
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-star"></i> Submit Review
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card sticky-top">
+                <div class="card-body">
+                    <h5 class="card-title">Actions</h5>
+                    
+                    {% if user.is_authenticated %}
+                        {% if is_mentor %}
+                            <!-- Actions for the mentor (creator) -->
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i> This is your mentorship
+                            </div>
+                            
+                            {% if mentorship.status == 'AVAILABLE' %}
+                                <div class="d-grid gap-2">
+                                    <a href="{% url 'mentorship:update_mentorship' mentorship_id=mentorship.id %}" class="btn btn-outline-primary">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a href="{% url 'mentorship:delete_mentorship' mentorship_id=mentorship.id %}" class="btn btn-outline-danger">
+                                        <i class="fas fa-trash"></i> Delete
+                                    </a>
+                                </div>
+                                
+                                <hr>
+                                
+                                <!-- Informative message for the creator -->
+                                <div class="alert alert-secondary">
+                                    <small>
+                                        <i class="fas fa-info-circle"></i> 
+                                        You cannot add your own mentorship to cart or favorites.
+                                    </small>
+                                </div>
+                                
+                            {% elif mentorship.status == 'BOOKED' %}
+                                <div class="d-grid gap-2">
+                                    <form method="post" action="{% url 'mentorship:mentorship_status' mentorship_id=mentorship.id %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="complete">
+                                        <button type="submit" class="btn btn-success w-100">
+                                            <i class="fas fa-check"></i> Mark as Completed
+                                        </button>
+                                    </form>
+                                    <form method="post" action="{% url 'mentorship:mentorship_status' mentorship_id=mentorship.id %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="cancel">
+                                        <button type="submit" class="btn btn-outline-warning w-100" 
+                                                onclick="return confirm('Cancel this session?')">
+                                            <i class="fas fa-times"></i> Cancel Session
+                                        </button>
+                                    </form>
+                                </div>
+                            {% endif %}
+                            
+                        {% elif mentorship.status == 'AVAILABLE' %}
+                            <!-- Actions for users who are NOT the creator -->
+                            <div class="d-grid gap-2">
+                                <!-- Add to cart -->
+                                {% if not in_cart %}
+                                    <form method="post" action="{% url 'mentorship:add_to_cart' mentorship.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-success w-100">
+                                            <i class="fas fa-cart-plus"></i> Add to Cart
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <form method="post" action="{% url 'mentorship:remove_from_cart' mentorship.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-warning w-100">
+                                            <i class="fas fa-shopping-cart"></i> Remove from Cart
+                                        </button>
+                                    </form>
+                                {% endif %}
+                                
+                                <!-- Add/Remove from favorites -->
+                                {% if not in_wishlist %}
+                                    <form method="post" action="{% url 'mentorship:add_to_wishlist' mentorship.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-primary w-100">
+                                            <i class="far fa-heart"></i> Add to Favorites
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <form method="post" action="{% url 'mentorship:remove_from_wishlist' mentorship.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-danger w-100">
+                                            <i class="fas fa-heart"></i> Remove from Favorites
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                            
+                        {% else %}
+                            <!-- Mentorship not available -->
+                            <div class="alert alert-warning">
+                                <i class="fas fa-info-circle"></i>
+                                This mentorship is not available.
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <!-- Unauthenticated user -->
+                        <div class="alert alert-info">
+                            <a href="{% url 'core:login' %}" class="btn btn-primary w-100">
+                                <i class="fas fa-sign-in-alt"></i> Log In to Purchase
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

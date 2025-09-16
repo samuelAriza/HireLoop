@@ -1,0 +1,214 @@
+@startuml HireLoop_Class_Diagram
+
+package "Core Domain" {
+    class User {
+        +id: UUIDField
+        +username: CharField
+        +email: EmailField
+        +password: CharField
+        +is_active: BooleanField
+        +date_joined: DateTimeField
+        +has_freelancer_profile: bool
+        +has_client_profile: bool
+    }
+
+    class FreelancerProfile {
+        +id: UUIDField
+        +user: OneToOneField
+        +bio: TextField
+        +skills: ArrayField
+        +portfolio_url: URLField
+        +hourly_rate: DecimalField
+        +availability: CharField
+        +created_at: DateTimeField
+        +updated_at: DateTimeField
+    }
+
+    class ClientProfile {
+        +id: UUIDField
+        +user: OneToOneField
+        +company: CharField
+        +industry: CharField
+        +company_size: CharField
+        +website: URLField
+        +created_at: DateTimeField
+        +updated_at: DateTimeField
+    }
+
+    User ||--o{ FreelancerProfile : "1:0..1"
+    User ||--o{ ClientProfile : "1:0..1"
+}
+
+package "Services Domain" {
+    class Service {
+        +id: UUIDField
+        +freelancer: ForeignKey
+        +title: CharField
+        +description: TextField
+        +category: CharField
+        +price: DecimalField
+        +delivery_time: PositiveIntegerField
+        +active: BooleanField
+        +created_at: DateTimeField
+        +updated_at: DateTimeField
+        +clean(): void
+        +__str__(): str
+    }
+
+    FreelancerProfile ||--o{ Service : "1:*"
+}
+
+package "Projects Domain" {
+    class Project {
+        +id: UUIDField
+        +client: ForeignKey
+        +assigned_freelancer: ForeignKey
+        +title: CharField
+        +description: TextField
+        +budget: DecimalField
+        +deadline: DateField
+        +state: CharField
+        +created_at: DateTimeField
+        +updated_at: DateTimeField
+        +is_open: bool
+        +is_assigned: bool
+        +applications_count: int
+        +assign_freelancer(): void
+        +complete_project(): void
+        +cancel_project(): void
+    }
+
+    class ProjectApplication {
+        +id: UUIDField
+        +project: ForeignKey
+        +freelancer: ForeignKey
+        +message: TextField
+        +status: CharField
+        +created_at: DateTimeField
+        +is_pending: bool
+        +is_accepted: bool
+        +is_rejected: bool
+        +accept(): void
+        +reject(): void
+    }
+
+    ClientProfile ||--o{ Project : "1:*"
+    FreelancerProfile ||--o{ Project : "0..1:*"
+    Project ||--o{ ProjectApplication : "1:*"
+    FreelancerProfile ||--o{ ProjectApplication : "1:*"
+}
+
+package "Mentorship Domain" {
+    class MentorshipSession {
+        +id: UUIDField
+        +mentor: ForeignKey
+        +mentee: ForeignKey
+        +title: CharField
+        +description: TextField
+        +category: CharField
+        +price: DecimalField
+        +duration_hours: PositiveIntegerField
+        +scheduled_datetime: DateTimeField
+        +status: CharField
+        +meeting_link: URLField
+        +notes: TextField
+        +created_at: DateTimeField
+        +updated_at: DateTimeField
+        +is_available: bool
+        +is_booked: bool
+        +duration_display: str
+        +book_session(): void
+        +complete_session(): void
+        +cancel_session(): void
+        +clean(): void
+    }
+
+    class MentorshipReview {
+        +id: UUIDField
+        +session: OneToOneField
+        +reviewer: ForeignKey
+        +rating: PositiveIntegerField
+        +comment: TextField
+        +created_at: DateTimeField
+    }
+
+    FreelancerProfile ||--o{ MentorshipSession : "mentor 1:*"
+    FreelancerProfile ||--o{ MentorshipSession : "mentee 0..1:*"
+    MentorshipSession ||--|| MentorshipReview : "1:0..1"
+    FreelancerProfile ||--o{ MentorshipReview : "1:*"
+}
+
+package "Cart & Wishlist Domain" {
+    class Cart {
+        +id: UUIDField
+        +user: OneToOneField
+        +created_at: DateTimeField
+        +updated_at: DateTimeField
+        +total_items: int
+        +total_price: Decimal
+        +add_item(): CartItem
+        +remove_item(): void
+        +clear(): void
+    }
+
+    class CartItem {
+        +id: UUIDField
+        +cart: ForeignKey
+        +content_type: ForeignKey
+        +object_id: UUIDField
+        +content_object: GenericForeignKey
+        +added_at: DateTimeField
+    }
+
+    class Wishlist {
+        +id: UUIDField
+        +user: OneToOneField
+        +created_at: DateTimeField
+        +updated_at: DateTimeField
+        +total_items: int
+        +add_item(): WishlistItem
+        +remove_item(): void
+        +clear(): void
+    }
+
+    class WishlistItem {
+        +id: UUIDField
+        +wishlist: ForeignKey
+        +content_type: ForeignKey
+        +object_id: UUIDField
+        +content_object: GenericForeignKey
+        +added_at: DateTimeField
+    }
+
+    User ||--|| Cart : "1:1"
+    User ||--|| Wishlist : "1:1"
+    Cart ||--o{ CartItem : "1:*"
+    Wishlist ||--o{ WishlistItem : "1:*"
+    CartItem }o--|| Service : "content_object"
+    CartItem }o--|| MentorshipSession : "content_object"
+    WishlistItem }o--|| Service : "content_object"
+    WishlistItem }o--|| MentorshipSession : "content_object"
+}
+
+package "Specialized Cart Models" {
+    class MentorshipCartItem {
+        +id: BigAutoField
+        +cart: ForeignKey
+        +mentorship: ForeignKey
+        +added_at: DateTimeField
+    }
+
+    class MentorshipWishlistItem {
+        +id: BigAutoField
+        +wishlist: ForeignKey
+        +mentorship: ForeignKey
+        +added_at: DateTimeField
+    }
+
+    Cart ||--o{ MentorshipCartItem : "1:*"
+    Wishlist ||--o{ MentorshipWishlistItem : "1:*"
+    MentorshipCartItem }o--|| MentorshipSession : "1:1"
+    MentorshipWishlistItem }o--|| MentorshipSession : "1:1"
+}
+
+@enduml

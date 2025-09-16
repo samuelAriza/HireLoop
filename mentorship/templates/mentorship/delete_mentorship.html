@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="main-body">
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'services:service_list' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'mentorship:mentorship_list' %}">Mentorías</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'mentorship:freelancer_mentorships' %}">Mis Mentorías</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Eliminar</li>
+            </ol>
+        </nav>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header bg-danger text-white">
+                        <h4 class="mb-0">
+                            <i class="fas fa-trash me-2"></i>Eliminar Mentoría
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <!-- Mensajes -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        
+                        <!-- Advertencia -->
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <strong>¡Advertencia!</strong> Esta acción no se puede deshacer.
+                        </div>
+                        
+                        <!-- Información de la mentoría -->
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ mentorship.title }}</h5>
+                                <p class="text-muted">{{ mentorship.description|truncatewords:30 }}</p>
+                                
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <small class="text-muted">Precio:</small><br>
+                                        <strong>${{ mentorship.price }}</strong>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <small class="text-muted">Duración:</small><br>
+                                        <strong>{{ mentorship.duration_hours }}h</strong>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <small class="text-muted">Estado:</small><br>
+                                        {% if mentorship.status == 'AVAILABLE' %}
+                                            <span class="badge bg-success">Disponible</span>
+                                        {% elif mentorship.status == 'BOOKED' %}
+                                            <span class="badge bg-warning">Reservada</span>
+                                        {% elif mentorship.status == 'COMPLETED' %}
+                                            <span class="badge bg-info">Completada</span>
+                                        {% elif mentorship.status == 'CANCELLED' %}
+                                            <span class="badge bg-secondary">Cancelada</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pregunta de confirmación -->
+                        <h6 class="mb-3">¿Estás seguro de que quieres eliminar esta mentoría?</h6>
+                        <p class="text-muted">
+                            Una vez eliminada, no podrás recuperar esta mentoría ni su información.
+                        </p>
+                        
+                        <!-- Botones de acción -->
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{% url 'mentorship:freelancer_mentorships' %}" class="btn btn-secondary me-md-2">
+                                <i class="fas fa-times me-1"></i>Cancelar
+                            </a>
+                            <form method="post" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger"
+                                        onclick="return confirm('¿Estás absolutamente seguro? Esta acción no se puede deshacer.')">
+                                    <i class="fas fa-trash me-1"></i>Sí, Eliminar Mentoría
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

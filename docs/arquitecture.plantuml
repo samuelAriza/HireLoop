@@ -1,0 +1,198 @@
+@startuml HireLoop_MVT_Architecture
+
+!define RECTANGLE class
+
+skinparam component {
+    BackgroundColor lightblue
+    BorderColor black
+}
+
+skinparam package {
+    BackgroundColor lightyellow
+    BorderColor black
+}
+
+package "Client Layer" {
+    component [Web Browser] as Browser
+    component [Mobile App] as Mobile
+    component [API Client] as API
+}
+
+package "Django Application Server" {
+    
+    package "Presentation Layer (Views)" {
+        component [Authentication Views] as AuthViews
+        component [Service Views] as ServiceViews
+        component [Project Views] as ProjectViews
+        component [Mentorship Views] as MentorshipViews
+        component [Cart Views] as CartViews
+        component [Wishlist Views] as WishlistViews
+        component [Profile Views] as ProfileViews
+    }
+    
+    package "URL Configuration" {
+        component [URL Router] as URLRouter
+        component [services.urls] as ServiceUrls
+        component [projects.urls] as ProjectUrls
+        component [mentorship.urls] as MentorshipUrls
+        component [core.urls] as CoreUrls
+    }
+    
+    package "Template Layer" {
+        component [Base Templates] as BaseTemplates
+        component [Service Templates] as ServiceTemplates
+        component [Project Templates] as ProjectTemplates
+        component [Mentorship Templates] as MentorshipTemplates
+        component [Cart Templates] as CartTemplates
+        component [Profile Templates] as ProfileTemplates
+    }
+    
+    package "Business Logic Layer (Services)" {
+        component [UserProfileService] as UserService
+        component [ServiceManagementService] as ServiceMgmt
+        component [ProjectManagementService] as ProjectMgmt
+        component [MentorshipService] as MentorshipSvc
+        component [CartService] as CartSvc
+        component [WishlistService] as WishlistSvc
+        component [UnifiedCartService] as UnifiedCart
+        component [UnifiedWishlistService] as UnifiedWishlist
+    }
+    
+    package "Model Layer (Domain)" {
+        component [User Models] as UserModels
+        component [Service Models] as ServiceModels
+        component [Project Models] as ProjectModels
+        component [Mentorship Models] as MentorshipModels
+        component [Cart Models] as CartModels
+    }
+    
+    package "Forms Layer" {
+        component [Authentication Forms] as AuthForms
+        component [Service Forms] as ServiceForms
+        component [Project Forms] as ProjectForms
+        component [Mentorship Forms] as MentorshipForms
+        component [Profile Forms] as ProfileForms
+    }
+    
+    package "Admin Interface" {
+        component [Django Admin] as Admin
+    }
+}
+
+package "Database Layer" {
+    database "SQLite Database" as DB
+    component [Users] as UsersTable
+    component [FreelancerProfiles] as FreelancerTable
+    component [ClientProfiles] as ClientTable
+    component [Services] as ServicesTable
+    component [Projects] as ProjectsTable
+    component [ProjectApplications] as ApplicationsTable
+    component [MentorshipSessions] as MentorshipTable
+    component [MentorshipReviews] as ReviewsTable
+    component [Carts] as CartsTable
+    component [CartItems] as CartItemsTable
+    component [Wishlists] as WishlistsTable
+    component [WishlistItems] as WishlistItemsTable
+    
+    DB --> UsersTable
+    DB --> FreelancerTable
+    DB --> ClientTable
+    DB --> ServicesTable
+    DB --> ProjectsTable
+    DB --> ApplicationsTable
+    DB --> MentorshipTable
+    DB --> ReviewsTable
+    DB --> CartsTable
+    DB --> CartItemsTable
+    DB --> WishlistsTable
+    DB --> WishlistItemsTable
+}
+
+package "Static Files" {
+    component [CSS Files] as CSS
+    component [JavaScript Files] as JS
+    component [Images] as Images
+}
+
+' HTTP Request Flow
+Browser --> URLRouter : "HTTP Request"
+Mobile --> URLRouter : "HTTP Request"
+API --> URLRouter : "HTTP Request"
+
+URLRouter --> ServiceUrls : "Route to App"
+URLRouter --> ProjectUrls : "Route to App"
+URLRouter --> MentorshipUrls : "Route to App"
+URLRouter --> CoreUrls : "Route to App"
+
+ServiceUrls --> ServiceViews : "Route to View"
+ProjectUrls --> ProjectViews : "Route to View"
+MentorshipUrls --> MentorshipViews : "Route to View"
+CoreUrls --> AuthViews : "Route to View"
+CoreUrls --> ProfileViews : "Route to View"
+
+' Views to Services
+ServiceViews --> ServiceMgmt : "Business Logic"
+ProjectViews --> ProjectMgmt : "Business Logic"
+MentorshipViews --> MentorshipSvc : "Business Logic"
+CartViews --> UnifiedCart : "Business Logic"
+WishlistViews --> UnifiedWishlist : "Business Logic"
+ProfileViews --> UserService : "Business Logic"
+
+' Services to Models
+ServiceMgmt --> ServiceModels : "Data Access"
+ProjectMgmt --> ProjectModels : "Data Access"
+MentorshipSvc --> MentorshipModels : "Data Access"
+UnifiedCart --> CartModels : "Data Access"
+UnifiedWishlist --> CartModels : "Data Access"
+UserService --> UserModels : "Data Access"
+
+' Models to Database
+UserModels --> DB : "ORM"
+ServiceModels --> DB : "ORM"
+ProjectModels --> DB : "ORM"
+MentorshipModels --> DB : "ORM"
+CartModels --> DB : "ORM"
+
+' Views to Templates
+ServiceViews --> ServiceTemplates : "Render"
+ProjectViews --> ProjectTemplates : "Render"
+MentorshipViews --> MentorshipTemplates : "Render"
+CartViews --> CartTemplates : "Render"
+ProfileViews --> ProfileTemplates : "Render"
+
+BaseTemplates <|-- ServiceTemplates : "extends"
+BaseTemplates <|-- ProjectTemplates : "extends"
+BaseTemplates <|-- MentorshipTemplates : "extends"
+BaseTemplates <|-- CartTemplates : "extends"
+BaseTemplates <|-- ProfileTemplates : "extends"
+
+' Forms Integration
+AuthViews --> AuthForms : "Form Validation"
+ServiceViews --> ServiceForms : "Form Validation"
+ProjectViews --> ProjectForms : "Form Validation"
+MentorshipViews --> MentorshipForms : "Form Validation"
+ProfileViews --> ProfileForms : "Form Validation"
+
+' Admin Interface
+Admin --> UserModels : "CRUD Operations"
+Admin --> ServiceModels : "CRUD Operations"
+Admin --> ProjectModels : "CRUD Operations"
+Admin --> MentorshipModels : "CRUD Operations"
+
+' Static Files
+ServiceTemplates --> CSS : "Load Styles"
+ServiceTemplates --> JS : "Load Scripts"
+ServiceTemplates --> Images : "Load Media"
+
+' Response Flow
+ServiceTemplates --> Browser : "HTTP Response"
+ProjectTemplates --> Browser : "HTTP Response"
+MentorshipTemplates --> Browser : "HTTP Response"
+CartTemplates --> Browser : "HTTP Response"
+ProfileTemplates --> Browser : "HTTP Response"
+
+note top of Browser : "Frontend clients interact\nwith Django through HTTP"
+note right of DB : "Persistent data storage\nwith relational integrity"
+note bottom of "Business Logic Layer (Services)" : "SOLID principles applied\nwith clean architecture"
+
+@enduml

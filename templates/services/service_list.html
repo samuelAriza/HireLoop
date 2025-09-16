@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h1><i class="fas fa-briefcase me-2"></i>Available Services</h1>
+
+            <!-- Search Form -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-body">
+                    <form method="get" class="row g-3 align-items-end">
+                        <div class="col-md-3">
+                            <label for="id_search" class="form-label">Search services</label>
+                            <input type="text" class="form-control" id="id_search" name="search"
+                                value="{{ current_filters.search }}" placeholder="E.g., web development, design...">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="id_category" class="form-label">Category</label>
+                            <select class="form-select" id="id_category" name="category">
+                                <option value="">All categories</option>
+                                {% for cat in popular_categories %}
+                                <option value="{{ cat }}" {% if current_filters.category == cat %}selected{% endif %}>
+                                    {{ cat }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="id_min_price" class="form-label">Min. price</label>
+                            <input type="number" class="form-control" id="id_min_price" name="min_price"
+                                value="{{ current_filters.min_price }}" placeholder="10">
+                        </div>
+                        <div class="col-md-2">
+                            <label for="id_max_price" class="form-label">Max. price</label>
+                            <input type="number" class="form-control" id="id_max_price" name="max_price"
+                                value="{{ current_filters.max_price }}" placeholder="500">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                        {% if has_filters %}
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                <i class="fas fa-filter"></i>
+                                Showing {{ services|length }} services
+                                {% if current_filters.search %}containing "<strong>{{ current_filters.search }}</strong>"{% endif %}
+                                {% if current_filters.category %}in category: <strong>{{ current_filters.category }}</strong>{% endif %}
+                                {% if current_filters.min_price %}price from: <strong>${{ current_filters.min_price }}</strong>{% endif %}
+                                {% if current_filters.max_price %}up to: <strong>${{ current_filters.max_price }}</strong>{% endif %}
+                            </div>
+                            <a href="{% url 'services:service_list' %}" class="btn btn-outline-secondary btn-sm">
+                                <i class="fas fa-times"></i> Clear filters
+                            </a>
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+
+            <!-- Quick Filter Chips -->
+            <div class="mb-4">
+                <h6 class="mb-2">Quick filters:</h6>
+                <div class="d-flex flex-wrap gap-2">
+                    {% for cat in popular_categories %}
+                    <a href="?category={{ cat }}" class="btn btn-sm btn-outline-primary {% if current_filters.category == cat %}active{% endif %}">
+                        <i class="fas fa-tag me-1"></i>{{ cat }}
+                    </a>
+                    {% endfor %}
+                    <a href="?max_price=50" class="btn btn-sm btn-outline-success {% if current_filters.max_price == '50' %}active{% endif %}">
+                        <i class="fas fa-dollar-sign me-1"></i>Up to $50
+                    </a>
+                    <a href="?max_price=100" class="btn btn-sm btn-outline-success {% if current_filters.max_price == '100' %}active{% endif %}">
+                        <i class="fas fa-dollar-sign me-1"></i>Up to $100
+                    </a>
+                </div>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="row">
+                {% for service in services %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 service-card">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <span class="badge bg-primary">{{ service.category|default:"General" }}</span>
+                                <span class="text-success fw-bold">${{ service.price }}</span>
+                            </div>
+                            
+                            <h5 class="card-title">{{ service.title }}</h5>
+                            <p class="card-text text-muted flex-grow-1">{{ service.description|truncatewords:20 }}</p>
+                            
+                            <div class="service-meta mb-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-user me-1"></i>{{ service.freelancer.user.get_full_name|default:service.freelancer.user.username }}
+                                </small>
+                                <br>
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>{{ service.delivery_time }} day{{ service.delivery_time|pluralize }}
+                                </small>
+                            </div>
+                            
+                            <div class="d-flex gap-2 mt-auto">
+                                <a href="{% url 'services:service_detail' service.id %}" class="btn btn-sm btn-primary">View Details</a>
+                                {% if user.is_authenticated %}
+                                <button class="btn btn-primary flex-fill">
+                                    Hire
+                                </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <div class="text-center py-5">
+                        <i class="fas fa-briefcase fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">No services found</h4>
+                        {% if has_filters %}
+                            <p class="text-muted">No services match the applied filters.</p>
+                            <a href="{% url 'services:service_list' %}" class="btn btn-primary">
+                                <i class="fas fa-refresh me-2"></i>View all services
+                            </a>
+                        {% else %}
+                            <p class="text-muted">Currently, no services are available.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if is_paginated %}
+            <nav aria-label="Services pagination" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% for key, value in current_filters.items %}{% if value %}{{ key }}={{ value }}&{% endif %}{% endfor %}page=1">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?{% for key, value in current_filters.items %}{% if value %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}">
+                                <i class="fas fa-angle-left"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?{% for key, value in current_filters.items %}{% if value %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% for key, value in current_filters.items %}{% if value %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?{% for key, value in current_filters.items %}{% if value %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.paginator.num_pages }}">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .service-card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .btn.active {
+        background-color: var(--bs-primary);
+        color: white;
+        border-color: var(--bs-primary);
+    }
+
+    .service-meta {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 0.5rem 0;
+    }
+</style>
+{% endblock %}

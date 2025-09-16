@@ -1,0 +1,376 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="main-body">
+        
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'services:service_list' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    {% if profile_type == 'freelancer' %}Freelancer Profile{% else %}Client Profile{% endif %}
+                </li>
+            </ol>
+        </nav>
+        <!-- /Breadcrumb -->
+
+        <div class="row gutters-sm">
+            <!-- Sidebar Profile Card -->
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Profile" class="rounded-circle" width="150">
+                            <div class="mt-3">
+                                <h4>{{ profile.user.username }}</h4>
+                                <p class="text-secondary mb-1">
+                                    {% if profile_type == 'freelancer' %}
+                                        Freelancer
+                                    {% else %}
+                                        Client
+                                    {% endif %}
+                                </p>
+                                <p class="text-muted font-size-sm">{{ profile.user.email }}</p>
+                                {% if is_owner %}
+                                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" 
+                                        data-bs-target="#editForm" aria-expanded="false" aria-controls="editForm">
+                                    <i class="fas fa-edit me-1"></i>Edit Profile
+                                </button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Skills/Info Card -->
+                {% if profile_type == 'freelancer' %}
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h6 class="mb-0">Skills</h6>
+                    </div>
+                    <div class="card-body">
+                        {% if profile.skills %}
+                            {% for skill in profile.skills %}
+                                <span class="badge bg-primary me-1 mb-1">{{ skill }}</span>
+                            {% endfor %}
+                        {% else %}
+                            <p class="text-muted">No skills registered</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% elif profile_type == 'client' %}
+                <div class="card mt-3">
+                    <ul class="list-group list-group-flush">
+                        {% if profile.company %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="fas fa-building me-2"></i>Company</h6>
+                            <span class="text-secondary">{{ profile.company }}</span>
+                        </li>
+                        {% endif %}
+                        {% if profile.billing_email %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                            <h6 class="mb-0"><i class="fas fa-envelope me-2"></i>Billing Email</h6>
+                            <span class="text-secondary">{{ profile.billing_email }}</span>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-md-8">
+                <!-- Edit Form (Collapsible) -->
+                {% if is_owner %}
+                <div class="collapse mb-3" id="editForm">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="mb-0"><i class="fas fa-edit me-2"></i>Edit Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="post">
+                                {% csrf_token %}
+                                {% if profile_type == 'freelancer' %}
+                                    <!-- Freelancer Form -->
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Username</h6>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            {{ form.username }}
+                                            {% if form.username.errors %}
+                                                <div class="text-danger">{{ form.username.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Email</h6>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            {{ form.email }}
+                                            {% if form.email.errors %}
+                                                <div class="text-danger">{{ form.email.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Skills</h6>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            {{ form.skills }}
+                                            <div class="form-text">{{ form.skills.help_text }}</div>
+                                            {% if form.skills.errors %}
+                                                <div class="text-danger">{{ form.skills.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Bio</h6>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            {{ form.bio }}
+                                            <div class="form-text">{{ form.bio.help_text }}</div>
+                                            {% if form.bio.errors %}
+                                                <div class="text-danger">{{ form.bio.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% elif profile_type == 'client' %}
+                                    <!-- Client Form -->
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Username</h6>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            {{ form.username }}
+                                            {% if form.username.errors %}
+                                                <div class="text-danger">{{ form.username.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Email</h6>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            {{ form.email }}
+                                            {% if form.email.errors %}
+                                                <div class="text-danger">{{ form.email.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Company</h6>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            {{ form.company }}
+                                            {% if form.company.errors %}
+                                                <div class="text-danger">{{ form.company.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <h6 class="mb-0">Billing Email</h6>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            {{ form.billing_email }}
+                                            <div class="form-text">{{ form.billing_email.help_text }}</div>
+                                            {% if form.billing_email.errors %}
+                                                <div class="text-danger">{{ form.billing_email.errors.0 }}</div>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-secondary me-2" type="button" data-bs-toggle="collapse" 
+                                                data-bs-target="#editForm" aria-expanded="false">
+                                            <i class="fas fa-times me-1"></i>Cancel
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-save me-1"></i>Save Changes
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Profile Information Card -->
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5 class="mb-0">Profile Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Username</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ profile.user.username }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ profile.user.email }}
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Registration Date</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                {{ profile.user.date_joined|date:"m/d/Y" }}
+                            </div>
+                        </div>
+                        {% if profile_type == 'freelancer' %}
+                            {% if profile.bio %}
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Bio</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ profile.bio }}
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% elif profile_type == 'client' %}
+                            {% if profile.company %}
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Company</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ profile.company }}
+                                </div>
+                            </div>
+                            {% endif %}
+                            {% if profile.billing_email %}
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Billing Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    {{ profile.billing_email }}
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Additional Info Cards -->
+                {% if profile_type == 'freelancer' %}
+                <div class="row gutters-sm">
+                    <div class="col-sm-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-chart-line text-info me-2"></i>Statistics
+                                </h6>
+                                <small>Completed Projects</small>
+                                <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" 
+                                         aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <small>Client Satisfaction</small>
+                                <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 95%" 
+                                         aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <small>Delivery Time</small>
+                                <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" 
+                                         aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-star text-warning me-2"></i>Ratings
+                                </h6>
+                                <div class="text-center">
+                                    <div class="display-4 text-warning mb-2">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <p class="text-muted">4.8 out of 5 stars</p>
+                                    <small class="text-secondary">Based on 127 reviews</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <div class="row gutters-sm">
+                    <div class="col-sm-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-briefcase text-info me-2"></i>Active Projects
+                                </h6>
+                                <small>Projects in Progress</small>
+                                <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 60%" 
+                                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <small>Completed Projects</small>
+                                <div class="progress mb-3" style="height: 5px">
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: 85%" 
+                                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-users text-success me-2"></i>Hired Freelancers
+                                </h6>
+                                <div class="text-center">
+                                    <div class="display-4 text-primary mb-2">24</div>
+                                    <p class="text-muted">Freelancers working</p>
+                                    <small class="text-secondary">In the last 6 months</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

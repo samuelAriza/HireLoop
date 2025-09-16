@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h3><i class="fas fa-trash me-2"></i>Delete Project</h3>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-danger">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        <strong>Are you sure you want to delete this project?</strong>
+                        <br>This action cannot be undone.
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5>{{ project.title }}</h5>
+                        <p class="text-muted">{{ project.description|truncatewords:30 }}</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Status:</strong> 
+                                <span class="badge bg-{{ project.state|yesno:'success,warning,danger' }}">
+                                    {{ project.get_state_display }}
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Applications:</strong> {{ project.applications_count }}
+                            </div>
+                        </div>
+                        
+                        {% if project.budget %}
+                        <div class="mt-2">
+                            <strong>Budget:</strong> ${{ project.budget }}
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    {% if project.applications_count > 0 %}
+                    <div class="alert alert-warning">
+                        <i class="fas fa-users me-2"></i>
+                        <strong>Warning:</strong> This project has {{ project.applications_count }} 
+                        application{{ project.applications_count|pluralize}}. 
+                        Deleting it will also remove all applications.
+                    </div>
+                    {% endif %}
+                    
+                    <form method="post" class="d-flex justify-content-between">
+                        {% csrf_token %}
+                        <a href="{% url 'projects:client_projects' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left me-1"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-danger">
+                            <i class="fas fa-trash me-1"></i>Yes, Delete Project
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

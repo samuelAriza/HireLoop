@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h1 class="text-center mb-5">
+                <i class="fas fa-project-diagram me-2"></i>
+                Find Your Ideal Project
+            </h1>
+
+            <!-- Search Form -->
+            <div class="card shadow-sm mb-5">
+                <div class="card-body">
+                    <form method="get" class="row g-3 align-items-end">
+                        <div class="col-md-4">
+                            <label for="id_search" class="form-label">Search Projects</label>
+                            <input type="text" class="form-control" id="id_search" name="search"
+                                value="{{ current_filters.search }}" placeholder="E.g., website, mobile app...">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="id_min_budget" class="form-label">Minimum Budget</label>
+                            <input type="number" class="form-control" id="id_min_budget" name="min_budget"
+                                value="{{ current_filters.min_budget }}" placeholder="100">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="id_max_budget" class="form-label">Maximum Budget</label>
+                            <input type="number" class="form-control" id="id_max_budget" name="max_budget"
+                                value="{{ current_filters.max_budget }}" placeholder="5000">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </div>
+                        {% if has_filters %}
+                        <div class="col-12">
+                            <div class="alert alert-info">
+                                <i class="fas fa-filter"></i>
+                                Showing filtered projects
+                                {% if current_filters.search %}for "<strong>{{ current_filters.search }}</strong>"{% endif %}
+                                {% if current_filters.min_budget %}from <strong>${{ current_filters.min_budget }}</strong>{% endif %}
+                                {% if current_filters.max_budget %}up to <strong>${{ current_filters.max_budget }}</strong>{% endif %}
+                            </div>
+                            <a href="{% url 'projects:project_list' %}" class="btn btn-outline-secondary btn-sm">
+                                <i class="fas fa-times"></i> Clear Filters
+                            </a>
+                        </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+
+            <!-- Quick Filter Chips -->
+            <div class="mb-4">
+                <h6 class="mb-2">Quick Filters:</h6>
+                <div class="d-flex flex-wrap gap-2">
+                    <a href="?max_budget=500" class="btn btn-sm btn-outline-success {% if current_filters.max_budget == '500' %}active{% endif %}">
+                        <i class="fas fa-dollar-sign me-1"></i>Up to $500
+                    </a>
+                    <a href="?max_budget=1000" class="btn btn-sm btn-outline-success {% if current_filters.max_budget == '1000' %}active{% endif %}">
+                        <i class="fas fa-dollar-sign me-1"></i>Up to $1,000
+                    </a>
+                    <a href="?max_budget=5000" class="btn btn-sm btn-outline-success {% if current_filters.max_budget == '5000' %}active{% endif %}">
+                        <i class="fas fa-dollar-sign me-1"></i>Up to $5,000
+                    </a>
+                    <a href="?min_budget=1000" class="btn btn-sm btn-outline-primary {% if current_filters.min_budget == '1000' %}active{% endif %}">
+                        <i class="fas fa-arrow-up me-1"></i>From $1,000
+                    </a>
+                </div>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="row">
+                {% for project in projects %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 project-card">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <span class="badge bg-warning text-dark">Project</span>
+                                <div class="text-end">
+                                    <span class="text-success fw-bold">${{ project.budget }}</span>
+                                </div>
+                            </div>
+                            
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text text-muted flex-grow-1">{{ project.description|truncatewords:20 }}</p>
+                            
+                            <div class="project-meta mb-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-user me-1"></i>{{ project.client.user.get_full_name|default:project.client.user.username }}
+                                </small>
+                                <br>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar me-1"></i>Posted: {{ project.created_at|date:"M d, Y" }}
+                                </small>
+                                <br>
+                                <small class="text-muted">
+                                    <i class="fas fa-users me-1"></i>{{ project.applications.count }} applications
+                                </small>
+                            </div>
+                            
+                            <div class="d-flex gap-2 mt-auto">
+                                <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-outline-primary flex-fill">
+                                    View Details
+                                </a>
+                                {% if user.is_authenticated and user.has_freelancer_profile %}
+                                <a href="{% url 'projects:project_detail' project.pk %}#apply" class="btn btn-warning flex-fill">
+                                    Apply
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <div class="text-center py-5">
+                        <i class="fas fa-project-diagram fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">No projects found</h4>
+                        {% if has_filters %}
+                            <p class="text-muted">No projects match the applied filters.</p>
+                            <a href="{% url 'projects:project_list' %}" class="btn btn-primary">
+                                <i class="fas fa-refresh me-2"></i>View All Projects
+                            </a>
+                        {% else %}
+                            <p class="text-muted">There are currently no projects available.</p>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if is_paginated %}
+            <nav aria-label="Projects pagination" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% for key, value in current_filters.items %}{% if value %}{{ key }}={{ value }}&{% endif %}{% endfor %}page=1">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?{% for key, value in current_filters.items %}{% if value %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.previous_page_number }}">
+                                <i class="fas fa-angle-left"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?{% for key, value in current_filters.items %}{% if value %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?{% for key, value in current_filters.items %}{% if value %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.next_page_number }}">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?{% for key, value in current_filters.items %}{% if value %}{{ key }}={{ value }}&{% endif %}{% endfor %}page={{ page_obj.paginator.num_pages }}">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .project-card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .btn.active {
+        background-color: var(--bs-primary);
+        color: white;
+        border-color: var(--bs-primary);
+    }
+
+    .project-meta {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 0.5rem 0;
+    }
+</style>
+{% endblock %}

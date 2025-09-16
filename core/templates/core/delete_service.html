@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="main-body">
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'services:service_list' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'core:freelancer_services' %}">My Services</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Delete Service</li>
+            </ol>
+        </nav>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card border-danger">
+                    <div class="card-header bg-danger text-white">
+                        <h4 class="mb-0">
+                            <i class="fas fa-exclamation-triangle me-2"></i>Confirm Deletion
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-warning">
+                            <h5><i class="fas fa-warning me-2"></i>Are you sure?</h5>
+                            <p class="mb-0">This action cannot be undone. The service will be permanently deleted.</p>
+                        </div>
+                        
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ object.title }}</h5>
+                                <p class="card-text">{{ object.description|truncatewords:30 }}</p>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <p class="mb-1">
+                                            <strong>Price:</strong> ${{ object.price }}
+                                        </p>
+                                        <p class="mb-1">
+                                            <strong>Category:</strong> {{ object.get_category_display }}
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p class="mb-1">
+                                            <strong>Delivery Time:</strong> {{ object.delivery_time }} day{{ object.delivery_time|pluralize }}
+                                        </p>
+                                        <p class="mb-1">
+                                            <strong>Status:</strong> 
+                                            {% if object.active %}
+                                                <span class="badge bg-success">Active</span>
+                                            {% else %}
+                                                <span class="badge bg-secondary">Inactive</span>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                </div>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar me-1"></i>
+                                    Created: {{ object.created_at|date:"m/d/Y H:i" }}
+                                </small>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <h6>Consequences of deleting this service:</h6>
+                            <ul class="text-muted">
+                                <li>All service data will be lost</li>
+                                <li>Clients will no longer be able to view or hire it</li>
+                                <li>Pending orders (if any) will be canceled</li>
+                                <li>This information cannot be recovered</li>
+                            </ul>
+                        </div>
+                        
+                        <form method="post" class="mt-4">
+                            {% csrf_token %}
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="{% url 'core:freelancer_services' %}" class="btn btn-secondary me-md-2">
+                                    <i class="fas fa-arrow-left me-1"></i>No, keep service
+                                </a>
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash me-1"></i>Yes, delete permanently
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

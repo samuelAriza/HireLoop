@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ service.title }} - HireLoop{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="card-title">{{ service.title }}</h1>
+                    <p class="text-muted">By {{ service.freelancer.user.get_full_name|default:service.freelancer.user.username }}</p>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <span class="badge bg-primary">{{ service.get_category_display }}</span>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <h3 class="text-success">${{ service.price }}</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <h5>Description</h5>
+                        <p>{{ service.description|linebreaks }}</p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <i class="fas fa-clock"></i>
+                        <strong>Delivery time:</strong> {{ service.delivery_time }} day{{ service.delivery_time|pluralize }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card sticky-top">
+                <div class="card-body">
+                    <h5 class="card-title">Actions</h5>
+                    
+                    {% if user.is_authenticated %}
+                        {% if not is_owner %}
+                            <div class="d-grid gap-2">
+                                {% if not in_cart %}
+                                    <form method="post" action="{% url 'services:add_to_cart' service.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-primary btn-lg w-100">
+                                            <i class="fas fa-cart-plus"></i> Add to Cart
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <div class="alert alert-info">
+                                        <i class="fas fa-check-circle"></i> Already in your cart
+                                    </div>
+                                    <form method="post" action="{% url 'services:remove_from_cart' service.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-danger w-100">
+                                            <i class="fas fa-cart-arrow-down"></i> Remove from Cart
+                                        </button>
+                                    </form>
+                                {% endif %}
+                                
+                                <hr>
+                                
+                                {% if not in_wishlist %}
+                                    <form method="post" action="{% url 'services:add_to_wishlist' service.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-secondary w-100">
+                                            <i class="fas fa-heart"></i> Add to Favorites
+                                        </button>
+                                    </form>
+                                {% else %}
+                                    <form method="post" action="{% url 'services:remove_from_wishlist' service.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-outline-danger w-100">
+                                            <i class="fas fa-heart-broken"></i> Remove from Favorites
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-warning">
+                                <i class="fas fa-info-circle"></i>
+                                This is your service. You cannot add it to your cart.
+                            </div>
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'core:update_service' service.id %}" class="btn btn-outline-primary">
+                                    <i class="fas fa-edit"></i> Edit Service
+                                </a>
+                                <a href="{% url 'core:delete_service' service.id %}" class="btn btn-outline-danger">
+                                    <i class="fas fa-trash"></i> Delete Service
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="alert alert-info">
+                            <a href="{% url 'core:login' %}" class="btn btn-primary w-100">
+                                <i class="fas fa-sign-in-alt"></i> Log In to Purchase
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

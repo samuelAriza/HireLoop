@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Wishlist{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1><i class="fas fa-heart me-2"></i>My Wishlist</h1>
+
+            {% if items %}
+            <div class="row">
+                {% for item in items %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <p class="card-text text-muted">
+                                {{ item.description|truncatewords:15 }}
+                            </p>
+                            <div class="mb-2">
+                                <span class="badge bg-primary">{{ item.get_category_display }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong class="text-success h5">${{ item.price }}</strong>
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>{{ item.delivery_time }} day{{ item.delivery_time|pluralize }}
+                                </small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-light">
+                            <div class="d-flex justify-content-between">
+                                {% if item.id %}
+                                <a href="{% url 'services:service_detail' item.id %}" class="btn btn-sm btn-outline-primary">
+                                    View Details
+                                </a>
+                                <form method="post" action="{% url 'services:remove_from_wishlist' item.id %}" class="d-inline">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">
+                                        <i class="fas fa-heart-broken"></i>
+                                    </button>
+                                </form>
+                                {% else %}
+                                <span class="text-muted">ID not available</span>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-heart fa-4x text-muted mb-3"></i>
+                <h3>Your wishlist is empty</h3>
+                <p class="text-muted">Add services to your wishlist to find them easily later!</p>
+                <a href="{% url 'services:service_list' %}" class="btn btn-primary">
+                    <i class="fas fa-briefcase me-1"></i>Explore Services
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
