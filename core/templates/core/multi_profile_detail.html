@@ -1,0 +1,406 @@
+<!-- ARCHIVO: /home/samargo/Documents/universidad_/software_architecture/hireloop_project/core/templates/core/multi_profile_detail.html -->
+<!-- REEMPLAZAR las secciones de botones Edit/Delete y las funciones JavaScript con esto: -->
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<style>
+    .profile-action-btn {
+        width: 100%;
+        min-height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        border: none;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .profile-image-container {
+        position: relative;
+        display: inline-block;
+    }
+
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border: 3px solid #dee2e6;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="main-body">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'services:service_list' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+            </ol>
+        </nav>
+
+        <div class="row gutters-sm">
+            <!-- Sidebar Profile Card -->
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex flex-column align-items-center text-center">
+                            <!-- Profile Image -->
+                            <div class="profile-image-container mb-3">
+                                <img src="{{ profile_image_url }}" alt="Profile" class="rounded-circle profile-image">
+                            </div>
+
+                            <div class="mt-3 w-100">
+                                <h4>{{ user_profile.username }}</h4>
+                                <div class="mb-2">
+                                    {% for role in user_roles %}
+                                    <span class="badge bg-primary me-1">{{ role|title }}</span>
+                                    {% empty %}
+                                    <span class="badge bg-secondary">No role defined</span>
+                                    {% endfor %}
+                                </div>
+                                <p class="text-muted font-size-sm">{{ user_profile.email }}</p>
+
+                                <!-- Image Management -->
+                                <div class="mb-3">
+                                    <button class="btn btn-outline-primary btn-sm w-100 mb-2" data-bs-toggle="collapse"
+                                        data-bs-target="#imageUploadForm">
+                                        <i class="fas fa-camera me-1"></i>Change Photo
+                                    </button>
+
+                                    {% if user_profile.profile_image %}
+                                    <form method="post" style="display: inline;" class="w-100">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="delete_image">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm w-100"
+                                            onclick="return confirm('Are you sure you want to delete your profile image?')">
+                                            <i class="fas fa-trash me-1"></i>Delete Photo
+                                        </button>
+                                    </form>
+                                    {% endif %}
+                                </div>
+
+                                <!-- Image Upload Form (Collapsible) -->
+                                <div class="collapse w-100 mb-3" id="imageUploadForm">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <h6 class="mb-3">Update Profile Image</h6>
+                                            <form method="post" enctype="multipart/form-data">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="action" value="update_image">
+
+                                                <div class="mb-3">
+                                                    <label for="{{ image_form.profile_image.id_for_label }}"
+                                                        class="form-label">Choose Image</label>
+                                                    {{ image_form.profile_image }}
+                                                    <div class="form-text">Max size: 5MB. Supported: JPG, PNG, GIF</div>
+                                                </div>
+
+                                                <div class="d-flex justify-content-end gap-2">
+                                                    <button class="btn btn-secondary btn-sm" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#imageUploadForm">
+                                                        Cancel
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-upload me-1"></i>Upload
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Create Profile Buttons -->
+                                {% if not has_freelancer %}
+                                <a href="{% url 'core:freelancer_profile_create' %}"
+                                    class="btn btn-outline-primary profile-action-btn mb-2">
+                                    <i class="fas fa-plus me-2"></i>Create Freelancer Profile
+                                </a>
+                                {% endif %}
+
+                                {% if not has_client %}
+                                <a href="{% url 'core:client_profile_create' %}"
+                                    class="btn btn-outline-success profile-action-btn">
+                                    <i class="fas fa-plus me-2"></i>Create Client Profile
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-8">
+                <!-- Profile Tabs -->
+                {% if user_roles %}
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="profileTabs" role="tablist">
+                            {% if has_freelancer %}
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link {% if primary_role == 'freelancer' %}active{% endif %}"
+                                    id="freelancer-tab" data-bs-toggle="tab" data-bs-target="#freelancer-content"
+                                    type="button" role="tab">
+                                    <i class="fas fa-code me-1"></i>Freelancer
+                                </button>
+                            </li>
+                            {% endif %}
+                            {% if has_client %}
+                            <li class="nav-item" role="presentation">
+                                <button
+                                    class="nav-link {% if primary_role == 'client' or not has_freelancer %}active{% endif %}"
+                                    id="client-tab" data-bs-toggle="tab" data-bs-target="#client-content" type="button"
+                                    role="tab">
+                                    <i class="fas fa-briefcase me-1"></i>Client
+                                </button>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+
+                    <div class="tab-content" id="profileTabContent">
+                        <!-- Freelancer Tab -->
+                        {% if has_freelancer %}
+                        <div class="tab-pane fade {% if primary_role == 'freelancer' %}show active{% endif %}"
+                            id="freelancer-content" role="tabpanel">
+                            <div class="card-body">
+                                <!-- Edit and Delete Buttons -->
+                                <div class="d-flex justify-content-end mb-3 gap-2">
+                                    <button class="btn btn-outline-primary btn-sm" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#editFreelancerForm">
+                                        <i class="fas fa-edit me-1"></i>Edit
+                                    </button>
+
+                                    <!-- DELETE FORM -->
+                                    <form method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="profile_type" value="freelancer">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to delete your freelancer profile? This action cannot be undone.')">
+                                            <i class="fas fa-trash me-1"></i>Delete
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <!-- Edit Form (Collapsible) -->
+                                <div class="collapse mb-3" id="editFreelancerForm">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="profile_type" value="freelancer">
+
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-3">
+                                                        <h6 class="mb-0">Skills</h6>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        {{ freelancer_form.skills }}
+                                                        <div class="form-text">{{ freelancer_form.skills.help_text }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-3">
+                                                        <h6 class="mb-0">Bio</h6>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        {{ freelancer_form.bio }}
+                                                        <div class="form-text">{{ freelancer_form.bio.help_text }}</div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex justify-content-end gap-2">
+                                                    <button class="btn btn-secondary btn-sm" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#editFreelancerForm">
+                                                        Cancel
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-save me-1"></i>Save
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Freelancer Info Display -->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Skills</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {% if profiles.freelancer_skills %}
+                                        {% for skill in profiles.freelancer_skills %}
+                                        <span class="badge bg-primary me-1 mb-1">{{ skill.name }}</span>
+                                        {% endfor %}
+                                        {% else %}
+                                        <span class="text-muted">No skills registered</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Bio</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {{ profiles.freelancer.bio|default:"No bio available" }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                        <!-- Client Tab -->
+                        {% if has_client %}
+                        <div class="tab-pane fade {% if primary_role == 'client' or not has_freelancer %}show active{% endif %}"
+                            id="client-content" role="tabpanel">
+                            <div class="card-body">
+                                <!-- Edit and Delete Buttons -->
+                                <div class="d-flex justify-content-end mb-3 gap-2">
+                                    <button class="btn btn-outline-primary btn-sm" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#editClientForm">
+                                        <i class="fas fa-edit me-1"></i>Edit
+                                    </button>
+
+                                    <!-- DELETE FORM -->
+                                    <form method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="action" value="delete">
+                                        <input type="hidden" name="profile_type" value="client">
+                                        <button type="submit" class="btn btn-outline-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to delete your client profile? This action cannot be undone.')">
+                                            <i class="fas fa-trash me-1"></i>Delete
+                                        </button>
+                                    </form>
+                                </div>
+
+                                <!-- Edit Form (Collapsible) -->
+                                <div class="collapse mb-3" id="editClientForm">
+                                    <div class="card bg-light">
+                                        <div class="card-body">
+                                            <form method="post">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="profile_type" value="client">
+
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-3">
+                                                        <h6 class="mb-0">Company</h6>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        {{ client_form.company }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-3">
+                                                        <h6 class="mb-0">Billing Email</h6>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        {{ client_form.billing_email }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-3">
+                                                        <h6 class="mb-0">Billing Address</h6>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        {{ client_form.billing_address }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="d-flex justify-content-end gap-2">
+                                                    <button class="btn btn-secondary btn-sm" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#editClientForm">
+                                                        Cancel
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary btn-sm">
+                                                        <i class="fas fa-save me-1"></i>Save
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Client Info Display -->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Company</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {{ profiles.client.company|default:"No company registered" }}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Billing Email</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {{ profiles.client.billing_email|default:"No billing email" }}
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <h6 class="mb-0">Billing Address</h6>
+                                    </div>
+                                    <div class="col-sm-9 text-secondary">
+                                        {{ profiles.client.billing_address|default:"No billing address"|linebreaks }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% else %}
+                <!-- No profiles message -->
+                <div class="card mb-3">
+                    <div class="card-body text-center">
+                        <h5>Create your first profile!</h5>
+                        <p class="text-muted">You need at least one profile to start using the platform.</p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="{% url 'core:freelancer_profile_create' %}" class="btn btn-primary">
+                                <i class="fas fa-code me-1"></i>Be a Freelancer
+                            </a>
+                            <a href="{% url 'core:client_profile_create' %}" class="btn btn-success">
+                                <i class="fas fa-briefcase me-1"></i>Be a Client
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <!-- Statistics Cards -->
+                <div class="row gutters-sm">
+                    <div class="col-sm-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h6 class="d-flex align-items-center mb-3">
+                                    <i class="fas fa-chart-line text-info me-2"></i>Recent Activity
+                                </h6>
+                                <div class="text-center">
+                                    <div class="display-6 text-primary mb-2">{{ user_roles|length }}</div>
+                                    <p class="text-muted">Active Profiles</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

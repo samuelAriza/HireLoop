@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Section: Design Block -->
+<section>
+    <div class="px-4 py-5 px-md-5 text-center text-lg-start bg-light">
+        <div class="container">
+            <div class="row gx-lg-5 align-items-center">
+
+                <!-- Left Side -->
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <h1 class="my-5 display-3 fw-bold ls-tight">
+                        The best offer <br />
+                        <span class="text-primary">for your business</span>
+                    </h1>
+                    <p class="text-muted">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Eveniet, itaque accusantium odio, soluta, corrupti aliquam
+                        quibusdam tempora at cupiditate quis eum maiores libero
+                        veritatis? Dicta facilis sint aliquid ipsum atque?
+                    </p>
+                </div>
+
+                <!-- Right Side -->
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="card shadow">
+                        <div class="card-body py-5 px-md-5">
+                            <h2 class="text-center mb-4">Sign Up</h2>
+
+                            <!-- Form -->
+                            <form method="POST">
+                                {% csrf_token %}
+
+                                <!-- General form errors -->
+                                {% if form.non_field_errors %}
+                                <div class="alert alert-danger">
+                                    {% for error in form.non_field_errors %}
+                                    <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                                {% endif %}
+
+                                <!-- Fields using partial -->
+                                {% include "core/partials/form_field.html" with field=form.username label_icon='<i class="fas fa-user me-1"></i>' %}
+                                {% include "core/partials/form_field.html" with field=form.email label_icon='<i class="fas fa-envelope me-1"></i>' %}
+                                {% include "core/partials/form_field.html" with field=form.password1 label_icon='<i class="fas fa-lock me-1"></i>' %}
+                                {% include "core/partials/form_field.html" with field=form.password2 label_icon='<i class="fas fa-lock me-1"></i>' %}
+
+
+                                <!-- Submit -->
+                                <button type="submit" class="btn btn-primary btn-block w-100 mb-4">
+                                    <i class="fas fa-user-plus me-1"></i> Sign Up
+                                </button>
+
+                                <!-- Extra links -->
+                                <div class="text-center">
+                                    <p class="mb-0">
+                                        Already have an account?
+                                        <a href="{% url 'core:login' %}" class="text-primary fw-bold">Log In</a>
+                                    </p>
+                                </div>
+                            </form>
+                            <!-- End Form -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
