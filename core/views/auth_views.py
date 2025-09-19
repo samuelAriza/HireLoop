@@ -25,7 +25,7 @@ class UserLoginView(LoginView):
     template_name = 'core/login.html'
     
     def get_success_url(self):
-        return reverse_lazy('core:profile_detailww')
+        return reverse_lazy('core:profile_detail')
 
 
 class UserLogoutView(LogoutView):

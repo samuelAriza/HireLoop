@@ -77,25 +77,18 @@
                             <li>
                                 <h6 class="dropdown-header">Dashboards</h6>
                             </li>
-                            {% if user_type == 'freelancer' %}
-                            <li><a class="dropdown-item"
-                                    href="{% url 'microservices:microservices_freelancer_list' user.freelancer_profile.id %}">
+                            <li><a class="dropdown-item" href="{% url 'microservices:microservices_freelancer_list' user.freelancer_profile.id %}">
                                     <i class="fas fa-briefcase me-2"></i>My MicroServices
                                 </a></li>
-                            {% endif %}
                             <li><a class="dropdown-item" href="">
                                     <i class="fas fa-project-diagram me-2"></i>My Projects
                                 </a></li>
-                            {% if user_type != 'freelancer' %}
                             <li><a class="dropdown-item" href="">
                                     <i class="fas fa-code me-2"></i>Become a Freelancer
                                 </a></li>
-                            {% endif %}
-                            {% if user_type != 'client' %}
                             <li><a class="dropdown-item" href="">
                                     <i class="fas fa-briefcase me-2"></i>Become a Client
                                 </a></li>
-                            {% endif %}
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -184,5 +177,3 @@
     <!-- Custom JS -->
     {% block extra_js %}{% endblock %}
 </body>
-
-</html>

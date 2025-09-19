@@ -2,7 +2,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.contrib import messages
 
-
 class ProfileRequiredMixin(LoginRequiredMixin):
     """
     Mixin that checks if user has required profile type.

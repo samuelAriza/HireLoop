@@ -1,4 +1,3 @@
-# Evitar importaciones inmediatas para prevenir circularidad
 __all__ = [
     'RegisterForm', 'LoginForm',
     'ClientProfileForm', 'FreelancerProfileForm'

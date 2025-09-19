@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="main-body">
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="">Home</a></li>
+                <li class="breadcrumb-item"><a href="">My Services</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Create MicroService</li>
+            </ol>
+        </nav>
+
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="mb-0">
+                            <i class="fas fa-plus me-2"></i>Create New MicroService
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <form method="post">
+                            {% csrf_token %}
+
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="mb-3">
+                                        <label for="{{ form.title.id_for_label }}" class="form-label">
+                                            <i class="fas fa-heading me-1"></i>Service Title *
+                                        </label>
+                                        {{ form.title }}
+                                        {% if form.title.help_text %}
+                                        <div class="form-text">{{ form.title.help_text }}</div>
+                                        {% endif %}
+                                        {% if form.title.errors %}
+                                        <div class="text-danger">{{ form.title.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="{{ form.category.id_for_label }}" class="form-label">
+                                            <i class="fas fa-tags me-1"></i>Category *
+                                        </label>
+                                        {{ form.category }}
+                                        {% if form.category.help_text %}
+                                        <div class="form-text">{{ form.category.help_text }}</div>
+                                        {% endif %}
+                                        {% if form.category.errors %}
+                                        <div class="text-danger">{{ form.category.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="{{ form.description.id_for_label }}" class="form-label">
+                                    <i class="fas fa-align-left me-1"></i>Description *
+                                </label>
+                                {{ form.description }}
+                                {% if form.description.help_text %}
+                                <div class="form-text">{{ form.description.help_text }}</div>
+                                {% endif %}
+                                {% if form.description.errors %}
+                                <div class="text-danger">{{ form.description.errors.0 }}</div>
+                                {% endif %}
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="{{ form.price.id_for_label }}" class="form-label">
+                                            <i class="fas fa-dollar-sign me-1"></i>Price (USD) *
+                                        </label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            {{ form.price }}
+                                        </div>
+                                        {% if form.price.help_text %}
+                                        <div class="form-text">{{ form.price.help_text }}</div>
+                                        {% endif %}
+                                        {% if form.price.errors %}
+                                        <div class="text-danger">{{ form.price.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="{{ form.delivery_time.id_for_label }}" class="form-label">
+                                            <i class="fas fa-clock me-1"></i>Delivery Time (days) *
+                                        </label>
+                                        {{ form.delivery_time }}
+                                        {% if form.delivery_time.help_text %}
+                                        <div class="form-text">{{ form.delivery_time.help_text }}</div>
+                                        {% endif %}
+                                        {% if form.delivery_time.errors %}
+                                        <div class="text-danger">{{ form.delivery_time.errors.0 }}</div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    {{ form.is_active }}
+                                    <label class="form-check-label" for="{{ form.is_active.id_for_label }}">
+                                        <i class="fas fa-eye me-1"></i>Publish service (visible to the public)
+                                    </label>
+                                    {% if form.is_active.help_text %}
+                                    <div class="form-text">{{ form.is_active.help_text }}</div>
+                                    {% endif %}
+                                    {% if form.is_active.errors %}
+                                    <div class="text-danger">{{ form.is_active.errors.0 }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <a href="{% url 'microservices:microservices_freelancer_list' user.freelancer_profile.id %}"
+                                    class="btn btn-secondary me-md-2">
+                                    <i class="fas fa-times me-1"></i>Cancel
+                                </a>
+                                {% if is_edit %}
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-1"></i>Update Service
+                                </button>
+                                {% else %}
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-1"></i>Create Service
+                                </button>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Help Card -->
+                <div class="card mt-4">
+                    <div class="card-header bg-info text-white">
+                        <h6 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Tips for a Great Service</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6><i class="fas fa-check text-success me-2"></i>Effective Title</h6>
+                                <ul class="list-unstyled text-muted small">
+                                    <li>• Be specific and clear</li>
+                                    <li>• Include relevant keywords</li>
+                                    <li>• Avoid excessive technical jargon</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6><i class="fas fa-check text-success me-2"></i>Detailed Description</h6>
+                                <ul class="list-unstyled text-muted small">
+                                    <li>• Explain what is included</li>
+                                    <li>• Mention your methodology</li>
+                                    <li>• Specify deliverables</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
