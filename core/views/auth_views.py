@@ -12,7 +12,7 @@ class UserRegisterView(CreateView):
     model = User
     form_class = RegisterForm
     template_name = 'core/register.html'
-    success_url = reverse_lazy('services:service_list')
+    success_url = reverse_lazy('core:profile_detail')
     
     def form_valid(self, form):
         user = form.save()
@@ -25,7 +25,7 @@ class UserLoginView(LoginView):
     template_name = 'core/login.html'
     
     def get_success_url(self):
-        return reverse_lazy('services:service_list')
+        return reverse_lazy('core:profile_detailww')
 
 
 class UserLogoutView(LogoutView):

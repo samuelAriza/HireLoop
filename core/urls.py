@@ -8,6 +8,9 @@ from core.views.profile_views import (
     ClientProfileCreateView,
 )
 from core.views.image_views import ProfileImageUpdateView, ProfileImageDeleteView
+from core.views.portfolio_views import (
+    PortfolioCreateView,
+)
 
 app_name = 'core'
 
@@ -25,4 +28,8 @@ urlpatterns = [
     # Profile image management
     path('profile/image/update/', ProfileImageUpdateView.as_view(), name='profile_image_update'),
     path('profile/image/delete/', ProfileImageDeleteView.as_view(), name='profile_image_delete'),
+    
+    # Portfolio management
+    path('portfolio/create/', PortfolioCreateView.as_view(), name='portfolio_create'),
+    
 ]

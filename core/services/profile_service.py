@@ -1,3 +1,4 @@
+# ARCHIVO: /home/samargo/Documents/universidad_/software_architecture/hireloop_project/core/services/profile_service.py
 from typing import Dict, Any, Optional
 from django.core.files.uploadedfile import UploadedFile
 
@@ -13,6 +14,7 @@ class ProfileService:
     
     def __init__(self, repository: ProfileRepository = None):
         self._repository = repository or ProfileRepository()
+        self._image_service = ProfileImageService()
     
     def get_user_profiles(self, user: User) -> Dict[str, Any]:
         """Get all profiles for a user."""
@@ -82,45 +84,21 @@ class ProfileService:
     def delete_all_profiles(self, user: User) -> Dict[str, bool]:
         """Delete all profiles for a user."""
         result = {
-            'freelancer_deleted': False,
-            'client_deleted': False
+            'freelancer_deleted': self.delete_freelancer_profile(user),
+            'client_deleted': self.delete_client_profile(user)
         }
-        
-        try:
-            if hasattr(user, 'freelancer_profile'):
-                user.freelancer_profile.delete()
-                result['freelancer_deleted'] = True
-            
-            if hasattr(user, 'client_profile'):
-                user.client_profile.delete()
-                result['client_deleted'] = True
-                
-        except Exception as e:
-            print(f"Error deleting profiles: {e}")
-        
         return result
-    
-    def get_primary_role(self, user: User) -> Optional[str]:
-        """Get primary role for user."""
-        profiles = self.get_user_profiles(user)
-        if profiles['has_freelancer']:
-            return 'freelancer'
-        elif profiles['has_client']:
-            return 'client'
-        return None
     
     def update_user_profile_image(self, user: User, image_file: UploadedFile) -> bool:
         """Update user profile image using DIP."""
         try:
-            image_service = ProfileImageService()
-            
             # Delete old image if exists
             if user.profile_image:
-                image_service.delete_profile_image(user.profile_image.name)
+                self._image_service.delete_profile_image(user.profile_image.name)
             
             # Upload new image
             if image_file:
-                saved_path = image_service.upload_profile_image(user.id, image_file)
+                saved_path = self._image_service.upload_profile_image(user.id, image_file)
                 user.profile_image = saved_path
             else:
                 user.profile_image = None
@@ -136,8 +114,7 @@ class ProfileService:
         """Delete user profile image."""
         try:
             if user.profile_image:
-                image_service = ProfileImageService()
-                success = image_service.delete_profile_image(user.profile_image.name)
+                success = self._image_service.delete_profile_image(user.profile_image.name)
                 
                 if success:
                     user.profile_image = None
@@ -151,5 +128,15 @@ class ProfileService:
 
     def get_user_profile_image_url(self, user: User) -> str:
         """Get user profile image URL."""
-        image_service = ProfileImageService()
-        return image_service.get_image_url(user.profile_image.name if user.profile_image else None)
+        return self._image_service.get_image_url(
+            user.profile_image.name if user.profile_image else None
+        )
+    
+    def get_primary_role(self, user: User) -> Optional[str]:
+        """Get primary role for user."""
+        profiles = self.get_user_profiles(user)
+        if profiles['has_freelancer']:
+            return 'freelancer'
+        elif profiles['has_client']:
+            return 'client'
+        return None

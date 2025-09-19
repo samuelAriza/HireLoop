@@ -74,3 +74,5 @@ class ProfileRepository(BaseRepository):
         """Update client profile."""
         for field, value in kwargs.items():
             setattr(profile, field, value)
+        profile.save()
+        return profile

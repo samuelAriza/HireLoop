@@ -1,8 +1,11 @@
-# Simple export sin importación inmediata
-__all__ = ['ProfileService']
+from .profile_service import ProfileService
+from .portfolio_service import PortfolioService
+from .action_dispatcher import ActionDispatcher
+from .profile_context_provider import ProfileContextProvider
 
-def __getattr__(name):
-    if name == 'ProfileService':
-        from .profile_service import ProfileService
-        return ProfileService
-    raise AttributeError(f"module '{__name__}' has no attribute '{name}'")
+__all__ = [
+    'ProfileService',
+    'PortfolioService', 
+    'ActionDispatcher',
+    'ProfileContextProvider',
+]

@@ -16,7 +16,6 @@ class FreelancerProfileForm(BootstrapStylingMixin, forms.ModelForm):
         max_length=500,
         required=False,
         widget=forms.TextInput(attrs={
-            'class': 'form-control',
             'placeholder': 'Enter skills separated by commas (e.g., Python, Django, JavaScript)'
         }),
         help_text="Enter your skills separated by commas",
@@ -27,7 +26,7 @@ class FreelancerProfileForm(BootstrapStylingMixin, forms.ModelForm):
         model = FreelancerProfile
         fields = ["bio", "skills"]
         widgets = {
-            'bio': forms.Textarea(attrs={'rows': 4, 'class': 'form-control'}),
+            'bio': forms.Textarea(attrs={'rows': 4}),
         }
 
 class ProfileImageForm(BootstrapStylingMixin, forms.ModelForm):
@@ -38,7 +37,6 @@ class ProfileImageForm(BootstrapStylingMixin, forms.ModelForm):
         fields = ['profile_image']
         widgets = {
             'profile_image': forms.FileInput(attrs={
-                'class': 'form-control',
                 'accept': 'image/*'
             })
         }

@@ -3,7 +3,8 @@
 
 __all__ = [
     'UserRegisterView', 'UserLoginView', 'UserLogoutView',
-    'ProfileDetailView', 'FreelancerProfileCreateView', 'ClientProfileCreateView'
+    'ProfileDetailView', 'FreelancerProfileCreateView', 'ClientProfileCreateView',
+    'PortfolioListView', 'PortfolioCreateView', 'PortfolioUpdateView', 'PortfolioDeleteView'
 ]
 
 # Las importaciones se hacen bajo demanda para evitar circularidad
@@ -32,4 +33,16 @@ def __getattr__(name):
     elif name == 'ProfileImageDeleteView':
         from .image_views import ProfileImageDeleteView
         return ProfileImageDeleteView
+    elif name == 'PortfolioListView':
+        from .portfolio_views import PortfolioListView
+        return PortfolioListView
+    elif name == 'PortfolioCreateView':
+        from .portfolio_views import PortfolioCreateView
+        return PortfolioCreateView
+    elif name == 'PortfolioUpdateView':
+        from .portfolio_views import PortfolioUpdateView
+        return PortfolioUpdateView
+    elif name == 'PortfolioDeleteView':
+        from .portfolio_views import PortfolioDeleteView
+        return PortfolioDeleteView
     raise AttributeError(f"module '{__name__}' has no attribute '{name}'")

@@ -1,5 +1,5 @@
 '''
-Mixins
+Mixin used for applying Bootstrap styling to forms
 '''
 
 class BootstrapStylingMixin():

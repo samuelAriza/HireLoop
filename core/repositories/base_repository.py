@@ -1,6 +1,14 @@
 from abc import ABC, abstractmethod
 from typing import Optional, List, Dict, Any
 
+'''
+ABC = Abstract Base Class
+The BaseRepository class defines a contract for repository implementations.
+This allows for different data storage mechanisms (e.g., SQL, NoSQL, in-memory)
+to be used interchangeably without changing the business logic that depends on them.
+This adheres to the Dependency Inversion Principle (DIP) by depending on abstractions
+rather than concrete implementations.
+'''
 
 class BaseRepository(ABC):
     """

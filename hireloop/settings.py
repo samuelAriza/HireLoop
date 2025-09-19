@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'taggit',
     'core',
-    'services',
+    'microservices',
 ]
 
 MIDDLEWARE = [
