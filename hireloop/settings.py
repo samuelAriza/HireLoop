@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'taggit',
     'core',
     'microservices',
+    'projects',
 ]
 
 MIDDLEWARE = [

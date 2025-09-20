@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h1><i class="fas fa-folder-open me-2"></i>Available Projects</h1>
+
+            <!-- Projects Grid -->
+            <div class="row">
+                {% for project in projects %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 service-card">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <span class="badge 
+                                    {% if project.status == 'CREATED' %} bg-secondary
+                                    {% elif project.status == 'IN_PROGRESS' %} bg-info
+                                    {% elif project.status == 'DELIVERED' %} bg-warning
+                                    {% elif project.status == 'COMPLETED' %} bg-success
+                                    {% elif project.status == 'CANCELLED' %} bg-danger
+                                    {% endif %}
+                                ">
+                                    {{ project.get_status_display }}
+                                </span>
+                                <span class="text-success fw-bold">${{ project.budget }}</span>
+                            </div>
+
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text text-muted flex-grow-1">{{ project.description|truncatewords:10 }}</p>
+
+                            <div class="service-meta mb-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-user me-1"></i>{{ project.client.user.get_full_name|default:project.client.user.username }}
+                                </small>
+                                <br>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar-alt me-1"></i>Created {{ project.created_at|date:"M d, Y" }}
+                                </small>
+                            </div>
+
+                            <div class="d-flex gap-2 mt-auto">
+                                <a href=""
+                                    class="btn btn-sm btn-primary">View Details</a>
+
+                                {% if user.is_authenticated and project.client.user == user %}
+                                <!-- Botones para el dueño -->
+                                <a href="{% url 'projects:project_update' project.id %}"
+                                    class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{% url 'projects:project_delete' project.id %}"
+                                    class="btn btn-sm btn-danger">Delete</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <div class="text-center py-5">
+                        <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">No projects found</h4>
+                        <p class="text-muted">Currently, no projects are available.</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if is_paginated %}
+            <nav aria-label="Projects pagination" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">
+                            <i class="fas fa-angle-double-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                            <i class="fas fa-angle-left"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .service-card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .btn.active {
+        background-color: var(--bs-primary);
+        color: white;
+        border-color: var(--bs-primary);
+    }
+
+    .service-meta {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 0.5rem 0;
+    }
+</style>
+{% endblock %}

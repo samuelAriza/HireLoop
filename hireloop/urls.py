@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('core/', include('core.urls', namespace='core')),
     path('microservices/', include('microservices.urls', namespace='microservices')),
+    path('projects/', include('projects.urls', namespace='projects')),
 ]
 
 if settings.DEBUG:

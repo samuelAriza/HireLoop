@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect
-from ..mixins.views import ProfileRequiredMixin
+from core.mixins.views import ProfileRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from ..forms import MicroServiceForm
