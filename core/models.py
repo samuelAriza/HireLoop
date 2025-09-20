@@ -46,6 +46,8 @@ class FreelancerProfile(models.Model):
     
     def __str__(self):
         return f"FreelancerProfile of {self.user.email}"
+    def get_full_name(self):
+        return f"{self.user.email}"
     
 class ClientProfile(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="main-body">
+
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="main-breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="">Home</a></li>
+                <li class="breadcrumb-item"><a href="">My Mentorship</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Mentorship Sessions</li>
+            </ol>
+        </nav>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h4 class="mb-0">
+                                <i class="fas fa-chalkboard-teacher me-2"></i>My Mentorship Sessions
+                            </h4>
+                            {% if is_freelancer %}
+                            <a href="{% url 'mentorship_session:session_create' %}" class="btn btn-primary">
+                                <i class="fas fa-plus me-1"></i>Create Session
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        {% if sessions %}
+                        <div class="row">
+                            {% for session in sessions %}
+                            <div class="col-md-6 col-lg-4 mb-3">
+                                <div
+                                    class="card h-100 {% if session.status != 'COMPLETED' %}border-secondary{% endif %}">
+                                    {% if session.status == 'CANCELLED' %}
+                                    <div class="card-header bg-secondary text-white">
+                                        <small><i class="fas fa-ban me-1"></i>Cancelled</small>
+                                    </div>
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h6 class="card-title">{{ session.topic }}</h6>
+                                        <p class="card-text text-muted small">
+                                            Mentor: {{ session.mentor.get_full_name }}<br>
+                                            Mentee: {{ session.mentee.get_full_name }}
+                                        </p>
+                                        <div class="mb-2">
+                                            <span class="badge bg-info">{{ session.get_status_display }}</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <small class="text-muted d-block">
+                                                    Start: {{ session.start_time|date:"m/d/Y H:i" }}<br>
+                                                    Duration: {{ session.duration }}
+                                                </small>
+                                            </div>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <a href="{% url 'mentorship_session:session_update' session.id %}"
+                                                    class="btn btn-outline-primary" title="Edit">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a href="{% url 'mentorship_session:session_delete' session.id %}"
+                                                    class="btn btn-outline-danger" title="Delete">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer text-muted small">
+                                        <i class="fas fa-calendar me-1"></i>
+                                        Created: {{ session.created_at|date:"m/d/Y" }} -
+                                        Updated: {{ session.updated_at|date:"m/d/Y" }}
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <!-- Pagination -->
+                        {% if is_paginated %}
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-center">
+                                {% if page_obj.has_previous %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page=1">First</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                                </li>
+                                {% endif %}
+
+                                <li class="page-item active">
+                                    <span class="page-link">
+                                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                                    </span>
+                                </li>
+
+                                {% if page_obj.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                        {% endif %}
+                        {% else %}
+                        <div class="text-center py-5">
+                            <i class="fas fa-chalkboard-teacher fa-4x text-muted mb-3"></i>
+                            <h5>You haven't created any mentorship sessions</h5>
+                            <p class="text-muted">Create your first session to start mentoring!</p>
+                            {% if is_freelancer %}
+                            <a href="{% url 'mentorship_session:session_create' %}" class="btn btn-primary btn-lg">
+                                <i class="fas fa-plus me-1"></i>Create My First Session
+                            </a>
+                            {% else %}
+                            <p class="text-warning">
+                                <i class="fas fa-info-circle me-1"></i>
+                                You need a freelancer profile to create sessions.
+                            </p>
+                            <a href="" class="btn btn-outline-primary">
+                                Create Freelancer Profile
+                            </a>
+                            {% endif %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

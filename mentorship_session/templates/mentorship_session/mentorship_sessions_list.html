@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <h1><i class="fas fa-chalkboard-teacher me-2"></i>Available Mentorship Sessions</h1>
+
+            <!-- Sessions Grid -->
+            <div class="row">
+                {% for session in sessions %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 session-card">
+                        <div class="card-body d-flex flex-column">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <span class="badge bg-info">{{ session.get_status_display }}</span>
+                                <small class="text-muted">{{ session.start_time|date:"m/d/Y H:i" }}</small>
+                            </div>
+
+                            <h5 class="card-title">{{ session.topic }}</h5>
+                            <p class="card-text text-muted flex-grow-1">
+                                Mentor: {{ session.mentor.get_full_name }}<br>
+                            </p>
+
+                            <div class="session-meta mb-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>Duration: {{ session.duration_minutes }}
+                                </small>
+                            </div>
+
+                            <div class="d-flex gap-2 mt-auto">
+                                <a href=""
+                                    class="btn btn-sm btn-primary">View Details</a>
+
+                                {% if user.is_authenticated %}
+                                {% if session.mentor.user == user %}
+                                <!-- Botones para el mentor -->
+                                <a href="{% url 'mentorship_session:session_update' session.id %}"
+                                    class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{% url 'mentorship_session:session_delete' session.id %}"
+                                    class="btn btn-sm btn-danger">Delete</a>
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-12">
+                    <div class="text-center py-5">
+                        <i class="fas fa-chalkboard-teacher fa-3x text-muted mb-3"></i>
+                        <h4 class="text-muted">No mentorship sessions found</h4>
+                        <p class="text-muted">Currently, no mentorship sessions are available.</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if is_paginated %}
+            <nav aria-label="Sessions pagination" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">
+                            <i class="fas fa-angle-double-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">
+                            <i class="fas fa-angle-left"></i>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} <li class="page-item">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        </li>
+                        {% endif %}
+                </ul>
+            </nav>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<style>
+    .session-card {
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .session-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+    }
+
+    .btn.active {
+        background-color: var(--bs-primary);
+        color: white;
+        border-color: var(--bs-primary);
+    }
+
+    .session-meta {
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        padding: 0.5rem 0;
+    }
+</style>
+{% endblock %}
