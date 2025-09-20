@@ -28,10 +28,8 @@
                                     <i class="fas fa-clock me-1"></i>Duration: {{ session.duration_minutes }}
                                 </small>
                             </div>
-
                             <div class="d-flex gap-2 mt-auto">
-                                <a href=""
-                                    class="btn btn-sm btn-primary">View Details</a>
+                                <a href="" class="btn btn-sm btn-primary">View Details</a>
 
                                 {% if user.is_authenticated %}
                                 {% if session.mentor.user == user %}
@@ -40,9 +38,30 @@
                                     class="btn btn-sm btn-warning">Edit</a>
                                 <a href="{% url 'mentorship_session:session_delete' session.id %}"
                                     class="btn btn-sm btn-danger">Delete</a>
+                                {% elif "client" in user_type %}
+                                <!-- Botones de contratación SOLO para clientes -->
+                                <form method="post" action="{% url 'cart:add_to_cart' %}" class="flex-fill">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="content_type" value="{{ session_content_type_id }}">
+                                    <input type="hidden" name="object_id" value="{{ session.id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn btn-sm btn-success w-100">
+                                        Book Session
+                                    </button>
+                                </form>
+
+                                <form method="post" action="{% url 'cart:add_to_wishlist' %}" class="flex-fill">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="content_type" value="{{ session_content_type_id }}">
+                                    <input type="hidden" name="object_id" value="{{ session.id }}">
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary w-100">
+                                        Wishlist
+                                    </button>
+                                </form>
                                 {% endif %}
                                 {% endif %}
                             </div>
+
                         </div>
                     </div>
                 </div>

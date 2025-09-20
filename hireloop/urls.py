@@ -25,6 +25,7 @@ urlpatterns = [
     path('microservices/', include('microservices.urls', namespace='microservices')),
     path('projects/', include('projects.urls', namespace='projects')),
     path('mentorship_sessions/', include('mentorship_session.urls', namespace='mentorship_session')),
+    path('cart/', include('cart.urls', namespace='cart')),
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Wishlist{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-12">
+            <h1><i class="fas fa-heart me-2"></i>My Wishlist</h1>
+
+            {% if wishlist_items %}
+            <div class="row">
+                {% for item in wishlist_items %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.content_object.get_title }}</h5>
+                            <p class="card-text text-muted">
+                                {{ item.content_object.get_description|truncatewords:15 }}
+                            </p>
+                            <div class="mb-2">
+                                <span class="badge bg-primary">
+                                    {{ item.content_object.get_type }}
+                                </span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <strong class="text-success h5">${{ item.content_object.get_price }}</strong>
+                                <small class="text-muted">
+                                    <i class="fas fa-clock me-1"></i>
+                                    {% if item.content_type.model == "mentorshipsession" %}
+                                    {{ item.content_object.duration_minutes }} minute{{ item.content_object.duration_minutes|pluralize }}
+                                    {% else %}
+                                    {{ item.content_object.delivery_time }} day{{ item.content_object.delivery_time|pluralize }}
+                                    {% endif %}
+                                </small>
+                            </div>
+                        </div>
+                        <div class="card-footer bg-light">
+                            <div class="d-flex justify-content-between">
+                                {% if item.id %}
+                                <a href="" class="btn btn-sm btn-outline-primary">
+                                    View Details
+                                </a>
+                                <div class="d-flex gap-2">
+                                    <form method="post" action="{% url 'cart:add_to_cart' %}" class="d-inline">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="content_type" value="{{ item.content_type.id }}">
+                                        <input type="hidden" name="object_id" value="{{ item.content_object.id }}">
+                                        <input type="hidden" name="quantity" value="1">
+                                        <button type="submit" class="btn btn-sm btn-outline-success">
+                                            <i class="fas fa-cart-plus"></i>
+                                        </button>
+                                    </form>
+                                    <form method="post" action="{% url 'cart:remove_from_wishlist' item.id %}"
+                                        class="d-inline">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="fas fa-heart-broken"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                                {% else %}
+                                <span class="text-muted">ID not available</span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="text-center py-5">
+                <i class="fas fa-heart fa-4x text-muted mb-3"></i>
+                <h3>Your wishlist is empty</h3>
+                <p class="text-muted">Add services to your wishlist to find them easily later!</p>
+                <a href="{% url 'microservices:microservices_list' %}" class="btn btn-primary">
+                    <i class="fas fa-briefcase me-1"></i>Explore Services
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

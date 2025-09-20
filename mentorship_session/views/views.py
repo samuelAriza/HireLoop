@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.contrib.contenttypes.models import ContentType
 from core.mixins.views import ProfileRequiredMixin
 from core.models import FreelancerProfile
 from ..models import MentorshipSession
@@ -17,6 +18,11 @@ class MentorshipSessionListView(ListView):
 
     def get_queryset(self):
         return MentorshipSession.objects.all()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["session_content_type_id"] = ContentType.objects.get_for_model(MentorshipSession).id
+        return context
 
 class MentorshipSessionFreelancerListView(ProfileRequiredMixin, ListView):
     required_profile = 'freelancer'

@@ -1,8 +1,8 @@
-from django.db import models
+from decimal import Decimal
 from django.db import models
 import uuid
-from decimal import Decimal
 from core.models import FreelancerProfile
+from core.interfaces import PurchasableInterface
 
 class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -38,3 +38,15 @@ class MicroService(models.Model):
 
     def __str__(self):
         return f"{self.title} - {self.freelancer.user.email}"
+    
+    def get_price(self) -> float:
+        return float(self.price)
+
+    def get_title(self) -> str:
+        return self.title
+
+    def get_description(self) -> str:
+        return self.description
+
+    def get_type(self) -> str:
+        return "MicroService"

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'microservices',
     'projects',
     'mentorship_session',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'core.context_processors.user_profile_type',
+                'core.context_processors.cart_and_wishlist_counts',
             ],
         },
     },

@@ -48,15 +48,15 @@
                 <ul class="navbar-nav">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{% url 'cart:cart_list' %}">
                             <i class="fas fa-shopping-cart me-1"></i>Cart
-                            <span class="badge bg-primary">0</span>
+                            <span class="badge bg-primary">{{ cart_count|default:0 }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">
+                        <a class="nav-link" href="{% url 'cart:wishlist_list' %}">
                             <i class="fas fa-heart me-1"></i>Wishlist
-                            <span class="badge bg-danger">0</span>
+                            <span class="badge bg-danger">{{ wishlist_count|default:0 }}</span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
