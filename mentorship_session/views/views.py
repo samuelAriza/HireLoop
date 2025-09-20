@@ -76,6 +76,7 @@ class MentorshipSessionUpdateView(ProfileRequiredMixin, UpdateView):
             start_time=form.cleaned_data['start_time'],
             duration_minutes=form.cleaned_data['duration_minutes'],
             mentor_id=session.mentor.id,
+            status=form.cleaned_data['status']
         )
         return redirect(
             reverse(
