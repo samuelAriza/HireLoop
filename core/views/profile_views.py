@@ -1,15 +1,15 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.contrib import messages
-
+from django.views.generic import DetailView
 from .base_views import BaseProfileCreateView
 from ..forms.profile_forms import ClientProfileForm, FreelancerProfileForm
 from ..services.profile_service import ProfileService
 from ..services.action_dispatcher import ActionDispatcher
 from ..services.profile_context_provider import ProfileContextProvider
-
+from ..models import User
 
 class FreelancerProfileCreateView(BaseProfileCreateView):
     """Create Freelancer Profile - Single Responsibility Principle."""
@@ -61,12 +61,13 @@ class ProfileDetailView(LoginRequiredMixin, TemplateView):
         self.action_dispatcher = ActionDispatcher(self.profile_service)
     
     def get_context_data(self, **kwargs):
-        """Get context data using dedicated provider - Single Responsibility."""
         context = super().get_context_data(**kwargs)
         profile_context = self.context_provider.get_context_data(self.request.user)
         context.update(profile_context)
+        context["primary_role"] = self.profile_service.get_primary_role(self.request.user)
+        context["is_owner"] = True
         return context
-    
+
     def post(self, request, *args, **kwargs):
         """
         Handle POST requests by dispatching to appropriate handlers.
@@ -96,3 +97,20 @@ class ProfileDetailView(LoginRequiredMixin, TemplateView):
     def update_client_profile(self, request):
         """Backward compatibility wrapper."""
         return self.action_dispatcher.dispatch(request, '', profile_type='client')
+
+class PublicProfileDetailView(DetailView):
+    """Public Profile Detail View for sharing profiles by username."""
+    model = User
+    template_name = 'core/multi_profile_detail.html'
+    context_object_name = 'profile_user'
+    slug_field = "username"
+    slug_url_kwarg = "username"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        service = ProfileService()
+        provider = ProfileContextProvider(service)
+        public_context = provider.get_public_context_data(self.object)
+        context.update(public_context)
+        context["is_owner"] = self.request.user == self.object
+        return context

@@ -29,7 +29,8 @@ class User(AbstractUser):
     def get_profile_image_url(self):
         from .services.image_service import ProfileImageService
         service = ProfileImageService()
-        return service.get_image_url(self.profile_image.url if self.profile_image else None)
+        return service.get_image_url(self.profile_image.name if self.profile_image else None)
+
 
 class FreelancerProfile(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)

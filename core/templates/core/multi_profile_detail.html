@@ -37,7 +37,7 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="">Home</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-                <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+                <li class="breadcrumb-item active" aria-current="page">Profile</li>
             </ol>
         </nav>
 
@@ -63,7 +63,8 @@
                                 </div>
                                 <p class="text-muted font-size-sm">{{ user_profile.email }}</p>
 
-                                <!-- Image Management -->
+                                <!-- Image Management (Only for Owner) -->
+                                {% if is_owner %}
                                 <div class="mb-3">
                                     <button class="btn btn-outline-primary btn-sm w-100 mb-2" data-bs-toggle="collapse"
                                         data-bs-target="#imageUploadForm">
@@ -126,6 +127,7 @@
                                     <i class="fas fa-plus me-2"></i>Create Client Profile
                                 </a>
                                 {% endif %}
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -173,7 +175,8 @@
                         <div class="tab-pane fade {% if primary_role == 'freelancer' %}show active{% endif %}"
                             id="freelancer-content" role="tabpanel">
                             <div class="card-body">
-                                <!-- Edit and Delete Buttons -->
+                                <!-- Edit and Delete Buttons (Only for Owner) -->
+                                {% if is_owner %}
                                 <div class="d-flex justify-content-end mb-3 gap-2">
                                     <button class="btn btn-outline-primary btn-sm" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#editFreelancerForm">
@@ -234,6 +237,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% endif %}
 
                                 <!-- Freelancer Info Display -->
                                 <div class="row">
@@ -267,13 +271,17 @@
                         {% if has_freelancer %}
                         <div class="tab-pane fade" id="portfolio-content" role="tabpanel">
                             <div class="card-body">
-                                <!-- Portfolio Actions -->
+                                <!-- Portfolio Actions (Only for Owner) -->
+                                {% if is_owner %}
                                 <div class="d-flex justify-content-between align-items-center mb-3">
                                     <h5 class="mb-0">My Portfolio Items</h5>
                                     <a href="{% url 'core:portfolio_create' %}" class="btn btn-primary btn-sm">
                                         <i class="fas fa-plus me-1"></i>Add Portfolio Item
                                     </a>
                                 </div>
+                                {% else %}
+                                <h5 class="mb-3">Portfolio Items</h5>
+                                {% endif %}
 
                                 <!-- Portfolio Items List -->
                                 {% if user_portfolios %}
@@ -299,7 +307,6 @@
                                                         {{ portfolio.description|truncatewords:20 }}
                                                     </p>
 
-
                                                     <!-- Portfolio Links -->
                                                     <div class="mb-3">
                                                         {% if portfolio.url_demo %}
@@ -311,7 +318,8 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- Edit Form (Collapsible) -->
+                                                <!-- Edit Form (Collapsible, Only for Owner) -->
+                                                {% if is_owner %}
                                                 <div class="collapse mb-3" id="editPortfolioForm-{{ portfolio.pk }}">
                                                     <div class="card bg-light">
                                                         <div class="card-body">
@@ -336,7 +344,6 @@
                                                                     <textarea name="description" class="form-control"
                                                                         rows="3">{{ portfolio.description }}</textarea>
                                                                 </div>
-
 
                                                                 <!-- Demo URL Field -->
                                                                 <div class="mb-3">
@@ -374,13 +381,15 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                {% endif %}
 
-                                                <!-- Action Buttons -->
+                                                <!-- Action Buttons (Only for Owner) -->
                                                 <div class="d-flex justify-content-between mt-auto">
                                                     <small class="text-muted">
                                                         Created: {{ portfolio.created_at|date:"M d, Y" }}
                                                     </small>
 
+                                                    {% if is_owner %}
                                                     <div class="btn-group" role="group">
                                                         <!-- Edit Button -->
                                                         <button class="btn btn-outline-primary btn-sm" type="button"
@@ -403,6 +412,7 @@
                                                             </button>
                                                         </form>
                                                     </div>
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </div>
@@ -416,12 +426,18 @@
                                         <i class="fas fa-folder-open fa-4x text-muted"></i>
                                     </div>
                                     <h5 class="text-muted">No Portfolio Items Yet</h5>
+                                    {% if is_owner %}
                                     <p class="text-muted mb-3">
                                         Showcase your work by creating your first portfolio item.
                                     </p>
                                     <a href="{% url 'core:portfolio_create' %}" class="btn btn-primary">
                                         <i class="fas fa-plus me-2"></i>Create Your First Portfolio Item
                                     </a>
+                                    {% else %}
+                                    <p class="text-muted mb-3">
+                                        This user hasn't added any portfolio items yet.
+                                    </p>
+                                    {% endif %}
                                 </div>
                                 {% endif %}
                             </div>
@@ -433,7 +449,8 @@
                         <div class="tab-pane fade {% if primary_role == 'client' or not has_freelancer %}show active{% endif %}"
                             id="client-content" role="tabpanel">
                             <div class="card-body">
-                                <!-- Edit and Delete Buttons -->
+                                <!-- Edit and Delete Buttons (Only for Owner) -->
+                                {% if is_owner %}
                                 <div class="d-flex justify-content-end mb-3 gap-2">
                                     <button class="btn btn-outline-primary btn-sm" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#editClientForm">
@@ -500,6 +517,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {% endif %}
 
                                 <!-- Client Info Display -->
                                 <div class="row">
@@ -537,7 +555,8 @@
                 <!-- No profiles message -->
                 <div class="card mb-3">
                     <div class="card-body text-center">
-                        <h5>Create your first profile!</h5>
+                        <h5>No Profiles Available</h5>
+                        {% if is_owner %}
                         <p class="text-muted">You need at least one profile to start using the platform.</p>
                         <div class="d-flex justify-content-center gap-3">
                             <a href="{% url 'core:freelancer_profile_create' %}" class="btn btn-primary">
@@ -547,6 +566,9 @@
                                 <i class="fas fa-briefcase me-1"></i>Be a Client
                             </a>
                         </div>
+                        {% else %}
+                        <p class="text-muted">This user has not created any profiles yet.</p>
+                        {% endif %}
                     </div>
                 </div>
                 {% endif %}

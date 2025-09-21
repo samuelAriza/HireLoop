@@ -6,6 +6,7 @@ from core.views.profile_views import (
     ProfileDetailView,
     FreelancerProfileCreateView,
     ClientProfileCreateView,
+    PublicProfileDetailView,
 )
 from core.views.image_views import ProfileImageUpdateView, ProfileImageDeleteView
 from core.views.portfolio_views import (
@@ -31,5 +32,7 @@ urlpatterns = [
     
     # Portfolio management
     path('portfolio/create/', PortfolioCreateView.as_view(), name='portfolio_create'),
-    
+
+    path('profile/public/<str:username>/', PublicProfileDetailView.as_view(), name='public_profile_detail'),
+
 ]

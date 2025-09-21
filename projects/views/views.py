@@ -40,7 +40,9 @@ class ProjectCreateView(ProfileRequiredMixin, CreateView):
 
     def form_valid(self, form):
         client_profile = self.request.user.client_profile
-        form.instance.client_id = client_profile.id
+        form.instance.client = client_profile  # Usa la FK directamente
+        self.object = form.save()  # Guarda el proyecto
+
         return redirect(
             reverse(
                 'projects:projects_client_list',

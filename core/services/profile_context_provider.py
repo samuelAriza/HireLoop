@@ -5,13 +5,67 @@ from .profile_service import ProfileService
 from ..forms.profile_forms import ClientProfileForm, FreelancerProfileForm, ProfileImageForm
 
 class ProfileContextProvider:
-    """
-    Provides context data for profile views - Single Responsibility Principle.
-    Depends on abstractions, not concrete classes - Dependency Inversion Principle.
-    """
-    
     def __init__(self, profile_service: ProfileService):
         self.profile_service = profile_service
+        
+    def get_public_context_data(self, user):
+        """
+        Get public context data for profile sharing.
+        Only includes non-sensitive information, structured to match the private view context.
+        """
+        # Obtener datos del perfil usando el servicio
+        profile_data = self.profile_service.get_user_profiles(user)
+        
+        # Preparar datos del portafolio
+        user_portfolios = []
+        if profile_data['has_freelancer']:
+            user_portfolios = self._get_public_portfolio_items(user, 'freelancer')
+        
+        context = {
+            'user_profile': user,
+            'profile_image_url': self.profile_service.get_user_profile_image_url(user),
+            'user_roles': user.get_roles(),  # Añadir user_roles para compatibilidad con el template
+            'has_freelancer': hasattr(user, 'freelancer_profile'),
+            'has_client': hasattr(user, 'client_profile'),
+            'profiles': {
+                'freelancer': user.freelancer_profile if hasattr(user, 'freelancer_profile') else None,
+                'freelancer_skills': profile_data['freelancer_skills'],
+                'client': user.client_profile if hasattr(user, 'client_profile') else None,
+            },
+            'user_portfolios': user_portfolios,
+        }
+        
+        return context
+    
+    def _get_public_portfolio_items(self, user, profile_type):
+        """Get public portfolio items."""
+        try:
+            from ..repositories.portfolio_repository import PortfolioRepository
+            portfolio_repo = PortfolioRepository()
+            
+            if profile_type == 'freelancer' and hasattr(user, 'freelancer_profile'):
+                items = portfolio_repo.list_by_freelancer(user.freelancer_profile)
+                return [item for item in items if getattr(item, 'is_public', True)]
+            
+            return []
+        except Exception as e:
+            print(f"Error getting public portfolio items: {e}")
+            return []
+
+    
+    def _get_public_microservices(self, user):
+        """Get public microservices."""
+        try:
+            return user.freelancer_profile.microservices.filter(is_active=True)[:6]
+        except Exception:
+            return []
+    
+    def _get_public_projects(self, user):
+        """Get public projects."""
+        try:
+            return user.client_profile.projects.filter(is_public=True)[:6]
+        except Exception:
+            return []
     
     def get_context_data(self, user: AbstractUser) -> Dict[str, Any]:
         """Get all context data needed for profile view."""
