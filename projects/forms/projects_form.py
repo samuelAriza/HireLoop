@@ -3,14 +3,16 @@ from ..models import Project, ProjectAssignment, ProjectApplication
 from core.mixins.forms import BootstrapStylingMixin 
 
 class ProjectCreateForm(BootstrapStylingMixin, forms.ModelForm):
+    image = forms.ImageField(required=False)
     class Meta:
         model = Project
-        fields = ['title', 'description', 'budget']
+        fields = ['title', 'description', 'budget', 'image']
 
 class ProjectUpdateForm(BootstrapStylingMixin, forms.ModelForm):
+    image = forms.ImageField(required=False)
     class Meta:
         model = Project
-        fields = ['title', 'description', 'budget', 'status']
+        fields = ['title', 'description', 'budget', 'status', 'image']
         widgets = {
             'status': forms.Select(choices=Project.ProjectStatus.choices)
         }

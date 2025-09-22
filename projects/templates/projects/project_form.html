@@ -25,7 +25,7 @@
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form method="post">
+                        <form method="post", enctype="multipart/form-data">
                             {% csrf_token %}
 
                             <div class="row">
@@ -79,6 +79,22 @@
                             </div>
 
                             <hr>
+
+                            <div class="mb-3">
+                                <label for="id_image" class="form-label">
+                                    <i class="fas fa-image me-1"></i>Project Image
+                                </label>
+
+                                {% if is_edit and form.instance.image_path %}
+                                <div class="mb-2 text-center">
+                                    <img src="{{ project.get_image_path }}" class="card-img-top"
+                                        alt="{{ project.title }}" style="height:200px; object-fit:cover;">
+                                </div>
+                                {% endif %}
+
+                                <input type="file" name="image" id="id_image" class="form-control">
+                                <div class="form-text">Optional. Supported formats: JPEG, PNG, GIF. Max size: 5MB.</div>
+                            </div>
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <a href="{% url 'projects:projects_client_list' user.client_profile.id %}"

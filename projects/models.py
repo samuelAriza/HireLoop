@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from core.models import ClientProfile, FreelancerProfile
+from .services.image_service import ProjectImageService
 
 class Project(models.Model):
     class ProjectStatus(models.TextChoices):
@@ -16,11 +17,16 @@ class Project(models.Model):
     description = models.TextField(blank=True)
     status = models.CharField(max_length=20, choices=ProjectStatus.choices, default=ProjectStatus.CREATED)
     budget = models.DecimalField(max_digits=10, decimal_places=2)
+    image_path = models.CharField(max_length=500, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return f"{self.title} ({self.get_status_display()})"
+
+    def get_image_path(self) -> str:
+        image_service = ProjectImageService()
+        return image_service.get_image_url(self.image_path)
 
 class ProjectAssignment(models.Model):
     class ProjectAssignmentStatus(models.TextChoices):

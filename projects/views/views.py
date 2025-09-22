@@ -6,6 +6,7 @@ from core.mixins import ProfileRequiredMixin
 from ..models import Project, ProjectAssignment, ProjectApplication
 from ..repositories.project_repository import ProjectRepository, ProjectAssignmentRepository, ProjectApplicationRepository
 from ..services.project_service import ProjectService
+from ..services.image_service import ProjectImageService
 from ..forms.projects_form import ProjectCreateForm, ProjectUpdateForm, ProjectAssignmentForm, ProjectAssignmentUpdateForm, ProjectApplicationForm
 from core.models import ClientProfile
 from core.mixins.search import SearchFilterMixin
@@ -61,11 +62,18 @@ class ProjectCreateView(ProfileRequiredMixin, CreateView):
     form_class = ProjectCreateForm
     template_name = 'projects/project_form.html'
     success_url = reverse_lazy('projects:projects_client_list')
+    image_service = ProjectImageService()
 
     def form_valid(self, form):
         client_profile = self.request.user.client_profile
-        form.instance.client = client_profile  # Usa la FK directamente
-        self.object = form.save()  # Guarda el proyecto
+        form.instance.client = client_profile
+        self.object = form.save()
+
+        image_file = self.request.FILES.get('image')
+        if image_file:
+            path = self.image_service.upload_project_image(self.object.id, image_file)
+            self.object.image_path = path
+            self.object.save()
 
         return redirect(
             reverse(
@@ -85,6 +93,21 @@ class ProjectUpdateView(ProfileRequiredMixin, UpdateView):
     form_class = ProjectUpdateForm
     template_name = 'projects/project_form.html'
     success_url = reverse_lazy('projects:projects_list')
+    image_service = ProjectImageService()
+    
+    def form_valid(self, form):
+        project = form.save(commit=False)
+
+        image_file = self.request.FILES.get('image')
+        if image_file:
+            if project.image_path:
+                self.image_service.delete_project_image(project.image_path)
+
+            path = self.image_service.upload_project_image(project.id, image_file)
+            project.image_path = path
+
+        project.save()
+        return redirect(reverse('projects:projects_list'))
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

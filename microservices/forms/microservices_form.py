@@ -3,6 +3,7 @@ from core.mixins.forms import BootstrapStylingMixin
 from ..models import MicroService
 
 class MicroServiceForm(BootstrapStylingMixin, forms.ModelForm):
+    image = forms.ImageField(required=False)
     class Meta:
         model = MicroService
         fields = ['category', 'title', 'description', 'price', 'delivery_time', 'is_active']

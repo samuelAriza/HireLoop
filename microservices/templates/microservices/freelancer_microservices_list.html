@@ -34,6 +34,12 @@
                         {% if microservices %}
                         <div class="row">
                             {% for microservice in microservices %}
+                            {% if microservice.image_path %}
+                            <div class="mb-2 text-center">
+                                <img src="{{ microservice.get_image_url }}" alt="{{ microservice.title }}"
+                                    class="img-fluid rounded" style="max-height:150px;">
+                            </div>
+                            {% endif %}
                             <div class="col-md-6 col-lg-4 mb-3">
                                 <div class="card h-100 {% if not microservice.active %}border-secondary{% endif %}">
                                     {% if not microservice.is_active %}
@@ -52,13 +58,16 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
                                                 <strong class="text-success">${{ microservice.price }}</strong>
-                                                <small class="text-muted d-block">{{ microservice.delivery_time }} days</small>
+                                                <small class="text-muted d-block">{{ microservice.delivery_time }}
+                                                    days</small>
                                             </div>
                                             <div class="btn-group btn-group-sm" role="group">
-                                                <a href="{% url 'microservices:microservices_update' microservice.id %}" class="btn btn-outline-primary" title="Edit">
+                                                <a href="{% url 'microservices:microservices_update' microservice.id %}"
+                                                    class="btn btn-outline-primary" title="Edit">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <a href="{% url 'microservices:microservices_delete' microservice.id %}" class="btn btn-outline-danger" title="Delete">
+                                                <a href="{% url 'microservices:microservices_delete' microservice.id %}"
+                                                    class="btn btn-outline-danger" title="Delete">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </div>

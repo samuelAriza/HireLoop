@@ -10,7 +10,7 @@ from ..models import MentorshipSession
 from ..forms.mentorship_form import MentorshipSessionCreateForm, MentorshipSessionUpdateForm
 from ..repositories.mentorship_repository import MentorshipRepository
 from ..services.mentorship_service import MentorshipService
-
+from ..services.image_service import MentorshipImageService
 mentorship_service = MentorshipService(repository=MentorshipRepository())
 
 class MentorshipSessionListView(SearchFilterMixin, ListView):
@@ -55,20 +55,29 @@ class MentorshipSessionCreateView(ProfileRequiredMixin, CreateView):
     model = MentorshipSession
     form_class = MentorshipSessionCreateForm
     template_name = "mentorship_session/create_mentorship_session.html"
+    img_service = MentorshipImageService()
 
     def form_valid(self, form):
         freelancer = self.request.user.freelancer_profile
-
-        mentorship_service.create_session(
+        session = mentorship_service.create_session(
             topic=form.cleaned_data['topic'],
             start_time=form.cleaned_data['start_time'],
             duration_minutes=form.cleaned_data['duration_minutes'], 
             mentor_id=freelancer.id, 
         )
+        
+        self.object = session
+
+        image_file = self.request.FILES.get('image')
+        if image_file:
+            path = self.img_service.upload_mentorship_image(mentorship_id=session.id, image_file=image_file)
+            self.object.image_path = path
+            self.object.save()
+
         return redirect(
             reverse(
                 'mentorship_session:sessions_freelancer_list',
-                kwargs={'freelancer_id': self.request.user.freelancer_profile.id}
+                kwargs={'freelancer_id': freelancer.id}
             )
         )
         
@@ -93,6 +102,15 @@ class MentorshipSessionUpdateView(ProfileRequiredMixin, UpdateView):
             mentor_id=session.mentor.id,
             status=form.cleaned_data['status']
         )
+        image_file = self.request.FILES.get('image')
+        if image_file:
+            if session.image_path:
+                self.img_service.delete_mentorship_image(session.image_path)
+
+            path = self.img_service.upload_mentorship_image(mentorship_id=session.id, image_file=image_file)
+            session.image_path = path
+
+        session.save()
         return redirect(
             reverse(
                 'mentorship_session:sessions_freelancer_list',

@@ -12,6 +12,8 @@ class MicroServiceRepository(BaseRepository):
     """
 
     def create(self, freelancer: FreelancerProfile, **data) -> MicroService:
+        data = data.copy()
+        data.pop('image', None)
         return MicroService.objects.create(freelancer=freelancer, **data)
 
     def get_by_id(self, entity_id) -> Optional[MicroService]:
@@ -21,6 +23,8 @@ class MicroServiceRepository(BaseRepository):
             return None
 
     def update(self, entity: MicroService, **kwargs) -> MicroService:
+        kwargs = kwargs.copy()
+        kwargs.pop('image', None)
         for field, value in kwargs.items():
             setattr(entity, field, value)
         entity.save()

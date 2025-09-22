@@ -66,6 +66,7 @@ class ProfileRepository(BaseRepository):
     
     def update_freelancer_profile(self, profile: FreelancerProfile, **kwargs) -> FreelancerProfile:
         """Update freelancer profile."""
+        print("locomotra"*100)
         for field, value in kwargs.items():
             setattr(profile, field, value)
         profile.save()

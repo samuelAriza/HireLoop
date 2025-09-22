@@ -8,9 +8,8 @@ from ..utils.validators import SkillValidator
 class ClientProfileForm(BootstrapStylingMixin, forms.ModelForm):
     class Meta: 
         model = ClientProfile
-        fields = ["company", "billing_address"]
-
-
+        fields = ["company", "billing_address", "billing_email"]
+        
 class FreelancerProfileForm(BootstrapStylingMixin, forms.ModelForm):
     skills = forms.CharField(
         max_length=500,

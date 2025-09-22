@@ -1,4 +1,5 @@
 from django import forms
+from django.forms import widgets
 
 class BootstrapStylingMixin:
     """
@@ -11,4 +12,6 @@ class BootstrapStylingMixin:
             if isinstance(widget, (forms.CheckboxInput, forms.RadioSelect)):
                 widget.attrs['class'] = (widget.attrs.get('class', '') + ' form-check-input').strip()
             elif isinstance(widget, (forms.Select, forms.TextInput, forms.NumberInput, forms.Textarea)):
+                widget.attrs['class'] = (widget.attrs.get('class', '') + ' form-control').strip()
+            elif isinstance(widget, widgets.Input):
                 widget.attrs['class'] = (widget.attrs.get('class', '') + ' form-control').strip()

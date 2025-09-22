@@ -3,6 +3,7 @@ from django.db import models
 import uuid
 from core.models import FreelancerProfile
 from core.interfaces import PurchasableInterface
+from .services.image_service import MicroserviceImageService
 
 class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -30,6 +31,7 @@ class MicroService(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, default=Decimal("0.00"))
     delivery_time = models.PositiveIntegerField(help_text="Delivery time in days")
     is_active = models.BooleanField(default=True)
+    image_path = models.CharField(max_length=500, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -50,3 +52,7 @@ class MicroService(models.Model):
 
     def get_type(self) -> str:
         return "MicroService"
+    
+    def get_image_path(self) -> str:
+        image_service = MicroserviceImageService()
+        return image_service.get_image_url(self.image_path)

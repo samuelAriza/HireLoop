@@ -496,7 +496,8 @@
                                                     <i class="fas fa-calendar me-1"></i>
                                                     {{ application.created_at|date:"M d, Y" }}
                                                 </p>
-                                                <p><strong>Proposed Payment:</strong> ${{ application.proposed_payment }}</p>
+                                                <p><strong>Proposed Payment:</strong> ${{ application.proposed_payment
+                                                    }}</p>
                                                 <p class="mb-3">{{ application.cover_letter|linebreaksbr }}</p>
                                             </div>
                                         </div>
@@ -569,6 +570,14 @@
                                                         {{ client_form.company }}
                                                     </div>
                                                 </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-3">
+                                                        <h6 class="mb-0">Billing Address</h6>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        {{ client_form.billing_address }}
+                                                    </div>
+                                                </div>
 
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
@@ -576,15 +585,6 @@
                                                     </div>
                                                     <div class="col-sm-9">
                                                         {{ client_form.billing_email }}
-                                                    </div>
-                                                </div>
-
-                                                <div class="row mb-3">
-                                                    <div class="col-sm-3">
-                                                        <h6 class="mb-0">Billing Address</h6>
-                                                    </div>
-                                                    <div class="col-sm-9">
-                                                        {{ client_form.billing_address }}
                                                     </div>
                                                 </div>
 
@@ -618,16 +618,7 @@
                                         <h6 class="mb-0">Billing Email</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        {{ profiles.client.billing_email|default:"No billing email" }}
-                                    </div>
-                                </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-sm-3">
-                                        <h6 class="mb-0">Billing Address</h6>
-                                    </div>
-                                    <div class="col-sm-9 text-secondary">
-                                        {{ profiles.client.billing_address|default:"No billing address"|linebreaks }}
+                                        {{ profiles.client.billing_email|default:"No billing email"|linebreaks }}
                                     </div>
                                 </div>
                             </div>

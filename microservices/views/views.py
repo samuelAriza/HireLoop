@@ -5,6 +5,7 @@ from django.urls import reverse, reverse_lazy
 from ..forms import MicroServiceForm
 from ..models import MicroService, Category
 from ..services.microservices_service import MicroServiceService
+from ..services.image_service import MicroserviceImageService
 from core.mixins.search import SearchFilterMixin
 from core.models import FreelancerProfile
 
@@ -49,12 +50,23 @@ class MicroServiceCreateView(ProfileRequiredMixin, CreateView):
     template_name = 'microservices/create_microservice.html'
     success_url = reverse_lazy('microservices:microservices_freelancer_list')
     service = MicroServiceService()
-
+    image_service = MicroserviceImageService()
+    
     def form_valid(self, form):
         self.object = self.service.create_microservice(
             freelancer=self.request.user.freelancer_profile,
             data=form.cleaned_data
         )
+
+        image_file = self.request.FILES.get('image')
+        if image_file:
+            image_path = self.image_service.upload_microservice_image(
+                microservice_id=self.object.id,
+                image_file=image_file
+            )
+            self.object.image_path = image_path
+            self.object.save()
+
         return redirect(
             reverse(
                 'microservices:microservices_freelancer_list',
@@ -64,7 +76,7 @@ class MicroServiceCreateView(ProfileRequiredMixin, CreateView):
         
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['is_edit'] = False
+        context["is_edit"] = False
         return context
 
 class MicroServiceUpdateView(ProfileRequiredMixin, UpdateView):
@@ -74,20 +86,30 @@ class MicroServiceUpdateView(ProfileRequiredMixin, UpdateView):
     template_name = 'microservices/create_microservice.html'
     success_url = reverse_lazy('microservices:microservices_freelancer_list')
     service = MicroServiceService()
+    image_service = MicroserviceImageService()
     
     def form_valid(self, form):
-        self.service.update_microservice(microservice=self.get_object(), data=form.cleaned_data)
+        microservice = self.get_object()
+        self.service.update_microservice(microservice=microservice, data=form.cleaned_data)
+        
+        image_file = self.request.FILES.get("image")
+        if image_file:
+            if microservice.image_path:
+                self.image_service.delete_microservice_image(microservice.image_path)
+
+            image_path = self.image_service.upload_microservice_image(microservice.id, image_file)
+            microservice.image_path = image_path
+            microservice.save()
+
         return redirect(
             reverse(
                 'microservices:microservices_freelancer_list',
                 kwargs={'freelancer_id': self.request.user.freelancer_profile.id}
             )
         )
-
     def get_context_data(self, **kwargs):
-        self.object = self.get_object()
         context = super().get_context_data(**kwargs)
-        context['is_edit'] = True
+        context["is_edit"] = True
         return context
 
 class MicroServiceDeleteView(ProfileRequiredMixin, DeleteView):
@@ -95,8 +117,13 @@ class MicroServiceDeleteView(ProfileRequiredMixin, DeleteView):
     model = MicroService
     success_url = reverse_lazy('microservices:microservices_list')
     service = MicroServiceService()
+    image_service = MicroserviceImageService()
     
     def delete(self, request, *args, **kwargs):
         obj = self.get_object()
+
+        if obj.image_path:
+            self.image_service.delete_microservice_image(obj.image_path)
+
         self.service.delete_microservice(microservice=obj)
         return super().delete(request, *args, **kwargs)
