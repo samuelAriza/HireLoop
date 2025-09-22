@@ -1,8 +1,10 @@
+from django.db.models import F, ExpressionWrapper, DecimalField
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.contrib.contenttypes.models import ContentType
 from core.mixins.views import ProfileRequiredMixin
+from core.mixins.search import SearchFilterMixin
 from core.models import FreelancerProfile
 from ..models import MentorshipSession
 from ..forms.mentorship_form import MentorshipSessionCreateForm, MentorshipSessionUpdateForm
@@ -11,13 +13,20 @@ from ..services.mentorship_service import MentorshipService
 
 mentorship_service = MentorshipService(repository=MentorshipRepository())
 
-class MentorshipSessionListView(ListView):
+class MentorshipSessionListView(SearchFilterMixin, ListView):
     model = MentorshipSession
     template_name = "mentorship_session/mentorship_sessions_list.html"
     context_object_name = "sessions"
+    search_fields = ["topic", "mentor__user__email", "mentee__user__email"]
+    category_field = None
+    price_field = "price"
 
     def get_queryset(self):
-        return MentorshipSession.objects.all()
+        qs = super().get_queryset()
+        qs = qs.annotate(
+            price=ExpressionWrapper(F('duration_minutes') * MentorshipSession.PRICE_PER_MINUTE, output_field=DecimalField(max_digits=10, decimal_places=2))
+        )
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

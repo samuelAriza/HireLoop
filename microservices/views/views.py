@@ -3,18 +3,26 @@ from core.mixins.views import ProfileRequiredMixin
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.urls import reverse, reverse_lazy
 from ..forms import MicroServiceForm
-from ..models import MicroService
+from ..models import MicroService, Category
 from ..services.microservices_service import MicroServiceService
+from core.mixins.search import SearchFilterMixin
 from core.models import FreelancerProfile
 
-class MicroServiceListView(ListView):
+class MicroServiceListView(SearchFilterMixin, ListView):
     model = MicroService
     template_name = 'microservices/microservices_list.html'
     context_object_name = 'microservices'
     service = MicroServiceService()
+    search_fields = ["title", "description", "freelancer__user__email", "freelancer__user__username", "category__name"]
+    category_field = "category__name"
+    price_field = "price"
 
     def get_queryset(self):
-        return self.service.list_active_microservices()
+        qs = super().get_queryset()
+        return qs.filter(is_active=True)
+    
+    def get_popular_categories(self):
+        return Category.objects.values_list("name", flat=True).order_by("name")
 
 class MicroServiceFreelancerListView(ProfileRequiredMixin, ListView):
     required_profile = 'freelancer'

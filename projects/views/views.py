@@ -8,6 +8,7 @@ from ..repositories.project_repository import ProjectRepository, ProjectAssignme
 from ..services.project_service import ProjectService
 from ..forms.projects_form import ProjectCreateForm, ProjectUpdateForm, ProjectAssignmentForm, ProjectAssignmentUpdateForm, ProjectApplicationForm
 from core.models import ClientProfile
+from core.mixins.search import SearchFilterMixin
 
 project_service = ProjectService(
     project_repo=ProjectRepository(),
@@ -15,13 +16,17 @@ project_service = ProjectService(
     application_repo=ProjectApplicationRepository()
 )
 
-class ProjectListView(ListView):
+class ProjectListView(SearchFilterMixin, ListView):
     model = Project
     template_name = 'projects/projects_list.html'
     context_object_name = 'projects'
+    search_fields = ["title", "description", "client__user__email", "client__user__username"]
+    price_field = "budget"
+    category_field = None
 
     def get_queryset(self):
-        return project_service.list_projects()
+        qs = super().get_queryset()
+        return qs.filter(status__in=[Project.ProjectStatus.CREATED, Project.ProjectStatus.IN_PROGRESS])
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

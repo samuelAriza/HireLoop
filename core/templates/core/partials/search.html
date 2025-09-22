@@ -2,21 +2,25 @@
     <div class="card-body">
         <form method="get" class="row g-3 align-items-end">
             <div class="col-md-3">
-                <label for="id_search" class="form-label">Search services</label>
+                <label for="id_search" class="form-label">Search</label>
                 <input type="text" class="form-control" id="id_search" name="search"
-                    value="{{ current_filters.search }}" placeholder="E.g., web development, design...">
+                    value="{{ current_filters.search }}" placeholder="E.g., mentorship, design, project...">
             </div>
+
+            {% if popular_categories %}
             <div class="col-md-3">
                 <label for="id_category" class="form-label">Category</label>
                 <select class="form-select" id="id_category" name="category">
                     <option value="">All categories</option>
                     {% for cat in popular_categories %}
-                    <option value="{{ cat }}" {% if current_filters.category==cat %}selected{% endif %}>
+                    <option value="{{ cat }}" {% if current_filters.category == cat %}selected{% endif %}>
                         {{ cat }}
                     </option>
                     {% endfor %}
                 </select>
             </div>
+            {% endif %}
+
             <div class="col-md-2">
                 <label for="id_min_price" class="form-label">Min. price</label>
                 <input type="number" class="form-control" id="id_min_price" name="min_price"
@@ -30,20 +34,18 @@
             <div class="col-md-2">
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
+
             {% if has_filters %}
             <div class="col-12">
                 <div class="alert alert-info">
                     <i class="fas fa-filter"></i>
-                    Showing {{ services|length }} services
-                    {% if current_filters.search %}containing "<strong>{{ current_filters.search }}</strong>"{% endif %}
-                    {% if current_filters.category %}in category: <strong>{{ current_filters.category }}</strong>{%
-                    endif %}
-                    {% if current_filters.min_price %}price from: <strong>${{ current_filters.min_price }}</strong>{%
-                    endif %}
-                    {% if current_filters.max_price %}up to: <strong>${{ current_filters.max_price }}</strong>{% endif
-                    %}
+                    Showing {{ object_list|length }} results
+                    {% if current_filters.search %} containing "<strong>{{ current_filters.search }}</strong>"{% endif %}
+                    {% if current_filters.category %} in category: <strong>{{ current_filters.category }}</strong>{% endif %}
+                    {% if current_filters.min_price %} price from: <strong>${{ current_filters.min_price }}</strong>{% endif %}
+                    {% if current_filters.max_price %} up to: <strong>${{ current_filters.max_price }}</strong>{% endif %}
                 </div>
-                <a href="{% url 'services:service_list' %}" class="btn btn-outline-secondary btn-sm">
+                <a href="?" class="btn btn-outline-secondary btn-sm">
                     <i class="fas fa-times"></i> Clear filters
                 </a>
             </div>
@@ -62,6 +64,7 @@
             <i class="fas fa-tag me-1"></i>{{ cat }}
         </a>
         {% endfor %}
+
         <a href="?max_price=50"
             class="btn btn-sm btn-outline-success {% if current_filters.max_price == '50' %}active{% endif %}">
             <i class="fas fa-dollar-sign me-1"></i>Up to $50
