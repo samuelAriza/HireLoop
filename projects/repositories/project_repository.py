@@ -1,5 +1,5 @@
 from typing import Optional, List
-from ..models import Project, ProjectAssignment
+from ..models import Project, ProjectAssignment, ProjectApplication
 from core.repositories.base_repository import BaseRepository
 
 class ProjectRepository(BaseRepository):
@@ -44,3 +44,26 @@ class ProjectAssignmentRepository(BaseRepository):
     
     def list_by_project(self, project_id) -> List[ProjectAssignment]:
         return ProjectAssignment.objects.filter(project_id=project_id).all()
+
+class ProjectApplicationRepository(BaseRepository):
+    def create(self, **kwargs) -> ProjectApplication:
+        return ProjectApplication.objects.create(**kwargs)
+
+    def get_by_id(self, entity_id) -> Optional[ProjectApplication]:
+        return ProjectApplication.objects.filter(id=entity_id).first()
+
+    def update(self, entity: ProjectApplication, **kwargs) -> ProjectApplication:
+        for key, value in kwargs.items():
+            setattr(entity, key, value)
+        entity.save()
+        return entity
+
+    def delete(self, entity: ProjectApplication) -> bool:
+        deleted, _ = entity.delete()
+        return deleted > 0
+
+    def list_by_project(self, project_id) -> List[ProjectApplication]:
+        return ProjectApplication.objects.filter(project_id=project_id).all()
+
+    def list_by_freelancer(self, freelancer_id) -> List[ProjectApplication]:
+        return ProjectApplication.objects.filter(freelancer_id=freelancer_id).all()

@@ -1,4 +1,3 @@
-# ARCHIVO: /home/samargo/Documents/universidad_/software_architecture/hireloop_project/core/services/profile_service.py
 from typing import Dict, Any, Optional
 from django.core.files.uploadedfile import UploadedFile
 
@@ -140,3 +139,10 @@ class ProfileService:
         elif profiles['has_client']:
             return 'client'
         return None
+    
+    def get_freelancer_applications(self, user: User):
+        """Get all applications for a freelancer."""
+        freelancer_profile = self._repository.get_freelancer_profile(user)
+        if not freelancer_profile:
+            return []
+        return self._repository.get_freelancer_applications(freelancer_profile)

@@ -66,6 +66,9 @@ class ProfileDetailView(LoginRequiredMixin, TemplateView):
         context.update(profile_context)
         context["primary_role"] = self.profile_service.get_primary_role(self.request.user)
         context["is_owner"] = True
+        
+        if profile_context.get("has_freelancer"):
+            context["applications"] = self.profile_service.get_freelancer_applications(self.request.user)
         return context
 
     def post(self, request, *args, **kwargs):

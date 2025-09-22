@@ -40,3 +40,25 @@ class ProjectAssignment(models.Model):
     
     def __str__(self):
         return f"{self.freelancer.user.email} - {self.project.title} ({self.get_status_display()})"
+
+class ProjectApplication(models.Model):
+    class ApplicationStatus(models.TextChoices):
+        PENDING = "PENDING", "Pending"
+        ACCEPTED = "ACCEPTED", "Accepted"
+        REJECTED = "REJECTED", "Rejected"
+        WITHDRAWN = "WITHDRAWN", "Withdrawn"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name="applications")
+    freelancer = models.ForeignKey(FreelancerProfile, on_delete=models.CASCADE, related_name="applications")
+    cover_letter = models.TextField(blank=True)
+    proposed_payment = models.DecimalField(max_digits=12, decimal_places=2, null=True, blank=True)
+    status = models.CharField(max_length=20, choices=ApplicationStatus.choices, default=ApplicationStatus.PENDING)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = ("project", "freelancer")  # Evita aplicaciones duplicadas
+
+    def __str__(self):
+        return f"Application from {self.freelancer.user.email} to {self.project.title} ({self.get_status_display()})"

@@ -1,8 +1,9 @@
-from typing import Optional, Tuple
+from typing import Optional, Tuple, List
 from django.db import IntegrityError
 
 from ..repositories.base_repository import BaseRepository
 from ..models import FreelancerProfile, ClientProfile, User
+from projects.models import ProjectApplication
 
 
 class ProfileRepository(BaseRepository):
@@ -76,3 +77,7 @@ class ProfileRepository(BaseRepository):
             setattr(profile, field, value)
         profile.save()
         return profile
+    
+    def get_freelancer_applications(self, freelancer: FreelancerProfile) -> List[ProjectApplication]:
+        """Get all applications for a freelancer."""
+        return freelancer.applications.all().order_by("-created_at")
