@@ -30,6 +30,7 @@ urlpatterns = [
         include("mentorship_session.urls", namespace="mentorship_session"),
     ),
     path("cart/", include("cart.urls", namespace="cart")),
+    path("payments/", include("payments.urls", namespace="payment")),
 ]
 
 if settings.DEBUG:
