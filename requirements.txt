@@ -7,6 +7,7 @@ click==8.3.0
 Django==5.2.6
 django-browser-reload==1.19.0
 django-taggit==6.1.0
+dotenv==0.9.9
 flake8==6.1.0
 flake8-django==1.4
 idna==3.10
@@ -19,6 +20,7 @@ pillow==11.3.0
 platformdirs==4.4.0
 pycodestyle==2.11.1
 pyflakes==3.1.0
+python-dotenv==1.1.1
 pytokens==0.1.10
 requests==2.32.5
 sqlparse==0.5.3

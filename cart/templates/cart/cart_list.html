@@ -41,9 +41,11 @@
                             <small class="text-muted">
                                 <i class="fas fa-clock me-1"></i>
                                 {% if item.content_type.model == 'mentorshipsession' %}
-                                {{ item.content_object.duration_minutes }} minute{{ item.content_object.duration_minutes|pluralize }}
+                                {{ item.content_object.duration_minutes }} minute{{
+                                item.content_object.duration_minutes|pluralize }}
                                 {% else %}
-                                {{ item.content_object.delivery_time }} day{{ item.content_object.delivery_time|pluralize }}
+                                {{ item.content_object.delivery_time }} day{{
+                                item.content_object.delivery_time|pluralize }}
                                 {% endif %}
                             </small>
                         </div>
@@ -80,11 +82,12 @@
                     </div>
                     <hr>
                     <div class="d-grid">
-                        <button class="btn btn-success btn-lg" disabled>
-                            <i class="fas fa-credit-card"></i> Proceed to Payment
-                        </button>
-                        <small class="text-muted mt-2 text-center">
-                            * Payment functionality coming soon
+                        <form action="{% url 'payments:create-checkout-session' %}" method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-success btn-lg" type="submit">
+                                <i class="fas fa-credit-card"></i> Proceed to Payment
+                            </button>
+                        </form>
                         </small>
                     </div>
                 </div>
