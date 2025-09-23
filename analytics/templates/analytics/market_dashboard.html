@@ -1,0 +1,11 @@
+
+{% extends "base.html" %}
+{% load plotly_dash %}
+{% block content %}
+<body>
+    <div style="margin:20px;">
+        {% plotly_app name="MarketDashboard" ratio=0.65 %}
+    </div>
+    {% plotly_footer %}
+</body>
+{% endblock %}

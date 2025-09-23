@@ -31,6 +31,8 @@ urlpatterns = [
     ),
     path("cart/", include("cart.urls", namespace="cart")),
     path("payments/", include("payments.urls", namespace="payment")),
+    path("analytics/", include("analytics.urls", namespace="analytics")),
+    path("django_plotly_dash/", include("django_plotly_dash.urls")),
 ]
 
 if settings.DEBUG:
