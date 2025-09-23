@@ -1,10 +1,12 @@
 from django.contrib import admin
 from .models import Category, MicroService
 
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}  # autocompleta slug a partir del nombre
     list_display = ("name", "slug")
+
 
 @admin.register(MicroService)
 class MicroServiceAdmin(admin.ModelAdmin):

@@ -6,13 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0004_remove_freelancerprofile_rating_and_more'),
+        ("core", "0004_remove_freelancerprofile_rating_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='profile_image',
-            field=models.ImageField(blank=True, help_text='Upload a profile image', null=True, upload_to='profiles/'),
+            model_name="user",
+            name="profile_image",
+            field=models.ImageField(
+                blank=True,
+                help_text="Upload a profile image",
+                null=True,
+                upload_to="profiles/",
+            ),
         ),
     ]

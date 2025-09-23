@@ -1,0 +1,127 @@
+{# templates/mentorship_session/mentorship_session_detail.html #}
+{% extends 'base.html' %}
+{% load static %}
+{% load content_type_tags %}
+
+{% block title %}{{ item.topic }} - HireLoop{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-8">
+            <div class="card mb-4">
+                {% if item.image_path %}
+                <img src="{{ item.get_image_path }}" class="card-img-top" style="height:300px; object-fit:cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h1 class="card-title">{{ item.topic }}</h1>
+                    <p class="text-muted">By {{ item.mentor.user.get_full_name|default:item.mentor.user.username }}</p>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <span class="badge bg-primary">Mentorship Session</span>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <h3 class="text-success">${{ item.price }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <h5>Description</h5>
+                        <p>Duration: {{ item.duration_minutes }} minute{{ item.duration_minutes|pluralize }}</p>
+                        <p>Start Time: {{ item.start_time|date:"M d, Y H:i" }}</p>
+                        <p>Status: {{ item.get_status_display }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar / Actions -->
+        <div class="col-md-4">
+            <div class="card sticky-top mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Actions</h5>
+
+                    {% if user.is_authenticated %}
+                        {% if is_owner %}
+                            <!-- Owner -->
+                            <div class="alert alert-warning">
+                                <i class="fas fa-info-circle"></i> This is your own mentorship session
+                            </div>
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'mentorship_session:session_update' item.id %}" class="btn btn-outline-primary">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a href="{% url 'mentorship_session:session_delete' item.id %}" class="btn btn-outline-danger">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                            </div>
+                        {% elif "client" in user_type %}
+                            <!-- Client -->
+                            <div class="d-grid gap-2">
+                                {% if not in_cart %}
+                                <form method="post" action="{% url 'cart:add_to_cart' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="content_type" value="{{ item|content_type_id }}">
+                                    <input type="hidden" name="object_id" value="{{ item.id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                                        <i class="fas fa-cart-plus"></i> Book Session
+                                    </button>
+                                </form>
+                                {% else %}
+                                <form method="post" action="{% url 'cart:remove_from_cart' cart_item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger w-100">
+                                        <i class="fas fa-cart-arrow-down"></i> Remove from Cart
+                                    </button>
+                                </form>
+                                {% endif %}
+
+                                <hr>
+
+                                {% if not in_wishlist %}
+                                <form method="post" action="{% url 'cart:add_to_wishlist' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="content_type" value="{{ item|content_type_id }}">
+                                    <input type="hidden" name="object_id" value="{{ item.id }}">
+                                    <button type="submit" class="btn btn-outline-secondary w-100">
+                                        <i class="fas fa-heart"></i> Add to Wishlist
+                                    </button>
+                                </form>
+                                {% else %}
+                                <form method="post" action="{% url 'cart:remove_from_wishlist' wishlist_item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger w-100">
+                                        <i class="fas fa-heart-broken"></i> Remove from Wishlist
+                                    </button>
+                                </form>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <!-- Authenticated but not client -->
+                            <a href="{% url 'core:client_profile_create' %}" class="btn btn-primary w-100">
+                                <i class="fas fa-user-plus"></i> Create Client Profile
+                            </a>
+                        {% endif %}
+                    {% else %}
+                        <!-- Not authenticated -->
+                        <div class="alert alert-info">
+                            <a href="{% url 'core:login' %}" class="btn btn-primary w-100">
+                                <i class="fas fa-sign-in-alt"></i> Log In to Purchase
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card.sticky-top {
+        top: 1rem;
+    }
+</style>
+{% endblock %}

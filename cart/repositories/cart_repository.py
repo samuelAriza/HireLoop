@@ -4,6 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from core.repositories.base_repository import BaseRepository
 from cart.models import CartItem
 
+
 class CartRepository(BaseRepository):
     """
     Repository for CartItem entities.
@@ -31,7 +32,7 @@ class CartRepository(BaseRepository):
             user=user,
             content_type=content_type,
             object_id=obj.id,
-            defaults=defaults or {}
+            defaults=defaults or {},
         )
         return item
 

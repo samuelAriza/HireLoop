@@ -14,13 +14,19 @@ class MicroServiceService:
     def __init__(self, repository: MicroServiceRepository = None):
         self.repository = repository or MicroServiceRepository()
 
-    def create_microservice(self, freelancer: FreelancerProfile, data: dict) -> MicroService:
+    def create_microservice(
+        self, freelancer: FreelancerProfile, data: dict
+    ) -> MicroService:
         return self.repository.create(freelancer=freelancer, **data)
 
-    def update_microservice(self, microservice: MicroService, data: dict) -> MicroService:
+    def update_microservice(
+        self, microservice: MicroService, data: dict
+    ) -> MicroService:
         return self.repository.update(microservice, **data)
 
-    def list_freelancer_microservices(self, freelancer: FreelancerProfile) -> List[MicroService]:
+    def list_freelancer_microservices(
+        self, freelancer: FreelancerProfile
+    ) -> List[MicroService]:
         return self.repository.list_by_freelancer(freelancer)
 
     def list_active_microservices(self) -> List[MicroService]:

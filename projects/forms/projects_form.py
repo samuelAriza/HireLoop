@@ -1,26 +1,29 @@
 from django import forms
 from ..models import Project, ProjectAssignment, ProjectApplication
-from core.mixins.forms import BootstrapStylingMixin 
+from core.mixins.forms import BootstrapStylingMixin
+
 
 class ProjectCreateForm(BootstrapStylingMixin, forms.ModelForm):
     image = forms.ImageField(required=False)
+
     class Meta:
         model = Project
-        fields = ['title', 'description', 'budget', 'image']
+        fields = ["title", "description", "budget", "image"]
+
 
 class ProjectUpdateForm(BootstrapStylingMixin, forms.ModelForm):
     image = forms.ImageField(required=False)
+
     class Meta:
         model = Project
-        fields = ['title', 'description', 'budget', 'status', 'image']
-        widgets = {
-            'status': forms.Select(choices=Project.ProjectStatus.choices)
-        }
+        fields = ["title", "description", "budget", "status", "image"]
+        widgets = {"status": forms.Select(choices=Project.ProjectStatus.choices)}
+
 
 class ProjectAssignmentForm(BootstrapStylingMixin, forms.ModelForm):
     class Meta:
         model = ProjectAssignment
-        fields = ['freelancer', 'role', 'agreed_payment']
+        fields = ["freelancer", "role", "agreed_payment"]
 
     def clean(self):
         cleaned_data = super().clean()
@@ -36,9 +39,11 @@ class ProjectAssignmentForm(BootstrapStylingMixin, forms.ModelForm):
 class ProjectAssignmentUpdateForm(BootstrapStylingMixin, forms.ModelForm):
     class Meta:
         model = ProjectAssignment
-        fields = ['role', 'agreed_payment', 'status']
+        fields = ["role", "agreed_payment", "status"]
         widgets = {
-            'status': forms.Select(choices=ProjectAssignment.ProjectAssignmentStatus.choices)
+            "status": forms.Select(
+                choices=ProjectAssignment.ProjectAssignmentStatus.choices
+            )
         }
 
     def clean(self):
@@ -50,11 +55,14 @@ class ProjectAssignmentUpdateForm(BootstrapStylingMixin, forms.ModelForm):
         if project and new_payment:
             available = project.budget + (assignment.agreed_payment or 0)
             if new_payment > available:
-                raise forms.ValidationError("Not enough budget to update this assignment.")
+                raise forms.ValidationError(
+                    "Not enough budget to update this assignment."
+                )
 
         return cleaned_data
+
 
 class ProjectApplicationForm(BootstrapStylingMixin, forms.ModelForm):
     class Meta:
         model = ProjectApplication
-        fields = ['cover_letter', 'proposed_payment']
+        fields = ["cover_letter", "proposed_payment"]

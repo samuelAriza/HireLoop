@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('microservices', '0001_initial'),
+        ("microservices", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='microservice',
-            name='delivery_time',
-            field=models.PositiveIntegerField(help_text='Delivery time in days'),
+            model_name="microservice",
+            name="delivery_time",
+            field=models.PositiveIntegerField(help_text="Delivery time in days"),
         ),
     ]

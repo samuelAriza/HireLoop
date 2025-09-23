@@ -10,22 +10,54 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('core', '0006_itemportfolio'),
+        ("core", "0006_itemportfolio"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='MentorshipSession',
+            name="MentorshipSession",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('topic', models.CharField(max_length=255)),
-                ('start_time', models.DateTimeField()),
-                ('duration_minutes', models.PositiveIntegerField()),
-                ('status', models.CharField(choices=[('scheduled', 'Scheduled'), ('completed', 'Completed'), ('canceled', 'Canceled'), ('no_show', 'No Show')], default='scheduled', max_length=20)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('mentee', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.clientprofile')),
-                ('mentor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='core.freelancerprofile')),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("topic", models.CharField(max_length=255)),
+                ("start_time", models.DateTimeField()),
+                ("duration_minutes", models.PositiveIntegerField()),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("scheduled", "Scheduled"),
+                            ("completed", "Completed"),
+                            ("canceled", "Canceled"),
+                            ("no_show", "No Show"),
+                        ],
+                        default="scheduled",
+                        max_length=20,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "mentee",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="core.clientprofile",
+                    ),
+                ),
+                (
+                    "mentor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="core.freelancerprofile",
+                    ),
+                ),
             ],
         ),
     ]

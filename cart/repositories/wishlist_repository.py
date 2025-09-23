@@ -1,8 +1,8 @@
-# cart/repositories/wishlist_repository.py
 from typing import Optional, List
 from django.contrib.contenttypes.models import ContentType
 from core.repositories.base_repository import BaseRepository
 from cart.models import WishlistItem
+
 
 class WishlistRepository(BaseRepository):
     """
@@ -28,9 +28,7 @@ class WishlistRepository(BaseRepository):
     def get_or_create(self, user, obj) -> WishlistItem:
         content_type = ContentType.objects.get_for_model(obj)
         item, _ = WishlistItem.objects.get_or_create(
-            user=user,
-            content_type=content_type,
-            object_id=obj.id
+            user=user, content_type=content_type, object_id=obj.id
         )
         return item
 

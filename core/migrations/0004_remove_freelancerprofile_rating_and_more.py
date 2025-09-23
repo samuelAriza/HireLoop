@@ -6,27 +6,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0003_replace_skills_with_charfield'),
+        ("core", "0003_replace_skills_with_charfield"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='freelancerprofile',
-            name='rating',
+            model_name="freelancerprofile",
+            name="rating",
         ),
         migrations.AddField(
-            model_name='clientprofile',
-            name='billing_email',
+            model_name="clientprofile",
+            name="billing_email",
             field=models.EmailField(blank=True, max_length=254),
         ),
         migrations.AlterField(
-            model_name='clientprofile',
-            name='company',
+            model_name="clientprofile",
+            name="company",
             field=models.CharField(blank=True, max_length=100),
         ),
         migrations.AlterField(
-            model_name='freelancerprofile',
-            name='bio',
+            model_name="freelancerprofile",
+            name="bio",
             field=models.TextField(blank=True, max_length=500),
         ),
     ]

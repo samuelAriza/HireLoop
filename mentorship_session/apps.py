@@ -2,5 +2,5 @@ from django.apps import AppConfig
 
 
 class MentorshipSessionConfig(AppConfig):
-    default_auto_field = 'django.db.models.BigAutoField'
-    name = 'mentorship_session'
+    default_auto_field = "django.db.models.BigAutoField"
+    name = "mentorship_session"

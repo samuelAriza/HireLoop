@@ -1,5 +1,6 @@
 from core.interfaces.cart_interface import PurchasableInterface
 
+
 class MicroserviceAdapter(PurchasableInterface):
     def __init__(self, microservice):
         self.microservice = microservice

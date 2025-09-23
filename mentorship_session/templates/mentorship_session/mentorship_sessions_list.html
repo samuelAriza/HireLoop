@@ -31,7 +31,7 @@
                                 </small>
                             </div>
                             <div class="d-flex gap-2 mt-auto">
-                                <a href="" class="btn btn-sm btn-primary">View Details</a>
+                                <a href="{% url 'mentorship_session:session_detail' session.id %}" class="btn btn-sm btn-primary">View Details</a>
 
                                 {% if user.is_authenticated %}
                                 {% if session.mentor.user == user %}
@@ -41,7 +41,6 @@
                                 <a href="{% url 'mentorship_session:session_delete' session.id %}"
                                     class="btn btn-sm btn-danger">Delete</a>
                                 {% elif "client" in user_type %}
-                                <!-- Botones de contratación SOLO para clientes -->
                                 <form method="post" action="{% url 'cart:add_to_cart' %}" class="flex-fill">
                                     {% csrf_token %}
                                     <input type="hidden" name="content_type" value="{{ session_content_type_id }}">

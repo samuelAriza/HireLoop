@@ -1,67 +1,99 @@
+from pyexpat.errors import messages
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 from django.views import View
 from core.mixins import ProfileRequiredMixin
 from ..models import Project, ProjectAssignment, ProjectApplication
-from ..repositories.project_repository import ProjectRepository, ProjectAssignmentRepository, ProjectApplicationRepository
+from ..repositories.project_repository import (
+    ProjectRepository,
+    ProjectAssignmentRepository,
+    ProjectApplicationRepository,
+)
 from ..services.project_service import ProjectService
 from ..services.image_service import ProjectImageService
-from ..forms.projects_form import ProjectCreateForm, ProjectUpdateForm, ProjectAssignmentForm, ProjectAssignmentUpdateForm, ProjectApplicationForm
+from ..forms.projects_form import (
+    ProjectCreateForm,
+    ProjectUpdateForm,
+    ProjectAssignmentForm,
+    ProjectAssignmentUpdateForm,
+    ProjectApplicationForm,
+)
 from core.models import ClientProfile
 from core.mixins.search import SearchFilterMixin
 
 project_service = ProjectService(
     project_repo=ProjectRepository(),
     assignment_repo=ProjectAssignmentRepository(),
-    application_repo=ProjectApplicationRepository()
+    application_repo=ProjectApplicationRepository(),
 )
+
 
 class ProjectListView(SearchFilterMixin, ListView):
     model = Project
-    template_name = 'projects/projects_list.html'
-    context_object_name = 'projects'
-    search_fields = ["title", "description", "client__user__email", "client__user__username"]
+    template_name = "projects/projects_list.html"
+    context_object_name = "projects"
+    search_fields = [
+        "title",
+        "description",
+        "client__user__email",
+        "client__user__username",
+    ]
     price_field = "budget"
     category_field = None
 
     def get_queryset(self):
-        qs = super().get_queryset()
-        return qs.filter(status__in=[Project.ProjectStatus.CREATED, Project.ProjectStatus.IN_PROGRESS])
-    
+        projects = project_service.list_projects()
+        return [
+            p
+            for p in projects
+            if p.status
+            in [Project.ProjectStatus.CREATED, Project.ProjectStatus.IN_PROGRESS]
+        ]
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         user = self.request.user
         is_owner_map = {}
         has_applied_map = {}
 
-        for project in context['projects']:
-            is_owner_map[project.id] = hasattr(user, "clientprofile") and project.client == user.clientprofile
+        for project in context["projects"]:
+            is_owner_map[project.id] = (
+                hasattr(user, "clientprofile") and project.client == user.clientprofile
+            )
             if hasattr(user, "freelancer_profile"):
                 has_applied_map[project.id] = project.applications.filter(
                     freelancer=user.freelancer_profile
                 ).exists()
 
-        context['is_owner_map'] = is_owner_map
-        context['has_applied_map'] = has_applied_map
+        context["is_owner_map"] = is_owner_map
+        context["has_applied_map"] = has_applied_map
         return context
-    
+
+
 class ProjectClientListView(ProfileRequiredMixin, ListView):
     required_profile = "client"
     model = Project
-    template_name = 'projects/client_projects_list.html'
-    context_object_name = 'projects'
+    template_name = "projects/client_projects_list.html"
+    context_object_name = "projects"
 
     def get_queryset(self):
-        client_profile = get_object_or_404(ClientProfile, pk=self.kwargs['client_id'])
+        client_profile = get_object_or_404(ClientProfile, pk=self.kwargs["client_id"])
         return project_service.list_client_projects(client_profile.id)
+
 
 class ProjectCreateView(ProfileRequiredMixin, CreateView):
     required_profile = "client"
     model = Project
     form_class = ProjectCreateForm
-    template_name = 'projects/project_form.html'
-    success_url = reverse_lazy('projects:projects_client_list')
+    template_name = "projects/project_form.html"
+    success_url = reverse_lazy("projects:projects_client_list")
     image_service = ProjectImageService()
 
     def form_valid(self, form):
@@ -69,7 +101,7 @@ class ProjectCreateView(ProfileRequiredMixin, CreateView):
         form.instance.client = client_profile
         self.object = form.save()
 
-        image_file = self.request.FILES.get('image')
+        image_file = self.request.FILES.get("image")
         if image_file:
             path = self.image_service.upload_project_image(self.object.id, image_file)
             self.object.image_path = path
@@ -77,28 +109,28 @@ class ProjectCreateView(ProfileRequiredMixin, CreateView):
 
         return redirect(
             reverse(
-                'projects:projects_client_list',
-                kwargs={'client_id': client_profile.id}
+                "projects:projects_client_list", kwargs={"client_id": client_profile.id}
             )
         )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['is_edit'] = False
+        context["is_edit"] = False
         return context
+
 
 class ProjectUpdateView(ProfileRequiredMixin, UpdateView):
     required_profile = "client"
     model = Project
     form_class = ProjectUpdateForm
-    template_name = 'projects/project_form.html'
-    success_url = reverse_lazy('projects:projects_list')
+    template_name = "projects/project_form.html"
+    success_url = reverse_lazy("projects:projects_list")
     image_service = ProjectImageService()
-    
+
     def form_valid(self, form):
         project = form.save(commit=False)
 
-        image_file = self.request.FILES.get('image')
+        image_file = self.request.FILES.get("image")
         if image_file:
             if project.image_path:
                 self.image_service.delete_project_image(project.image_path)
@@ -107,18 +139,20 @@ class ProjectUpdateView(ProfileRequiredMixin, UpdateView):
             project.image_path = path
 
         project.save()
-        return redirect(reverse('projects:projects_list'))
-    
+        return redirect(reverse("projects:projects_list"))
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['is_edit'] = True
+        context["is_edit"] = True
         return context
+
 
 class ProjectDeleteView(ProfileRequiredMixin, DeleteView):
     required_profile = "client"
     model = Project
-    template_name = 'projects/project_confirm_delete.html'
-    success_url = reverse_lazy('projects:projects_list')
+    template_name = "projects/project_confirm_delete.html"
+    success_url = reverse_lazy("projects:projects_list")
+
 
 class ProjectAssignmentCreateView(ProfileRequiredMixin, CreateView):
     required_profile = "client"
@@ -158,7 +192,9 @@ class ProjectAssignmentUpdateView(ProfileRequiredMixin, UpdateView):
     def form_valid(self, form):
         assignment = form.save(commit=False)
         project = assignment.project
-        old_payment = ProjectAssignment.objects.get(id=assignment.id).agreed_payment or 0
+        old_payment = (
+            ProjectAssignment.objects.get(id=assignment.id).agreed_payment or 0
+        )
         project.budget += old_payment
         project.budget -= assignment.agreed_payment or 0
         project.save(update_fields=["budget"])
@@ -172,30 +208,37 @@ class ProjectAssignmentUpdateView(ProfileRequiredMixin, UpdateView):
         context["is_edit"] = True
         return context
 
+
 class ProjectDetailView(DetailView):
     model = Project
     template_name = "projects/project_detail.html"
     context_object_name = "project"
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         project = self.object
         user = self.request.user
-        context['is_open'] = project.status == Project.ProjectStatus.CREATED
-        context['is_owner'] = hasattr(user, "client_profile") and project.client == user.client_profile
-        context['is_freelancer'] = hasattr(user, "freelancer_profile")
-        
-        if context['is_freelancer']:
-            has_applied = project.applications.filter(freelancer=user.freelancer_profile).exists()
-            context['has_applied'] = has_applied
-            
-        if context['is_owner']:
-            context['applications'] = project.applications.all()
-            
+        context["is_open"] = project.status == Project.ProjectStatus.CREATED
+        context["is_owner"] = (
+            hasattr(user, "client_profile") and project.client == user.client_profile
+        )
+        context["is_freelancer"] = hasattr(user, "freelancer_profile")
+
+        if context["is_freelancer"]:
+            has_applied = project.applications.filter(
+                freelancer=user.freelancer_profile
+            ).exists()
+            context["has_applied"] = has_applied
+
+        if context["is_owner"]:
+            context["applications"] = project.applications.all()
+
         from ..forms.projects_form import ProjectApplicationForm
-        context['application_form'] = ProjectApplicationForm()
+
+        context["application_form"] = ProjectApplicationForm()
 
         return context
+
 
 class ProjectApplicationCreateView(ProfileRequiredMixin, CreateView):
     required_profile = "freelancer"
@@ -212,25 +255,21 @@ class ProjectApplicationCreateView(ProfileRequiredMixin, CreateView):
         form.save()
         return redirect("projects:projects_list")
 
+
 class ProjectApplicationAcceptView(ProfileRequiredMixin, View):
     required_profile = "client"
 
     def post(self, request, pk, *args, **kwargs):
-        application = get_object_or_404(ProjectApplication, pk=pk)
+        try:
+            project_service.review_application(pk, accept=True)
+            return redirect("projects:projects_list")
+        except ValueError:
+            messages.error(
+                request,
+                "Invalid application or you are not authorized to perform this action.",
+            )
+            return redirect("projects:projects_list")
 
-        if application.project.client.user != request.user:
-            return redirect('projects:projects_list')
-
-        project = application.project
-
-        application.status = ProjectApplication.ApplicationStatus.ACCEPTED
-        application.save()
-
-        if application.proposed_payment:
-            project.budget -= application.proposed_payment
-            project.save(update_fields=["budget"])
-
-        return redirect('projects:project_detail', pk=project.pk)
 
 class ProjectApplicationRejectView(ProfileRequiredMixin, View):
     required_profile = "client"
@@ -239,9 +278,9 @@ class ProjectApplicationRejectView(ProfileRequiredMixin, View):
         application = get_object_or_404(ProjectApplication, pk=pk)
 
         if application.project.client.user != request.user:
-            return redirect('projects:projects_list')
+            return redirect("projects:projects_list")
 
         application.status = ProjectApplication.ApplicationStatus.REJECTED
         application.save()
 
-        return redirect('projects:project_detail', pk=application.project.pk)
+        return redirect("projects:project_detail", pk=application.project.pk)

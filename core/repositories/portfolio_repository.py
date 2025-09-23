@@ -1,7 +1,7 @@
 from typing import Optional, List
-from django.db import IntegrityError
 from ..repositories.base_repository import BaseRepository
 from ..models import ItemPortfolio, FreelancerProfile
+
 
 class PortfolioRepository(BaseRepository):
     """

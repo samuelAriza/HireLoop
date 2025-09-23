@@ -4,8 +4,8 @@ from .action_dispatcher import ActionDispatcher
 from .profile_context_provider import ProfileContextProvider
 
 __all__ = [
-    'ProfileService',
-    'PortfolioService', 
-    'ActionDispatcher',
-    'ProfileContextProvider',
+    "ProfileService",
+    "PortfolioService",
+    "ActionDispatcher",
+    "ProfileContextProvider",
 ]

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mentorship_session', '0002_alter_mentorshipsession_mentee'),
+        ("mentorship_session", "0002_alter_mentorshipsession_mentee"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='mentorshipsession',
-            name='image_path',
+            model_name="mentorshipsession",
+            name="image_path",
             field=models.CharField(blank=True, max_length=500, null=True),
         ),
     ]

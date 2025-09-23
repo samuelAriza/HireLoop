@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('microservices', '0002_alter_microservice_delivery_time'),
+        ("microservices", "0002_alter_microservice_delivery_time"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='microservice',
-            name='image_path',
+            model_name="microservice",
+            name="image_path",
             field=models.CharField(blank=True, max_length=500, null=True),
         ),
     ]

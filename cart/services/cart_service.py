@@ -1,6 +1,7 @@
 from ..repositories.cart_repository import CartRepository
 from ..repositories.wishlist_repository import WishlistRepository
 
+
 class CartService:
     def __init__(self, cart_repository: CartRepository = None):
         self.cart_repo = cart_repository or CartRepository()
@@ -9,7 +10,7 @@ class CartService:
         item = self.cart_repo.get_or_create(user, obj, defaults={"quantity": 0})
         item.quantity += quantity
         self.cart_repo.update(item, quantity=item.quantity)
-        
+
         return item
 
     def remove_from_cart(self, user, obj):

@@ -7,14 +7,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0006_itemportfolio'),
-        ('mentorship_session', '0001_initial'),
+        ("core", "0006_itemportfolio"),
+        ("mentorship_session", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='mentorshipsession',
-            name='mentee',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='core.clientprofile'),
+            model_name="mentorshipsession",
+            name="mentee",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="core.clientprofile",
+            ),
         ),
     ]

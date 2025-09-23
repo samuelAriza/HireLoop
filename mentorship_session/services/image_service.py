@@ -3,12 +3,15 @@ from django.core.files.uploadedfile import UploadedFile
 from core.interfaces.storage_interface import StorageInterface
 from core.factories.storage_factory import StorageFactory
 
+
 class MentorshipImageService:
     def __init__(self, storage: StorageInterface = None):
         self.storage: StorageInterface = storage or StorageFactory.create_storage()
 
-    def upload_mentorship_image(self, mentorship_id: uuid.UUID, image_file: UploadedFile) -> str:
-        ext = image_file.name.split('.')[-1]
+    def upload_mentorship_image(
+        self, mentorship_id: uuid.UUID, image_file: UploadedFile
+    ) -> str:
+        ext = image_file.name.split(".")[-1]
         filename = f"mentorship_{mentorship_id}_{uuid.uuid4().hex}.{ext}"
         path = f"mentorships/{filename}"
         if not self._is_valid_image(image_file):
@@ -29,7 +32,7 @@ class MentorshipImageService:
     def _is_valid_image(self, image_file: UploadedFile) -> bool:
         if image_file.size > 5 * 1024 * 1024:
             return False
-        allowed_types = ['image/jpeg', 'image/png', 'image/gif']
+        allowed_types = ["image/jpeg", "image/png", "image/gif"]
         return image_file.content_type in allowed_types
 
     def _get_default_image_url(self) -> str:

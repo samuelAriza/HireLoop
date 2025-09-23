@@ -1,0 +1,135 @@
+{# templates/microservices/microservice_detail.html #}
+{% extends 'base.html' %}
+{% load static %}
+{% load content_type_tags %}
+
+{% block title %}{{ item.title }} - HireLoop{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Main Content -->
+        <div class="col-md-8">
+            <div class="card mb-4">
+                {% if item.image_path %}
+                <img src="{{ item.get_image_path }}" class="card-img-top" style="height:300px; object-fit:cover;">
+                {% endif %}
+                <div class="card-body">
+                    <h1 class="card-title">{{ item.title }}</h1>
+                    <p class="text-muted">By {{ item.freelancer.user.get_full_name|default:item.freelancer.user.username }}</p>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {% if item.category %}
+                            <span class="badge bg-primary">{{ item.category.name }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <h3 class="text-success">${{ item.price }}</h3>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <h5>Description</h5>
+                        <p>{{ item.description|linebreaks }}</p>
+                    </div>
+
+                    {% if item.delivery_time %}
+                    <div class="mb-3">
+                        <i class="fas fa-clock"></i>
+                        <strong>Delivery time:</strong> {{ item.delivery_time }} day{{ item.delivery_time|pluralize }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar / Actions -->
+        <div class="col-md-4">
+            <div class="card sticky-top mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Actions</h5>
+
+                    {% if user.is_authenticated %}
+                    {% if is_owner %}
+                    <!-- Botones para el owner -->
+                    <div class="alert alert-warning">
+                        <i class="fas fa-info-circle"></i> This is your own microservice
+                    </div>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'microservices:microservices_update' item.id %}"
+                            class="btn btn-outline-primary">
+                            <i class="fas fa-edit"></i> Edit
+                        </a>
+                        <a href="{% url 'microservices:microservices_delete' item.id %}" class="btn btn-outline-danger">
+                            <i class="fas fa-trash"></i> Delete
+                        </a>
+                    </div>
+                    {% elif "client" in user_type %}
+                    <!-- Botones para clientes -->
+                    <div class="d-grid gap-2">
+                        {% if not in_cart %}
+                        <form method="post" action="{% url 'cart:add_to_cart' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="content_type" value="{{ item|content_type_id }}">
+                            <input type="hidden" name="object_id" value="{{ item.id }}">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                        </form>
+                        {% else %}
+                        <form method="post" action="{% url 'cart:remove_from_cart' cart_item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger w-100">
+                                <i class="fas fa-cart-arrow-down"></i> Remove from Cart
+                            </button>
+                        </form>
+                        {% endif %}
+
+                        <hr>
+
+                        {% if not in_wishlist %}
+                        <form method="post" action="{% url 'cart:add_to_wishlist' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="content_type" value="{{ item|content_type_id }}">
+                            <input type="hidden" name="object_id" value="{{ item.id }}">
+                            <button type="submit" class="btn btn-outline-secondary w-100">
+                                <i class="fas fa-heart"></i> Add to Wishlist
+                            </button>
+                        </form>
+                        {% else %}
+                        <form method="post" action="{% url 'cart:remove_from_wishlist' wishlist_item.id %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-outline-danger w-100">
+                                <i class="fas fa-heart-broken"></i> Remove from Wishlist
+                            </button>
+                        </form>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <!-- Usuario autenticado pero no cliente -->
+                    <a href="{% url 'core:client_profile_create' %}" class="btn btn-primary w-100">
+                        <i class="fas fa-user-plus"></i> Create Client Profile
+                    </a>
+                    {% endif %}
+                    {% else %}
+                    <!-- Usuario no autenticado -->
+                    <div class="alert alert-info">
+                        <a href="{% url 'core:login' %}" class="btn btn-primary w-100">
+                            <i class="fas fa-sign-in-alt"></i> Log In to Purchase
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card.sticky-top {
+        top: 1rem;
+    }
+</style>
+{% endblock %}

@@ -8,6 +8,6 @@ class ItemPortfolioForm(BootstrapStylingMixin, forms.ModelForm):
         model = ItemPortfolio
         fields = ["title", "description", "url_demo"]
         widgets = {
-            "description": forms.Textarea(attrs={'rows': 3}),
-            "url_demo": forms.URLInput(attrs={'placeholder': 'https://example.com'}),
+            "description": forms.Textarea(attrs={"rows": 3}),
+            "url_demo": forms.URLInput(attrs={"placeholder": "https://example.com"}),
         }

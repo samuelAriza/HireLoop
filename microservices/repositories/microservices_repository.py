@@ -1,9 +1,7 @@
-from typing import Optional, List, Tuple
-from django.db import IntegrityError
-from ..models import MicroService, Category
+from typing import Optional, List
+from ..models import MicroService
 from core.models import FreelancerProfile
 from core.repositories.base_repository import BaseRepository
-
 
 class MicroServiceRepository(BaseRepository):
     """
@@ -13,7 +11,7 @@ class MicroServiceRepository(BaseRepository):
 
     def create(self, freelancer: FreelancerProfile, **data) -> MicroService:
         data = data.copy()
-        data.pop('image', None)
+        data.pop("image", None)
         return MicroService.objects.create(freelancer=freelancer, **data)
 
     def get_by_id(self, entity_id) -> Optional[MicroService]:
@@ -24,7 +22,7 @@ class MicroServiceRepository(BaseRepository):
 
     def update(self, entity: MicroService, **kwargs) -> MicroService:
         kwargs = kwargs.copy()
-        kwargs.pop('image', None)
+        kwargs.pop("image", None)
         for field, value in kwargs.items():
             setattr(entity, field, value)
         entity.save()
@@ -36,12 +34,16 @@ class MicroServiceRepository(BaseRepository):
 
     # Extra repository methods
     def list_by_freelancer(self, freelancer: FreelancerProfile) -> List[MicroService]:
-        return MicroService.objects.filter(freelancer=freelancer).select_related('freelancer', 'freelancer__user', 'category')
+        return MicroService.objects.filter(freelancer=freelancer).select_related(
+            "freelancer", "freelancer__user", "category"
+        )
 
     def deactivate(self, microservice: MicroService) -> MicroService:
         microservice.is_active = False
         microservice.save()
         return microservice
-    
+
     def list_active(self) -> List[MicroService]:
-        return MicroService.objects.filter(is_active=True).select_related('freelancer', 'freelancer__user', 'category')
+        return MicroService.objects.filter(is_active=True).select_related(
+            "freelancer", "freelancer__user", "category"
+        )
