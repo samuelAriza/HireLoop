@@ -8,7 +8,6 @@ from .models import Payment
 
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
-
 class CreateCheckoutSessionView(View):
     def post(self, request, *args, **kwargs):
         user = request.user
