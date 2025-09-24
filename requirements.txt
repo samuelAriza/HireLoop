@@ -17,6 +17,8 @@ django-plotly-dash==2.5.0
 django-taggit==6.1.0
 dotenv==0.9.9
 dpd_components==0.2.0
+factory_boy==3.3.3
+Faker==37.8.0
 flake8==6.1.0
 flake8-django==1.4
 Flask==3.0.3

@@ -5,7 +5,6 @@ from core.models import ClientProfile, FreelancerProfile
 from core.interfaces import PurchasableInterface
 from .services.image_service import MentorshipImageService
 
-
 class MentorshipSession(models.Model):
     class MentorshipStatus(models.TextChoices):
         SCHEDULED = "scheduled", "Scheduled"

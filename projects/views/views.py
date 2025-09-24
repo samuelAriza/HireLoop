@@ -49,13 +49,16 @@ class ProjectListView(SearchFilterMixin, ListView):
     category_field = None
 
     def get_queryset(self):
-        projects = project_service.list_projects()
-        return [
-            p
-            for p in projects
-            if p.status
-            in [Project.ProjectStatus.CREATED, Project.ProjectStatus.IN_PROGRESS]
-        ]
+        qs = project_service.list_projects()
+        
+        if not hasattr(qs, "filter"):
+            qs = Project.objects.filter(id__in=[p.id for p in qs])
+
+        qs = super().get_queryset().filter(id__in=qs.values("id"))
+
+        return qs.filter(
+            status__in=[Project.ProjectStatus.CREATED, Project.ProjectStatus.IN_PROGRESS]
+        )
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -75,7 +78,6 @@ class ProjectListView(SearchFilterMixin, ListView):
         context["is_owner_map"] = is_owner_map
         context["has_applied_map"] = has_applied_map
         return context
-
 
 class ProjectClientListView(ProfileRequiredMixin, ListView):
     required_profile = "client"
