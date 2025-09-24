@@ -105,6 +105,8 @@ class MicroServiceDetailView(DetailView):
                     "wishlist_item": wishlist_item,
                     "in_cart": bool(cart_item),
                     "in_wishlist": bool(wishlist_item),
+                    "is_owner": hasattr(user, "freelancer_profile") 
+                                 and item.freelancer == user.freelancer_profile,
                 }
             )
         else:
@@ -114,6 +116,7 @@ class MicroServiceDetailView(DetailView):
                     "wishlist_item": None,
                     "in_cart": False,
                     "in_wishlist": False,
+                    "is_owner": False,
                 }
             )
 

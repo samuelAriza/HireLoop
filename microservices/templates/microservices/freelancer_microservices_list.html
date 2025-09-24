@@ -35,10 +35,6 @@
                         <div class="row">
                             {% for microservice in microservices %}
                             {% if microservice.image_path %}
-                            <div class="mb-2 text-center">
-                                <img src="{{ microservice.get_image_url }}" alt="{{ microservice.title }}"
-                                    class="img-fluid rounded" style="max-height:150px;">
-                            </div>
                             {% endif %}
                             <div class="col-md-6 col-lg-4 mb-3">
                                 <div class="card h-100 {% if not microservice.active %}border-secondary{% endif %}">
