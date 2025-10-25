@@ -1,5 +1,5 @@
 from django.urls import path
-from .views.views import (
+from microservices.views.views import (
     MicroServiceListView,
     MicroServiceCreateView,
     MicroServiceUpdateView,

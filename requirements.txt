@@ -16,6 +16,7 @@ Django==5.2.6
 django-browser-reload==1.19.0
 django-plotly-dash==2.5.0
 django-taggit==6.1.0
+djangorestframework==3.16.1
 dotenv==0.9.9
 dpd_components==0.2.0
 factory_boy==3.3.3
