@@ -32,7 +32,14 @@ SECRET_KEY = "django-insecure-@))4gro63qr1xtk@a5_ic+u!p04#_w21i$l*wh*-t871@akw3o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'hireloop.software',
+    'www.hireloop.software',
+    '34.111.8.195',
+    '*'
+]
 
 # Application definition
 
@@ -53,7 +60,17 @@ INSTALLED_APPS = [
     "django_plotly_dash.apps.DjangoPlotlyDashConfig",
     "channels",
     "analytics",
+    "rest_framework",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ]
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -65,6 +82,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_plotly_dash.middleware.BaseMiddleware",
     "django_plotly_dash.middleware.ExternalRedirectionMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "hireloop.urls"

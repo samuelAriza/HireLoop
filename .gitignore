@@ -12,3 +12,7 @@ __pycache__/
 *.o
 docs
 out
+*.yaml
+hireloop-sa-key.json
+key.json
+.github/
