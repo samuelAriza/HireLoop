@@ -19,6 +19,14 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import JsonResponse
+
+
+def root_health_check(request):
+    return JsonResponse({"status": "ok"}, status=200)
+
+
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -34,6 +42,7 @@ urlpatterns = [
     path("analytics/", include("analytics.urls", namespace="analytics")),
     path("django_plotly_dash/", include("django_plotly_dash.urls")),
     path("api/", include("microservices.api.urls")),
+    path("", root_health_check, name="root_health_check"),
 ]
 
 if settings.DEBUG:

@@ -25,6 +25,7 @@ flake8==6.1.0
 flake8-django==1.4
 Flask==3.0.3
 git-filter-repo==2.47.0
+gunicorn==23.0.0
 idna==3.10
 importlib_metadata==8.7.0
 itsdangerous==2.2.0
@@ -58,5 +59,6 @@ typing_extensions==4.15.0
 tzdata==2025.2
 urllib3==2.5.0
 Werkzeug==3.0.6
+whitenoise==6.11.0
 wrapt==1.17.3
 zipp==3.23.0
