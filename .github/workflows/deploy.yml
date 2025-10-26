@@ -3,7 +3,7 @@ name: Deploy to GKE
 on:
   push:
     branches:
-      - development  # o main
+      - main
 
 env:
   PROJECT_ID: hireloop-476222
