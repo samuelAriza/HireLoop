@@ -32,7 +32,14 @@ SECRET_KEY = "django-insecure-@))4gro63qr1xtk@a5_ic+u!p04#_w21i$l*wh*-t871@akw3o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'hireloop.software',
+    'www.hireloop.software',
+    '34.111.8.195',
+    '*'
+]
 
 # Application definition
 
