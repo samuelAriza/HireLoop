@@ -1,0 +1,54 @@
+name: Deploy to GKE
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      PROJECT_ID: hireloop-476222
+      REGION: us-central1
+      REPO: hireloop-images
+      IMAGE_NAME: hireloop
+      CLUSTER_NAME: hireloop-cluster
+      ZONE: us-central1-a
+      DEPLOYMENT_NAME: hireloop-deployment
+      CONTAINER_NAME: hireloop
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    - name: Set up Google Cloud SDK
+      uses: google-github-actions/setup-gcloud@v2
+
+    - name: Configure Docker to use Artifact Registry
+      run: gcloud auth configure-docker ${{ env.REGION }}-docker.pkg.dev
+
+    - name: Build and Push Docker image
+      run: |
+        TAG=v${{ github.run_number }}
+        IMAGE_URI=${{ env.REGION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.REPO }}/${{ env.IMAGE_NAME }}:$TAG
+        echo "Building image: $IMAGE_URI"
+        docker build -t $IMAGE_URI .
+        docker push $IMAGE_URI
+        echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
+
+    - name: Get GKE credentials
+      run: |
+        gcloud container clusters get-credentials ${{ env.CLUSTER_NAME }} --zone ${{ env.ZONE }} --project ${{ env.PROJECT_ID }}
+
+    - name: Deploy to GKE
+      run: |
+        kubectl set image deployment/${{ env.DEPLOYMENT_NAME }} \
+          ${{ env.CONTAINER_NAME }}=${{ env.IMAGE_URI }}
+        kubectl rollout status deployment/${{ env.DEPLOYMENT_NAME }}
