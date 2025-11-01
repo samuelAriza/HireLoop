@@ -23,7 +23,6 @@ urlpatterns = [
     path("analytics/", include("analytics.urls", namespace="analytics")),
     path("django_plotly_dash/", include("django_plotly_dash.urls")),
     path("api/", include("microservices.api.urls")),
-    path("accounts/", include("django.contrib.auth.urls")),
 
     path("", root_health_check, name="root_health_check"),
 ]
