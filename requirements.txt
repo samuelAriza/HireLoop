@@ -62,3 +62,4 @@ Werkzeug==3.0.6
 whitenoise==6.11.0
 wrapt==1.17.3
 zipp==3.23.0
+psycopg[binary]
