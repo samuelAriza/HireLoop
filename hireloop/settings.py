@@ -37,7 +37,8 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'hireloop.software',
     'www.hireloop.software',
-] + os.environ.get("EXTRA_ALLOWED_HOSTS", "").split(",")
+    '10.24.0.6',
+]
 
 CSRF_TRUSTED_ORIGINS = [
     "https://hireloop.software",
