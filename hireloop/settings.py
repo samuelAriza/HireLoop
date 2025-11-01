@@ -46,6 +46,10 @@ CSRF_TRUSTED_ORIGINS = [
     "https://www.hireloop.software",
 ]
 
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/core/profile/'
+LOGOUT_REDIRECT_URL = '/' 
+
 # Application definition
 
 INSTALLED_APPS = [
