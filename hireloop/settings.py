@@ -50,6 +50,12 @@ LOGIN_URL = '/core/login/'
 LOGIN_REDIRECT_URL = '/core/profile/'
 LOGOUT_REDIRECT_URL = '/'
 
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True   
+
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Application definition
 
 INSTALLED_APPS = [
