@@ -156,7 +156,7 @@ DATABASES = {
         "NAME": os.getenv("DB_NAME", "hireloop"),
         "USER": os.getenv("DB_USER", "webuser"),
         "PASSWORD": os.getenv("DB_PASSWORD", ""),
-        "HOST": os.getenv("DATABASE_HOST", "127.0.0.1"),  # proxy local dentro del pod
+        "HOST": os.getenv("DATABASE_HOST", "127.0.0.1"),
         "PORT": os.getenv("DATABASE_PORT", "5432"),
     }
 }
