@@ -18,52 +18,104 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Google Cloud authentication
+      # === AUTH CON WORKLOAD IDENTITY (MÁS SEGURO) ===
+      - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          workload_identity_provider: 'projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'deployer@hireloop-476222.iam.gserviceaccount.com'
+          # O usa credentials_json si no tienes WIF
+          # credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      - name: Configure Docker to use Artifact Registry
+      # === CONFIGURA DOCKER ===
+      - name: Configure Docker for Artifact Registry
         run: gcloud auth configure-docker $GAR_LOCATION-docker.pkg.dev --quiet
 
-      - name: Build Docker image with commit SHA
+      # === BUILD & TAG ===
+      - name: Build and tag Docker image
         run: |
           IMAGE_TAG=${{ github.sha }}
-          docker build -t $GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$IMAGE_TAG .
+          IMAGE_FULL=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$IMAGE_TAG
+          docker build -t $IMAGE_FULL .
+          echo "IMAGE_FULL=$IMAGE_FULL" >> $GITHUB_ENV
           echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
+      # === PUSH ===
       - name: Push image to Artifact Registry
-        run: docker push $GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:${{ env.IMAGE_TAG }}
+        run: docker push ${{ env.IMAGE_FULL }}
 
-      - name: Set up GKE credentials
+      # === GKE CREDENTIALS ===
+      - name: Get GKE credentials
         uses: google-github-actions/get-gke-credentials@v2
         with:
           cluster_name: ${{ env.CLUSTER }}
           location: ${{ env.CLUSTER_ZONE }}
 
-      - name: Update deployment image and wait for rollout
+      # === PRE-PULL EN NODOS (ACELERA ROLLOUT) ===
+      - name: Pre-pull image on all nodes
         run: |
-          set -e
-          echo "Updating image in deployment $DEPLOYMENT_NAME..."
+          echo "Pre-pulling image on all nodes..."
+          kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | while read node; do
+            echo "Pre-pulling on node: $node"
+            kubectl debug node/$node -it --image=${{ env.IMAGE_FULL }} -- sh -c "echo 'cached'" &
+          done
+          wait || true  # No falla si debug falla en algún nodo
+          echo "Pre-pull complete."
+
+      # === ESCALA A 1 RÉPLICA (ROLLOUT RÁPIDO) ===
+      - name: Scale down to 1 replica
+        run: |
+          echo "Scaling deployment to 1 replica..."
+          kubectl scale deployment/$DEPLOYMENT_NAME --replicas=1 -n $NAMESPACE
+
+      # === ACTUALIZA IMAGEN ===
+      - name: Update deployment image
+        run: |
+          echo "Updating deployment image to ${{ env.IMAGE_TAG }}..."
           kubectl set image deployment/$DEPLOYMENT_NAME \
-            $IMAGE=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:${{ env.IMAGE_TAG }} \
+            $IMAGE=${{ env.IMAGE_FULL }} \
             -n $NAMESPACE
-          
-          echo "Deployment image updated. Waiting for rollout..."
-          if ! kubectl rollout status deployment/$DEPLOYMENT_NAME -n $NAMESPACE --timeout=300s; then
-            echo "Rollout failed. Fetching logs..."
-            kubectl get pods -n $NAMESPACE -l app=$IMAGE
-            echo "--- Logs from failed pods ---"
-            kubectl logs -n $NAMESPACE -l app=$IMAGE --tail=100 || true
+
+      # === ESPERA ROLLOUT CON LOGS CLAROS ===
+      - name: Wait for rollout
+        run: |
+          echo "Waiting for rollout (180s max)..."
+          if ! kubectl rollout status deployment/$DEPLOYMENT_NAME -n $NAMESPACE --timeout=180s; then
+            echo "ROLLout FAILED. Fetching logs from NEW pod..."
+            
+            # Obtiene el pod más nuevo
+            NEW_POD=$(kubectl get pods -n $NAMESPACE -l app=$IMAGE \
+              --sort-by='.metadata.creationTimestamp' -o jsonpath='{.items[-1].metadata.name}')
+            
+            if [ -n "$NEW_POD" ]; then
+              echo "=== hireloop container logs ==="
+              kubectl logs $NEW_POD -n $NAMESPACE -c hireloop --tail=100 || true
+              echo "=== cloud-sql-proxy logs ==="
+              kubectl logs $NEW_POD -n $NAMESPACE -c cloud-sql-proxy --tail=50 || true
+            else
+              echo "No new pod found."
+            fi
             exit 1
           fi
+          echo "ROLLout SUCCESSFUL!"
 
-      - name: Cleanup old pods
+      # === VUELVE A 2 RÉPLICAS ===
+      - name: Scale back to 2 replicas
+        run: |
+          echo "Scaling back to 2 replicas..."
+          kubectl scale deployment/$DEPLOYMENT_NAME --replicas=2 -n $NAMESPACE
+
+      # === LIMPIEZA (opcional) ===
+      - name: Cleanup old successful pods
         if: success()
         run: |
-          kubectl delete pods -n $NAMESPACE -l app=$IMAGE --field-selector=status.phase=Succeeded || true
+          kubectl delete pods -n $NAMESPACE -l app=$IMAGE \
+            --field-selector=status.phase=Succeeded --grace-period=0 --force || true

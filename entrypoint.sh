@@ -1,27 +1,38 @@
 #!/bin/bash
 set -e
 
-echo "Waiting for Cloud SQL Proxy to be ready on 127.0.0.1:5432..."
+echo "=== Waiting for REAL database connection ==="
 
-# Máximo 60 segundos de espera
+# Intenta conectar con Django (no solo nc)
 for i in {1..30}; do
-    if nc -z 127.0.0.1 5432 2>/dev/null; then
-        echo "Cloud SQL Proxy is UP!"
+    if python -c "
+import sys, os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hireloop.settings', default='')
+import django
+django.setup()
+from django.db import connection
+try:
+    with connection.cursor() as cursor:
+        cursor.execute('SELECT 1')
+    print('DB connected')
+    sys.exit(0)
+except Exception as e:
+    print(f'DB not ready: {e}')
+    sys.exit(1)
+    " 2>/dev/null; then
+        echo "Database is READY!"
         break
     else
-        echo "Attempt $i/30: Proxy not ready yet... waiting 2s"
+        echo "Attempt $i/30: DB not ready... waiting 2s"
         sleep 2
     fi
 done
 
-# Si no conecta, falla el contenedor
-if ! nc -z 127.0.0.1 5432 2>/dev/null; then
-    echo "ERROR: Could not connect to Cloud SQL Proxy after 60 seconds"
+# Si falla después de 30 intentos
+if ! python -c "import django, os; os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'hireloop.settings'); django.setup(); from django.db import connection; connection.cursor().execute('SELECT 1')" 2>/dev/null; then
+    echo "ERROR: Could not connect to database after 60 seconds"
     exit 1
 fi
-
-echo "Running collectstatic..."
-python manage.py collectstatic --noinput
 
 echo "Starting Gunicorn..."
 exec gunicorn hireloop.wsgi:application \
@@ -29,4 +40,5 @@ exec gunicorn hireloop.wsgi:application \
     --workers 2 \
     --access-logfile - \
     --error-logfile - \
-    --log-level info
+    --log-level info \
+    --timeout 30
