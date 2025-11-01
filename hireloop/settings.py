@@ -56,6 +56,9 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SESSION_COOKIE_SAMESITE = "None"
 CSRF_COOKIE_SAMESITE = "None"
 
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
