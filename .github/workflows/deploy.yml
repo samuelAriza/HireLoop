@@ -18,98 +18,45 @@ env:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # === AUTH (TU ORIGINAL, NO TOCAR) ===
       - name: Set up Google Cloud authentication
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      # === DOCKER ===
-      - name: Configure Docker to use Artifact Registry
+      - name: Configure Docker
         run: gcloud auth configure-docker $GAR_LOCATION-docker.pkg.dev --quiet
 
-      # === BUILD & TAG ===
-      - name: Build Docker image with commit SHA
+      - name: Build & Push
         run: |
           IMAGE_TAG=${{ github.sha }}
           IMAGE_FULL=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$IMAGE_TAG
           docker build -t $IMAGE_FULL .
+          docker push $IMAGE_FULL
           echo "IMAGE_FULL=$IMAGE_FULL" >> $GITHUB_ENV
-          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
-      # === PUSH ===
-      - name: Push image to Artifact Registry
-        run: docker push ${{ env.IMAGE_FULL }}
-
-      # === GKE CREDENTIALS ===
-      - name: Set up GKE credentials
+      - name: Get GKE credentials
         uses: google-github-actions/get-gke-credentials@v2
         with:
           cluster_name: ${{ env.CLUSTER }}
           location: ${{ env.CLUSTER_ZONE }}
 
-      # === PRE-PULL EN NODOS (ACELERA DESCARGA) ===
-      - name: Pre-pull image on all nodes
-        run: |
-          echo "Pre-pulling image on all nodes..."
-          kubectl get nodes -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | while read node; do
-            echo "Caching image on node: $node"
-            kubectl debug node/$node -it --image=${{ env.IMAGE_FULL }} -- sh -c "echo 'cached'" || true &
-          done
-          wait || true
-          echo "Pre-pull complete."
-
-      # === ESCALA A 1 RÉPLICA (EVITA CONFLICTOS) ===
-      - name: Scale down to 1 replica
-        run: |
-          echo "Scaling deployment to 1 replica for safe rollout..."
-          kubectl scale deployment/$DEPLOYMENT_NAME --replicas=1 -n $NAMESPACE --timeout=60s
-          sleep 10  # Espera estabilización
-
-      # === ACTUALIZA IMAGEN Y ESPERA ROLLOUT ===
-      - name: Update deployment image and wait for rollout
+      - name: Deploy & Force Rollout
         run: |
           set -e
-          echo "Updating image in deployment $DEPLOYMENT_NAME..."
           kubectl set image deployment/$DEPLOYMENT_NAME \
-            $IMAGE=${{ env.IMAGE_FULL }} \
-            -n $NAMESPACE
-          
-          echo "Deployment image updated. Waiting for rollout (300s max)..."
-          if ! kubectl rollout status deployment/$DEPLOYMENT_NAME -n $NAMESPACE --timeout=300s; then
-            echo "ROLLout FAILED. Fetching logs from NEW pod..."
-            
-            # Obtiene el pod MÁS NUEVO
-            NEW_POD=$(kubectl get pods -n $NAMESPACE -l app=$IMAGE \
-              --sort-by='.metadata.creationTimestamp' -o jsonpath='{.items[-1].metadata.name}')
-            
-            if [ -n "$NEW_POD" ]; then
-              echo "=== hireloop container logs (NEW POD: $NEW_POD) ==="
-              kubectl logs $NEW_POD -n $NAMESPACE -c hireloop --tail=100 || true
-              echo "=== cloud-sql-proxy logs (NEW POD: $NEW_POD) ==="
-              kubectl logs $NEW_POD -n $NAMESPACE -c cloud-sql-proxy --tail=50 || true
-            else
-              echo "No new pod found. Listing all pods:"
-              kubectl get pods -n $NAMESPACE -l app=$IMAGE
-            fi
-            exit 1
-          fi
-          echo "ROLLout SUCCESSFUL!"
+            $IMAGE=${{ env.IMAGE_FULL }} -n $NAMESPACE
 
-      # === VUELVE A 2 RÉPLICAS ===
-      - name: Scale back to 2 replicas
-        run: |
-          echo "Scaling back to 2 replicas..."
-          kubectl scale deployment/$DEPLOYMENT_NAME --replicas=2 -n $NAMESPACE --timeout=60s
+          # Fuerza nuevo rollout
+          kubectl patch deployment $DEPLOYMENT_NAME -n $NAMESPACE \
+            -p "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"restart\":\"$(date +%s)\"}}}}}"
 
-      # === LIMPIEZA ===
-      - name: Cleanup old pods
+          echo "Waiting for rollout (300s)..."
+          kubectl rollout status deployment/$DEPLOYMENT_NAME -n $NAMESPACE --timeout=300s
+
+      - name: Cleanup
         if: success()
-        run: |
-          kubectl delete pods -n $NAMESPACE -l app=$IMAGE \
-            --field-selector=status.phase=Succeeded --grace-period=0 --force || true
+        run: kubectl delete pods -n $NAMESPACE -l app=$IMAGE --field-selector=status.phase=Succeeded --grace-period=0 --force || true
