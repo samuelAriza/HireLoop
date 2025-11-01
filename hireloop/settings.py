@@ -37,8 +37,11 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'hireloop.software',
     'www.hireloop.software',
-    '34.111.8.195',
-    '*'
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://hireloop.software",
+    "https://www.hireloop.software",
 ]
 
 # Application definition
