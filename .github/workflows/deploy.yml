@@ -45,7 +45,18 @@ jobs:
           cluster_name: ${{ env.CLUSTER }}
           location: ${{ env.CLUSTER_ZONE }}
 
-      - name: Update deployment image
+      - name: Update deployment image and wait for rollout
         run: |
-          kubectl set image deployment/$DEPLOYMENT_NAME $IMAGE=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:${{ env.IMAGE_TAG }} --record
-          kubectl rollout status deployment/$DEPLOYMENT_NAME
+          set -e
+          kubectl set image deployment/$DEPLOYMENT_NAME $IMAGE=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:${{ env.IMAGE_TAG }}
+          if ! kubectl rollout status deployment/$DEPLOYMENT_NAME --timeout=180s; then
+            echo "❌ Rollout failed. Fetching logs..."
+            kubectl get pods -l app=$DEPLOYMENT_NAME
+            kubectl logs -l app=$DEPLOYMENT_NAME --tail=50
+            exit 1
+          fi
+
+      - name: Cleanup old pods
+        if: success()
+        run: |
+          kubectl delete pods -l app=$DEPLOYMENT_NAME --field-selector=status.phase=Succeeded || true
