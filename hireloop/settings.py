@@ -38,6 +38,7 @@ ALLOWED_HOSTS = [
     'hireloop.software',
     'www.hireloop.software',
     '10.24.0.6',
+    '*'
 ]
 
 CSRF_TRUSTED_ORIGINS = [
