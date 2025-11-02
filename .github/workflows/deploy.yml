@@ -104,9 +104,21 @@ jobs:
                   - /bin/bash
                   - -c
                   - |
-                    timeout 60 bash -c 'until nc -z 127.0.0.1 5432; do sleep 2; done'
+                    set -e
+                    echo "=== Waiting for proxy ==="
+                    sleep 10
+                    for i in {1..20}; do
+                      if python -c "import socket; s=socket.socket(); s.settimeout(2); s.connect(('127.0.0.1', 5432)); s.close()" 2>/dev/null; then
+                        echo "✅ Proxy ready"
+                        break
+                      fi
+                      sleep 2
+                    done
+                    echo "=== Running migrations ==="
                     python manage.py migrate --noinput
-                    python manage.py collectstatic --noinput --clear || true
+                    echo "=== Collecting static (background) ==="
+                    python manage.py collectstatic --noinput --clear > /dev/null 2>&1 &
+                    echo "✅ Migrations completed"
                 - name: cloud-sql-proxy
                   image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
                   args:
@@ -116,11 +128,20 @@ jobs:
                   - "hireloop-476222:us-central1:hireloop-db"
                   securityContext:
                     runAsNonRoot: true
+                  resources:
+                    requests:
+                      memory: "128Mi"
+                      cpu: "100m"
+                    limits:
+                      memory: "256Mi"
+                      cpu: "200m"
           EOF
           
-          # Esperar a que el job complete
-          kubectl wait --for=condition=complete --timeout=300s job/django-migrate-${{ github.sha }} -n $NAMESPACE || \
-            (kubectl logs job/django-migrate-${{ github.sha }} -c migrate -n $NAMESPACE && exit 1)
+          # Esperar hasta 6 minutos para migraciones
+          kubectl wait --for=condition=complete --timeout=360s job/django-migrate-${{ github.sha }} -n $NAMESPACE || \
+            (echo "⚠️  Migration job timed out or failed, checking logs..." && \
+             kubectl logs job/django-migrate-${{ github.sha }} -c migrate -n $NAMESPACE --tail=100 && \
+             exit 1)
           
           echo "✅ Migrations completed successfully"
 
