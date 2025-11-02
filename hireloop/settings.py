@@ -22,7 +22,7 @@ SECRET_KEY = os.getenv(
 )
 
 # DEBUG should be False in production
-DEBUG = os.getenv("DEBUG", "True") == "True"
+DEBUG = True
 
 # Allowed hosts from environment
 ALLOWED_HOSTS_ENV = os.getenv(
@@ -148,6 +148,10 @@ MIDDLEWARE = [
     "django_plotly_dash.middleware.BaseMiddleware",
     "django_plotly_dash.middleware.ExternalRedirectionMiddleware",
 ]
+
+
+WHITENOISE_AUTOREFRESH = True 
+WHITENOISE_USE_FINDERS = True
 
 ROOT_URLCONF = "hireloop.urls"
 
