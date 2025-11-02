@@ -25,6 +25,7 @@ class BaseImageService:
 
         # Save image
         saved_path = self._storage.save(image_file, path)
+        print("Saved path:", saved_path)
         return saved_path
 
     def delete_image(self, image_path: str) -> bool:
