@@ -87,7 +87,11 @@ jobs:
               spec:
                 serviceAccountName: hireloop-ksa
                 restartPolicy: Never
+                imagePullSecrets:
+                  - name: gcp-artifact-registry
+                
                 containers:
+                # ============ DJANGO MIGRATE CONTAINER ============
                 - name: migrate
                   image: ${{ env.IMAGE_FULL }}
                   envFrom:
@@ -105,27 +109,47 @@ jobs:
                   - -c
                   - |
                     set -e
-                    echo "=== Waiting for proxy ==="
+                    echo "=== Waiting for Cloud SQL Proxy ==="
                     sleep 10
+                    
+                    # Verificar que el proxy esté listo
                     for i in {1..20}; do
                       if python -c "import socket; s=socket.socket(); s.settimeout(2); s.connect(('127.0.0.1', 5432)); s.close()" 2>/dev/null; then
-                        echo "✅ Proxy ready"
+                        echo "✅ Cloud SQL Proxy is ready"
                         break
                       fi
+                      echo "Waiting for proxy... attempt $i/20"
                       sleep 2
                     done
-                    echo "=== Running migrations ==="
+                    
+                    echo "=== Running Django migrations ==="
                     python manage.py migrate --noinput
-                    echo "=== Collecting static (background) ==="
-                    python manage.py collectstatic --noinput --clear > /dev/null 2>&1 &
-                    echo "✅ Migrations completed"
+                    
+                    echo "=== Collecting static files ==="
+                    python manage.py collectstatic --noinput --clear
+                    
+                    echo "✅ Migrations completed successfully"
+                  resources:
+                    requests:
+                      cpu: "100m"
+                      memory: "256Mi"
+                    limits:
+                      cpu: "500m"
+                      memory: "512Mi"
+                
+                # ============ CLOUD SQL PROXY SIDECAR ============
                 - name: cloud-sql-proxy
                   image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
                   args:
                   - "--address=0.0.0.0"
                   - "--port=5432"
                   - "--structured-logs"
+                  - "--credentials-file=/secrets/credentials.json"
                   - "hireloop-476222:us-central1:hireloop-db"
+                  volumeMounts:
+                  - name: cloudsql-credentials
+                    mountPath: /secrets
+                    readOnly: true
                   securityContext:
                     runAsNonRoot: true
                   resources:
@@ -135,15 +159,33 @@ jobs:
                     limits:
                       memory: "256Mi"
                       cpu: "200m"
+                
+                # ============ VOLUMES ============
+                volumes:
+                - name: cloudsql-credentials
+                  secret:
+                    secretName: cloudsql-credentials
           EOF
           
-          # Esperar hasta 6 minutos para migraciones
-          kubectl wait --for=condition=complete --timeout=360s job/django-migrate-${{ github.sha }} -n $NAMESPACE || \
-            (echo "⚠️  Migration job timed out or failed, checking logs..." && \
-             kubectl logs job/django-migrate-${{ github.sha }} -c migrate -n $NAMESPACE --tail=100 && \
-             exit 1)
+          echo "⏳ Waiting for migration job to complete (max 6 minutes)..."
           
-          echo "✅ Migrations completed successfully"
+          # Esperar a que el job complete
+          if kubectl wait --for=condition=complete --timeout=360s job/django-migrate-${{ github.sha }} -n $NAMESPACE; then
+            echo "✅ Migrations completed successfully"
+            kubectl logs job/django-migrate-${{ github.sha }} -c migrate -n $NAMESPACE --tail=50
+          else
+            echo "❌ Migration job failed or timed out"
+            echo ""
+            echo "=== Django container logs ==="
+            kubectl logs job/django-migrate-${{ github.sha }} -c migrate -n $NAMESPACE --tail=100 || true
+            echo ""
+            echo "=== Cloud SQL Proxy logs ==="
+            kubectl logs job/django-migrate-${{ github.sha }} -c cloud-sql-proxy -n $NAMESPACE --tail=50 || true
+            echo ""
+            echo "=== Job status ==="
+            kubectl describe job/django-migrate-${{ github.sha }} -n $NAMESPACE || true
+            exit 1
+          fi
 
       - name: Verify deployment
         run: |
@@ -156,15 +198,26 @@ jobs:
           echo "📝 Últimos eventos:"
           kubectl get events -n $NAMESPACE --sort-by='.lastTimestamp' | tail -20
 
-      - name: Cleanup old pods
+      - name: Cleanup old resources
         if: success()
         run: |
+          echo "🧹 Limpiando recursos antiguos..."
+          
+          # Eliminar pods fallidos
           kubectl delete pods -n $NAMESPACE \
             -l app=$IMAGE \
             --field-selector=status.phase=Failed \
-            --grace-period=0 --force || true
+            --grace-period=0 --force 2>/dev/null || true
           
+          # Eliminar pods completados
           kubectl delete pods -n $NAMESPACE \
             -l app=$IMAGE \
             --field-selector=status.phase=Succeeded \
-            --grace-period=0 --force || true
+            --grace-period=0 --force 2>/dev/null || true
+          
+          # Eliminar jobs antiguos (mantener solo los últimos 3)
+          kubectl get jobs -n $NAMESPACE -l job-type=migration \
+            --sort-by=.metadata.creationTimestamp \
+            -o name | head -n -3 | xargs -r kubectl delete -n $NAMESPACE 2>/dev/null || true
+          
+          echo "✅ Cleanup completado"
