@@ -1,85 +1,149 @@
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: django-migrate
-  namespace: default
-spec:
-  ttlSecondsAfterFinished: 300  # Auto-limpieza después de 5 min
-  backoffLimit: 3
-  template:
-    metadata:
-      labels:
-        app: django-migrate
-    spec:
-      serviceAccountName: hireloop-ksa
-      restartPolicy: Never
-      
-      containers:
-        # ============ DJANGO MIGRATIONS ============
-        - name: migrate
-          image: us-central1-docker.pkg.dev/hireloop-476222/hireloop-images/hireloop:latest
-          envFrom:
-            - secretRef:
-                name: hireloop-secrets
-            - configMapRef:
-                name: hireloop-config
-          env:
-            - name: DATABASE_HOST
-              value: "127.0.0.1"
-            - name: DATABASE_PORT
-              value: "5432"
-          command:
-            - /bin/bash
-            - -c
-            - |
-              set -e
-              echo "=== Waiting for Cloud SQL Proxy ==="
-              for i in {1..30}; do
-                if python -c "import socket; s=socket.socket(); s.settimeout(1); s.connect(('127.0.0.1', 5432)); s.close()" 2>/dev/null; then
-                  echo "✅ Proxy ready"
-                  break
-                fi
-                echo "  → Attempt $i/30: Proxy not ready... waiting 2s"
-                sleep 2
-                if [ $i -eq 30 ]; then
-                  echo "❌ Timeout waiting for proxy"
-                  exit 1
-                fi
-              done
-              
-              echo "=== Running Django migrations ==="
-              python manage.py migrate --noinput
-              
-              echo "=== Creating superuser (if needed) ==="
-              python manage.py shell -c "
-              from django.contrib.auth import get_user_model;
-              User = get_user_model();
-              if not User.objects.filter(username='admin').exists():
-                  User.objects.create_superuser('admin', 'admin@hireloop.com', 'changeme123');
-                  print('✅ Superuser created: admin / changeme123');
-              else:
-                  print('ℹ️  Superuser already exists');
-              " || echo "Note: Superuser creation skipped or failed"
-              
-              echo "=== Collecting static files ==="
-              python manage.py collectstatic --noinput --clear || echo "Static files collection failed"
-              
-              echo "✅ Migration job completed successfully!"
+name: Deploy to GKE
 
-        # ============ CLOUD SQL PROXY ============
-        - name: cloud-sql-proxy
-          image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
-          args:
-            - "--address=0.0.0.0"
-            - "--port=5432"
-            - "--structured-logs"
-            - "hireloop-476222:us-central1:hireloop-db"
-          securityContext:
-            runAsNonRoot: true
-          resources:
-            requests:
-              memory: "128Mi"
-              cpu: "100m"
-            limits:
-              memory: "256Mi"
-              cpu: "200m"
+on:
+  push:
+    branches:
+      - main
+
+env:
+  PROJECT_ID: hireloop-476222
+  GAR_LOCATION: us-central1
+  REPOSITORY: hireloop-images
+  IMAGE: hireloop
+  CLUSTER: hireloop-cluster
+  CLUSTER_ZONE: us-central1-a
+  DEPLOYMENT_NAME: hireloop-deployment
+  NAMESPACE: default
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Google Cloud authentication
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Configure Docker
+        run: gcloud auth configure-docker $GAR_LOCATION-docker.pkg.dev --quiet
+
+      - name: Build & Push
+        run: |
+          IMAGE_TAG=${{ github.sha }}
+          IMAGE_FULL=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:$IMAGE_TAG
+          IMAGE_LATEST=$GAR_LOCATION-docker.pkg.dev/$PROJECT_ID/$REPOSITORY/$IMAGE:latest
+          
+          docker build -t $IMAGE_FULL -t $IMAGE_LATEST .
+          docker push $IMAGE_FULL
+          docker push $IMAGE_LATEST
+          
+          echo "IMAGE_FULL=$IMAGE_FULL" >> $GITHUB_ENV
+          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
+
+      - name: Get GKE credentials
+        uses: google-github-actions/get-gke-credentials@v2
+        with:
+          cluster_name: ${{ env.CLUSTER }}
+          location: ${{ env.CLUSTER_ZONE }}
+
+      - name: Deploy to GKE
+        run: |
+          set -e
+          
+          # Actualiza la imagen con el tag específico
+          kubectl set image deployment/$DEPLOYMENT_NAME \
+            $IMAGE=${{ env.IMAGE_FULL }} -n $NAMESPACE
+          
+          # Fuerza rollout con timestamp
+          kubectl patch deployment $DEPLOYMENT_NAME -n $NAMESPACE -p \
+            "{\"spec\":{\"template\":{\"metadata\":{\"annotations\":{\"redeployed-at\":\"$(date +%s)\"}}}}}"
+          
+          echo "✅ Deployment actualizado con imagen: ${{ env.IMAGE_FULL }}"
+
+      - name: Wait for rollout
+        run: |
+          echo "⏳ Esperando rollout (timeout: 10 minutos)..."
+          kubectl rollout status deployment/$DEPLOYMENT_NAME -n $NAMESPACE --timeout=600s
+          echo "✅ Rollout completado exitosamente"
+
+      - name: Run migrations
+        run: |
+          echo "🔄 Running database migrations..."
+          
+          # Crear Job temporal para migraciones
+          cat <<EOF | kubectl apply -f -
+          apiVersion: batch/v1
+          kind: Job
+          metadata:
+            name: django-migrate-${{ github.sha }}
+            namespace: $NAMESPACE
+          spec:
+            ttlSecondsAfterFinished: 120
+            backoffLimit: 2
+            template:
+              spec:
+                serviceAccountName: hireloop-ksa
+                restartPolicy: Never
+                containers:
+                - name: migrate
+                  image: ${{ env.IMAGE_FULL }}
+                  envFrom:
+                  - secretRef:
+                      name: hireloop-secrets
+                  - configMapRef:
+                      name: hireloop-config
+                  env:
+                  - name: DATABASE_HOST
+                    value: "127.0.0.1"
+                  - name: DATABASE_PORT
+                    value: "5432"
+                  command:
+                  - /bin/bash
+                  - -c
+                  - |
+                    timeout 60 bash -c 'until nc -z 127.0.0.1 5432; do sleep 2; done'
+                    python manage.py migrate --noinput
+                    python manage.py collectstatic --noinput --clear || true
+                - name: cloud-sql-proxy
+                  image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.13.0
+                  args:
+                  - "--address=0.0.0.0"
+                  - "--port=5432"
+                  - "--structured-logs"
+                  - "hireloop-476222:us-central1:hireloop-db"
+                  securityContext:
+                    runAsNonRoot: true
+          EOF
+          
+          # Esperar a que el job complete
+          kubectl wait --for=condition=complete --timeout=300s job/django-migrate-${{ github.sha }} -n $NAMESPACE || \
+            (kubectl logs job/django-migrate-${{ github.sha }} -c migrate -n $NAMESPACE && exit 1)
+          
+          echo "✅ Migrations completed successfully"
+
+      - name: Verify deployment
+        run: |
+          echo "📊 Estado del deployment:"
+          kubectl get deployment $DEPLOYMENT_NAME -n $NAMESPACE
+          echo ""
+          echo "📦 Pods:"
+          kubectl get pods -n $NAMESPACE -l app=$IMAGE
+          echo ""
+          echo "📝 Últimos eventos:"
+          kubectl get events -n $NAMESPACE --sort-by='.lastTimestamp' | tail -20
+
+      - name: Cleanup old pods
+        if: success()
+        run: |
+          kubectl delete pods -n $NAMESPACE \
+            -l app=$IMAGE \
+            --field-selector=status.phase=Failed \
+            --grace-period=0 --force || true
+          
+          kubectl delete pods -n $NAMESPACE \
+            -l app=$IMAGE \
+            --field-selector=status.phase=Succeeded \
+            --grace-period=0 --force || true
