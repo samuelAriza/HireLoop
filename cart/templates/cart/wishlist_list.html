@@ -7,7 +7,7 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-12">
-            <h1><i class="fas fa-heart me-2"></i>My Wishlist</h1>
+            <h1>My Wishlist</h1>
 
             {% if wishlist_items %}
             <div class="row">
@@ -39,7 +39,7 @@
                         <div class="card-footer bg-light">
                             <div class="d-flex justify-content-between">
                                 {% if item.id %}
-                                <a href="" class="btn btn-sm btn-outline-primary">
+                                <a href="{% url item.content_object.get_absolute_url %}" class="btn btn-sm btn-outline-primary">
                                     View Details
                                 </a>
                                 <div class="d-flex gap-2">
@@ -49,14 +49,14 @@
                                         <input type="hidden" name="object_id" value="{{ item.content_object.id }}">
                                         <input type="hidden" name="quantity" value="1">
                                         <button type="submit" class="btn btn-sm btn-outline-success">
-                                            <i class="fas fa-cart-plus"></i>
+                                            Add to Cart
                                         </button>
                                     </form>
                                     <form method="post" action="{% url 'cart:remove_from_wishlist' item.id %}"
                                         class="d-inline">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-sm btn-outline-danger">
-                                            <i class="fas fa-heart-broken"></i>
+                                            Remove
                                         </button>
                                     </form>
                                 </div>
@@ -70,13 +70,62 @@
                 </div>
                 {% endfor %}
             </div>
+
+            <!-- Pagination -->
+            {% if is_paginated %}
+            <nav aria-label="Wishlist pagination" class="mt-5">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page=1" aria-label="First">
+                            First Page
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                            Previous
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if page_obj.number == num %}
+                            <li class="page-item active" aria-current="page">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                            <li class="page-item">
+                                <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ num }}">{{ num }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.next_page_number }}" aria-label="Next">
+                            Next
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                            Last Page
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+                <p class="text-center mt-3 text-muted small">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </p>
+            </nav>
+            {% endif %}
+
             {% else %}
             <div class="text-center py-5">
                 <i class="fas fa-heart fa-4x text-muted mb-3"></i>
                 <h3>Your wishlist is empty</h3>
                 <p class="text-muted">Add services to your wishlist to find them easily later!</p>
                 <a href="{% url 'microservices:microservices_list' %}" class="btn btn-primary">
-                    <i class="fas fa-briefcase me-1"></i>Explore Services
+                    Explore Services
                 </a>
             </div>
             {% endif %}

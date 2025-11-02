@@ -9,6 +9,8 @@ class CartListView(ListView):
     model = CartItem
     template_name = "cart/cart_list.html"
     context_object_name = "cart_items"
+    paginate_by = 12
+    ordering = ["-created_at"]
 
     def get_queryset(self):
         service = CartService()
@@ -51,6 +53,8 @@ class WishlistListView(ListView):
     model = WishlistItem
     template_name = "cart/wishlist_list.html"
     context_object_name = "wishlist_items"
+    paginate_by = 12
+    ordering = ["-created_at"]
 
     def get_queryset(self):
         service = WishlistService()

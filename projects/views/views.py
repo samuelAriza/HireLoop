@@ -47,6 +47,8 @@ class ProjectListView(SearchFilterMixin, ListView):
     ]
     price_field = "budget"
     category_field = None
+    paginate_by = 12
+    ordering = ["-created_at"]
 
     def get_queryset(self):
         qs = project_service.list_projects()
@@ -84,6 +86,8 @@ class ProjectClientListView(ProfileRequiredMixin, ListView):
     model = Project
     template_name = "projects/client_projects_list.html"
     context_object_name = "projects"
+    paginate_by = 12
+    ordering = ["-created_at"]
 
     def get_queryset(self):
         client_profile = get_object_or_404(ClientProfile, pk=self.kwargs["client_id"])

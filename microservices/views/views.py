@@ -32,6 +32,8 @@ class MicroServiceListView(SearchFilterMixin, ListView):
     ]
     category_field = "category__name"
     price_field = "price"
+    paginate_by = 12
+    ordering = ["-created_at"]
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -47,6 +49,8 @@ class MicroServiceFreelancerListView(ProfileRequiredMixin, ListView):
     template_name = "microservices/freelancer_microservices_list.html"
     context_object_name = "microservices"
     service = MicroServiceService()
+    paginate_by = 12
+    ordering = ["-created_at"]
 
     def get_queryset(self):
         freelancer = get_object_or_404(

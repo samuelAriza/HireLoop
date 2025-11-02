@@ -32,6 +32,8 @@ class MentorshipSessionListView(SearchFilterMixin, ListView):
     search_fields = ["topic", "mentor__user__email", "mentee__user__email"]
     category_field = None
     price_field = "price"
+    paginate_by = 12
+    ordering = ["-created_at"]
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -56,6 +58,8 @@ class MentorshipSessionFreelancerListView(ProfileRequiredMixin, ListView):
     model = MentorshipSession
     template_name = "mentorship_session/freelancer_mentorship_session.html"
     context_object_name = "sessions"
+    paginate_by = 12
+    ordering = ["-created_at"]
 
     def get_queryset(self):
         freelancer = get_object_or_404(
