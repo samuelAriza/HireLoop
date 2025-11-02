@@ -9,7 +9,6 @@ from django.views.decorators.cache import never_cache
 def root_health_check(request):
     return JsonResponse({"status": "ok"}, status=200)
 
-
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("core/", include("core.urls", namespace="core")),
@@ -24,6 +23,8 @@ urlpatterns = [
     path("analytics/", include("analytics.urls", namespace="analytics")),
     path("django_plotly_dash/", include("django_plotly_dash.urls")),
     path("api/", include("microservices.api.urls")),
+
+    path("i18n/", include("django.conf.urls.i18n")),
 
     path("health/", root_health_check, name="root_health_check"),
 ]

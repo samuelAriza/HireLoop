@@ -1,7 +1,7 @@
 {% load static %}
 {% load i18n %}
 <!DOCTYPE html>
-<html lang="{% get_current_language %}">
+<html lang="{% get_current_language as LANGUAGE_CODE %}">
 
 <head>
     <meta charset="UTF-8">
@@ -23,8 +23,8 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="{% url 'microservices:microservices_list' %}">
-                <img src="{% static 'images/logo.png' %}" alt="{% trans " HireLoop Logo" %}" height="40" class="me-2">
-                <span>{% trans "HireLoop" %}</span>
+                <img src="{% static 'images/logo.png' %}" alt="HireLoop Logo" height="40" class="me-2">
+                <span>HireLoop</span>
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -50,33 +50,34 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'analytics:market_dashboard' %}">
-                            <i class="fas fa-tachometer-alt"></i>{% trans "Dashboard" %}
+                            <i class="fas fa-tachometer-alt"></i> {% trans "Dashboard" %}
                         </a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav">
-
-                    <!-- LANGUAGE SWITCHER -->
+                    <!-- 🌐 Language Selector -->
                     <li class="nav-item dropdown me-2">
                         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="fas fa-globe me-1"></i>{% get_current_language as LANGUAGE_CODE %}{{
-                            LANGUAGE_CODE|upper }}
+                            <i class="fas fa-globe me-1"></i>{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                             <li>
                                 <form action="{% url 'set_language' %}" method="post">
                                     {% csrf_token %}
                                     <input name="next" type="hidden" value="{{ request.get_full_path }}">
-                                    <button type="submit" name="language" value="en"
-                                        class="dropdown-item">English</button>
-                                    <button type="submit" name="language" value="es"
-                                        class="dropdown-item">Español</button>
+                                    <button type="submit" name="language" value="en" class="dropdown-item">
+                                        English
+                                    </button>
+                                    <button type="submit" name="language" value="es" class="dropdown-item">
+                                        Español
+                                    </button>
                                 </form>
                             </li>
                         </ul>
                     </li>
+                    <!-- 🌐 End Language Selector -->
 
                     {% if user.is_authenticated %}
                     <li class="nav-item">
@@ -91,7 +92,61 @@
                             <span class="badge bg-danger">{{ wishlist_count|default:0 }}</span>
                         </a>
                     </li>
-                    <!-- resto del dropdown de usuario... -->
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user me-1"></i>{{ user.username }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <h6 class="dropdown-header">{% trans "My Account" %}</h6>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'core:profile_detail' %}">
+                                    <i class="fas fa-user-circle me-2"></i>{% trans "Profile" %}
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+
+                            {% if "freelancer" in user_type %}
+                            <li>
+                                <a class="dropdown-item"
+                                    href="{% url 'microservices:microservices_freelancer_list' user.freelancer_profile.id %}">
+                                    <i class="fas fa-briefcase me-2"></i>{% trans "My MicroServices" %}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
+                                    href="{% url 'mentorship_session:sessions_freelancer_list' user.freelancer_profile.id %}">
+                                    <i class="fas fa-chalkboard-teacher me-2"></i>{% trans "My Mentorships" %}
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            {% if "client" in user_type %}
+                            <li>
+                                <a class="dropdown-item"
+                                    href="{% url 'projects:projects_client_list' user.client_profile.id %}">
+                                    <i class="fas fa-project-diagram me-2"></i>{% trans "My Projects" %}
+                                </a>
+                            </li>
+                            {% endif %}
+
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <form method="post" action="{% url 'core:logout' %}">
+                                {% csrf_token %}
+                                <button type="submit" class="dropdown-item">
+                                    <i class="fas fa-sign-out-alt me-2"></i>{% trans "Log Out" %}
+                                </button>
+                            </form>
+                        </ul>
+                    </li>
+
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'core:login' %}">
@@ -108,6 +163,7 @@
             </div>
         </div>
     </nav>
+
 
     <!-- End Navigation -->
 

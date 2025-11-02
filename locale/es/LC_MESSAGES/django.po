@@ -1,8 +1,7 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+#  SOME DESCRIPTIVE TITLE.
+#  Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+#  This file is distributed under the same license as the PACKAGE package.
+#  FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #, fuzzy
 msgid ""
 msgstr ""
@@ -12,12 +11,12 @@ msgstr ""
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
-"1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 "
+": 2;\n"
 
 #: cart/models.py:13 cart/models.py:44
 msgid "user"
@@ -50,7 +49,7 @@ msgstr "Artículos del Carrito"
 #: cart/models.py:27
 #, python-format
 msgid "%(content_object)s (x%(quantity)d)"
-msgstr ""
+msgstr "%(content_object)s (x%(quantity)d)"
 
 #: cart/models.py:35
 msgid "items quantity"
@@ -67,7 +66,7 @@ msgstr "Artículos de la Lista de Deseos"
 #: cart/models.py:57
 #, python-format
 msgid "%(content_object)s"
-msgstr ""
+msgstr "%(content_object)s"
 
 #: cart/templates/cart/cart_list.html:5
 msgid "Cart - HireLoop"
@@ -95,6 +94,8 @@ msgid ""
 "%(duration)s\n"
 "                                minute%(duration|pluralize)s"
 msgstr ""
+"%(duration)s\n"
+"                                minuto%(duration|pluralize)s"
 
 #: cart/templates/cart/cart_list.html:52
 #, python-format
@@ -102,10 +103,12 @@ msgid ""
 "%(delivery)s day{{\n"
 "                                delivery|pluralize }}"
 msgstr ""
+"%(delivery)s día{{\n"
+"                                delivery|pluralize }}"
 
 #: cart/templates/cart/cart_list.html:63
 msgid "Are you sure you want to remove this item from the cart?"
-msgstr ""
+msgstr "¿Está seguro de que desea eliminar este artículo del carrito?"
 
 #: cart/templates/cart/cart_list.html:66
 #: cart/templates/cart/wishlist_list.html:60
@@ -200,6 +203,8 @@ msgid ""
 "Page {{\n"
 "            current_page }} of %(total_pages)s"
 msgstr ""
+"Página {{\n"
+"            current_page }} de %(total_pages)s"
 
 #: cart/templates/cart/cart_list.html:165
 msgid "Your cart is empty"
@@ -231,12 +236,12 @@ msgstr "Mi Lista de Deseos"
 #: cart/templates/cart/wishlist_list.html:33
 #, python-format
 msgid "%(duration)s minute%(duration|pluralize)s"
-msgstr ""
+msgstr "%(duration)s minuto%(duration|pluralize)s"
 
 #: cart/templates/cart/wishlist_list.html:35
 #, python-format
 msgid "%(delivery)s day%(delivery|pluralize)s"
-msgstr ""
+msgstr "%(delivery)s día%(delivery|pluralize)s"
 
 #: cart/templates/cart/wishlist_list.html:44
 #: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:35
@@ -261,7 +266,7 @@ msgstr "Paginación de la lista de deseos"
 #: cart/templates/cart/wishlist_list.html:118
 #, python-format
 msgid "Page %(current_page)s of %(total_pages)s"
-msgstr ""
+msgstr "Página %(current_page)s de %(total_pages)s"
 
 #: cart/templates/cart/wishlist_list.html:126
 msgid "Your wishlist is empty"
@@ -269,7 +274,8 @@ msgstr "Tu lista de deseos está vacía"
 
 #: cart/templates/cart/wishlist_list.html:127
 msgid "Add services to your wishlist to find them easily later!"
-msgstr "¡Añade servicios a tu lista de deseos para encontrarlos fácilmente después!"
+msgstr ""
+"¡Añade servicios a tu lista de deseos para encontrarlos fácilmente después!"
 
 #: core/forms/auth_forms.py:15 core/forms/auth_forms.py:17
 #: core/forms/auth_forms.py:44 core/forms/auth_forms.py:46
@@ -297,6 +303,7 @@ msgstr "Confirmación de contraseña"
 msgid ""
 "Enter a password with at least 8 characters, including letters and numbers."
 msgstr ""
+"Ingrese una contraseña con al menos 8 caracteres, incluyendo letras y números."
 
 #: core/forms/auth_forms.py:57
 #, python-format
@@ -304,6 +311,8 @@ msgid ""
 "Please enter a correct %(username)s and password. Note that both fields may "
 "be case-sensitive."
 msgstr ""
+"Por favor, ingrese un %(username)s y contraseña correctos. Tenga en cuenta "
+"que ambos campos pueden ser sensibles a mayúsculas y minúsculas."
 
 #: core/forms/auth_forms.py:60
 msgid "This account is inactive."
@@ -341,13 +350,16 @@ msgstr "Imagen"
 
 #: core/forms/item_portfolio_forms.py:22
 msgid "Optional: Provide a link to a live demo or example of your work."
-msgstr "Opcional: Proporciona un enlace a una demostración en vivo o ejemplo de tu trabajo."
+msgstr ""
+"Opcional: Proporciona un enlace a una demostración en vivo o ejemplo de tu "
+"trabajo."
 
 #: core/forms/item_portfolio_forms.py:23
 msgid ""
-"Upload an image showcasing your work. Supported formats: JPEG, PNG, GIF, "
-"WebP."
+"Upload an image showcasing your work. Supported formats: JPEG, PNG, GIF, WebP."
 msgstr ""
+"Suba una imagen que muestre su trabajo. Formatos compatibles: JPEG, PNG, GIF, "
+"WebP."
 
 #: core/forms/item_portfolio_forms.py:42
 msgid "Update Image"
@@ -358,6 +370,8 @@ msgid ""
 "Choose a new image to replace the current one. Supported formats: JPEG, PNG, "
 "GIF, WebP."
 msgstr ""
+"Elija una nueva imagen para reemplazar la actual. Formatos compatibles: JPEG, "
+"PNG, GIF, WebP."
 
 #: core/forms/profile_forms.py:13
 #: core/templates/core/multi_profile_detail.html:584
@@ -382,7 +396,8 @@ msgstr "Correo utilizado para facturas y notificaciones de pago."
 
 #: core/forms/profile_forms.py:28
 msgid "Enter skills separated by commas (e.g., Python, Django, JavaScript)"
-msgstr "Ingresa habilidades separadas por comas (ej: Python, Django, JavaScript)"
+msgstr ""
+"Ingresa habilidades separadas por comas (ej: Python, Django, JavaScript)"
 
 #: core/forms/profile_forms.py:32 core/models.py:50
 #: core/templates/core/multi_profile_detail.html:223
@@ -413,6 +428,8 @@ msgid ""
 "Upload a profile picture. Max size: 5MB. Supported formats: JPG, PNG, GIF, "
 "WebP."
 msgstr ""
+"Suba una foto de perfil. Tamaño máximo: 5MB. Formatos compatibles: JPG, PNG, "
+"GIF, WebP."
 
 #: core/forms/profile_forms.py:77
 msgid "Image size must be less than 5MB"
@@ -445,7 +462,7 @@ msgstr "Precio Máximo"
 #: core/mixins/views.py:19
 #, python-format
 msgid "You need a %(profile)s profile to access this page."
-msgstr ""
+msgstr "Necesita un perfil %(profile)s para acceder a esta página."
 
 #: core/models.py:9
 msgid "email address"
@@ -471,7 +488,7 @@ msgstr "Cliente"
 
 #: core/models.py:49
 msgid "Enter skills separated by commas"
-msgstr ""
+msgstr "Ingrese habilidades separadas por comas"
 
 #: core/models.py:85
 msgid "Link to the portfolio item"
@@ -492,7 +509,7 @@ msgstr "Elementos del Portafolio"
 #: core/services/action_dispatcher.py:55
 #, python-format
 msgid "Unknown action: %(action)s"
-msgstr ""
+msgstr "Acción desconocida: %(action)s"
 
 #: core/services/action_handlers.py:43 core/services/action_handlers_new.py:44
 msgid "Profile image updated successfully!"
@@ -517,13 +534,13 @@ msgstr "Tipo de perfil inválido para eliminación."
 #: core/services/action_handlers.py:99 core/services/action_handlers_new.py:98
 #, python-format
 msgid "%(profile)s profile deleted successfully!"
-msgstr ""
+msgstr "¡Perfil %(profile)s eliminado con éxito!"
 
 #: core/services/action_handlers.py:104
 #: core/services/action_handlers_new.py:101
 #, python-format
 msgid "%(profile)s profile not found or could not be deleted."
-msgstr ""
+msgstr "Perfil %(profile)s no encontrado o no se pudo eliminar."
 
 #: core/services/action_handlers.py:125
 #: core/services/action_handlers_new.py:122
@@ -534,30 +551,30 @@ msgstr "Tipo de perfil inválido."
 #: core/services/action_handlers_new.py:139
 #, python-format
 msgid "%(profile_type)s profile not found."
-msgstr ""
+msgstr "Perfil %(profile_type)s no encontrado."
 
 #: core/services/action_handlers.py:158
 #: core/services/action_handlers_new.py:151
 #, python-format
 msgid "%(profile_type)s profile updated successfully!"
-msgstr ""
+msgstr "¡Perfil %(profile_type)s actualizado con éxito!"
 
 #: core/services/action_handlers.py:163
 #: core/services/action_handlers_new.py:154
 #, python-format
 msgid "Failed to update %(profile_type)s profile."
-msgstr ""
+msgstr "No se pudo actualizar el perfil %(profile_type)s."
 
 #: core/services/action_handlers.py:166
 #: core/services/action_handlers_new.py:156
 #, python-format
 msgid "Error updating profile: %(error)s"
-msgstr ""
+msgstr "Error al actualizar el perfil: %(error)s"
 
 #: core/services/action_handlers.py:168
 #: core/services/action_handlers_new.py:158
 msgid "Please correct the errors in the form."
-msgstr ""
+msgstr "Por favor, corrija los errores en el formulario."
 
 #: core/services/action_handlers.py:188 core/services/action_handlers.py:247
 #: core/services/action_handlers_new.py:179
@@ -590,7 +607,7 @@ msgstr "Error al actualizar el elemento del portafolio."
 #: core/services/action_handlers_new.py:222
 #, python-format
 msgid "Error updating portfolio item: %(error)s"
-msgstr ""
+msgstr "Error al actualizar el elemento del portafolio: %(error)s"
 
 #: core/services/action_handlers.py:265
 #: core/services/action_handlers_new.py:256
@@ -601,7 +618,7 @@ msgstr "No tienes permiso para eliminar este elemento del portafolio."
 #: core/services/action_handlers_new.py:268
 #, python-format
 msgid "Portfolio \"%(title)s\" deleted successfully!"
-msgstr ""
+msgstr "¡Portafolio \"%(title)s\" eliminado con éxito!"
 
 #: core/services/action_handlers.py:280
 #: core/services/action_handlers_new.py:271
@@ -612,7 +629,7 @@ msgstr "Error al eliminar el elemento del portafolio."
 #: core/services/action_handlers_new.py:275
 #, python-format
 msgid "Error deleting portfolio item: %(error)s"
-msgstr ""
+msgstr "Error al eliminar el elemento del portafolio: %(error)s"
 
 #: core/services/image_service.py:25
 #: mentorship_session/services/image_service.py:20
@@ -630,37 +647,37 @@ msgstr "Las subclases deben implementar _get_default_image_url"
 #: core/services/portfolio_service.py:54
 #, python-format
 msgid "Failed to upload image: %(error)s"
-msgstr ""
+msgstr "Error al subir la imagen: %(error)s"
 
 #: core/services/profile_context_provider.py:64
 #, python-format
 msgid "Error getting public portfolio items: %(error)s"
-msgstr ""
+msgstr "Error al obtener elementos públicos del portafolio: %(error)s"
 
 #: core/services/profile_context_provider.py:111
 #, python-format
 msgid "Error getting portfolios: %(error)s"
-msgstr ""
+msgstr "Error al obtener portafolios: %(error)s"
 
 #: core/services/profile_service.py:73
 #, python-format
 msgid "Error deleting freelancer profile: %(error)s"
-msgstr ""
+msgstr "Error al eliminar el perfil de freelancer: %(error)s"
 
 #: core/services/profile_service.py:84
 #, python-format
 msgid "Error deleting client profile: %(error)s"
-msgstr ""
+msgstr "Error al eliminar el perfil del cliente: %(error)s"
 
 #: core/services/profile_service.py:115
 #, python-format
 msgid "Error updating profile image: %(error)s"
-msgstr ""
+msgstr "Error al actualizar la imagen de perfil: %(error)s"
 
 #: core/services/profile_service.py:133
 #, python-format
 msgid "Error deleting profile image: %(error)s"
-msgstr ""
+msgstr "Error al eliminar la imagen de perfil: %(error)s"
 
 #: core/templates/core/create_portfolio.html:8
 #: core/templates/core/create_profile.html:8
@@ -723,6 +740,9 @@ msgid ""
 "                    Create %(profile_type)s Profile\n"
 "                    "
 msgstr ""
+"\n"
+"                    Crear perfil %(profile_type)s\n"
+"                    "
 
 #: core/templates/core/create_profile.html:26
 #, python-format
@@ -731,6 +751,9 @@ msgid ""
 "                            Create %(profile_type)s Profile\n"
 "                            "
 msgstr ""
+"\n"
+"                            Crear perfil %(profile_type)s\n"
+"                            "
 
 #: core/templates/core/create_profile.html:57
 msgid "Create Profile"
@@ -747,7 +770,7 @@ msgstr "Iniciar Sesión"
 
 #: core/templates/core/login.html:37
 msgid "Don’t have an account?"
-msgstr ""
+msgstr "¿No tiene una cuenta?"
 
 #: core/templates/core/login.html:38 core/templates/core/register.html:56
 #: core/templates/core/register.html:80 templates/base.html:103
@@ -866,8 +889,12 @@ msgstr "https://tu-sitio-demo.com"
 #: core/templates/core/multi_profile_detail.html:382
 msgid ""
 "Current: {{\n"
-"                                                                        image_name }}"
+"                                                                        "
+"image_name }}"
 msgstr ""
+"Actual: {{\n"
+"                                                                        "
+"image_name }}"
 
 #: core/templates/core/multi_profile_detail.html:409
 #: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:75
@@ -890,6 +917,7 @@ msgstr "Eliminar Portafolio"
 #, python-format
 msgid "Are you sure you want to delete this portfolio item: %(title)s?"
 msgstr ""
+"¿Está seguro de que desea eliminar este elemento del portafolio: %(title)s?"
 
 #: core/templates/core/multi_profile_detail.html:448
 msgid "No Portfolio Items Yet"
@@ -1001,7 +1029,11 @@ msgid_plural ""
 "                    Showing %(count)s results\n"
 "                    "
 msgstr[0] ""
+"\n"
+"                    Mostrando %(count)s resultado\n"
+"                    "
 msgstr[1] ""
+msgstr[2] ""
 
 #: core/templates/core/partials/search.html:49
 msgid "containing"
@@ -1055,6 +1087,15 @@ msgid ""
 "                        ecosystem to accelerate your professional success.\n"
 "                        "
 msgstr ""
+"\n"
+"                        Únase a miles de freelancers y clientes que confían "
+"en HireLoop para conectar,\n"
+"                        colaborar y hacer crecer sus negocios. Ya sea que "
+"ofrezca servicios,\n"
+"                        busque proyectos o mentoría, proporcionamos el "
+"ecosistema completo\n"
+"                        para acelerar su éxito profesional.\n"
+"                        "
 
 #: core/templates/core/register.html:32
 msgid "Premium Services"
@@ -1201,12 +1242,12 @@ msgstr "Sesiones de Mentoría"
 #: mentorship_session/models.py:75
 #, python-brace-format
 msgid "Mentorship: {topic}"
-msgstr ""
+msgstr "Mentoría: {topic}"
 
 #: mentorship_session/models.py:79
 #, python-brace-format
 msgid "Mentorship session about '{topic}', duration {duration} minutes."
-msgstr ""
+msgstr "Sesión de mentoría sobre '{topic}', duración {duration} minutos."
 
 #: mentorship_session/models.py:83
 msgid "Mentorship"
@@ -1324,7 +1365,7 @@ msgstr "Navegación de páginas"
 #: projects/templates/projects/projects_list.html:121
 #, python-format
 msgid "Page %(current)s of %(total)s"
-msgstr ""
+msgstr "Página %(current)s de %(total)s"
 
 #: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:133
 msgid "You haven't created any mentorship sessions"
@@ -1345,7 +1386,7 @@ msgstr "Necesitas un perfil de freelancer para crear sesiones."
 #: mentorship_session/templates/mentorship_session/mentorship_session_confirm_delete.html:6
 #, python-format
 msgid "Are you sure you want to delete \"%(topic)s\"?"
-msgstr ""
+msgstr "¿Está seguro de que desea eliminar \"%(topic)s\"?"
 
 #: mentorship_session/templates/mentorship_session/mentorship_session_confirm_delete.html:10
 #: microservices/templates/microservices/microservice_confirm_delete.html:10
@@ -1362,7 +1403,7 @@ msgstr "Por"
 #: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:33
 #, python-format
 msgid "Duration: %(duration)s minute%(duration|pluralize)s"
-msgstr ""
+msgstr "Duración: %(duration)s minuto%(duration|pluralize)s"
 
 #: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:45
 #: microservices/templates/microservices/microservice_detail.html:57
@@ -1422,6 +1463,7 @@ msgstr "Imagen del Servicio"
 msgid ""
 "Optional. Upload an image for your microservice (JPEG, PNG, GIF). Max 5MB."
 msgstr ""
+"Opcional. Suba una imagen para su microservicio (JPEG, PNG, GIF). Máx. 5MB."
 
 #: microservices/forms/microservices_form.py:28
 msgid "Price"
@@ -1444,6 +1486,8 @@ msgid ""
 "Describe what you offer in detail. Include what’s included and any "
 "requirements."
 msgstr ""
+"Describa lo que ofrece en detalle. Incluya lo que está incluido y cualquier "
+"requisito."
 
 #: microservices/forms/microservices_form.py:35
 msgid "Fixed price for this service (in USD)."
@@ -1507,7 +1551,7 @@ msgstr "Un título claro y convincente para tu servicio."
 
 #: microservices/models.py:74
 msgid "Describe what you offer, what’s included, and any requirements."
-msgstr ""
+msgstr "Describa lo que ofrece, lo que está incluido y cualquier requisito."
 
 #: microservices/models.py:80
 #: microservices/templates/microservices/create_microservice.html:79
@@ -1666,7 +1710,7 @@ msgstr "Necesitas un perfil de freelancer para crear microservicios."
 #: projects/templates/projects/project_confirm_delete.html:6
 #, python-format
 msgid "Are you sure you want to delete \"%(title)s\"?"
-msgstr ""
+msgstr "¿Está seguro de que desea eliminar \"%(title)s\"?"
 
 #: microservices/templates/microservices/microservice_detail.html:43
 msgid "Delivery time"
@@ -1679,6 +1723,9 @@ msgid ""
 "                        %(days)s day%(days|pluralize)s\n"
 "                        "
 msgstr ""
+"\n"
+"                        %(days)s día%(days|pluralize)s\n"
+"                        "
 
 #: microservices/templates/microservices/microservice_detail.html:63
 msgid "This is your own microservice"
@@ -1695,6 +1742,9 @@ msgid ""
 "                                    %(days)s day%(days|pluralize)s\n"
 "                                    "
 msgstr ""
+"\n"
+"                                    %(days)s día%(days|pluralize)s\n"
+"                                    "
 
 #: microservices/templates/microservices/microservices_list.html:64
 msgid "No microservices found"
@@ -1758,7 +1808,8 @@ msgstr "Monto"
 
 #: payments/models.py:55
 msgid "Total amount in the currency's smallest unit (e.g., cents for USD)."
-msgstr "Monto total en la unidad más pequeña de la moneda (ej: centavos para USD)."
+msgstr ""
+"Monto total en la unidad más pequeña de la moneda (ej: centavos para USD)."
 
 #: payments/models.py:60
 msgid "Currency"
@@ -1791,7 +1842,7 @@ msgstr "Pagos"
 #: payments/models.py:93
 #, python-brace-format
 msgid "Payment {id} - {status} (${amount} {currency})"
-msgstr ""
+msgstr "Pago {id} - {status} (${amount} {currency})"
 
 #: payments/templates/payments/cancel.html:4
 #: payments/templates/payments/cancel.html:14
@@ -1804,7 +1855,7 @@ msgstr "El proceso de pago fue cancelado. No se realizaron cargos."
 
 #: payments/templates/payments/cancel.html:19
 msgid "You can try again whenever you’re ready."
-msgstr ""
+msgstr "Puede intentarlo de nuevo cuando esté listo."
 
 #: payments/templates/payments/cancel.html:23
 #: payments/templates/payments/success.html:23
@@ -1828,6 +1879,8 @@ msgid ""
 "Thank you for your purchase. Your order has been confirmed and your cart is "
 "now empty."
 msgstr ""
+"Gracias por su compra. Su pedido ha sido confirmado y su carrito ahora está "
+"vacío."
 
 #: payments/templates/payments/success.html:26
 msgid "Browse Services"
@@ -1910,7 +1963,7 @@ msgstr "Explica lo que necesitas, requisitos y entregables."
 
 #: projects/forms/projects_form.py:30
 msgid "Total budget in USD. This is the maximum you’re willing to pay."
-msgstr ""
+msgstr "Presupuesto total en USD. Este es el máximo que está dispuesto a pagar."
 
 #: projects/forms/projects_form.py:33
 msgid "e.g., Build a responsive website"
@@ -1946,11 +1999,13 @@ msgstr "ej: Desarrollador Frontend"
 #, python-format
 msgid "Agreed payment cannot exceed the project's total budget of $%(budget)s."
 msgstr ""
+"El pago acordado no puede exceder el presupuesto total del proyecto de "
+"$%(budget)s."
 
 #: projects/forms/projects_form.py:135
 #, python-format
 msgid "Cannot update payment. Available budget: $%(available)s"
-msgstr ""
+msgstr "No se puede actualizar el pago. Presupuesto disponible: $%(available)s"
 
 #: projects/forms/projects_form.py:150
 #: projects/templates/projects/application_form.html:35
@@ -1980,7 +2035,7 @@ msgstr "Cuéntanos sobre tu experiencia..."
 #: projects/forms/projects_form.py:170
 #, python-format
 msgid "Your proposal exceeds the project budget of $%(budget)s."
-msgstr ""
+msgstr "Su propuesta excede el presupuesto del proyecto de $%(budget)s."
 
 #: projects/models.py:11
 msgid "In Progress"
@@ -2124,7 +2179,7 @@ msgstr "Aplicar al Proyecto"
 #: projects/templates/projects/application_form.html:25
 #, python-format
 msgid "Apply to %(title)s"
-msgstr ""
+msgstr "Postularse a %(title)s"
 
 #: projects/templates/projects/application_form.html:65
 msgid "Submit Application"
@@ -2265,7 +2320,11 @@ msgid_plural ""
 "                %(counter)s freelancers applied\n"
 "                "
 msgstr[0] ""
+"\n"
+"                %(counter)s freelancer aplicó\n"
+"                "
 msgstr[1] ""
+msgstr[2] ""
 
 #: projects/templates/projects/project_detail.html:87
 msgid "Freelancer Applications"
@@ -2399,7 +2458,7 @@ msgstr "Panel"
 
 #: templates/base.html:84
 msgid "Cart"
-msgstr ""
+msgstr "Carrito"
 
 #: templates/base.html:126
 msgid "Connecting freelancers with clients and mentors worldwide."
@@ -2440,206 +2499,218 @@ msgstr "Todos los derechos reservados."
 #: venv/lib/python3.13/site-packages/click/_termui_impl.py:608
 #, python-brace-format
 msgid "{editor}: Editing failed"
-msgstr ""
+msgstr "{editor}: Edición fallida"
 
 #: venv/lib/python3.13/site-packages/click/_termui_impl.py:612
 #, python-brace-format
 msgid "{editor}: Editing failed: {e}"
-msgstr ""
+msgstr "{editor}: Edición fallida: {e}"
 
 #: venv/lib/python3.13/site-packages/click/core.py:1104
 #: venv/lib/python3.13/site-packages/click/core.py:1141
 #, python-brace-format
 msgid "{text} {deprecated_message}"
-msgstr ""
+msgstr "{text} {deprecated_message}"
 
 #: venv/lib/python3.13/site-packages/click/core.py:1160
 msgid "Options"
-msgstr ""
+msgstr "Opciones"
 
 #: venv/lib/python3.13/site-packages/click/core.py:1222
 #, python-brace-format
 msgid "Got unexpected extra argument ({args})"
 msgid_plural "Got unexpected extra arguments ({args})"
-msgstr[0] ""
+msgstr[0] "Se recibió un argumento extra inesperado ({args})"
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/click/core.py:1241
 msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
 msgstr ""
+"Advertencia de desaprobación: El comando {name!r} está "
+"desaprobado.{extra_message}"
 
 #: venv/lib/python3.13/site-packages/click/core.py:1425
 msgid "Aborted!"
-msgstr ""
+msgstr "¡Abortado!"
 
 #: venv/lib/python3.13/site-packages/click/core.py:1799
 msgid "Commands"
-msgstr ""
+msgstr "Comandos"
 
 #: venv/lib/python3.13/site-packages/click/core.py:1830
 msgid "Missing command."
-msgstr ""
+msgstr "Comando faltante."
 
 #: venv/lib/python3.13/site-packages/click/core.py:1908
 msgid "No such command {name!r}."
-msgstr ""
+msgstr "No existe el comando {name!r}."
 
 #: venv/lib/python3.13/site-packages/click/core.py:2332
 msgid "Value must be an iterable."
-msgstr ""
+msgstr "El valor debe ser un iterable."
 
 #: venv/lib/python3.13/site-packages/click/core.py:2355
 #, python-brace-format
 msgid "Takes {nargs} values but 1 was given."
 msgid_plural "Takes {nargs} values but {len} were given."
-msgstr[0] ""
+msgstr[0] "Toma {nargs} valores pero se dio 1."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/click/core.py:2505
 msgid ""
 "DeprecationWarning: The {param_type} {name!r} is deprecated.{extra_message}"
 msgstr ""
+"Advertencia de desaprobación: El {param_type} {name!r} está "
+"desaprobado.{extra_message}"
 
 #: venv/lib/python3.13/site-packages/click/core.py:2956
 #, python-brace-format
 msgid "env var: {var}"
-msgstr ""
+msgstr "var de entorno: {var}"
 
 #: venv/lib/python3.13/site-packages/click/core.py:2959
 #, python-brace-format
 msgid "default: {default}"
-msgstr ""
+msgstr "predeterminado: {default}"
 
 #: venv/lib/python3.13/site-packages/click/core.py:3023
 msgid "(dynamic)"
-msgstr ""
+msgstr "(dinámico)"
 
 #: venv/lib/python3.13/site-packages/click/decorators.py:465
 #, python-format
 msgid "%(prog)s, version %(version)s"
-msgstr ""
+msgstr "%(prog)s, versión %(version)s"
 
 #: venv/lib/python3.13/site-packages/click/decorators.py:522
 msgid "Show the version and exit."
-msgstr ""
+msgstr "Mostrar la versión y salir."
 
 #: venv/lib/python3.13/site-packages/click/decorators.py:548
 msgid "Show this message and exit."
-msgstr ""
+msgstr "Mostrar este mensaje y salir."
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:50
 #: venv/lib/python3.13/site-packages/click/exceptions.py:89
 #, python-brace-format
 msgid "Error: {message}"
-msgstr ""
+msgstr "Error: {message}"
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:81
 #, python-brace-format
 msgid "Try '{command} {option}' for help."
-msgstr ""
+msgstr "Pruebe '{command} {option}' para ayuda."
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:130
 #, python-brace-format
 msgid "Invalid value: {message}"
-msgstr ""
+msgstr "Valor inválido: {message}"
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:132
 #, python-brace-format
 msgid "Invalid value for {param_hint}: {message}"
-msgstr ""
+msgstr "Valor inválido para {param_hint}: {message}"
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:190
 msgid "Missing argument"
-msgstr ""
+msgstr "Argumento faltante"
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:192
 msgid "Missing option"
-msgstr ""
+msgstr "Opción faltante"
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:194
 msgid "Missing parameter"
-msgstr ""
+msgstr "Parámetro faltante"
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:196
 #, python-brace-format
 msgid "Missing {param_type}"
-msgstr ""
+msgstr "Falta {param_type}"
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:203
 #, python-brace-format
 msgid "Missing parameter: {param_name}"
-msgstr ""
+msgstr "Parámetro faltante: {param_name}"
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:223
 #, python-brace-format
 msgid "No such option: {name}"
-msgstr ""
+msgstr "No existe la opción: {name}"
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:235
 #, python-brace-format
 msgid "Did you mean {possibility}?"
 msgid_plural "(Possible options: {possibilities})"
-msgstr[0] ""
+msgstr[0] "¿Quiso decir {possibility}?"
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:282
 msgid "unknown error"
-msgstr ""
+msgstr "error desconocido"
 
 #: venv/lib/python3.13/site-packages/click/exceptions.py:289
 msgid "Could not open file {filename!r}: {message}"
-msgstr ""
+msgstr "No se pudo abrir el archivo {filename!r}: {message}"
 
 #: venv/lib/python3.13/site-packages/click/formatting.py:156
 msgid "Usage:"
-msgstr ""
+msgstr "Uso:"
 
 #: venv/lib/python3.13/site-packages/click/parser.py:199
 msgid "Argument {name!r} takes {nargs} values."
-msgstr ""
+msgstr "El argumento {name!r} toma {nargs} valores."
 
 #: venv/lib/python3.13/site-packages/click/parser.py:381
 msgid "Option {name!r} does not take a value."
-msgstr ""
+msgstr "La opción {name!r} no acepta un valor."
 
 #: venv/lib/python3.13/site-packages/click/parser.py:444
 msgid "Option {name!r} requires an argument."
 msgid_plural "Option {name!r} requires {nargs} arguments."
-msgstr[0] ""
+msgstr[0] "La opción {name!r} requiere un argumento."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/click/shell_completion.py:332
 msgid "Shell completion is not supported for Bash versions older than 4.4."
 msgstr ""
+"La finalización de shell no es compatible con versiones de Bash anteriores a "
+"la 4.4."
 
 #: venv/lib/python3.13/site-packages/click/shell_completion.py:339
 msgid "Couldn't detect Bash version, shell completion is not supported."
 msgstr ""
+"No se pudo detectar la versión de Bash, la finalización de shell no es "
+"compatible."
 
 #: venv/lib/python3.13/site-packages/click/termui.py:162
 msgid "Repeat for confirmation"
-msgstr ""
+msgstr "Repetir para confirmar"
 
 #: venv/lib/python3.13/site-packages/click/termui.py:178
 msgid "Error: The value you entered was invalid."
-msgstr ""
+msgstr "Error: El valor que ingresó no es válido."
 
 #: venv/lib/python3.13/site-packages/click/termui.py:180
 #, python-brace-format
 msgid "Error: {e.message}"
-msgstr ""
+msgstr "Error: {e.message}"
 
 #: venv/lib/python3.13/site-packages/click/termui.py:191
 msgid "Error: The two entered values do not match."
-msgstr ""
+msgstr "Error: Los dos valores ingresados no coinciden."
 
 #: venv/lib/python3.13/site-packages/click/termui.py:247
 msgid "Error: invalid input"
-msgstr ""
+msgstr "Error: entrada no válida"
 
 #: venv/lib/python3.13/site-packages/click/termui.py:866
 msgid "Press any key to continue..."
-msgstr ""
+msgstr "Presione cualquier tecla para continuar..."
 
 #: venv/lib/python3.13/site-packages/click/types.py:332
 #, python-brace-format
@@ -2647,145 +2718,155 @@ msgid ""
 "Choose from:\n"
 "\t{choices}"
 msgstr ""
+"Elija de:\n"
+"\t{choices}"
 
 #: venv/lib/python3.13/site-packages/click/types.py:369
 msgid "{value!r} is not {choice}."
 msgid_plural "{value!r} is not one of {choices}."
-msgstr[0] ""
+msgstr[0] "{value!r} no es {choice}."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/click/types.py:460
 msgid "{value!r} does not match the format {format}."
 msgid_plural "{value!r} does not match the formats {formats}."
-msgstr[0] ""
+msgstr[0] "{value!r} no coincide con el formato {format}."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/click/types.py:482
 msgid "{value!r} is not a valid {number_type}."
-msgstr ""
+msgstr "{value!r} no es un {number_type} válido."
 
 #: venv/lib/python3.13/site-packages/click/types.py:538
 #, python-brace-format
 msgid "{value} is not in the range {range}."
-msgstr ""
+msgstr "{value} no está en el rango {range}."
 
 #: venv/lib/python3.13/site-packages/click/types.py:719
 msgid "{value!r} is not a valid boolean. Recognized values: {states}"
-msgstr ""
+msgstr "{value!r} no es un booleano válido. Valores reconocidos: {states}"
 
 #: venv/lib/python3.13/site-packages/click/types.py:747
 msgid "{value!r} is not a valid UUID."
-msgstr ""
+msgstr "{value!r} no es un UUID válido."
 
 #: venv/lib/python3.13/site-packages/click/types.py:937
 msgid "file"
-msgstr ""
+msgstr "archivo"
 
 #: venv/lib/python3.13/site-packages/click/types.py:939
 msgid "directory"
-msgstr ""
+msgstr "directorio"
 
 #: venv/lib/python3.13/site-packages/click/types.py:941
 msgid "path"
-msgstr ""
+msgstr "ruta"
 
 #: venv/lib/python3.13/site-packages/click/types.py:988
 msgid "{name} {filename!r} does not exist."
-msgstr ""
+msgstr "{name} {filename!r} no existe."
 
 #: venv/lib/python3.13/site-packages/click/types.py:997
 msgid "{name} {filename!r} is a file."
-msgstr ""
+msgstr "{name} {filename!r} es un archivo."
 
 #: venv/lib/python3.13/site-packages/click/types.py:1005
 msgid "{name} {filename!r} is a directory."
-msgstr ""
+msgstr "{name} {filename!r} es un directorio."
 
 #: venv/lib/python3.13/site-packages/click/types.py:1014
 msgid "{name} {filename!r} is not readable."
-msgstr ""
+msgstr "{name} {filename!r} no es legible."
 
 #: venv/lib/python3.13/site-packages/click/types.py:1023
 msgid "{name} {filename!r} is not writable."
-msgstr ""
+msgstr "{name} {filename!r} no es escribible."
 
 #: venv/lib/python3.13/site-packages/click/types.py:1032
 msgid "{name} {filename!r} is not executable."
-msgstr ""
+msgstr "{name} {filename!r} no es ejecutable."
 
 #: venv/lib/python3.13/site-packages/click/types.py:1099
 #, python-brace-format
 msgid "{len_type} values are required, but {len_value} was given."
 msgid_plural "{len_type} values are required, but {len_value} were given."
 msgstr[0] ""
+"Se requieren valores de {len_type}, pero se proporcionaron {len_value}."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/contrib/messages/apps.py:16
 msgid "Messages"
-msgstr ""
+msgstr "Mensajes"
 
 #: venv/lib/python3.13/site-packages/django/contrib/sitemaps/apps.py:8
 msgid "Site Maps"
-msgstr ""
+msgstr "Mapas del sitio"
 
 #: venv/lib/python3.13/site-packages/django/contrib/staticfiles/apps.py:9
 msgid "Static Files"
-msgstr ""
+msgstr "Archivos estáticos"
 
 #: venv/lib/python3.13/site-packages/django/contrib/syndication/apps.py:7
 msgid "Syndication"
-msgstr ""
+msgstr "Sindicación"
 
 #. Translators: String used to replace omitted page numbers in elided page
 #. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
 #: venv/lib/python3.13/site-packages/django/core/paginator.py:30
 msgid "…"
-msgstr ""
+msgstr "…"
 
 #: venv/lib/python3.13/site-packages/django/core/paginator.py:32
 msgid "That page number is not an integer"
-msgstr ""
+msgstr "Ese número de página no es un entero"
 
 #: venv/lib/python3.13/site-packages/django/core/paginator.py:33
 msgid "That page number is less than 1"
-msgstr ""
+msgstr "Ese número de página es menor que 1"
 
 #: venv/lib/python3.13/site-packages/django/core/paginator.py:34
 msgid "That page contains no results"
-msgstr ""
+msgstr "Esa página no contiene resultados"
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:22
 msgid "Enter a valid value."
-msgstr ""
+msgstr "Introduzca un valor válido."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:70
 msgid "Enter a valid domain name."
-msgstr ""
+msgstr "Introduzca un nombre de dominio válido."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:153
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:775
 msgid "Enter a valid URL."
-msgstr ""
+msgstr "Introduzca una URL válida."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:200
 msgid "Enter a valid integer."
-msgstr ""
+msgstr "Introduzca un entero válido."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:211
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "Introduzca una dirección de correo electrónico válida."
 
 #. Translators: "letters" means latin letters: a-z and A-Z.
 #: venv/lib/python3.13/site-packages/django/core/validators.py:289
 msgid ""
 "Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
 msgstr ""
+"Introduzca un “slug” válido que consista en letras, números, guiones bajos o "
+"guiones."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:297
 msgid ""
 "Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
 "hyphens."
 msgstr ""
+"Introduzca un “slug” válido que consista en letras Unicode, números, guiones "
+"bajos o guiones."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:309
 #: venv/lib/python3.13/site-packages/django/core/validators.py:318
@@ -2793,44 +2874,46 @@ msgstr ""
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2220
 #, python-format
 msgid "Enter a valid %(protocol)s address."
-msgstr ""
+msgstr "Introduzca una dirección %(protocol)s válida."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:311
 msgid "IPv4"
-msgstr ""
+msgstr "IPv4"
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:320
 #: venv/lib/python3.13/site-packages/django/utils/ipv6.py:43
 msgid "IPv6"
-msgstr ""
+msgstr "IPv6"
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:334
 msgid "IPv4 or IPv6"
-msgstr ""
+msgstr "IPv4 o IPv6"
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:375
 msgid "Enter only digits separated by commas."
-msgstr ""
+msgstr "Introduzca solo dígitos separados por comas."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:381
 #, python-format
 msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
-msgstr ""
+msgstr "Asegúrese de que este valor sea %(limit_value)s (es %(show_value)s)."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:416
 #, python-format
 msgid "Ensure this value is less than or equal to %(limit_value)s."
-msgstr ""
+msgstr "Asegúrese de que este valor sea menor o igual a %(limit_value)s."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:425
 #, python-format
 msgid "Ensure this value is greater than or equal to %(limit_value)s."
-msgstr ""
+msgstr "Asegúrese de que este valor sea mayor o igual a %(limit_value)s."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:434
 #, python-format
 msgid "Ensure this value is a multiple of step size %(limit_value)s."
 msgstr ""
+"Asegúrese de que este valor sea un múltiplo del tamaño de paso "
+"%(limit_value)s."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:441
 #, python-format
@@ -2838,6 +2921,9 @@ msgid ""
 "Ensure this value is a multiple of step size %(limit_value)s, starting from "
 "%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
 msgstr ""
+"Asegúrese de que este valor sea un múltiplo del tamaño de paso "
+"%(limit_value)s, comenzando desde %(offset)s, por ejemplo %(offset)s, "
+"%(valid_value1)s, %(valid_value2)s, y así sucesivamente."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:473
 #, python-format
@@ -2848,7 +2934,10 @@ msgid_plural ""
 "Ensure this value has at least %(limit_value)d characters (it has "
 "%(show_value)d)."
 msgstr[0] ""
+"Asegúrese de que este valor tenga al menos %(limit_value)d carácter (tiene "
+"%(show_value)d)."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:491
 #, python-format
@@ -2859,27 +2948,32 @@ msgid_plural ""
 "Ensure this value has at most %(limit_value)d characters (it has "
 "%(show_value)d)."
 msgstr[0] ""
+"Asegúrese de que este valor tenga como máximo %(limit_value)d carácter (tiene "
+"%(show_value)d)."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:514
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:366
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:405
 msgid "Enter a number."
-msgstr ""
+msgstr "Introduzca un número."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:516
 #, python-format
 msgid "Ensure that there are no more than %(max)s digit in total."
 msgid_plural "Ensure that there are no more than %(max)s digits in total."
-msgstr[0] ""
+msgstr[0] "Asegúrese de que no haya más de %(max)s dígitos en total."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:521
 #, python-format
 msgid "Ensure that there are no more than %(max)s decimal place."
 msgid_plural "Ensure that there are no more than %(max)s decimal places."
-msgstr[0] ""
+msgstr[0] "Asegúrese de que no haya más de %(max)s decimales."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:526
 #, python-format
@@ -2888,7 +2982,9 @@ msgid ""
 msgid_plural ""
 "Ensure that there are no more than %(max)s digits before the decimal point."
 msgstr[0] ""
+"Asegúrese de que no haya más de %(max)s dígitos antes del punto decimal."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:597
 #, python-format
@@ -2896,90 +2992,93 @@ msgid ""
 "File extension “%(extension)s” is not allowed. Allowed extensions are: "
 "%(allowed_extensions)s."
 msgstr ""
+"La extensión de archivo “%(extension)s” no está permitida. Las extensiones "
+"permitidas son: %(allowed_extensions)s."
 
 #: venv/lib/python3.13/site-packages/django/core/validators.py:659
 msgid "Null characters are not allowed."
-msgstr ""
+msgstr "No se permiten caracteres nulos."
 
 #: venv/lib/python3.13/site-packages/django/db/models/base.py:1600
 #: venv/lib/python3.13/site-packages/django/forms/models.py:908
 msgid "and"
-msgstr ""
+msgstr "y"
 
 #: venv/lib/python3.13/site-packages/django/db/models/base.py:1602
 #, python-format
 msgid "%(model_name)s with this %(field_labels)s already exists."
-msgstr ""
+msgstr "%(model_name)s con este %(field_labels)s ya existe."
 
 #: venv/lib/python3.13/site-packages/django/db/models/constraints.py:22
 #, python-format
 msgid "Constraint “%(name)s” is violated."
-msgstr ""
+msgstr "Se ha violado la restricción “%(name)s”."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:134
 #, python-format
 msgid "Value %(value)r is not a valid choice."
-msgstr ""
+msgstr "El valor %(value)r no es una opción válida."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:135
 msgid "This field cannot be null."
-msgstr ""
+msgstr "Este campo no puede ser nulo."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:136
 msgid "This field cannot be blank."
-msgstr ""
+msgstr "Este campo no puede estar vacío."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:137
 #, python-format
 msgid "%(model_name)s with this %(field_label)s already exists."
-msgstr ""
+msgstr "%(model_name)s con este %(field_label)s ya existe."
 
 #. Translators: The 'lookup_type' is one of 'date', 'year' or
 #. 'month'. Eg: "Title must be unique for pub_date year"
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:141
 #, python-format
-msgid ""
-"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgid "%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
 msgstr ""
+"%(field_label)s debe ser único para %(date_field_label)s %(lookup_type)s."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:180
 #, python-format
 msgid "Field of type: %(field_type)s"
-msgstr ""
+msgstr "Campo de tipo: %(field_type)s"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1162
 #, python-format
 msgid "“%(value)s” value must be either True or False."
-msgstr ""
+msgstr "El valor “%(value)s” debe ser True o False."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1163
 #, python-format
 msgid "“%(value)s” value must be either True, False, or None."
-msgstr ""
+msgstr "El valor “%(value)s” debe ser True, False o None."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1165
 msgid "Boolean (Either True or False)"
-msgstr ""
+msgstr "Booleano (True o False)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1215
 #, python-format
 msgid "String (up to %(max_length)s)"
-msgstr ""
+msgstr "Cadena (hasta %(max_length)s)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1217
 msgid "String (unlimited)"
-msgstr ""
+msgstr "Cadena (ilimitada)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1326
 msgid "Comma-separated integers"
-msgstr ""
+msgstr "Enteros separados por comas"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1427
 #, python-format
 msgid ""
-"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
-"format."
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD format."
 msgstr ""
+"El valor “%(value)s” tiene un formato de fecha inválido. Debe estar en "
+"formato AAAA-MM-DD."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1431
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1566
@@ -2988,10 +3087,12 @@ msgid ""
 "“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
 "date."
 msgstr ""
+"El valor “%(value)s” tiene el formato correcto (AAAA-MM-DD) pero es una fecha "
+"inválida."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1435
 msgid "Date (without time)"
-msgstr ""
+msgstr "Fecha (sin hora)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1562
 #, python-format
@@ -2999,26 +3100,30 @@ msgid ""
 "“%(value)s” value has an invalid format. It must be in YYYY-MM-DD "
 "HH:MM[:ss[.uuuuuu]][TZ] format."
 msgstr ""
+"El valor “%(value)s” tiene un formato inválido. Debe estar en formato AAAA-MM-"
+"DD HH:MM[:ss[.uuuuuu]][TZ]."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1570
 #, python-format
 msgid ""
-"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
-"[TZ]) but it is an invalid date/time."
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]][TZ]) "
+"but it is an invalid date/time."
 msgstr ""
+"El valor “%(value)s” tiene el formato correcto (AAAA-MM-DD "
+"HH:MM[:ss[.uuuuuu]][TZ]) pero es una fecha/hora inválida."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1575
 msgid "Date (with time)"
-msgstr ""
+msgstr "Fecha (con hora)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1702
 #, python-format
 msgid "“%(value)s” value must be a decimal number."
-msgstr ""
+msgstr "El valor “%(value)s” debe ser un número decimal."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1704
 msgid "Decimal number"
-msgstr ""
+msgstr "Número decimal"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1864
 #, python-format
@@ -3026,79 +3131,81 @@ msgid ""
 "“%(value)s” value has an invalid format. It must be in [DD] "
 "[[HH:]MM:]ss[.uuuuuu] format."
 msgstr ""
+"El valor “%(value)s” tiene un formato inválido. Debe estar en formato [DD] "
+"[[HH:]MM:]ss[.uuuuuu]."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1920
 msgid "Email address"
-msgstr ""
+msgstr "Dirección de correo electrónico"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1945
 msgid "File path"
-msgstr ""
+msgstr "Ruta de archivo"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2023
 #, python-format
 msgid "“%(value)s” value must be a float."
-msgstr ""
+msgstr "El valor “%(value)s” debe ser un número de punto flotante."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2025
 msgid "Floating point number"
-msgstr ""
+msgstr "Número de punto flotante"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2065
 #, python-format
 msgid "“%(value)s” value must be an integer."
-msgstr ""
+msgstr "El valor “%(value)s” debe ser un número entero."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2067
 msgid "Integer"
-msgstr ""
+msgstr "Número entero"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2163
 msgid "Big (8 byte) integer"
-msgstr ""
+msgstr "Número entero grande (8 bytes)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2180
 msgid "Small integer"
-msgstr ""
+msgstr "Número entero pequeño"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2188
 msgid "IPv4 address"
-msgstr ""
+msgstr "Dirección IPv4"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2219
 msgid "IP address"
-msgstr ""
+msgstr "Dirección IP"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2310
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2311
 #, python-format
 msgid "“%(value)s” value must be either None, True or False."
-msgstr ""
+msgstr "El valor “%(value)s” debe ser None, True o False."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2313
 msgid "Boolean (Either True, False or None)"
-msgstr ""
+msgstr "Booleano (True, False o None)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2364
 msgid "Positive big integer"
-msgstr ""
+msgstr "Número entero grande positivo"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2379
 msgid "Positive integer"
-msgstr ""
+msgstr "Número entero positivo"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2394
 msgid "Positive small integer"
-msgstr ""
+msgstr "Número entero pequeño positivo"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2410
 #, python-format
 msgid "Slug (up to %(max_length)s)"
-msgstr ""
+msgstr "Slug (hasta %(max_length)s)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2446
 msgid "Text"
-msgstr ""
+msgstr "Texto"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2526
 #, python-format
@@ -3106,6 +3213,8 @@ msgid ""
 "“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
 "format."
 msgstr ""
+"El valor “%(value)s” tiene un formato inválido. Debe estar en formato "
+"HH:MM[:ss[.uuuuuu]]."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2530
 #, python-format
@@ -3113,115 +3222,119 @@ msgid ""
 "“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
 "invalid time."
 msgstr ""
+"El valor “%(value)s” tiene el formato correcto (HH:MM[:ss[.uuuuuu]]) pero es "
+"una hora inválida."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2534
 msgid "Time"
-msgstr ""
+msgstr "Hora"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2642
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2666
 msgid "Raw binary data"
-msgstr ""
+msgstr "Datos binarios sin procesar"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2731
 #, python-format
 msgid "“%(value)s” is not a valid UUID."
-msgstr ""
+msgstr "“%(value)s” no es un UUID válido."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2733
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Identificador único universal"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/files.py:244
 msgid "File"
-msgstr ""
+msgstr "Archivo"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/json.py:24
 msgid "A JSON object"
-msgstr ""
+msgstr "Un objeto JSON"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/json.py:26
 msgid "Value must be valid JSON."
-msgstr ""
+msgstr "El valor debe ser un JSON válido."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:979
 #, python-format
 msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
-msgstr ""
+msgstr "La instancia %(model)s con %(field)s %(value)r no es una opción válida."
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:982
 msgid "Foreign Key (type determined by related field)"
-msgstr ""
+msgstr "Clave foránea (tipo determinado por el campo relacionado)"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1276
 msgid "One-to-one relationship"
-msgstr ""
+msgstr "Relación uno a uno"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1333
 #, python-format
 msgid "%(from)s-%(to)s relationship"
-msgstr ""
+msgstr "Relación %(from)s-%(to)s"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1335
 #, python-format
 msgid "%(from)s-%(to)s relationships"
-msgstr ""
+msgstr "Relaciones %(from)s-%(to)s"
 
 #: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1383
 msgid "Many-to-many relationship"
-msgstr ""
+msgstr "Relación muchos a muchos"
 
 #. Translators: If found as last label character, these punctuation
 #. characters will prevent the default label_suffix to be appended to the label
 #: venv/lib/python3.13/site-packages/django/forms/boundfield.py:185
 msgid ":?.!"
-msgstr ""
+msgstr ":?.!"
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:95
 msgid "This field is required."
-msgstr ""
+msgstr "Este campo es obligatorio."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:315
 msgid "Enter a whole number."
-msgstr ""
+msgstr "Introduzca un número entero."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:486
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1267
 msgid "Enter a valid date."
-msgstr ""
+msgstr "Introduzca una fecha válida."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:509
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1268
 msgid "Enter a valid time."
-msgstr ""
+msgstr "Introduzca una hora válida."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:536
 msgid "Enter a valid date/time."
-msgstr ""
+msgstr "Introduzca una fecha/hora válida."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:570
 msgid "Enter a valid duration."
-msgstr ""
+msgstr "Introduzca una duración válida."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:571
 #, python-brace-format
 msgid "The number of days must be between {min_days} and {max_days}."
-msgstr ""
+msgstr "El número de días debe estar entre {min_days} y {max_days}."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:640
 msgid "No file was submitted. Check the encoding type on the form."
 msgstr ""
+"No se envió ningún archivo. Verifique el tipo de codificación en el "
+"formulario."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:641
 msgid "No file was submitted."
-msgstr ""
+msgstr "No se envió ningún archivo."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:642
 msgid "The submitted file is empty."
-msgstr ""
+msgstr "El archivo enviado está vacío."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:644
 #, python-format
@@ -3229,17 +3342,22 @@ msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
 msgid_plural ""
 "Ensure this filename has at most %(max)d characters (it has %(length)d)."
 msgstr[0] ""
+"Asegúrese de que este nombre de archivo tenga como máximo %(max)d carácter "
+"(tiene %(length)d)."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:649
 msgid "Please either submit a file or check the clear checkbox, not both."
-msgstr ""
+msgstr "Por favor, envíe un archivo o marque la casilla de borrar, no ambos."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:717
 msgid ""
 "Upload a valid image. The file you uploaded was either not an image or a "
 "corrupted image."
 msgstr ""
+"Suba una imagen válida. El archivo que subió no era una imagen o estaba "
+"corrupto."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:889
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:975
@@ -3247,34 +3365,35 @@ msgstr ""
 #, python-format
 msgid "Select a valid choice. %(value)s is not one of the available choices."
 msgstr ""
+"Seleccione una opción válida. %(value)s no es una de las opciones disponibles."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:977
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1096
 #: venv/lib/python3.13/site-packages/django/forms/models.py:1590
 msgid "Enter a list of values."
-msgstr ""
+msgstr "Introduzca una lista de valores."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1097
 msgid "Enter a complete value."
-msgstr ""
+msgstr "Introduzca un valor completo."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1339
 msgid "Enter a valid UUID."
-msgstr ""
+msgstr "Introduzca un UUID válido."
 
 #: venv/lib/python3.13/site-packages/django/forms/fields.py:1369
 msgid "Enter a valid JSON."
-msgstr ""
+msgstr "Introduzca un JSON válido."
 
 #. Translators: This is the default suffix added to form field labels
 #: venv/lib/python3.13/site-packages/django/forms/forms.py:97
 msgid ":"
-msgstr ""
+msgstr ":"
 
 #: venv/lib/python3.13/site-packages/django/forms/forms.py:239
 #, python-format
 msgid "(Hidden field %(name)s) %(error)s"
-msgstr ""
+msgstr "(Campo oculto %(name)s) %(error)s"
 
 #: venv/lib/python3.13/site-packages/django/forms/formsets.py:61
 #, python-format
@@ -3282,59 +3401,66 @@ msgid ""
 "ManagementForm data is missing or has been tampered with. Missing fields: "
 "%(field_names)s. You may need to file a bug report if the issue persists."
 msgstr ""
+"Faltan datos del ManagementForm o han sido manipulados. Campos faltantes: "
+"%(field_names)s. Puede que necesite reportar un error si el problema persiste."
 
 #: venv/lib/python3.13/site-packages/django/forms/formsets.py:65
 #, python-format
 msgid "Please submit at most %(num)d form."
 msgid_plural "Please submit at most %(num)d forms."
-msgstr[0] ""
+msgstr[0] "Por favor, envíe como máximo %(num)d formulario."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/forms/formsets.py:70
 #, python-format
 msgid "Please submit at least %(num)d form."
 msgid_plural "Please submit at least %(num)d forms."
-msgstr[0] ""
+msgstr[0] "Por favor, envíe al menos %(num)d formulario."
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/forms/formsets.py:484
 #: venv/lib/python3.13/site-packages/django/forms/formsets.py:491
 msgid "Order"
-msgstr ""
+msgstr "Orden"
 
 #: venv/lib/python3.13/site-packages/django/forms/models.py:901
 #, python-format
 msgid "Please correct the duplicate data for %(field)s."
-msgstr ""
+msgstr "Por favor, corrija los datos duplicados para %(field)s."
 
 #: venv/lib/python3.13/site-packages/django/forms/models.py:906
 #, python-format
 msgid "Please correct the duplicate data for %(field)s, which must be unique."
 msgstr ""
+"Por favor, corrija los datos duplicados para %(field)s, que deben ser únicos."
 
 #: venv/lib/python3.13/site-packages/django/forms/models.py:913
 #, python-format
 msgid ""
-"Please correct the duplicate data for %(field_name)s which must be unique "
-"for the %(lookup)s in %(date_field)s."
+"Please correct the duplicate data for %(field_name)s which must be unique for "
+"the %(lookup)s in %(date_field)s."
 msgstr ""
+"Por favor, corrija los datos duplicados para %(field_name)s que deben ser "
+"únicos para el %(lookup)s en %(date_field)s."
 
 #: venv/lib/python3.13/site-packages/django/forms/models.py:922
 msgid "Please correct the duplicate values below."
-msgstr ""
+msgstr "Por favor, corrija los valores duplicados a continuación."
 
 #: venv/lib/python3.13/site-packages/django/forms/models.py:1359
 msgid "The inline value did not match the parent instance."
-msgstr ""
+msgstr "El valor en línea no coincidió con la instancia principal."
 
 #: venv/lib/python3.13/site-packages/django/forms/models.py:1450
 msgid "Select a valid choice. That choice is not one of the available choices."
-msgstr ""
+msgstr "Seleccione una opción válida. Esa opción no es una de las disponibles."
 
 #: venv/lib/python3.13/site-packages/django/forms/models.py:1594
 #, python-format
 msgid "“%(pk)s” is not a valid value."
-msgstr ""
+msgstr "“%(pk)s” no es un valor válido."
 
 #: venv/lib/python3.13/site-packages/django/forms/utils.py:229
 #, python-format
@@ -3342,434 +3468,443 @@ msgid ""
 "%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
 "may be ambiguous or it may not exist."
 msgstr ""
+"%(datetime)s no pudo ser interpretado en la zona horaria "
+"%(current_timezone)s; puede ser ambiguo o puede que no exista."
 
 #: venv/lib/python3.13/site-packages/django/forms/widgets.py:527
 msgid "Clear"
-msgstr ""
+msgstr "Borrar"
 
 #: venv/lib/python3.13/site-packages/django/forms/widgets.py:528
 msgid "Currently"
-msgstr ""
+msgstr "Actualmente"
 
 #: venv/lib/python3.13/site-packages/django/forms/widgets.py:529
 msgid "Change"
-msgstr ""
+msgstr "Cambiar"
 
 #: venv/lib/python3.13/site-packages/django/forms/widgets.py:866
 msgid "Unknown"
-msgstr ""
+msgstr "Desconocido"
 
 #: venv/lib/python3.13/site-packages/django/forms/widgets.py:867
 msgid "Yes"
-msgstr ""
+msgstr "Sí"
 
 #: venv/lib/python3.13/site-packages/django/forms/widgets.py:868
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #. Translators: Please do not add spaces around commas.
 #: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:873
 msgid "yes,no,maybe"
-msgstr ""
+msgstr "sí,no,quizás"
 
 #: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:903
 #: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:920
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
-msgstr[0] ""
+msgstr[0] "%(size)d byte"
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:922
 #, python-format
 msgid "%s KB"
-msgstr ""
+msgstr "%s KB"
 
 #: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:924
 #, python-format
 msgid "%s MB"
-msgstr ""
+msgstr "%s MB"
 
 #: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:926
 #, python-format
 msgid "%s GB"
-msgstr ""
+msgstr "%s GB"
 
 #: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:928
 #, python-format
 msgid "%s TB"
-msgstr ""
+msgstr "%s TB"
 
 #: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:930
 #, python-format
 msgid "%s PB"
-msgstr ""
+msgstr "%s PB"
 
 #: venv/lib/python3.13/site-packages/django/utils/dateformat.py:74
 msgid "p.m."
-msgstr ""
+msgstr "p.m."
 
 #: venv/lib/python3.13/site-packages/django/utils/dateformat.py:75
 msgid "a.m."
-msgstr ""
+msgstr "a.m."
 
 #: venv/lib/python3.13/site-packages/django/utils/dateformat.py:80
 msgid "PM"
-msgstr ""
+msgstr "PM"
 
 #: venv/lib/python3.13/site-packages/django/utils/dateformat.py:81
 msgid "AM"
-msgstr ""
+msgstr "AM"
 
 #: venv/lib/python3.13/site-packages/django/utils/dateformat.py:153
 msgid "midnight"
-msgstr ""
+msgstr "medianoche"
 
 #: venv/lib/python3.13/site-packages/django/utils/dateformat.py:155
 msgid "noon"
-msgstr ""
+msgstr "mediodía"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:7
 msgid "Monday"
-msgstr ""
+msgstr "Lunes"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:8
 msgid "Tuesday"
-msgstr ""
+msgstr "Martes"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:9
 msgid "Wednesday"
-msgstr ""
+msgstr "Miércoles"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:10
 msgid "Thursday"
-msgstr ""
+msgstr "Jueves"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:11
 msgid "Friday"
-msgstr ""
+msgstr "Viernes"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:12
 msgid "Saturday"
-msgstr ""
+msgstr "Sábado"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:13
 msgid "Sunday"
-msgstr ""
+msgstr "Domingo"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:16
 msgid "Mon"
-msgstr ""
+msgstr "Lun"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:17
 msgid "Tue"
-msgstr ""
+msgstr "Mar"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:18
 msgid "Wed"
-msgstr ""
+msgstr "Mié"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:19
 msgid "Thu"
-msgstr ""
+msgstr "Jue"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:20
 msgid "Fri"
-msgstr ""
+msgstr "Vie"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:21
 msgid "Sat"
-msgstr ""
+msgstr "Sáb"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:22
 msgid "Sun"
-msgstr ""
+msgstr "Dom"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:25
 msgid "January"
-msgstr ""
+msgstr "Enero"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:26
 msgid "February"
-msgstr ""
+msgstr "Febrero"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:27
 msgid "March"
-msgstr ""
+msgstr "Marzo"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:28
 msgid "April"
-msgstr ""
+msgstr "Abril"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:29
 msgid "May"
-msgstr ""
+msgstr "Mayo"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:30
 msgid "June"
-msgstr ""
+msgstr "Junio"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:31
 msgid "July"
-msgstr ""
+msgstr "Julio"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:32
 msgid "August"
-msgstr ""
+msgstr "Agosto"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:33
 msgid "September"
-msgstr ""
+msgstr "Septiembre"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:34
 msgid "October"
-msgstr ""
+msgstr "Octubre"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:35
 msgid "November"
-msgstr ""
+msgstr "Noviembre"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:36
 msgid "December"
-msgstr ""
+msgstr "Diciembre"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:39
 msgid "jan"
-msgstr ""
+msgstr "ene"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:40
 msgid "feb"
-msgstr ""
+msgstr "feb"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:41
 msgid "mar"
-msgstr ""
+msgstr "mar"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:42
 msgid "apr"
-msgstr ""
+msgstr "abr"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:43
 msgid "may"
-msgstr ""
+msgstr "may"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:44
 msgid "jun"
-msgstr ""
+msgstr "jun"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:45
 msgid "jul"
-msgstr ""
+msgstr "jul"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:46
 msgid "aug"
-msgstr ""
+msgstr "ago"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:47
 msgid "sep"
-msgstr ""
+msgstr "sep"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:48
 msgid "oct"
-msgstr ""
+msgstr "oct"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:49
 msgid "nov"
-msgstr ""
+msgstr "nov"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:50
 msgid "dec"
-msgstr ""
+msgstr "dic"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:53
 msgctxt "abbrev. month"
 msgid "Jan."
-msgstr ""
+msgstr "Ene."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:54
 msgctxt "abbrev. month"
 msgid "Feb."
-msgstr ""
+msgstr "Feb."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:55
 msgctxt "abbrev. month"
 msgid "March"
-msgstr ""
+msgstr "Marzo"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:56
 msgctxt "abbrev. month"
 msgid "April"
-msgstr ""
+msgstr "Abril"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:57
 msgctxt "abbrev. month"
 msgid "May"
-msgstr ""
+msgstr "Mayo"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:58
 msgctxt "abbrev. month"
 msgid "June"
-msgstr ""
+msgstr "Junio"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:59
 msgctxt "abbrev. month"
 msgid "July"
-msgstr ""
+msgstr "Julio"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:60
 msgctxt "abbrev. month"
 msgid "Aug."
-msgstr ""
+msgstr "Ago."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:61
 msgctxt "abbrev. month"
 msgid "Sept."
-msgstr ""
+msgstr "Sept."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:62
 msgctxt "abbrev. month"
 msgid "Oct."
-msgstr ""
+msgstr "Oct."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:63
 msgctxt "abbrev. month"
 msgid "Nov."
-msgstr ""
+msgstr "Nov."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:64
 msgctxt "abbrev. month"
 msgid "Dec."
-msgstr ""
+msgstr "Dic."
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:67
 msgctxt "alt. month"
 msgid "January"
-msgstr ""
+msgstr "Enero"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:68
 msgctxt "alt. month"
 msgid "February"
-msgstr ""
+msgstr "Febrero"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:69
 msgctxt "alt. month"
 msgid "March"
-msgstr ""
+msgstr "Marzo"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:70
 msgctxt "alt. month"
 msgid "April"
-msgstr ""
+msgstr "Abril"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:71
 msgctxt "alt. month"
 msgid "May"
-msgstr ""
+msgstr "Mayo"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:72
 msgctxt "alt. month"
 msgid "June"
-msgstr ""
+msgstr "Junio"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:73
 msgctxt "alt. month"
 msgid "July"
-msgstr ""
+msgstr "Julio"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:74
 msgctxt "alt. month"
 msgid "August"
-msgstr ""
+msgstr "Agosto"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:75
 msgctxt "alt. month"
 msgid "September"
-msgstr ""
+msgstr "Septiembre"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:76
 msgctxt "alt. month"
 msgid "October"
-msgstr ""
+msgstr "Octubre"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:77
 msgctxt "alt. month"
 msgid "November"
-msgstr ""
+msgstr "Noviembre"
 
 #: venv/lib/python3.13/site-packages/django/utils/dates.py:78
 msgctxt "alt. month"
 msgid "December"
-msgstr ""
+msgstr "Diciembre"
 
 #: venv/lib/python3.13/site-packages/django/utils/ipv6.py:20
 msgid "This is not a valid IPv6 address."
-msgstr ""
+msgstr "Esta no es una dirección IPv6 válida."
 
 #: venv/lib/python3.13/site-packages/django/utils/text.py:76
 #, python-format
 msgctxt "String to return when truncating text"
 msgid "%(truncated_text)s…"
-msgstr ""
+msgstr "%(truncated_text)s…"
 
 #: venv/lib/python3.13/site-packages/django/utils/text.py:287
 msgid "or"
-msgstr ""
+msgstr "o"
 
 #. Translators: This string is used as a separator between list elements
 #: venv/lib/python3.13/site-packages/django/utils/text.py:306
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:135
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:8
 #, python-format
 msgid "%(num)d year"
 msgid_plural "%(num)d years"
-msgstr[0] ""
+msgstr[0] "%(num)d año"
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:9
 #, python-format
 msgid "%(num)d month"
 msgid_plural "%(num)d months"
-msgstr[0] ""
+msgstr[0] "%(num)d mes"
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:10
 #, python-format
 msgid "%(num)d week"
 msgid_plural "%(num)d weeks"
-msgstr[0] ""
+msgstr[0] "%(num)d semana"
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:11
 #, python-format
 msgid "%(num)d day"
 msgid_plural "%(num)d days"
-msgstr[0] ""
+msgstr[0] "%(num)d día"
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:12
 #, python-format
 msgid "%(num)d hour"
 msgid_plural "%(num)d hours"
-msgstr[0] ""
+msgstr[0] "%(num)d hora"
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/utils/timesince.py:13
 #, python-format
 msgid "%(num)d minute"
 msgid_plural "%(num)d minutes"
-msgstr[0] ""
+msgstr[0] "%(num)d minuto"
 msgstr[1] ""
+msgstr[2] ""
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:29
 msgid "Forbidden"
-msgstr ""
+msgstr "Prohibido"
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:30
 msgid "CSRF verification failed. Request aborted."
-msgstr ""
+msgstr "La verificación CSRF falló. Solicitud abortada."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:34
 msgid ""
@@ -3778,6 +3913,10 @@ msgid ""
 "required for security reasons, to ensure that your browser is not being "
 "hijacked by third parties."
 msgstr ""
+"Está viendo este mensaje porque este sitio HTTPS requiere que su navegador "
+"web envíe un “encabezado Referer”, pero no se envió ninguno. Este encabezado "
+"es necesario por razones de seguridad, para asegurar que su navegador no esté "
+"siendo secuestrado por terceros."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:40
 msgid ""
@@ -3785,6 +3924,9 @@ msgid ""
 "enable them, at least for this site, or for HTTPS connections, or for “same-"
 "origin” requests."
 msgstr ""
+"Si ha configurado su navegador para deshabilitar los encabezados “Referer”, "
+"por favor vuelva a habilitarlos, al menos para este sitio, o para conexiones "
+"HTTPS, o para solicitudes de “mismo origen”."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:45
 msgid ""
@@ -3794,6 +3936,11 @@ msgid ""
 "If you’re concerned about privacy, use alternatives like <a "
 "rel=\"noreferrer\" …> for links to third-party sites."
 msgstr ""
+"Si está usando la etiqueta <meta name=\"referrer\" content=\"no-referrer\"> o "
+"incluyendo el encabezado “Referrer-Policy: no-referrer”, por favor "
+"elimínelos. La protección CSRF requiere el encabezado “Referer” para realizar "
+"una verificación estricta del referer. Si le preocupa la privacidad, use "
+"alternativas como <a rel=\"noreferrer\" …> para enlaces a sitios de terceros."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:54
 msgid ""
@@ -3801,44 +3948,50 @@ msgid ""
 "submitting forms. This cookie is required for security reasons, to ensure "
 "that your browser is not being hijacked by third parties."
 msgstr ""
+"Está viendo este mensaje porque este sitio requiere una cookie CSRF al enviar "
+"formularios. Esta cookie es necesaria por razones de seguridad, para asegurar "
+"que su navegador no esté siendo secuestrado por terceros."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:60
 msgid ""
 "If you have configured your browser to disable cookies, please re-enable "
 "them, at least for this site, or for “same-origin” requests."
 msgstr ""
+"Si ha configurado su navegador para deshabilitar las cookies, por favor "
+"vuelva a habilitarlas, al menos para este sitio, o para solicitudes de “mismo "
+"origen”."
 
 #: venv/lib/python3.13/site-packages/django/views/csrf.py:66
 msgid "More information is available with DEBUG=True."
-msgstr ""
+msgstr "Más información está disponible con DEBUG=True."
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:44
 msgid "No year specified"
-msgstr ""
+msgstr "No se especificó año"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:64
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:115
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:214
 msgid "Date out of range"
-msgstr ""
+msgstr "Fecha fuera de rango"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:94
 msgid "No month specified"
-msgstr ""
+msgstr "No se especificó mes"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:147
 msgid "No day specified"
-msgstr ""
+msgstr "No se especificó día"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:194
 msgid "No week specified"
-msgstr ""
+msgstr "No se especificó semana"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:353
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:384
 #, python-format
 msgid "No %(verbose_name_plural)s available"
-msgstr ""
+msgstr "No hay %(verbose_name_plural)s disponibles"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:680
 #, python-format
@@ -3846,51 +3999,53 @@ msgid ""
 "Future %(verbose_name_plural)s not available because "
 "%(class_name)s.allow_future is False."
 msgstr ""
+"No hay %(verbose_name_plural)s futuros disponibles porque "
+"%(class_name)s.allow_future es False."
 
 #: venv/lib/python3.13/site-packages/django/views/generic/dates.py:720
 #, python-format
 msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
-msgstr ""
+msgstr "Cadena de fecha inválida “%(datestr)s” con formato “%(format)s”"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/detail.py:56
 #, python-format
 msgid "No %(verbose_name)s found matching the query"
-msgstr ""
+msgstr "No se encontró %(verbose_name)s que coincida con la consulta"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/list.py:70
 msgid "Page is not “last”, nor can it be converted to an int."
-msgstr ""
+msgstr "La página no es “última”, ni puede convertirse a un entero."
 
 #: venv/lib/python3.13/site-packages/django/views/generic/list.py:77
 #, python-format
 msgid "Invalid page (%(page_number)s): %(message)s"
-msgstr ""
+msgstr "Página inválida (%(page_number)s): %(message)s"
 
 #: venv/lib/python3.13/site-packages/django/views/generic/list.py:173
 #, python-format
 msgid "Empty list and “%(class_name)s.allow_empty” is False."
-msgstr ""
+msgstr "Lista vacía y “%(class_name)s.allow_empty” es False."
 
 #: venv/lib/python3.13/site-packages/django/views/static.py:49
 msgid "Directory indexes are not allowed here."
-msgstr ""
+msgstr "Los índices de directorio no están permitidos aquí."
 
 #: venv/lib/python3.13/site-packages/django/views/static.py:51
 #, python-format
 msgid "“%(path)s” does not exist"
-msgstr ""
+msgstr "“%(path)s” no existe"
 
 #: venv/lib/python3.13/site-packages/django/views/static.py:68
 #: venv/lib/python3.13/site-packages/django/views/templates/directory_index.html:8
 #: venv/lib/python3.13/site-packages/django/views/templates/directory_index.html:11
 #, python-format
 msgid "Index of %(directory)s"
-msgstr ""
+msgstr "Índice de %(directory)s"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:7
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:204
 msgid "The install worked successfully! Congratulations!"
-msgstr ""
+msgstr "¡La instalación funcionó correctamente! ¡Felicidades!"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:206
 #, python-format
@@ -3898,92 +4053,99 @@ msgid ""
 "View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
 "target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
 msgstr ""
+"Ver <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">notas de la versión</a> para Django "
+"%(version)s"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:208
 #, python-format
 msgid ""
-"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
-"%(version)s/ref/settings/#debug\" target=\"_blank\" "
-"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
-"configured any URLs."
+"You are seeing this page because <a "
+"href=\"https://docs.djangoproject.com/en/%(version)s/ref/settings/#debug\" "
+"target=\"_blank\" rel=\"noopener\">DEBUG=True</a> is in your settings file "
+"and you have not configured any URLs."
 msgstr ""
+"Está viendo esta página porque <a "
+"href=\"https://docs.djangoproject.com/en/%(version)s/ref/settings/#debug\" "
+"target=\"_blank\" rel=\"noopener\">DEBUG=True</a> está en su archivo de "
+"configuración y no ha configurado ninguna URL."
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:217
 msgid "Django Documentation"
-msgstr ""
+msgstr "Documentación de Django"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:218
 msgid "Topics, references, &amp; how-to’s"
-msgstr ""
+msgstr "Temas, referencias y tutoriales"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:226
 msgid "Tutorial: A Polling App"
-msgstr ""
+msgstr "Tutorial: Una aplicación de encuestas"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:227
 msgid "Get started with Django"
-msgstr ""
+msgstr "Comience con Django"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:235
 msgid "Django Community"
-msgstr ""
+msgstr "Comunidad Django"
 
 #: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:236
 msgid "Connect, get help, or contribute"
-msgstr ""
+msgstr "Conéctese, obtenga ayuda o contribuya"
 
 #: venv/lib/python3.13/site-packages/django_plotly_dash/templates/admin/django_plotly_dash/statelessapp/change_list.html:7
 msgid "Find Apps"
-msgstr ""
+msgstr "Buscar aplicaciones"
 
 #: venv/lib/python3.13/site-packages/django_plotly_dash/templates/admin/django_plotly_dash/statelessapp/change_list.html:13
 #, python-format
 msgid "Add %(name)s"
-msgstr ""
+msgstr "Agregar %(name)s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:139
 #, python-format
 msgid "Error: Cannot handle glob %s"
-msgstr ""
+msgstr "Error: No se puede manejar el glob %s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:375
 #, python-format
 msgid "Cannot read %s"
-msgstr ""
+msgstr "No se puede leer %s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:557
 #, python-format
 msgid "Unimplemented function: %s"
-msgstr ""
+msgstr "Función no implementada: %s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:707
 #, python-format
 msgid "new name needed for rename of %s"
-msgstr ""
+msgstr "se necesita un nuevo nombre para renombrar %s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:729
 #, python-format
 msgid "Unhandled filechange type: %s"
-msgstr ""
+msgstr "Tipo de cambio de archivo no manejado: %s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1138
 msgid "Couldn't parse rename source"
-msgstr ""
+msgstr "No se pudo analizar la fuente del cambio de nombre"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1168
 #, python-format
 msgid "Malformed %(refname)s line: '%(line)s'"
-msgstr ""
+msgstr "Línea %(refname)s malformada: '%(line)s'"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1550
 #, python-format
 msgid "Unsupported command: '%s'"
-msgstr ""
+msgstr "Comando no soportado: '%s'"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1552
 #, python-format
 msgid "Could not parse line: '%s'"
-msgstr ""
+msgstr "No se pudo analizar la línea: '%s'"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1569
 #, python-format
@@ -4011,47 +4173,74 @@ msgid ""
 "section\n"
 "    of the manual.\n"
 msgstr ""
+"\n"
+"PRÓXIMOS PASOS PARA LA ELIMINACIÓN DE DATOS SENSIBLES:\n"
+"  * Si está realizando su reescritura en varios pasos, ignore estos próximos "
+"pasos\n"
+"    hasta que haya completado todas sus invocaciones de git-filter-repo.\n"
+"  * Consulte la subsección \"Eliminación de datos sensibles\" de la sección "
+"\"DISCUSIÓN\"\n"
+"    del manual para más detalles sobre cualquiera de los pasos a "
+"continuación.\n"
+"  * Inspeccione este repositorio y verifique que los datos sensibles estén\n"
+"    completamente eliminados de todos los commits.\n"
+"  * Forzar el envío de la historia reescrita al servidor:\n"
+"      %s\n"
+"  * Contacte a los administradores del servidor para pasos adicionales que "
+"necesiten tomar; el\n"
+"    Primer(s) Commit(s) Cambiado(s)%s puede ser útil aquí.\n"
+"  * Haga que otros colegas con un clon descarten su clon y vuelvan a "
+"clonarlo\n"
+"    O sigan los pasos detallados en el manual para rebasear repetidamente y\n"
+"    purgar los datos sensibles de su copia. Nuevamente, el Primer(s) "
+"Commit(s) Cambiado(s)%s puede ser útil.\n"
+"  * Consulte la sección \"Prevenir repeticiones y evitar futuros derrames de "
+"datos sensibles\"\n"
+"    del manual.\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1640
 #, python-format
 msgid "%s does not appear to be a valid git repository"
-msgstr ""
+msgstr "%s no parece ser un repositorio git válido"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1699
 #, python-format
 msgid "Processed %d blob sizes"
-msgstr ""
+msgstr "Procesados %d tamaños de blob"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1718
 #, python-format
 msgid "Error: unexpected `git cat-file` output: \"%s\"\n"
-msgstr ""
+msgstr "Error: salida inesperada de `git cat-file`: \"%s\"\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1777
 msgid ""
 "Error: --path-rename expects one colon in its argument: <old_name:new_name>."
 msgstr ""
+"Error: --path-rename espera un colon en su argumento: <old_name:new_name>."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1781
 msgid ""
 "Error: With --path-rename, if OLD_NAME and NEW_NAME are both non-empty and "
 "either ends with a slash then both must."
 msgstr ""
+"Error: Con --path-rename, si OLD_NAME y NEW_NAME no están vacíos y alguno "
+"termina con una barra, ambos deben hacerlo."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1785
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1792
 msgid "Error: Pathnames cannot begin with a '/'"
-msgstr ""
+msgstr "Error: Los nombres de ruta no pueden comenzar con '/'."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1795
 #, python-format
 msgid "Error: Invalid path component '%s' found in '%s'"
-msgstr ""
+msgstr "Error: Componente de ruta inválido '%s' encontrado en '%s'"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1818
 #, python-format
 msgid "Error: HelperFilter given invalid option_string: %s"
-msgstr ""
+msgstr "Error: HelperFilter recibió option_string inválido: %s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1830
 msgid ""
@@ -4070,6 +4259,21 @@ msgid ""
 "    See EXAMPLES section for details.\n"
 "    "
 msgstr ""
+"Reescribir (o analizar) el historial del repositorio\n"
+"\n"
+"    git-filter-repo reescribe destructivamente el historial (a menos que se "
+"use --analyze o\n"
+"    --dry-run) según las reglas especificadas. Se niega a hacer cualquier\n"
+"    reescritura a menos que se ejecute desde un clon limpio y fresco, o se "
+"haya\n"
+"    dado --force.\n"
+"\n"
+"    Uso básico:\n"
+"      git-filter-repo --analyze\n"
+"      git-filter-repo [OPCIONES DE FILTRO/RENOMBRADO/CONTROL]\n"
+"\n"
+"    Consulte la sección de EJEMPLOS para más detalles.\n"
+"    "
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1845
 msgid ""
@@ -4168,26 +4372,139 @@ msgid ""
 "      https://htmlpreview.github.io/?https://github.com/newren/git-filter-"
 "repo/blob/docs/html/git-filter-repo.html#EXAMPLES"
 msgstr ""
+"RETROCESOS\n"
+"\n"
+"    La mayoría de las funciones de retroceso tienen el mismo formato general. "
+"Para un argumento de línea de comandos como\n"
+"      --foo-callback 'CUERPO'\n"
+"\n"
+"    se compilará y llamará el siguiente código:\n"
+"      def foo_callback(foo):\n"
+"        CUERPO\n"
+"\n"
+"    La excepción en los retrocesos es el --file-info-callback, que se "
+"discutirá más adelante.\n"
+"\n"
+"    Dado el estilo de retroceso, podemos hacer un retroceso simple para "
+"reemplazar\n"
+"    'Jon' por 'John' en nombres de autor/committers/etiquetadores:\n"
+"      git filter-repo --name-callback 'return name.replace(b\"Jon\", "
+"b\"John\")'\n"
+"\n"
+"    Para eliminar todas las etiquetas 'Tested-by' en mensajes de commit (o "
+"etiqueta):\n"
+"      git filter-repo --message-callback 'return re.sub(br\"\\nTested-"
+"by:.*\", \"\", message)'\n"
+"\n"
+"    Para eliminar todos los archivos .DS_Store:\n"
+"      git filter-repo --filename-callback 'return None if "
+"os.path.basename(filename) == b\".DS_Store\" else filename'\n"
+"\n"
+"    Tenga en cuenta que si CUERPO se resuelve en un nombre de archivo, "
+"entonces el contenido de ese archivo\n"
+"    se usará como el CUERPO en la función de retroceso.\n"
+"\n"
+"    El --file-info-callback tiene una función de retroceso más compleja; para "
+"él se\n"
+"    compilará y llamará el siguiente código:\n"
+"      def file_info_callback(filename, mode, blob_id, value):\n"
+"        CUERPO\n"
+"\n"
+"    Está diseñado para usarse en casos donde el filtrado depende tanto del\n"
+"    nombre de archivo como del contenido (y tal vez del modo). Se llama para "
+"cambios de archivo\n"
+"    que no sean eliminaciones (ya que las eliminaciones no tienen contenido "
+"de archivo para operar).\n"
+"    Se espera que este retroceso devuelva una tupla de (nombre de archivo, "
+"modo,\n"
+"    blob_id). Puede hacer uso de las siguientes funciones de la instancia "
+"value:\n"
+"      value.get_contents_by_identifier(blob_id) -> contenido (cadena de "
+"bytes)\n"
+"      value.get_size_by_identifier(blob_id) -> tamaño_del_blob (int)\n"
+"      value.insert_file_with_contents(contents) -> blob_id\n"
+"      value.is_binary(contents) -> bool\n"
+"      value.apply_replace_text(contents) -> nuevo_contenido (cadena de "
+"bytes)\n"
+"    y puede leer/escribir el siguiente miembro de datos de la instancia "
+"value:\n"
+"      value.data (dict)\n"
+"\n"
+"    El nombre de archivo puede usarse para renombrar el archivo de manera "
+"similar a\n"
+"    --filename-callback (o None para descartar el cambio), y el modo es uno\n"
+"    de b'100644', b'100755', b'120000' o b'160000'.\n"
+"\n"
+"    Para ejemplos y explicaciones más detalladas Y advertencias, vea\n"
+"      https://htmlpreview.github.io/?https://github.com/newren/git-filter-"
+"repo/blob/docs/html/git-filter-repo.html#CALLBACKS\n"
+"\n"
+"EJEMPLOS\n"
+"\n"
+"    Para obtener un montón de informes que mencionan renombramientos que han "
+"ocurrido en\n"
+"    su repositorio y listando tamaños de objetos agregados por cualquiera de "
+"ruta,\n"
+"    directorio, extensión o blob-id:\n"
+"      git filter-repo --analyze\n"
+"\n"
+"    (Estos informes pueden ayudarle a elegir cómo filtrar su repositorio; "
+"puede\n"
+"    ser útil ejecutar este comando nuevamente después de filtrar para "
+"regenerar el\n"
+"    informe y verificar que los cambios sean correctos.)\n"
+"\n"
+"    Para extraer el historial que tocó solo 'guides' y 'tools/releases':\n"
+"      git filter-repo --path guides/ --path tools/releases\n"
+"\n"
+"    Para eliminar foo.zip y bar/baz/zips de cada revisión en la historia:\n"
+"      git filter-repo --path foo.zip --path bar/baz/zips/ --invert-paths\n"
+"\n"
+"    Para reemplazar el texto 'password' con 'p455w0rd':\n"
+"      git filter-repo --replace-text <(echo \"password==>p455w0rd\")\n"
+"\n"
+"    Para usar la versión actual del archivo .mailmap para actualizar "
+"autores,\n"
+"    committers y etiquetadores a lo largo de la historia y hacerlo "
+"permanente:\n"
+"      git filter-repo --use-mailmap\n"
+"\n"
+"    Para extraer la historia de 'src/', renombrar todos los archivos para que "
+"tengan un nuevo directorio principal\n"
+"    'my-module' (por ejemplo, src/foo.java -> my-module/src/foo.java), y\n"
+"    agregar un prefijo 'my-module-' a todas las etiquetas:\n"
+"      git filter-repo --path src/ --to-subdirectory-filter my-module --tag-"
+"rename '':'my-module-'\n"
+"\n"
+"    Para ejemplos y explicaciones más detalladas, vea\n"
+"      https://htmlpreview.github.io/?https://github.com/newren/git-filter-"
+"repo/blob/docs/html/git-filter-repo.html#EXAMPLES"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1936
 msgid "Analysis"
-msgstr ""
+msgstr "Análisis"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1938
 msgid ""
 "Analyze repository history and create a report that may be useful in "
 "determining what to filter in a subsequent run. Will not modify your repo."
 msgstr ""
+"Analiza el historial del repositorio y crea un informe que puede ser útil "
+"para determinar qué filtrar en una ejecución posterior. No modificará tu "
+"repositorio."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1945
 msgid ""
 "Directory to write report, defaults to GIT_DIR/filter_repo/analysis,refuses "
 "to run if exists, --force delete existing dir first."
 msgstr ""
+"Directorio para escribir el informe, por defecto "
+"GIT_DIR/filter_repo/analysis, se niega a ejecutarse si existe, --force "
+"elimina primero el directorio existente."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1948
 msgid "Filtering based on paths (see also --filename-callback)"
-msgstr ""
+msgstr "Filtrado basado en rutas (ver también --filename-callback)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1950
 msgid ""
@@ -4199,30 +4516,47 @@ msgid ""
 "           paths, e.g. `--path olddir/ --path newdir/`\n"
 "           "
 msgstr ""
+"\n"
+"           Estas opciones especifican las rutas a seleccionar. Ten en cuenta "
+"que, al igual que git\n"
+"           mismo, los cambios de nombre NO se siguen, por lo que puede que "
+"necesites especificar múltiples\n"
+"           rutas, por ejemplo `--path olddir/ --path newdir/`\n"
+"           "
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1957
 msgid ""
 "Invert the selection of files from the specified --path-{match,glob,regex} "
 "options below, i.e. only select files matching none of those options."
 msgstr ""
+"Invierte la selección de archivos de las opciones --path-{match,glob,regex} "
+"especificadas abajo, es decir, solo selecciona archivos que no coincidan con "
+"ninguna de esas opciones."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1964
 msgid ""
-"Exact paths (files or directories) to include in filtered history.  Multiple "
-"--path options can be specified to get a union of paths."
+"Exact paths (files or directories) to include in filtered history.  Multiple -"
+"-path options can be specified to get a union of paths."
 msgstr ""
+"Rutas exactas (archivos o directorios) para incluir en el historial filtrado. "
+"Se pueden especificar múltiples opciones --path para obtener una unión de "
+"rutas."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1969
 msgid ""
 "Glob of paths to include in filtered history. Multiple --path-glob options "
 "can be specified to get a union of paths."
 msgstr ""
+"Glob de rutas para incluir en el historial filtrado. Se pueden especificar "
+"múltiples opciones --path-glob para obtener una unión de rutas."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1974
 msgid ""
 "Regex of paths to include in filtered history. Multiple --path-regex options "
 "can be specified to get a union of paths"
 msgstr ""
+"Expresión regular de rutas para incluir en el historial filtrado. Se pueden "
+"especificar múltiples opciones --path-regex para obtener una unión de rutas."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1978
 msgid ""
@@ -4230,22 +4564,30 @@ msgid ""
 "Incompatible with --path-rename, and incompatible with matching against "
 "directory names."
 msgstr ""
+"Coincidir con el nombre base del archivo en lugar de la ruta completa desde "
+"la raíz del repositorio. Incompatible con --path-rename e incompatible con la "
+"coincidencia contra nombres de directorios."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1982
 msgid "Renaming based on paths (see also --filename-callback)"
-msgstr ""
+msgstr "Renombrado basado en rutas (ver también --filename-callback)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1987
 msgid ""
-"Path to rename; if filename or directory matches OLD_NAME rename to "
-"NEW_NAME.  Multiple --path-rename options can be specified.  NOTE: If you "
-"combine filtering options with renaming ones, do not rely on a rename "
-"argument to select paths; you also need a filter to select them."
+"Path to rename; if filename or directory matches OLD_NAME rename to NEW_NAME. "
+" Multiple --path-rename options can be specified.  NOTE: If you combine "
+"filtering options with renaming ones, do not rely on a rename argument to "
+"select paths; you also need a filter to select them."
 msgstr ""
+"Ruta a renombrar; si el nombre de archivo o directorio coincide con OLD_NAME, "
+"renombrar a NEW_NAME. Se pueden especificar múltiples opciones --path-rename. "
+"NOTA: Si combinas opciones de filtrado con las de renombrado, no confíes en "
+"un argumento de renombrado para seleccionar rutas; también necesitas un "
+"filtro para seleccionarlas."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1993
 msgid "Path shortcuts"
-msgstr ""
+msgstr "Atajos de ruta"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:1998
 msgid ""
@@ -4254,23 +4596,33 @@ msgid ""
 "(the default), 'glob:', or 'regex:' to specify different matching styles.  "
 "Blank lines and lines starting with a '#' are ignored."
 msgstr ""
+"Especifique varias directivas de filtrado y renombrado de rutas, una por "
+"línea. Las líneas que contienen '==>' especifican renombrados de rutas, y las "
+"líneas pueden comenzar con 'literal:' (el valor predeterminado), 'glob:' o "
+"'regex:' para especificar diferentes estilos de coincidencia. Se ignoran las "
+"líneas en blanco y las líneas que comienzan con '#'."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2005
 msgid ""
 "Only look at history that touches the given subdirectory and treat that "
-"directory as the project root.  Equivalent to using '--path DIRECTORY/ --"
-"path-rename DIRECTORY/:'"
+"directory as the project root.  Equivalent to using '--path DIRECTORY/ --path-"
+"rename DIRECTORY/:'"
 msgstr ""
+"Solo mire el historial que afecta al subdirectorio dado y trate ese "
+"directorio como la raíz del proyecto. Equivalente a usar '--path DIRECTORY/ --"
+"path-rename DIRECTORY/:'"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2010
 msgid ""
 "Treat the project root as if it were under DIRECTORY. Equivalent to using '--"
 "path-rename :DIRECTORY/'"
 msgstr ""
+"Trate la raíz del proyecto como si estuviera bajo DIRECTORY. Equivalente a "
+"usar '--path-rename :DIRECTORY/'"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2013
 msgid "Content editing filters (see also --blob-callback)"
-msgstr ""
+msgstr "Filtros de edición de contenido (ver también --blob-callback)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2016
 msgid ""
@@ -4279,20 +4631,29 @@ msgid ""
 "supported.  You can end the line with '==>' and some replacement text to "
 "choose a replacement choice other than the default of '{}'."
 msgstr ""
+"Un archivo con expresiones que, si se encuentran, serán reemplazadas. Por "
+"defecto, cada expresión se trata como texto literal, pero se admiten los "
+"prefijos 'regex:' y 'glob:'. Puede terminar la línea con '==>' y algún texto "
+"de reemplazo para elegir una opción de reemplazo distinta al valor "
+"predeterminado de '{}'."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2024
 msgid "Strip blobs (files) bigger than specified size (e.g. '5M', '2G', etc)"
 msgstr ""
+"Eliminar blobs (archivos) mayores que el tamaño especificado (por ejemplo, "
+"'5M', '2G', etc.)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2027
 msgid ""
 "Read git object ids from each line of the given file, and strip all of them "
 "from history"
 msgstr ""
+"Leer IDs de objetos git de cada línea del archivo dado y eliminar todos ellos "
+"del historial"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2030
 msgid "Renaming of refs (see also --refname-callback)"
-msgstr ""
+msgstr "Renombrado de referencias (ver también --refname-callback)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2033
 msgid ""
@@ -4300,36 +4661,52 @@ msgid ""
 "foo:bar will rename tag foo-1.2.3 to bar-1.2.3; either OLD or NEW can be "
 "empty."
 msgstr ""
+"Renombrar etiquetas que comienzan con OLD para que comiencen con NEW. Por "
+"ejemplo, --tag-rename foo:bar renombrará la etiqueta foo-1.2.3 a bar-1.2.3; "
+"OLD o NEW pueden estar vacíos."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2037
 msgid "Filtering of commit messages (see also --message-callback)"
-msgstr ""
+msgstr "Filtrado de mensajes de commit (ver también --message-callback)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2040
 msgid ""
 "A file with expressions that, if found in commit or tag messages, will be "
 "replaced. This file uses the same syntax as --replace-text."
 msgstr ""
+"Un archivo con expresiones que, si se encuentran en mensajes de commit o "
+"etiquetas, serán reemplazadas. Este archivo usa la misma sintaxis que --"
+"replace-text."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2044
 msgid ""
 "By default, since commits are rewritten and thus gain new hashes, references "
 "to old commit hashes in commit messages are replaced with new commit hashes "
-"(abbreviated to the same length as the old reference).  Use this flag to "
-"turn off updating commit hashes in commit messages."
+"(abbreviated to the same length as the old reference).  Use this flag to turn "
+"off updating commit hashes in commit messages."
 msgstr ""
+"Por defecto, dado que los commits se reescriben y por lo tanto obtienen "
+"nuevos hashes, las referencias a hashes antiguos de commits en los mensajes "
+"de commit se reemplazan con nuevos hashes de commit (abreviados a la misma "
+"longitud que la referencia antigua). Use esta opción para desactivar la "
+"actualización de hashes de commit en los mensajes de commit."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2050
 msgid ""
-"Do not reencode commit messages into UTF-8.  By default, if the commit "
-"object specifies an encoding for the commit message, the message is re-"
-"encoded into UTF-8."
+"Do not reencode commit messages into UTF-8.  By default, if the commit object "
+"specifies an encoding for the commit message, the message is re-encoded into "
+"UTF-8."
 msgstr ""
+"No volver a codificar los mensajes de commit en UTF-8. Por defecto, si el "
+"objeto commit especifica una codificación para el mensaje del commit, el "
+"mensaje se vuelve a codificar en UTF-8."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2054
 msgid ""
 "Filtering of names & emails (see also --name-callback and --email-callback)"
 msgstr ""
+"Filtrado de nombres y correos electrónicos (ver también --name-callback y --"
+"email-callback)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2059
 msgid ""
@@ -4338,14 +4715,19 @@ msgid ""
 "specified file is part of git history, historical versions of the file will "
 "be ignored; only the current contents are consulted."
 msgstr ""
+"Usar el archivo mailmap especificado (ver git-shortlog(1) para detalles sobre "
+"el formato) al reescribir nombres y correos electrónicos de autor, committer "
+"y tagger. Si el archivo especificado forma parte de la historia de git, las "
+"versiones históricas del archivo serán ignoradas; solo se consultan los "
+"contenidos actuales."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2066
 msgid "Same as: '--mailmap .mailmap' "
-msgstr ""
+msgstr "Igual que: '--mailmap .mailmap' "
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2068
 msgid "Parent rewriting"
-msgstr ""
+msgstr "Reescritura de padres"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2073
 msgid ""
@@ -4357,102 +4739,154 @@ msgid ""
 "updated.  The choices to pass to --replace-refs thus need to specify both "
 "what to do with existing refs and what to do with commit rewrites.  Thus "
 "'update-and-add' means to update existing replace refs, and for any commit "
-"rewrite (even if already pointed at by a replace ref) add a new refs/"
-"replace/ reference to map from the old commit ID to the new commit ID.  The "
-"default is update-no-add, meaning update existing replace refs but do not "
-"add any new ones.  There is also a special 'old-default' option for picking "
-"the default used in versions prior to git-filter-repo-2.45, namely 'update-"
-"and-add' upon the first run of git-filter-repo in a repository and 'update-"
-"or-add' if running git-filter-repo again on a repository."
+"rewrite (even if already pointed at by a replace ref) add a new refs/replace/ "
+"reference to map from the old commit ID to the new commit ID.  The default is "
+"update-no-add, meaning update existing replace refs but do not add any new "
+"ones.  There is also a special 'old-default' option for picking the default "
+"used in versions prior to git-filter-repo-2.45, namely 'update-and-add' upon "
+"the first run of git-filter-repo in a repository and 'update-or-add' if "
+"running git-filter-repo again on a repository."
 msgstr ""
+"Cómo manejar las referencias de reemplazo (ver git-replace(1)). Las "
+"referencias de reemplazo pueden añadirse durante la reescritura del historial "
+"como una forma de permitir a los usuarios pasar IDs de commit antiguos (de "
+"antes de ejecutar git-filter-repo) a comandos git y que git sepa cómo "
+"traducir esos IDs antiguos a los nuevos (post-reescritura). Además, las "
+"referencias de reemplazo que existían antes de la reescritura pueden ser "
+"eliminadas o actualizadas. Por lo tanto, las opciones para pasar a --replace-"
+"refs deben especificar tanto qué hacer con las referencias existentes como "
+"qué hacer con las reescrituras de commit. Así, 'update-and-add' significa "
+"actualizar las referencias de reemplazo existentes y, para cualquier "
+"reescritura de commit (incluso si ya está apuntada por una referencia de "
+"reemplazo), añadir una nueva referencia refs/replace/ para mapear del ID de "
+"commit antiguo al nuevo. El valor por defecto es update-no-add, que significa "
+"actualizar las referencias de reemplazo existentes pero no añadir nuevas. "
+"También existe una opción especial 'old-default' para elegir el valor por "
+"defecto usado en versiones anteriores a git-filter-repo-2.45, a saber, "
+"'update-and-add' en la primera ejecución de git-filter-repo en un repositorio "
+"y 'update-or-add' si se ejecuta git-filter-repo nuevamente en un repositorio."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2095
 msgid ""
 "Whether to prune empty commits.  'auto' (the default) means only prune "
 "commits which become empty (not commits which were empty in the original "
-"repo, unless their parent was pruned). When the parent of a commit is "
-"pruned, the first non-pruned ancestor becomes the new parent."
+"repo, unless their parent was pruned). When the parent of a commit is pruned, "
+"the first non-pruned ancestor becomes the new parent."
 msgstr ""
+"Si se deben podar los commits vacíos. 'auto' (el valor predeterminado) "
+"significa podar solo los commits que se vuelven vacíos (no los commits que ya "
+"estaban vacíos en el repositorio original, a menos que su padre haya sido "
+"podado). Cuando se poda el padre de un commit, el primer ancestro no podado "
+"se convierte en el nuevo padre."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2102
 msgid ""
 "Since merge commits are needed for history topology, they are typically "
-"exempt from pruning.  However, they can become degenerate with the pruning "
-"of other commits (having fewer than two parents, having one commit serve as "
-"both parents, or having one parent as the ancestor of the other.)  If such "
-"merge commits have no file changes, they can be pruned.  The default "
-"('auto') is to only prune empty merge commits which become degenerate (not "
-"which started as such)."
+"exempt from pruning.  However, they can become degenerate with the pruning of "
+"other commits (having fewer than two parents, having one commit serve as both "
+"parents, or having one parent as the ancestor of the other.)  If such merge "
+"commits have no file changes, they can be pruned.  The default ('auto') is to "
+"only prune empty merge commits which become degenerate (not which started as "
+"such)."
 msgstr ""
+"Dado que los commits de fusión son necesarios para la topología del "
+"historial, normalmente están exentos de poda. Sin embargo, pueden volverse "
+"degenerados con la poda de otros commits (tener menos de dos padres, que un "
+"commit sirva como ambos padres, o que un padre sea ancestro del otro). Si "
+"dichos commits de fusión no tienen cambios en archivos, pueden ser podados. "
+"El valor predeterminado ('auto') es podar solo los commits de fusión vacíos "
+"que se vuelven degenerados (no los que comenzaron así)."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2111
 msgid ""
 "Even if the first parent is or becomes an ancestor of another parent, do not "
-"prune it.  This modifies how --prune-degenerate behaves, and may be useful "
-"in projects who always use merge --no-ff."
+"prune it.  This modifies how --prune-degenerate behaves, and may be useful in "
+"projects who always use merge --no-ff."
 msgstr ""
+"Incluso si el primer padre es o se convierte en ancestro de otro padre, no lo "
+"podes. Esto modifica el comportamiento de --prune-degenerate y puede ser útil "
+"en proyectos que siempre usan merge --no-ff."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2116
 msgid "Generic callback code snippets"
-msgstr ""
+msgstr "Fragmentos genéricos de código para callbacks"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2118
-msgid ""
-"Python code body for processing filenames; see CALLBACKS sections below."
+msgid "Python code body for processing filenames; see CALLBACKS sections below."
 msgstr ""
+"Cuerpo de código Python para procesar nombres de archivos; ver las secciones "
+"CALLBACKS a continuación."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2121
 msgid ""
 "Python code body for processing file and metadata; see CALLBACKS sections "
 "below."
 msgstr ""
+"Cuerpo de código Python para procesar archivos y metadatos; ver las secciones "
+"CALLBACKS a continuación."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2124
 msgid ""
 "Python code body for processing messages (both commit messages and tag "
 "messages); see CALLBACKS section below."
 msgstr ""
+"Cuerpo de código Python para procesar mensajes (tanto mensajes de commit como "
+"de etiquetas); ver la sección CALLBACKS a continuación."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2127
 msgid ""
 "Python code body for processing names of people; see CALLBACKS section below."
 msgstr ""
+"Cuerpo de código Python para procesar nombres de personas; ver la sección "
+"CALLBACKS a continuación."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2130
 msgid ""
-"Python code body for processing emails addresses; see CALLBACKS section "
-"below."
+"Python code body for processing emails addresses; see CALLBACKS section below."
 msgstr ""
+"Cuerpo de código Python para procesar direcciones de correo electrónico; ver "
+"la sección CALLBACKS a continuación."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2133
 msgid "Python code body for processing refnames; see CALLBACKS section below."
 msgstr ""
+"Cuerpo de código Python para procesar nombres de referencia; ver la sección "
+"CALLBACKS a continuación."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2137
 msgid ""
 "Python code body for processing blob objects; see CALLBACKS section below."
 msgstr ""
+"Cuerpo de código Python para procesar objetos blob; ver la sección CALLBACKS "
+"a continuación."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2140
 msgid ""
 "Python code body for processing commit objects; see CALLBACKS section below."
 msgstr ""
+"Cuerpo de código Python para procesar objetos commit; ver la sección "
+"CALLBACKS a continuación."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2143
 msgid ""
-"Python code body for processing tag objects.  Note that lightweight tags "
-"have no tag object and are thus not handled by this callback. See CALLBACKS "
+"Python code body for processing tag objects.  Note that lightweight tags have "
+"no tag object and are thus not handled by this callback. See CALLBACKS "
 "section below."
 msgstr ""
+"Cuerpo de código Python para procesar objetos de etiqueta. Nota que las "
+"etiquetas ligeras no tienen objeto de etiqueta y por lo tanto no son "
+"manejadas por este callback. Ver la sección CALLBACKS a continuación."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2147
 msgid ""
 "Python code body for processing reset objects; see CALLBACKS section below."
 msgstr ""
+"Cuerpo de código Python para procesar objetos reset; ver la sección CALLBACKS "
+"a continuación."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2150
 msgid "Sensitive Data Removal Handling"
-msgstr ""
+msgstr "Manejo de eliminación de datos sensibles"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2152
 msgid ""
@@ -4460,60 +4894,76 @@ msgid ""
 "extra information from the rewrite needed to provide additional instructions "
 "on how to clean up other copies."
 msgstr ""
+"Esta reescritura está destinada a eliminar datos sensibles de un repositorio. "
+"Recoja información adicional de la reescritura necesaria para proporcionar "
+"instrucciones adicionales sobre cómo limpiar otras copias."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2157
 msgid ""
 "By default, --sensitive-data-removal will trigger a mirror-like fetch of all "
-"refs from origin, discarding local changes, but ensuring that _all_ "
-"fetchable refs that hold on to the sensitve data are rewritten.  This flag "
-"removes that fetch, risking that other refs continue holding on to the "
-"sensitive data.  This option is implied by --partial or any flag that "
-"implies --partial."
+"refs from origin, discarding local changes, but ensuring that _all_ fetchable "
+"refs that hold on to the sensitve data are rewritten.  This flag removes that "
+"fetch, risking that other refs continue holding on to the sensitive data.  "
+"This option is implied by --partial or any flag that implies --partial."
 msgstr ""
+"Por defecto, --sensitive-data-removal activará una obtención tipo espejo de "
+"todas las referencias desde el origen, descartando cambios locales, pero "
+"asegurando que _todas_ las referencias obtenibles que contienen los datos "
+"sensibles sean reescritas. Esta opción elimina esa obtención, arriesgando que "
+"otras referencias continúen manteniendo los datos sensibles. Esta opción está "
+"implícita por --partial o cualquier bandera que implique --partial."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2166
 msgid ""
 "Specifying alternate source or target locations implies --partial,\n"
 "except that the normal default for --replace-refs is used.  However,\n"
-"unlike normal uses of --partial, this doesn't risk mixing old and new\n"
+"unlike normal uses of --partial, this doesn't risk mixing old and "
+"new\n"
 "history since the old and new histories are in different repositories."
 msgstr ""
+"Especificar ubicaciones alternativas de origen o destino implica --"
+"partial,\n"
+"excepto que se usa el valor predeterminado normal para --replace-refs. Sin "
+"embargo,\n"
+"a diferencia de los usos normales de --partial, esto no arriesga mezclar "
+"historia antigua y nueva\n"
+"ya que las historias antigua y nueva están en repositorios diferentes."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2170
 msgid "Location to filter from/to"
-msgstr ""
+msgstr "Ubicación desde/hacia la que filtrar"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2173
 msgid "Git repository to read from"
-msgstr ""
+msgstr "Repositorio Git desde el cual leer"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2175
 msgid "Git repository to overwrite with filtered history"
-msgstr ""
+msgstr "Repositorio Git para sobrescribir con el historial filtrado"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2177
 msgid "Ordering of commits"
-msgstr ""
+msgstr "Ordenación de los commits"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2179
 msgid "Processes commits in commit timestamp order."
-msgstr ""
+msgstr "Procesa los commits en orden de marca de tiempo del commit."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2181
 msgid "Miscellaneous options"
-msgstr ""
+msgstr "Opciones misceláneas"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2183
 msgid "Show this help message and exit."
-msgstr ""
+msgstr "Mostrar este mensaje de ayuda y salir."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2185
 msgid "Display filter-repo's version and exit."
-msgstr ""
+msgstr "Mostrar la versión de filter-repo y salir."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2187
 msgid "Avoid triggering the no-arguments-specified check."
-msgstr ""
+msgstr "Evitar activar la comprobación de que no se especificaron argumentos."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2189
 msgid ""
@@ -4521,6 +4971,10 @@ msgid ""
 "fresh clone.  History rewriting is irreversible (and includes immediate "
 "pruning of reflogs and old objects), so be cautious about using this flag."
 msgstr ""
+"Reescribir el historial del repositorio incluso si el repositorio actual no "
+"parece un clon nuevo. La reescritura del historial es irreversible (e incluye "
+"la poda inmediata de reflogs y objetos antiguos), así que tenga precaución al "
+"usar esta opción."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2194
 msgid ""
@@ -4532,10 +4986,19 @@ msgid ""
 "instead of replacing old refs with new refnames, it will instead create new "
 "refs and keep the old ones around.  Use with caution."
 msgstr ""
+"Realizar una reescritura parcial del historial, resultando en una mezcla de "
+"historia antigua y nueva. Esto deshabilita la reescritura de "
+"refs/remotes/origin/* a refs/heads/*, deshabilita la eliminación del remoto "
+"'origin', deshabilita la eliminación de referencias no exportadas, "
+"deshabilita la expiración del reflog y deshabilita la recolección de basura "
+"automática posterior al filtro. Además, modifica las opciones --tag-rename y -"
+"-refname-callback de modo que en lugar de reemplazar referencias antiguas con "
+"nuevos nombres, creará nuevas referencias y mantendrá las antiguas. Usar con "
+"precaución."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2204
 msgid "Do not run 'git gc' after filtering."
-msgstr ""
+msgstr "No ejecutar 'git gc' después del filtrado."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2211
 msgid ""
@@ -4545,15 +5008,25 @@ msgid ""
 "also may cause problems for pruning of degenerate empty merge commits when "
 "negative revisions are specified."
 msgstr ""
+"Limitar la reescritura del historial a las referencias especificadas. Implica "
+"--partial. Además de las advertencias normales de --partial (mezclar "
+"historial antiguo y nuevo, no remapear automáticamente refs/remotes/origin/* "
+"a refs/heads/*, etc.), esto también puede causar problemas al podar commits "
+"de fusión vacíos degenerados cuando se especifican revisiones negativas."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2219
 msgid ""
 "Do not change the repository.  Run `git fast-export` and filter its output, "
 "and save both the original and the filtered version for comparison.  This "
-"also disables rewriting commit messages due to not knowing new commit IDs "
-"and disables filtering of some empty commits due to inability to query the "
-"fast-import backend."
+"also disables rewriting commit messages due to not knowing new commit IDs and "
+"disables filtering of some empty commits due to inability to query the fast-"
+"import backend."
 msgstr ""
+"No cambiar el repositorio. Ejecutar `git fast-export` y filtrar su salida, y "
+"guardar tanto la versión original como la filtrada para comparación. Esto "
+"también deshabilita la reescritura de mensajes de commit debido a no conocer "
+"los nuevos IDs de commit y deshabilita el filtrado de algunos commits vacíos "
+"debido a la incapacidad de consultar el backend fast-import."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2226
 msgid ""
@@ -4561,6 +5034,9 @@ msgid ""
 "being run.  When used together with --dry-run, also show extra information "
 "about what would be run."
 msgstr ""
+"Imprimir información adicional sobre las operaciones que se están realizando "
+"y los comandos que se ejecutan. Cuando se usa junto con --dry-run, también "
+"muestra información extra sobre lo que se ejecutaría."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2248
 msgid ""
@@ -4568,47 +5044,55 @@ msgid ""
 "fast-export stream from stdin.    The stdin must be in the expected input "
 "format (e.g. it needs to include original-oid directives)."
 msgstr ""
+"En lugar de ejecutar `git fast-export` y filtrar su salida, filtrar el flujo "
+"fast-export desde stdin. El stdin debe estar en el formato de entrada "
+"esperado (por ejemplo, debe incluir directivas original-oid)."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2253
 msgid "Pass --quiet to other git commands called"
-msgstr ""
+msgstr "Pasar --quiet a otros comandos git llamados"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2259
 msgid ""
 "Error: --analyze is incompatible with --path* flags; it's a read-only "
 "operation."
 msgstr ""
+"Error: --analyze es incompatible con las banderas --path*; es una operación "
+"de solo lectura."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2262
 msgid "Error: --analyze is incompatible with --stdin."
-msgstr ""
+msgstr "Error: --analyze es incompatible con --stdin."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2277
 msgid "Error: --use-base-name and --path-rename are incompatible."
-msgstr ""
+msgstr "Error: --use-base-name y --path-rename son incompatibles."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2292
 msgid "Error: need git >= 2.24.0"
-msgstr ""
+msgstr "Error: se necesita git >= 2.24.0"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2296
 msgid "Error: need git >= 2.23.0"
-msgstr ""
+msgstr "Error: se necesita git >= 2.23.0"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2309
 msgid "Error: need git >= 2.22.0"
-msgstr ""
+msgstr "Error: se necesita git >= 2.22.0"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2316
 #, python-format
 msgid "Error: could not parse --strip-blobs-bigger-than argument %s"
-msgstr ""
+msgstr "Error: no se pudo analizar el argumento --strip-blobs-bigger-than %s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2324
 msgid ""
-"Error: --file-info-callback is incompatible with --stdin, --blob-callback,\n"
+"Error: --file-info-callback is incompatible with --stdin, --blob-"
+"callback,\n"
 "and --filename-callback."
 msgstr ""
+"Error: --file-info-callback es incompatible con --stdin, --blob-callback,\n"
+"y --filename-callback."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2385
 #, python-format
@@ -4616,74 +5100,79 @@ msgid ""
 "Error: In %s, 'glob:' and '==>' are incompatible (renaming globs makes no "
 "sense)"
 msgstr ""
+"Error: En %s, 'glob:' y '==>' son incompatibles (renombrar globs no tiene "
+"sentido)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2393
 msgid ""
 "Error: When rename directories, if OLDNAME and NEW_NAME are both non-empty "
 "and either ends with a slash then both must."
 msgstr ""
+"Error: Al renombrar directorios, si OLDNAME y NEW_NAME no están vacíos y "
+"alguno termina con una barra, entonces ambos deben hacerlo."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2416
 msgid "No arguments specified."
-msgstr ""
+msgstr "No se especificaron argumentos."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2545
 #, python-format
 msgid "Unhandled change type(s): %(change_type)s (in commit %(commit)s)"
 msgstr ""
+"Tipo(s) de cambio no manejado(s): %(change_type)s (en el commit %(commit)s)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2564
 #, python-format
 msgid "Processed %d commits"
-msgstr ""
+msgstr "Procesados %d commits"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2574
 msgid "Nothing to analyze; repository is empty."
-msgstr ""
+msgstr "Nada que analizar; el repositorio está vacío."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2631
 msgid "Error: rev-list|diff-tree pipeline failed; see above."
-msgstr ""
+msgstr "Error: la tubería rev-list|diff-tree falló; ver arriba."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2638
 msgid "<present>"
-msgstr ""
+msgstr "<presente>"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2688
 msgid "Overall Statistics"
-msgstr ""
+msgstr "Estadísticas generales"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2689
 msgid "Number of commits"
-msgstr ""
+msgstr "Número de commits"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2691
 msgid "Number of filenames"
-msgstr ""
+msgstr "Número de nombres de archivo"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2693
 msgid "Number of directories"
-msgstr ""
+msgstr "Número de directorios"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2695
 msgid "Number of file extensions"
-msgstr ""
+msgstr "Número de extensiones de archivo"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2698
 msgid "Total unpacked size (bytes)"
-msgstr ""
+msgstr "Tamaño total desempaquetado (bytes)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2700
 msgid "Total packed size (bytes)"
-msgstr ""
+msgstr "Tamaño total empaquetado (bytes)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2705
 msgid "Caveats"
-msgstr ""
+msgstr "Advertencias"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2706
 msgid "Sizes"
-msgstr ""
+msgstr "Tamaños"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2707
 msgid ""
@@ -4723,10 +5212,53 @@ msgid ""
 "        though git will only store it once.\n"
 "        "
 msgstr ""
+"\n"
+"        El tamaño empaquetado representa el tamaño que tendría tu repositorio "
+"si no\n"
+"        se incluyeran árboles, commits, etiquetas u otros metadatos (aunque "
+"puede\n"
+"        no representar la desduplicación; véase más abajo). También "
+"representa el\n"
+"        empaquetado actual, que puede ser subóptimo si no has ejecutado gc en "
+"un\n"
+"        tiempo.\n"
+"\n"
+"        El tamaño desempaquetado representa el tamaño que tendría tu "
+"repositorio si no\n"
+"        se incluyeran árboles, commits, etiquetas u otros metadatos Y si "
+"ningún\n"
+"        archivo estuviera empaquetado; es decir, sin delta ni compresión.\n"
+"\n"
+"        Tanto los tamaños desempaquetados como los empaquetados pueden ser un "
+"poco engañosos. Eliminar\n"
+"        un blob del historial no ahorra tanto espacio como el tamaño "
+"desempaquetado,\n"
+"        porque obviamente normalmente se almacena en forma empaquetada. "
+"Además,\n"
+"        eliminar un blob del historial puede no ahorrar tanto espacio como su "
+"tamaño empaquetado,\n"
+"        porque otro blob podría almacenarse como un delta contra ese blob, "
+"por lo que al eliminar un blob,\n"
+"        el tamaño empaquetado de otro blob puede crecer.\n"
+"\n"
+"        Además, la suma de los tamaños empaquetados puede ser mayor que el\n"
+"        tamaño del repositorio; si el mismo contenido aparece en el "
+"repositorio en\n"
+"        múltiples lugares, git automáticamente desduplica y almacena solo "
+"una\n"
+"        copia, mientras que la forma en que se suman los tamaños en este "
+"análisis añade el tamaño\n"
+"        para cada ruta de archivo que tiene ese contenido. Además, si un "
+"archivo\n"
+"        alguna vez se revierte al contenido de una versión anterior, el "
+"tamaño de la versión\n"
+"        anterior se contará varias veces en este análisis, aunque git solo lo "
+"almacene una vez.\n"
+"        "
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2736
 msgid "Deletions"
-msgstr ""
+msgstr "Eliminaciones"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2737
 #, python-format
@@ -4753,10 +5285,38 @@ msgid ""
 "        the \"right\" answer.\n"
 "        "
 msgstr ""
+"\n"
+"        Si un archivo está eliminado no es una cualidad binaria, ya que "
+"puede\n"
+"        estar eliminado en algunas ramas pero aún existir en otras. Además, "
+"podría\n"
+"        existir en una etiqueta antigua, pero haber sido eliminado en "
+"versiones\n"
+"        más recientes que esa. Se podría hacer un seguimiento más "
+"exhaustivo,\n"
+"        incluyendo la revisión de commits de fusión donde un lado de la "
+"historia\n"
+"        eliminó y el otro modificó, para dar una imagen más holística de "
+"las\n"
+"        eliminaciones. Sin embargo, ese algoritmo no solo sería más complejo "
+"de\n"
+"        implementar, sino que también sería bastante difícil de presentar e\n"
+"        interpretar para los usuarios. Dado que --analyze se trata solo de "
+"obtener\n"
+"        una imagen general y aproximada de la historia, en su lugar "
+"implementa\n"
+"        la regla simplista que es suficiente para el 98% de los casos:\n"
+"          Un archivo se marca como eliminado si el último commit en el "
+"flujo\n"
+"          fast-export que menciona el archivo lo lista como eliminado.\n"
+"        Esto lo hace dependiente del orden topológico, pero generalmente da "
+"la\n"
+"        respuesta \"correcta\".\n"
+"        "
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2754
 msgid "Renames"
-msgstr ""
+msgstr "Cambios de nombre"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2755
 msgid ""
@@ -4784,100 +5344,136 @@ msgid ""
 "            linear but may branch out.\n"
 "        "
 msgstr ""
+"\n"
+"        Los renombramientos comparten la misma naturaleza no binaria que las "
+"eliminaciones, además de\n"
+"        desafíos adicionales:\n"
+"          * Si el archivo renombrado se renombra de nuevo, en lugar de solo "
+"dos nombres para\n"
+"            una ruta, puedes tener tres o más.\n"
+"          * Los pares de renombramientos de la forma (nombreantiguo, "
+"nombrenuevo) que consideramos\n"
+"            diferentes nombres del \"mismo archivo\" podrían ser válidos solo "
+"en ciertos\n"
+"            rangos de commits. Por ejemplo, si un nuevo commit reintroduce un "
+"archivo\n"
+"            llamado nombreantiguo, entonces las nuevas versiones de "
+"nombreantiguo ya no son el \"mismo archivo\".\n"
+"            Podríamos intentar mostrar esto al usuario, pero es más fácil\n"
+"            para el usuario simplemente romper el emparejamiento y solo "
+"reportar\n"
+"            los emparejamientos de renombramientos no rotos al usuario.\n"
+"          * La capacidad de los usuarios para renombrar archivos de manera "
+"diferente en distintas\n"
+"            ramas significa que nuestras cadenas de renombramientos no serán "
+"necesariamente\n"
+"            lineales sino que pueden ramificarse.\n"
+"        "
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2789
 msgid "Deleted directories by reverse size"
-msgstr ""
+msgstr "Directorios eliminados por tamaño inverso"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2791
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2803
 msgid "Format: unpacked size, packed size, date deleted, directory name\n"
 msgstr ""
+"Formato: tamaño desempaquetado, tamaño empaquetado, fecha de eliminación, "
+"nombre del directorio\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2799
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2810
 msgid "<toplevel>"
-msgstr ""
+msgstr "<toplevel>"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2802
 msgid "All directories by reverse size"
-msgstr ""
+msgstr "Todos los directorios por tamaño inverso"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2814
 msgid "Deleted extensions by reverse size"
-msgstr ""
+msgstr "Extensiones eliminadas por tamaño inverso"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2816
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2828
 msgid "Format: unpacked size, packed size, date deleted, extension name\n"
 msgstr ""
+"Formato: tamaño desempaquetado, tamaño empaquetado, fecha de eliminación, "
+"nombre de la extensión\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2824
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2835
 msgid "<no extension>"
-msgstr ""
+msgstr "<sin extensión>"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2827
 msgid "All extensions by reverse size"
-msgstr ""
+msgstr "Todas las extensiones por tamaño inverso"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2839
 msgid "Deleted paths by reverse accumulated size"
-msgstr ""
+msgstr "Rutas eliminadas por tamaño acumulado inverso"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2841
 msgid "Format: unpacked size, packed size, date deleted, path name(s)\n"
 msgstr ""
+"Formato: tamaño desempaquetado, tamaño empaquetado, fecha de eliminación, "
+"nombre(s) de ruta\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2853
 msgid "All paths by reverse accumulated size"
-msgstr ""
+msgstr "Todas las rutas por tamaño acumulado inverso"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2855
 msgid "Format: unpacked size, packed size, date deleted, path name\n"
 msgstr ""
+"Formato: tamaño desempaquetado, tamaño empaquetado, fecha de eliminación, "
+"nombre de ruta\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2867
 msgid "Files by sha and associated pathnames in reverse size"
-msgstr ""
+msgstr "Archivos por sha y nombres de ruta asociados en tamaño inverso"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2868
 msgid "Format: sha, unpacked size, packed size, filename(s) object stored as\n"
 msgstr ""
+"Formato: sha, tamaño desempaquetado, tamaño empaquetado, nombre(s) de archivo "
+"objeto almacenado como\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2900
 #, python-format
 msgid "Warning: Removing recursively: \"%s\""
-msgstr ""
+msgstr "Advertencia: Eliminando recursivamente: \"%s\""
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2903
 #, python-format
 msgid "Error: dir already exists (use --force to delete): \"%s\"\n"
-msgstr ""
+msgstr "Error: el directorio ya existe (use --force para eliminar): \"%s\"\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2912
 #, python-format
 msgid "Writing reports to %s..."
-msgstr ""
+msgstr "Escribiendo informes en %s..."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:2915
 msgid "done.\n"
-msgstr ""
+msgstr "listo.\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3216
 #, python-format
 msgid "Parsed %d commits"
-msgstr ""
+msgstr "Analizados %d commits"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3241
 #, python-format
 msgid "Error: Cannot pass a %s_callback to RepoFilter AND pass --%s-callback"
 msgstr ""
+"Error: No se puede pasar un %s_callback a RepoFilter Y pasar --%s-callback"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3246
 #, python-format
 msgid "Error: --%s-callback should have a return statement"
-msgstr ""
+msgstr "Error: --%s-callback debería tener una instrucción return"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3297
 msgid ""
@@ -4885,21 +5481,28 @@ msgid ""
 "invocation\n"
 "             of git-filter-repo unless it was specified in previously runs."
 msgstr ""
+"      Error: No se puede especificar --sensitive-data-removal en una "
+"invocación posterior\n"
+"             de git-filter-repo a menos que se haya especificado en "
+"ejecuciones anteriores."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3313
 msgid "Error: sensitive data removal is incompatible with --stdin"
-msgstr ""
+msgstr "Error: la eliminación de datos sensibles es incompatible con --stdin"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3316
-msgid ""
-"Error: sensitive data removal is incompatible with --source and --target"
+msgid "Error: sensitive data removal is incompatible with --source and --target"
 msgstr ""
+"Error: la eliminación de datos sensibles es incompatible con --source y --"
+"target"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3399
 msgid ""
 "Note: when cloning local repositories, you need to pass\n"
 "      --no-local to git clone to avoid this issue.\n"
 msgstr ""
+"Nota: al clonar repositorios locales, debe pasar\n"
+"      --no-local a git clone para evitar este problema.\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3402
 #, python-format
@@ -4910,14 +5513,20 @@ msgid ""
 "%sPlease operate on a fresh clone instead.  If you want to proceed\n"
 "anyway, use --force."
 msgstr ""
+"Abortando: Se rechaza sobrescribir destructivamente el historial del "
+"repositorio ya que\n"
+"esto no parece un clon nuevo.\n"
+"  (%s)\n"
+"%sPor favor, opere sobre un clon nuevo. Si desea continuar\n"
+"de todos modos, use --force."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3412
 msgid "GIT_DIR must be ."
-msgstr ""
+msgstr "GIT_DIR debe ser ."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3414
 msgid "GIT_DIR must be .git"
-msgstr ""
+msgstr "GIT_DIR debe ser .git"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3427
 #, python-format
@@ -4926,6 +5535,10 @@ msgid ""
 "filesystem since you have refs that differ in case only:\n"
 "%s"
 msgstr ""
+"Abortando: No se puede reescribir el historial en un sistema de archivos "
+"insensible a mayúsculas\n"
+"y minúsculas ya que tiene referencias que difieren solo en mayúsculas:\n"
+"%s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3442
 #, python-format
@@ -4934,84 +5547,89 @@ msgid ""
 "filesystem since you have refs that differ in normalization:\n"
 "%s"
 msgstr ""
+"Abortando: No se puede reescribir el historial en un sistema de archivos que "
+"normaliza caracteres\n"
+"ya que tiene referencias que difieren en la normalización:\n"
+"%s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3459
 msgid "expected freshly packed repo"
-msgstr ""
+msgstr "se esperaba un repositorio recién empaquetado"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3465
 msgid "expected one remote, origin"
-msgstr ""
+msgstr "se esperaba un remoto, origin"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3475
 #, python-format
 msgid "expected at most one entry in the reflog for %s"
-msgstr ""
+msgstr "se esperaba como máximo una entrada en el reflog para %s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3480
 msgid "has stashed changes"
-msgstr ""
+msgstr "tiene cambios guardados"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3486
 msgid "you have uncommitted changes"
-msgstr ""
+msgstr "tiene cambios sin confirmar"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3488
 msgid "you have unstaged changes"
-msgstr ""
+msgstr "tiene cambios no preparados"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3498
 msgid "you have untracked changes"
-msgstr ""
+msgstr "tiene cambios no rastreados"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3506
 #, python-format
 msgid "%s exists, but %s not found"
-msgstr ""
+msgstr "%s existe, pero %s no se encontró"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3509
 #, python-format
 msgid "%s does not match %s"
-msgstr ""
+msgstr "%s no coincide con %s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3515
 msgid "you have multiple worktrees"
-msgstr ""
+msgstr "tiene múltiples worktrees"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3526
 msgid "Repacking your repo and cleaning out old unneeded objects"
 msgstr ""
+"Reempaquetando su repositorio y limpiando objetos antiguos no necesarios"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3925
 msgid "File renaming caused colliding pathnames!\n"
-msgstr ""
+msgstr "¡El cambio de nombre de archivo causó rutas de acceso en conflicto!\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3926
 msgid "  Commit: {}\n"
-msgstr ""
+msgstr "  Commit: {}\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:3927
 msgid "  Filename: {}"
-msgstr ""
+msgstr "  Nombre de archivo: {}"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4219
 #, python-format
 msgid "Failed loading %s from %s"
-msgstr ""
+msgstr "Error al cargar %s desde %s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4244
 #, python-format
 msgid "Failed to find %s to save to %s"
-msgstr ""
+msgstr "No se pudo encontrar %s para guardar en %s"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4312
 msgid "Rewrote the stash."
-msgstr ""
+msgstr "Se reescribió el stash."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4415
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4530
 msgid "git update-ref failed; see above"
-msgstr ""
+msgstr "git update-ref falló; vea arriba"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4445
 msgid ""
@@ -5019,10 +5637,15 @@ msgid ""
 "        all history that may reference the sensitive data, via\n"
 "      "
 msgstr ""
+"AVISO: Obteniendo todas las referencias de origin para asegurarnos de "
+"reescribir\n"
+"        todo el historial que pueda hacer referencia a los datos sensibles, a "
+"través de\n"
+"      "
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4452
 msgid "WARNING: Fetching all refs from origin failed"
-msgstr ""
+msgstr "ADVERTENCIA: Falló la obtención de todas las referencias de origin"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4459
 #, python-format
@@ -5031,20 +5654,24 @@ msgid ""
 "        in the manual if you want to push back there.\n"
 "        (was %s)"
 msgstr ""
+"AVISO: Eliminando el remoto 'origin'; consulte '¿Por qué se eliminó mi "
+"origin?'\n"
+"        en el manual si desea volver a hacer push allí.\n"
+"        (era %s)"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4783
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4789
 msgid "old"
-msgstr ""
+msgstr "antiguo"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4783
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4789
 msgid "new"
-msgstr ""
+msgstr "nuevo"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4789
 msgid "ref"
-msgstr ""
+msgstr "ref"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4809
 msgid ""
@@ -5058,6 +5685,16 @@ msgid ""
 "          left, commit hash after filtering/rewriting on the right:\n"
 "          "
 msgstr ""
+"\n"
+"          Los siguientes commits solían ser commits de fusión pero debido al "
+"filtrado\n"
+"          ahora son commits regulares; probablemente tienen mensajes de "
+"commit subóptimos\n"
+"          (por ejemplo, \"Merge branch next into master\").  Hash del commit "
+"original a la\n"
+"          izquierda, hash del commit después del filtrado/re-escritura a la "
+"derecha:\n"
+"          "
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4821
 msgid ""
@@ -5068,10 +5705,18 @@ msgid ""
 "          (or a substring thereof) was left as-is in any commit messages:\n"
 "          "
 msgstr ""
+"\n"
+"          Los siguientes commits fueron filtrados, pero referenciados en "
+"otro\n"
+"          mensaje de commit. La referencia al hash de commit ahora "
+"inexistente\n"
+"          (o una subcadena del mismo) se dejó tal cual en cualquier mensaje "
+"de commit:\n"
+"          "
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4831
 msgid "No filtering problems encountered.\n"
-msgstr ""
+msgstr "No se encontraron problemas de filtrado.\n"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4834
 msgid ""
@@ -5079,31 +5724,34 @@ msgid ""
 "and to specify that metadata files should be updated instead\n"
 "of rewritten"
 msgstr ""
+"Este archivo existe para permitirte filtrar de nuevo sin --force,\n"
+"y para especificar que los archivos de metadatos deben ser actualizados en "
+"lugar de reescritos"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4898
 msgid "Error: fast-export failed; see above."
-msgstr ""
+msgstr "Error: fast-export falló; ver arriba."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4908
 msgid "Error: fast-import failed; see above."
-msgstr ""
+msgstr "Error: fast-import falló; ver arriba."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4922
 msgid "NOTE: Not running fast-import or cleaning up; --dry-run passed."
-msgstr ""
+msgstr "NOTA: No se ejecuta fast-import ni se limpia; se pasó --dry-run."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4924
 msgid "      Requested filtering can be seen by comparing:"
-msgstr ""
+msgstr "      El filtrado solicitado puede verse comparando:"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4927
 msgid "      Requested filtering can be seen at:"
-msgstr ""
+msgstr "      El filtrado solicitado puede verse en:"
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4947
 msgid "Completely finished after {:.2f} seconds."
-msgstr ""
+msgstr "Completamente terminado después de {:.2f} segundos."
 
 #: venv/lib/python3.13/site-packages/git_filter_repo.py:4955
 msgid " and LFS Objects Orphaned"
-msgstr ""
+msgstr " y Objetos LFS Huérfanos"
