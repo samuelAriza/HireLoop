@@ -26,20 +26,18 @@ RUN pip install --upgrade pip && \
 # Copia código fuente
 COPY . .
 
-# Da permisos al entrypoint
-RUN chmod +x /entrypoint.sh
+# Da permisos al entrypoint (está en /app/entrypoint.sh)
+RUN chmod +x entrypoint.sh
 
 # Crea directorio para static files
-RUN mkdir -p /app/staticfiles
+RUN mkdir -p staticfiles
 
 # === collectstatic EN BUILD TIME ===
-# Nota: Esto requiere que settings.py no dependa de variables de entorno
-# críticas para collectstatic (como SECRET_KEY debe tener default)
 RUN python manage.py collectstatic --noinput --clear || \
     echo "⚠️  collectstatic falló - puede que necesite variables de entorno"
 
 # Puerto
 EXPOSE 8000
 
-# Entrypoint: espera DB real + inicia Gunicorn
-ENTRYPOINT ["/entrypoint.sh"]
+# Entrypoint (ruta relativa al WORKDIR /app)
+ENTRYPOINT ["./entrypoint.sh"]
