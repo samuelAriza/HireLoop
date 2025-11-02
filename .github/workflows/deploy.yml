@@ -131,10 +131,10 @@ jobs:
                     
                     echo "✅ Migrations completed successfully"
                     
-                    # Matar el proxy para que el Job termine
+                    # Detener el Cloud SQL Proxy para que el Job termine
                     echo "=== Stopping Cloud SQL Proxy ==="
-                    killall cloud-sql-proxy 2>/dev/null || killall -9 cloud-sql-proxy 2>/dev/null || true
-                    sleep 2
+                    curl -X POST http://localhost:9090/quitquitquit || true
+                    sleep 5
                   resources:
                     requests:
                       cpu: "100m"
@@ -145,7 +145,7 @@ jobs:
                   lifecycle:
                     preStop:
                       exec:
-                        command: ["/bin/sh", "-c", "killall cloud-sql-proxy 2>/dev/null || true"]
+                        command: ["/bin/sh", "-c", "sleep 1"]
                 
                 # ============ CLOUD SQL PROXY SIDECAR ============
                 - name: cloud-sql-proxy
@@ -153,18 +153,22 @@ jobs:
                   args:
                   - "--address=0.0.0.0"
                   - "--port=5432"
+                  - "--http-address=0.0.0.0"
+                  - "--http-port=9090"
+                  - "--quitquitquit"
                   - "--structured-logs"
                   - "--credentials-file=/secrets/credentials.json"
                   - "hireloop-476222:us-central1:hireloop-db"
+                  ports:
+                  - name: health
+                    containerPort: 9090
+                    protocol: TCP
                   volumeMounts:
                   - name: cloudsql-credentials
                     mountPath: /secrets
                     readOnly: true
                   securityContext:
                     runAsNonRoot: true
-                    capabilities:
-                      add:
-                      - KILL
                   resources:
                     requests:
                       memory: "128Mi"
