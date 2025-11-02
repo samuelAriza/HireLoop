@@ -11,7 +11,7 @@ class MicroserviceImageService:
     def upload_microservice_image(
         self, microservice_id: uuid.UUID, image_file: UploadedFile
     ) -> str:
-        """Upload microservice image and return path."""
+        """Upload microservice image and return filename only."""
         file_extension = image_file.name.split(".")[-1]
         filename = f"microservice_{microservice_id}_{uuid.uuid4().hex}.{file_extension}"
         path = f"microservices/{filename}"
@@ -19,7 +19,9 @@ class MicroserviceImageService:
         if not self._is_valid_image(image_file):
             raise ValueError("Invalid image file")
 
-        return self._storage.save(image_file, path)
+        # Storage saves with full path, but return only filename for ImageField
+        self._storage.save(image_file, path)
+        return filename
 
     def delete_microservice_image(self, image_path: str) -> None:
         if not image_path:

@@ -109,8 +109,9 @@ class ProjectCreateView(ProfileRequiredMixin, CreateView):
 
         image_file = self.request.FILES.get("image")
         if image_file:
-            path = self.image_service.upload_project_image(self.object.id, image_file)
-            self.object.image_path = path
+            filename = self.image_service.upload_project_image(self.object.id, image_file)
+            # Assign only filename - field's upload_to handles the directory
+            self.object.image_path = filename
             self.object.save()
 
         return redirect(
@@ -141,8 +142,9 @@ class ProjectUpdateView(ProfileRequiredMixin, UpdateView):
             if project.image_path:
                 self.image_service.delete_project_image(project.image_path)
 
-            path = self.image_service.upload_project_image(project.id, image_file)
-            project.image_path = path
+            filename = self.image_service.upload_project_image(project.id, image_file)
+            # Assign only filename - field's upload_to handles the directory
+            project.image_path = filename
 
         project.save()
         return redirect(reverse("projects:projects_list"))

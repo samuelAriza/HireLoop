@@ -143,10 +143,11 @@ class MicroServiceCreateView(ProfileRequiredMixin, CreateView):
 
         image_file = self.request.FILES.get("image")
         if image_file:
-            image_path = self.image_service.upload_microservice_image(
+            filename = self.image_service.upload_microservice_image(
                 microservice_id=self.object.id, image_file=image_file
             )
-            self.object.image_path = image_path
+            # Assign only filename - field's upload_to handles the directory
+            self.object.image_path = filename
             self.object.save()
 
         return redirect(
@@ -182,10 +183,11 @@ class MicroServiceUpdateView(ProfileRequiredMixin, UpdateView):
             if microservice.image_path:
                 self.image_service.delete_microservice_image(microservice.image_path)
 
-            image_path = self.image_service.upload_microservice_image(
+            filename = self.image_service.upload_microservice_image(
                 microservice.id, image_file
             )
-            microservice.image_path = image_path
+            # Assign only filename - field's upload_to handles the directory
+            microservice.image_path = filename
             microservice.save()
 
         return redirect(

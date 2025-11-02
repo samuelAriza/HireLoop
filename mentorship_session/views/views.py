@@ -154,10 +154,11 @@ class MentorshipSessionCreateView(ProfileRequiredMixin, CreateView):
 
         image_file = self.request.FILES.get("image")
         if image_file:
-            path = self.img_service.upload_mentorship_image(
+            filename = self.img_service.upload_mentorship_image(
                 mentorship_id=session.id, image_file=image_file
             )
-            self.object.image_path = path
+            # Assign only filename - field's upload_to handles the directory
+            self.object.image_path = filename
             self.object.save()
 
         return redirect(
@@ -194,10 +195,11 @@ class MentorshipSessionUpdateView(ProfileRequiredMixin, UpdateView):
             if session.image_path:
                 self.img_service.delete_mentorship_image(session.image_path)
 
-            path = self.img_service.upload_mentorship_image(
+            filename = self.img_service.upload_mentorship_image(
                 mentorship_id=session.id, image_file=image_file
             )
-            session.image_path = path
+            # Assign only filename - field's upload_to handles the directory
+            session.image_path = filename
 
         session.save()
         return redirect(

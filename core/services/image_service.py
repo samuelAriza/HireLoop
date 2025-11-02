@@ -23,10 +23,13 @@ class BaseImageService:
         if not self._is_valid_image(image_file):
             raise ValueError("Invalid image file")
 
-        # Save image
-        saved_path = self._storage.save(image_file, path)
-        print("Saved path:", saved_path)
-        return saved_path
+        # Save image - storage returns the full path
+        full_path = self._storage.save(image_file, path)
+        print(f"Storage saved to: {full_path}")
+        
+        # Return only the filename for ImageField compatibility
+        # ImageField will automatically prepend upload_to directory
+        return filename
 
     def delete_image(self, image_path: str) -> bool:
         """Delete image."""

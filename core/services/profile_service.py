@@ -97,14 +97,13 @@ class ProfileService:
             if user.profile_image:
                 self._image_service.delete_profile_image(user.profile_image.name)
 
-            # Upload new image
+            # Upload new image - returns only filename
             if image_file:
-                saved_path = self._image_service.upload_profile_image(
+                filename = self._image_service.upload_profile_image(
                     user.id, image_file
                 )
-                # Django's ImageField expects just the filename, not the full path
-                # The upload_to is automatically prepended
-                user.profile_image.name = saved_path
+                # Assign only the filename - ImageField will handle the upload_to path
+                user.profile_image.name = filename
             else:
                 user.profile_image = None
 

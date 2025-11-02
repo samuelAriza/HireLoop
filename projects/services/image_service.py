@@ -16,7 +16,9 @@ class ProjectImageService:
         path = f"projects/{filename}"
         if not self._is_valid_image(image_file):
             raise ValueError("Invalid image file")
-        return self._storage.save(image_file, path)
+        # Storage saves with full path, but return only filename for ImageField
+        self._storage.save(image_file, path)
+        return filename
 
     def delete_project_image(self, image_path: str) -> None:
         if image_path:
