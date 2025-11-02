@@ -50,7 +50,8 @@ urlpatterns = [
     path("django_plotly_dash/", include("django_plotly_dash.urls")),
     path("api/", include("microservices.api.urls")),
 
-    path("health/", root_health_check, name="root_health_check"),
+    path("health/", health_check, name="root_health_check"),
+    path("ready/", readiness_check, name="root_readiness_check"),
 ]
 
 if settings.DEBUG:
