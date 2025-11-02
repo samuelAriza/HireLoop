@@ -3,11 +3,36 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.http import JsonResponse
-from django.views.decorators.cache import never_cache
+from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse, JsonResponse
+from django.db import connection
+from django.views.decorators.http import require_http_methods
 
-@never_cache
-def root_health_check(request):
-    return JsonResponse({"status": "ok"}, status=200)
+@csrf_exempt
+@require_http_methods(["GET"])
+def health_check(request):
+    """
+    Simple health check endpoint for Kubernetes liveness/readiness probes.
+    Returns 200 if the application is healthy.
+    
+    Este endpoint no valida ALLOWED_HOSTS para permitir health checks internos.
+    """
+    try:
+        # Verifica conexión a la base de datos
+        connection.ensure_connection()
+        
+        # Retorna texto plano para evitar procesamiento JSON innecesario
+        return HttpResponse("OK", status=200, content_type="text/plain")
+    except Exception as e:
+        return HttpResponse(f"ERROR: {str(e)}", status=503, content_type="text/plain")
+
+@require_http_methods(["GET"])
+def readiness_check(request):
+    """
+    Readiness check - más ligero que health check.
+    Solo verifica que el servidor esté respondiendo.
+    """
+    return HttpResponse("READY", status=200, content_type="text/plain")
 
 
 urlpatterns = [

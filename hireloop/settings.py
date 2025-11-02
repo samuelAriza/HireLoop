@@ -25,10 +25,20 @@ SECRET_KEY = os.getenv(
 DEBUG = os.getenv("DEBUG", "True") == "True"
 
 # Allowed hosts from environment
-ALLOWED_HOSTS = os.getenv(
+ALLOWED_HOSTS_ENV = os.getenv(
     "ALLOWED_HOSTS",
     "hireloop.software,www.hireloop.software,localhost,127.0.0.1"
-).split(",")
+)
+ALLOWED_HOSTS = ALLOWED_HOSTS_ENV.split(",")
+
+# Configuración para aceptar health checks de Kubernetes
+# Permitir cualquier host interno de Kubernetes (10.x.x.x)
+if not DEBUG:
+    # En producción, permite IPs internas de pods
+    ALLOWED_HOSTS.append('.cluster.local')
+    ALLOWED_HOSTS.append('*')  # Temporal para debugging
+else:
+    ALLOWED_HOSTS.append('*')
 
 CSRF_TRUSTED_ORIGINS = os.getenv(
     "CSRF_TRUSTED_ORIGINS",
@@ -125,8 +135,9 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    "core.middleware.HealthCheckMiddleware",  # PRIMERO - permite health checks
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # Moved up for better performance
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
