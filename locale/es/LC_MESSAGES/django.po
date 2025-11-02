@@ -1,0 +1,5109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-01 21:21-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? "
+"1 : 2;\n"
+
+#: cart/models.py:13 cart/models.py:44
+msgid "user"
+msgstr "usuario"
+
+#: cart/models.py:15 cart/models.py:46
+msgid "content type"
+msgstr "tipo de contenido"
+
+#: cart/models.py:16 cart/models.py:47
+msgid "object id"
+msgstr "id de objeto"
+
+#: cart/models.py:18
+msgid "quantity"
+msgstr "cantidad"
+
+#: cart/models.py:19 cart/models.py:49
+msgid "added at"
+msgstr "añadido el"
+
+#: cart/models.py:23
+msgid "Cart Item"
+msgstr "Artículo del Carrito"
+
+#: cart/models.py:24
+msgid "Cart Items"
+msgstr "Artículos del Carrito"
+
+#: cart/models.py:27
+#, python-format
+msgid "%(content_object)s (x%(quantity)d)"
+msgstr ""
+
+#: cart/models.py:35
+msgid "items quantity"
+msgstr "cantidad de artículos"
+
+#: cart/models.py:53
+msgid "Wishlist Item"
+msgstr "Artículo de la Lista de Deseos"
+
+#: cart/models.py:54
+msgid "Wishlist Items"
+msgstr "Artículos de la Lista de Deseos"
+
+#: cart/models.py:57
+#, python-format
+msgid "%(content_object)s"
+msgstr ""
+
+#: cart/templates/cart/cart_list.html:5
+msgid "Cart - HireLoop"
+msgstr "Carrito - HireLoop"
+
+#: cart/templates/cart/cart_list.html:9
+msgid "Shopping Cart"
+msgstr "Carrito de Compras"
+
+#: cart/templates/cart/cart_list.html:22
+msgid "Graduation Cap Icon"
+msgstr "Ícono de Birrete"
+
+#: cart/templates/cart/cart_list.html:24
+msgid "Briefcase Icon"
+msgstr "Ícono de Maletín"
+
+#: cart/templates/cart/cart_list.html:47
+msgid "Clock Icon"
+msgstr "Ícono de Reloj"
+
+#: cart/templates/cart/cart_list.html:49
+#, python-format
+msgid ""
+"%(duration)s\n"
+"                                minute%(duration|pluralize)s"
+msgstr ""
+
+#: cart/templates/cart/cart_list.html:52
+#, python-format
+msgid ""
+"%(delivery)s day{{\n"
+"                                delivery|pluralize }}"
+msgstr ""
+
+#: cart/templates/cart/cart_list.html:63
+msgid "Are you sure you want to remove this item from the cart?"
+msgstr ""
+
+#: cart/templates/cart/cart_list.html:66
+#: cart/templates/cart/wishlist_list.html:60
+msgid "Remove"
+msgstr "Eliminar"
+
+#: cart/templates/cart/cart_list.html:80
+msgid "Cart Summary"
+msgstr "Resumen del Carrito"
+
+#: cart/templates/cart/cart_list.html:83
+msgid "Items:"
+msgstr "Artículos:"
+
+#: cart/templates/cart/cart_list.html:87
+msgid "Total:"
+msgstr "Total:"
+
+#: cart/templates/cart/cart_list.html:95
+msgid "Credit Card Icon"
+msgstr "Ícono de Tarjeta de Crédito"
+
+#: cart/templates/cart/cart_list.html:95
+msgid "Proceed to Payment"
+msgstr "Proceder al Pago"
+
+#: cart/templates/cart/cart_list.html:106
+msgid "Cart pagination"
+msgstr "Paginación del carrito"
+
+#: cart/templates/cart/cart_list.html:112
+#: cart/templates/cart/wishlist_list.html:81
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:89
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:87
+#: microservices/templates/microservices/freelancer_microservices_list.html:87
+#: microservices/templates/microservices/microservices_list.html:77
+#: projects/templates/projects/client_projects_list.html:85
+#: projects/templates/projects/projects_list.html:84
+msgid "First"
+msgstr "Primera"
+
+#: cart/templates/cart/cart_list.html:113
+#: cart/templates/cart/wishlist_list.html:82
+msgid "First Page"
+msgstr "Primera Página"
+
+#: cart/templates/cart/cart_list.html:119
+#: cart/templates/cart/cart_list.html:120
+#: cart/templates/cart/wishlist_list.html:86
+#: cart/templates/cart/wishlist_list.html:87
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:94
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:92
+#: microservices/templates/microservices/freelancer_microservices_list.html:92
+#: microservices/templates/microservices/microservices_list.html:82
+#: projects/templates/projects/client_projects_list.html:90
+#: projects/templates/projects/projects_list.html:89
+msgid "Previous"
+msgstr "Anterior"
+
+#: cart/templates/cart/cart_list.html:142
+#: cart/templates/cart/cart_list.html:143
+#: cart/templates/cart/wishlist_list.html:106
+#: cart/templates/cart/wishlist_list.html:107
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:114
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:112
+#: microservices/templates/microservices/freelancer_microservices_list.html:112
+#: microservices/templates/microservices/microservices_list.html:102
+#: projects/templates/projects/client_projects_list.html:110
+#: projects/templates/projects/projects_list.html:109
+msgid "Next"
+msgstr "Siguiente"
+
+#: cart/templates/cart/cart_list.html:149
+#: cart/templates/cart/wishlist_list.html:111
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:119
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:117
+#: microservices/templates/microservices/freelancer_microservices_list.html:117
+#: microservices/templates/microservices/microservices_list.html:107
+#: projects/templates/projects/client_projects_list.html:115
+#: projects/templates/projects/projects_list.html:114
+msgid "Last"
+msgstr "Última"
+
+#: cart/templates/cart/cart_list.html:150
+#: cart/templates/cart/wishlist_list.html:112
+msgid "Last Page"
+msgstr "Última Página"
+
+#: cart/templates/cart/cart_list.html:156
+#, python-format
+msgid ""
+"Page {{\n"
+"            current_page }} of %(total_pages)s"
+msgstr ""
+
+#: cart/templates/cart/cart_list.html:165
+msgid "Your cart is empty"
+msgstr "Tu carrito está vacío"
+
+#: cart/templates/cart/cart_list.html:166
+msgid "Explore our services and add some to your cart"
+msgstr "Explora nuestros servicios y añade algunos a tu carrito"
+
+#: cart/templates/cart/cart_list.html:168
+msgid "Search Icon"
+msgstr "Ícono de Búsqueda"
+
+#: cart/templates/cart/cart_list.html:168
+#: cart/templates/cart/wishlist_list.html:129
+msgid "Explore Services"
+msgstr "Explorar Servicios"
+
+#: cart/templates/cart/wishlist_list.html:5
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:60
+#: templates/base.html:90
+msgid "Wishlist"
+msgstr "Lista de Deseos"
+
+#: cart/templates/cart/wishlist_list.html:11
+msgid "My Wishlist"
+msgstr "Mi Lista de Deseos"
+
+#: cart/templates/cart/wishlist_list.html:33
+#, python-format
+msgid "%(duration)s minute%(duration|pluralize)s"
+msgstr ""
+
+#: cart/templates/cart/wishlist_list.html:35
+#, python-format
+msgid "%(delivery)s day%(delivery|pluralize)s"
+msgstr ""
+
+#: cart/templates/cart/wishlist_list.html:44
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:35
+#: microservices/templates/microservices/microservices_list.html:46
+#: projects/templates/projects/projects_list.html:47
+msgid "View Details"
+msgstr "Ver Detalles"
+
+#: cart/templates/cart/wishlist_list.html:53
+#: microservices/templates/microservices/microservice_detail.html:85
+msgid "Add to Cart"
+msgstr "Añadir al Carrito"
+
+#: cart/templates/cart/wishlist_list.html:65
+msgid "ID not available"
+msgstr "ID no disponible"
+
+#: cart/templates/cart/wishlist_list.html:77
+msgid "Wishlist pagination"
+msgstr "Paginación de la lista de deseos"
+
+#: cart/templates/cart/wishlist_list.html:118
+#, python-format
+msgid "Page %(current_page)s of %(total_pages)s"
+msgstr ""
+
+#: cart/templates/cart/wishlist_list.html:126
+msgid "Your wishlist is empty"
+msgstr "Tu lista de deseos está vacía"
+
+#: cart/templates/cart/wishlist_list.html:127
+msgid "Add services to your wishlist to find them easily later!"
+msgstr "¡Añade servicios a tu lista de deseos para encontrarlos fácilmente después!"
+
+#: core/forms/auth_forms.py:15 core/forms/auth_forms.py:17
+#: core/forms/auth_forms.py:44 core/forms/auth_forms.py:46
+msgid "Username"
+msgstr "Nombre de usuario"
+
+#: core/forms/auth_forms.py:22
+msgid "your@email.com"
+msgstr "tu@email.com"
+
+#: core/forms/auth_forms.py:24
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: core/forms/auth_forms.py:31 core/forms/auth_forms.py:50
+#: core/forms/auth_forms.py:52
+msgid "Password"
+msgstr "Contraseña"
+
+#: core/forms/auth_forms.py:32
+msgid "Password confirmation"
+msgstr "Confirmación de contraseña"
+
+#: core/forms/auth_forms.py:36
+msgid ""
+"Enter a password with at least 8 characters, including letters and numbers."
+msgstr ""
+
+#: core/forms/auth_forms.py:57
+#, python-format
+msgid ""
+"Please enter a correct %(username)s and password. Note that both fields may "
+"be case-sensitive."
+msgstr ""
+
+#: core/forms/auth_forms.py:60
+msgid "This account is inactive."
+msgstr "Esta cuenta está inactiva."
+
+#: core/forms/item_portfolio_forms.py:13
+msgid "https://example.com"
+msgstr "https://ejemplo.com"
+
+#: core/forms/item_portfolio_forms.py:16
+#: core/templates/core/multi_profile_detail.html:351
+#: microservices/forms/microservices_form.py:26 microservices/models.py:69
+msgid "Title"
+msgstr "Título"
+
+#: core/forms/item_portfolio_forms.py:17
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:32
+#: microservices/forms/microservices_form.py:27 microservices/models.py:73
+#: microservices/templates/microservices/create_microservice.html:64
+#: microservices/templates/microservices/microservice_detail.html:36
+#: projects/forms/projects_form.py:24 projects/forms/projects_form.py:54
+#: projects/templates/projects/project_detail.html:47
+#: projects/templates/projects/project_form.html:61
+msgid "Description"
+msgstr "Descripción"
+
+#: core/forms/item_portfolio_forms.py:18
+msgid "Demo URL"
+msgstr "URL de demostración"
+
+#: core/forms/item_portfolio_forms.py:19
+#: venv/lib/python3.13/site-packages/django/db/models/fields/files.py:420
+msgid "Image"
+msgstr "Imagen"
+
+#: core/forms/item_portfolio_forms.py:22
+msgid "Optional: Provide a link to a live demo or example of your work."
+msgstr "Opcional: Proporciona un enlace a una demostración en vivo o ejemplo de tu trabajo."
+
+#: core/forms/item_portfolio_forms.py:23
+msgid ""
+"Upload an image showcasing your work. Supported formats: JPEG, PNG, GIF, "
+"WebP."
+msgstr ""
+
+#: core/forms/item_portfolio_forms.py:42
+msgid "Update Image"
+msgstr "Actualizar Imagen"
+
+#: core/forms/item_portfolio_forms.py:45
+msgid ""
+"Choose a new image to replace the current one. Supported formats: JPEG, PNG, "
+"GIF, WebP."
+msgstr ""
+
+#: core/forms/profile_forms.py:13
+#: core/templates/core/multi_profile_detail.html:584
+#: core/templates/core/multi_profile_detail.html:626
+msgid "Company"
+msgstr "Empresa"
+
+#: core/forms/profile_forms.py:14
+#: core/templates/core/multi_profile_detail.html:592
+msgid "Billing Address"
+msgstr "Dirección de facturación"
+
+#: core/forms/profile_forms.py:15
+#: core/templates/core/multi_profile_detail.html:601
+#: core/templates/core/multi_profile_detail.html:635
+msgid "Billing Email"
+msgstr "Correo de facturación"
+
+#: core/forms/profile_forms.py:18
+msgid "Email used for invoices and payment notifications."
+msgstr "Correo utilizado para facturas y notificaciones de pago."
+
+#: core/forms/profile_forms.py:28
+msgid "Enter skills separated by commas (e.g., Python, Django, JavaScript)"
+msgstr "Ingresa habilidades separadas por comas (ej: Python, Django, JavaScript)"
+
+#: core/forms/profile_forms.py:32 core/models.py:50
+#: core/templates/core/multi_profile_detail.html:223
+#: core/templates/core/multi_profile_detail.html:260
+msgid "Skills"
+msgstr "Habilidades"
+
+#: core/forms/profile_forms.py:33
+msgid "Enter your skills separated by commas"
+msgstr "Ingresa tus habilidades separadas por comas"
+
+#: core/forms/profile_forms.py:44
+#: core/templates/core/multi_profile_detail.html:234
+#: core/templates/core/multi_profile_detail.html:275
+msgid "Bio"
+msgstr "Biografía"
+
+#: core/forms/profile_forms.py:47
+msgid "Tell us about yourself, your experience, and what you specialize in."
+msgstr "Cuéntanos sobre ti, tu experiencia y en qué te especializas."
+
+#: core/forms/profile_forms.py:66
+msgid "Profile Image"
+msgstr "Imagen de Perfil"
+
+#: core/forms/profile_forms.py:69
+msgid ""
+"Upload a profile picture. Max size: 5MB. Supported formats: JPG, PNG, GIF, "
+"WebP."
+msgstr ""
+
+#: core/forms/profile_forms.py:77
+msgid "Image size must be less than 5MB"
+msgstr "El tamaño de la imagen debe ser menor a 5MB"
+
+#: core/forms/profile_forms.py:81
+msgid "File must be an image"
+msgstr "El archivo debe ser una imagen"
+
+#: core/mixins/search.py:47 core/templates/core/partials/search.html:7
+#: core/templates/core/partials/search.html:37
+msgid "Search"
+msgstr "Buscar"
+
+#: core/mixins/search.py:48 core/templates/core/partials/search.html:14
+#: microservices/forms/microservices_form.py:25 microservices/models.py:34
+#: microservices/models.py:64
+#: microservices/templates/microservices/create_microservice.html:49
+msgid "Category"
+msgstr "Categoría"
+
+#: core/mixins/search.py:49
+msgid "Min Price"
+msgstr "Precio Mínimo"
+
+#: core/mixins/search.py:50
+msgid "Max Price"
+msgstr "Precio Máximo"
+
+#: core/mixins/views.py:19
+#, python-format
+msgid "You need a %(profile)s profile to access this page."
+msgstr ""
+
+#: core/models.py:9
+msgid "email address"
+msgstr "dirección de correo electrónico"
+
+#: core/models.py:14
+msgid "Upload a profile image"
+msgstr "Sube una imagen de perfil"
+
+#: core/models.py:26 core/services/action_handlers.py:88
+#: core/services/action_handlers_new.py:89
+#: core/templates/core/multi_profile_detail.html:155 microservices/models.py:57
+#: projects/forms/projects_form.py:75
+#: projects/templates/projects/assignment_form.html:36
+msgid "Freelancer"
+msgstr "Freelancer"
+
+#: core/models.py:28 core/services/action_handlers.py:91
+#: core/services/action_handlers_new.py:92
+#: core/templates/core/multi_profile_detail.html:177
+msgid "Client"
+msgstr "Cliente"
+
+#: core/models.py:49
+msgid "Enter skills separated by commas"
+msgstr ""
+
+#: core/models.py:85
+msgid "Link to the portfolio item"
+msgstr "Enlace al elemento del portafolio"
+
+#: core/models.py:91
+msgid "Upload a portfolio item image"
+msgstr "Sube una imagen del elemento del portafolio"
+
+#: core/models.py:98
+msgid "Portfolio Item"
+msgstr "Elemento del Portafolio"
+
+#: core/models.py:99 core/templates/core/multi_profile_detail.html:298
+msgid "Portfolio Items"
+msgstr "Elementos del Portafolio"
+
+#: core/services/action_dispatcher.py:55
+#, python-format
+msgid "Unknown action: %(action)s"
+msgstr ""
+
+#: core/services/action_handlers.py:43 core/services/action_handlers_new.py:44
+msgid "Profile image updated successfully!"
+msgstr "¡Imagen de perfil actualizada correctamente!"
+
+#: core/services/action_handlers.py:45 core/services/action_handlers_new.py:46
+msgid "Failed to update profile image."
+msgstr "Error al actualizar la imagen de perfil."
+
+#: core/services/action_handlers.py:67 core/services/action_handlers_new.py:68
+msgid "Profile image deleted successfully!"
+msgstr "¡Imagen de perfil eliminada correctamente!"
+
+#: core/services/action_handlers.py:69 core/services/action_handlers_new.py:70
+msgid "Failed to delete profile image."
+msgstr "Error al eliminar la imagen de perfil."
+
+#: core/services/action_handlers.py:93 core/services/action_handlers_new.py:94
+msgid "Invalid profile type for deletion."
+msgstr "Tipo de perfil inválido para eliminación."
+
+#: core/services/action_handlers.py:99 core/services/action_handlers_new.py:98
+#, python-format
+msgid "%(profile)s profile deleted successfully!"
+msgstr ""
+
+#: core/services/action_handlers.py:104
+#: core/services/action_handlers_new.py:101
+#, python-format
+msgid "%(profile)s profile not found or could not be deleted."
+msgstr ""
+
+#: core/services/action_handlers.py:125
+#: core/services/action_handlers_new.py:122
+msgid "Invalid profile type."
+msgstr "Tipo de perfil inválido."
+
+#: core/services/action_handlers.py:144
+#: core/services/action_handlers_new.py:139
+#, python-format
+msgid "%(profile_type)s profile not found."
+msgstr ""
+
+#: core/services/action_handlers.py:158
+#: core/services/action_handlers_new.py:151
+#, python-format
+msgid "%(profile_type)s profile updated successfully!"
+msgstr ""
+
+#: core/services/action_handlers.py:163
+#: core/services/action_handlers_new.py:154
+#, python-format
+msgid "Failed to update %(profile_type)s profile."
+msgstr ""
+
+#: core/services/action_handlers.py:166
+#: core/services/action_handlers_new.py:156
+#, python-format
+msgid "Error updating profile: %(error)s"
+msgstr ""
+
+#: core/services/action_handlers.py:168
+#: core/services/action_handlers_new.py:158
+msgid "Please correct the errors in the form."
+msgstr ""
+
+#: core/services/action_handlers.py:188 core/services/action_handlers.py:247
+#: core/services/action_handlers_new.py:179
+#: core/services/action_handlers_new.py:240
+msgid "Portfolio ID not provided."
+msgstr "ID del portafolio no proporcionado."
+
+#: core/services/action_handlers.py:196 core/services/action_handlers.py:255
+#: core/services/action_handlers_new.py:189
+#: core/services/action_handlers_new.py:250
+msgid "Portfolio item not found."
+msgstr "Elemento del portafolio no encontrado."
+
+#: core/services/action_handlers.py:206
+#: core/services/action_handlers_new.py:195
+msgid "You do not have permission to edit this portfolio item."
+msgstr "No tienes permiso para editar este elemento del portafolio."
+
+#: core/services/action_handlers.py:225
+#: core/services/action_handlers_new.py:216
+msgid "Portfolio item updated successfully!"
+msgstr "¡Elemento del portafolio actualizado correctamente!"
+
+#: core/services/action_handlers.py:227
+#: core/services/action_handlers_new.py:218
+msgid "Failed to update portfolio item."
+msgstr "Error al actualizar el elemento del portafolio."
+
+#: core/services/action_handlers.py:230
+#: core/services/action_handlers_new.py:222
+#, python-format
+msgid "Error updating portfolio item: %(error)s"
+msgstr ""
+
+#: core/services/action_handlers.py:265
+#: core/services/action_handlers_new.py:256
+msgid "You do not have permission to delete this portfolio item."
+msgstr "No tienes permiso para eliminar este elemento del portafolio."
+
+#: core/services/action_handlers.py:277
+#: core/services/action_handlers_new.py:268
+#, python-format
+msgid "Portfolio \"%(title)s\" deleted successfully!"
+msgstr ""
+
+#: core/services/action_handlers.py:280
+#: core/services/action_handlers_new.py:271
+msgid "Failed to delete portfolio item."
+msgstr "Error al eliminar el elemento del portafolio."
+
+#: core/services/action_handlers.py:283
+#: core/services/action_handlers_new.py:275
+#, python-format
+msgid "Error deleting portfolio item: %(error)s"
+msgstr ""
+
+#: core/services/image_service.py:25
+#: mentorship_session/services/image_service.py:20
+msgid "Invalid image file"
+msgstr "Archivo de imagen inválido"
+
+#: core/services/image_service.py:62
+msgid "Subclasses must implement get_upload_directory"
+msgstr "Las subclases deben implementar get_upload_directory"
+
+#: core/services/image_service.py:66
+msgid "Subclasses must implement _get_default_image_url"
+msgstr "Las subclases deben implementar _get_default_image_url"
+
+#: core/services/portfolio_service.py:54
+#, python-format
+msgid "Failed to upload image: %(error)s"
+msgstr ""
+
+#: core/services/profile_context_provider.py:64
+#, python-format
+msgid "Error getting public portfolio items: %(error)s"
+msgstr ""
+
+#: core/services/profile_context_provider.py:111
+#, python-format
+msgid "Error getting portfolios: %(error)s"
+msgstr ""
+
+#: core/services/profile_service.py:73
+#, python-format
+msgid "Error deleting freelancer profile: %(error)s"
+msgstr ""
+
+#: core/services/profile_service.py:84
+#, python-format
+msgid "Error deleting client profile: %(error)s"
+msgstr ""
+
+#: core/services/profile_service.py:115
+#, python-format
+msgid "Error updating profile image: %(error)s"
+msgstr ""
+
+#: core/services/profile_service.py:133
+#, python-format
+msgid "Error deleting profile image: %(error)s"
+msgstr ""
+
+#: core/templates/core/create_portfolio.html:8
+#: core/templates/core/create_profile.html:8
+#: core/templates/core/multi_profile_detail.html:37
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:8
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:10
+#: microservices/templates/microservices/create_microservice.html:8
+#: microservices/templates/microservices/freelancer_microservices_list.html:10
+msgid "breadcrumb"
+msgstr "miga de pan"
+
+#: core/templates/core/create_portfolio.html:10
+#: core/templates/core/create_profile.html:10
+#: core/templates/core/multi_profile_detail.html:39
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:10
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:12
+#: microservices/templates/microservices/create_microservice.html:10
+#: microservices/templates/microservices/freelancer_microservices_list.html:12
+#: projects/templates/projects/application_form.html:10
+#: projects/templates/projects/assignment_form.html:10
+#: projects/templates/projects/client_projects_list.html:12
+#: projects/templates/projects/project_form.html:10
+msgid "Home"
+msgstr "Inicio"
+
+#: core/templates/core/create_portfolio.html:11
+#: core/templates/core/create_profile.html:11
+#: microservices/templates/microservices/freelancer_microservices_list.html:13
+#: projects/templates/projects/client_projects_list.html:13
+msgid "My Profile"
+msgstr "Mi Perfil"
+
+#: core/templates/core/create_portfolio.html:13
+#: core/templates/core/create_portfolio.html:24
+#: core/templates/core/create_portfolio.html:56
+msgid "Create Portfolio Item"
+msgstr "Crear Elemento del Portafolio"
+
+#: core/templates/core/create_portfolio.html:53
+#: core/templates/core/create_profile.html:54
+#: core/templates/core/multi_profile_detail.html:111
+#: core/templates/core/multi_profile_detail.html:245
+#: core/templates/core/multi_profile_detail.html:392
+#: core/templates/core/multi_profile_detail.html:611
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:107
+#: mentorship_session/templates/mentorship_session/mentorship_session_confirm_delete.html:11
+#: microservices/templates/microservices/create_microservice.html:144
+#: microservices/templates/microservices/microservice_confirm_delete.html:11
+#: projects/templates/projects/application_form.html:62
+#: projects/templates/projects/assignment_form.html:94
+#: projects/templates/projects/project_confirm_delete.html:11
+#: projects/templates/projects/project_form.html:103
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: core/templates/core/create_profile.html:13
+#, python-format
+msgid ""
+"\n"
+"                    Create %(profile_type)s Profile\n"
+"                    "
+msgstr ""
+
+#: core/templates/core/create_profile.html:26
+#, python-format
+msgid ""
+"\n"
+"                            Create %(profile_type)s Profile\n"
+"                            "
+msgstr ""
+
+#: core/templates/core/create_profile.html:57
+msgid "Create Profile"
+msgstr "Crear Perfil"
+
+#: core/templates/core/login.html:13 core/templates/core/register.html:87
+#: templates/base.html:98
+msgid "Log In"
+msgstr "Iniciar Sesión"
+
+#: core/templates/core/login.html:31
+msgid "Sign In"
+msgstr "Iniciar Sesión"
+
+#: core/templates/core/login.html:37
+msgid "Don’t have an account?"
+msgstr ""
+
+#: core/templates/core/login.html:38 core/templates/core/register.html:56
+#: core/templates/core/register.html:80 templates/base.html:103
+msgid "Sign Up"
+msgstr "Registrarse"
+
+#: core/templates/core/multi_profile_detail.html:40 payments/models.py:34
+msgid "User"
+msgstr "Usuario"
+
+#: core/templates/core/multi_profile_detail.html:41
+#: core/templates/core/multi_profile_detail.html:53
+msgid "Profile"
+msgstr "Perfil"
+
+#: core/templates/core/multi_profile_detail.html:63
+msgid "No role defined"
+msgstr "Sin rol definido"
+
+#: core/templates/core/multi_profile_detail.html:73
+msgid "Change Photo"
+msgstr "Cambiar Foto"
+
+#: core/templates/core/multi_profile_detail.html:84
+msgid "Delete Photo"
+msgstr "Eliminar Foto"
+
+#: core/templates/core/multi_profile_detail.html:95
+msgid "Update Profile Image"
+msgstr "Actualizar Imagen de Perfil"
+
+#: core/templates/core/multi_profile_detail.html:102
+msgid "Choose Image"
+msgstr "Elegir Imagen"
+
+#: core/templates/core/multi_profile_detail.html:114
+msgid "Upload"
+msgstr "Subir"
+
+#: core/templates/core/multi_profile_detail.html:126
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:145
+#: microservices/templates/microservices/freelancer_microservices_list.html:143
+msgid "Create Freelancer Profile"
+msgstr "Crear Perfil de Freelancer"
+
+#: core/templates/core/multi_profile_detail.html:133
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:106
+#: microservices/templates/microservices/microservice_detail.html:120
+msgid "Create Client Profile"
+msgstr "Crear Perfil de Cliente"
+
+#: core/templates/core/multi_profile_detail.html:161
+msgid "Portfolio"
+msgstr "Portafolio"
+
+#: core/templates/core/multi_profile_detail.html:167
+#: core/templates/core/multi_profile_detail.html:480
+#: projects/templates/projects/project_detail.html:60
+msgid "Applications"
+msgstr "Aplicaciones"
+
+#: core/templates/core/multi_profile_detail.html:195
+#: core/templates/core/multi_profile_detail.html:556
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:63
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:55
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:41
+#: microservices/templates/microservices/freelancer_microservices_list.html:60
+#: microservices/templates/microservices/microservice_detail.html:68
+#: microservices/templates/microservices/microservices_list.html:52
+#: projects/templates/projects/client_projects_list.html:58
+#: projects/templates/projects/project_detail.html:78
+#: projects/templates/projects/projects_list.html:59
+msgid "Edit"
+msgstr "Editar"
+
+#: core/templates/core/multi_profile_detail.html:207
+#: core/templates/core/multi_profile_detail.html:568
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:67
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:58
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:43
+#: microservices/templates/microservices/freelancer_microservices_list.html:64
+#: microservices/templates/microservices/microservice_detail.html:72
+#: microservices/templates/microservices/microservices_list.html:54
+#: projects/templates/projects/client_projects_list.html:62
+#: projects/templates/projects/project_detail.html:81
+#: projects/templates/projects/projects_list.html:61
+#: venv/lib/python3.13/site-packages/django/forms/formsets.py:499
+msgid "Delete"
+msgstr "Eliminar"
+
+#: core/templates/core/multi_profile_detail.html:248
+#: core/templates/core/multi_profile_detail.html:614
+msgid "Save"
+msgstr "Guardar"
+
+#: core/templates/core/multi_profile_detail.html:268
+msgid "No skills registered"
+msgstr "Sin habilidades registradas"
+
+#: core/templates/core/multi_profile_detail.html:278
+msgid "No bio available"
+msgstr "Sin biografía disponible"
+
+#: core/templates/core/multi_profile_detail.html:292
+msgid "My Portfolio Items"
+msgstr "Mis Elementos del Portafolio"
+
+#: core/templates/core/multi_profile_detail.html:294
+msgid "Add Portfolio Item"
+msgstr "Añadir Elemento del Portafolio"
+
+#: core/templates/core/multi_profile_detail.html:372
+msgid "https://your-demo-site.com"
+msgstr "https://tu-sitio-demo.com"
+
+#: core/templates/core/multi_profile_detail.html:382
+msgid ""
+"Current: {{\n"
+"                                                                        image_name }}"
+msgstr ""
+
+#: core/templates/core/multi_profile_detail.html:409
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:75
+#: microservices/templates/microservices/freelancer_microservices_list.html:72
+#: projects/models.py:10
+#: projects/templates/projects/client_projects_list.html:70
+#: projects/templates/projects/projects_list.html:42
+msgid "Created"
+msgstr "Creado"
+
+#: core/templates/core/multi_profile_detail.html:418
+msgid "Edit Portfolio"
+msgstr "Editar Portafolio"
+
+#: core/templates/core/multi_profile_detail.html:429
+msgid "Delete Portfolio"
+msgstr "Eliminar Portafolio"
+
+#: core/templates/core/multi_profile_detail.html:430
+#, python-format
+msgid "Are you sure you want to delete this portfolio item: %(title)s?"
+msgstr ""
+
+#: core/templates/core/multi_profile_detail.html:448
+msgid "No Portfolio Items Yet"
+msgstr "Aún No Hay Elementos en el Portafolio"
+
+#: core/templates/core/multi_profile_detail.html:451
+msgid "Showcase your work by creating your first portfolio item."
+msgstr "Muestra tu trabajo creando tu primer elemento del portafolio."
+
+#: core/templates/core/multi_profile_detail.html:454
+msgid "Create Your First Portfolio Item"
+msgstr "Crea Tu Primer Elemento del Portafolio"
+
+#: core/templates/core/multi_profile_detail.html:458
+msgid "This user hasn't added any portfolio items yet."
+msgstr "Este usuario aún no ha añadido elementos al portafolio."
+
+#: core/templates/core/multi_profile_detail.html:474
+msgid "My Applications"
+msgstr "Mis Aplicaciones"
+
+#: core/templates/core/multi_profile_detail.html:476
+msgid "Add Application"
+msgstr "Añadir Aplicación"
+
+#: core/templates/core/multi_profile_detail.html:513
+#: projects/templates/projects/application_form.html:88
+#: projects/templates/projects/project_detail.html:97
+#: projects/templates/projects/project_detail.html:148
+msgid "Proposed Payment"
+msgstr "Pago Propuesto"
+
+#: core/templates/core/multi_profile_detail.html:527
+msgid "No Applications Yet"
+msgstr "Aún No Hay Aplicaciones"
+
+#: core/templates/core/multi_profile_detail.html:530
+msgid "Showcase your applications by creating your first application."
+msgstr "Muestra tus aplicaciones creando tu primera aplicación."
+
+#: core/templates/core/multi_profile_detail.html:533
+msgid "Create Your First Application"
+msgstr "Crea Tu Primera Aplicación"
+
+#: core/templates/core/multi_profile_detail.html:537
+msgid "This user hasn't added any applications yet."
+msgstr "Este usuario aún no ha añadido aplicaciones."
+
+#: core/templates/core/multi_profile_detail.html:629
+msgid "No company registered"
+msgstr "Sin empresa registrada"
+
+#: core/templates/core/multi_profile_detail.html:638
+msgid "No billing email"
+msgstr "Sin correo de facturación"
+
+#: core/templates/core/multi_profile_detail.html:650
+msgid "No Profiles Available"
+msgstr "No Hay Perfiles Disponibles"
+
+#: core/templates/core/multi_profile_detail.html:652
+msgid "You need at least one profile to start using the platform."
+msgstr "Necesitas al menos un perfil para comenzar a usar la plataforma."
+
+#: core/templates/core/multi_profile_detail.html:656
+msgid "Be a Freelancer"
+msgstr "Ser Freelancer"
+
+#: core/templates/core/multi_profile_detail.html:659
+msgid "Be a Client"
+msgstr "Ser Cliente"
+
+#: core/templates/core/multi_profile_detail.html:663
+msgid "This user has not created any profiles yet."
+msgstr "Este usuario aún no ha creado perfiles."
+
+#: core/templates/core/multi_profile_detail.html:675
+msgid "Recent Activity"
+msgstr "Actividad Reciente"
+
+#: core/templates/core/multi_profile_detail.html:679
+msgid "Active Profiles"
+msgstr "Perfiles Activos"
+
+#: core/templates/core/partials/search.html:9
+msgid "E.g., mentorship, design, project..."
+msgstr "Ej: mentoría, diseño, proyecto..."
+
+#: core/templates/core/partials/search.html:16
+msgid "All categories"
+msgstr "Todas las categorías"
+
+#: core/templates/core/partials/search.html:27
+msgid "Min. price"
+msgstr "Precio mín."
+
+#: core/templates/core/partials/search.html:32
+msgid "Max. price"
+msgstr "Precio máx."
+
+#: core/templates/core/partials/search.html:44
+#, python-format
+msgid ""
+"\n"
+"                    Showing %(count)s result\n"
+"                    "
+msgid_plural ""
+"\n"
+"                    Showing %(count)s results\n"
+"                    "
+msgstr[0] ""
+msgstr[1] ""
+
+#: core/templates/core/partials/search.html:49
+msgid "containing"
+msgstr "que contenga"
+
+#: core/templates/core/partials/search.html:50
+msgid "in category"
+msgstr "en categoría"
+
+#: core/templates/core/partials/search.html:51
+msgid "price from"
+msgstr "precio desde"
+
+#: core/templates/core/partials/search.html:52
+msgid "up to"
+msgstr "hasta"
+
+#: core/templates/core/partials/search.html:55
+msgid "Clear filters"
+msgstr "Limpiar filtros"
+
+#: core/templates/core/partials/search.html:65
+msgid "Quick filters:"
+msgstr "Filtros rápidos:"
+
+#: core/templates/core/partials/search.html:76
+msgid "Up to $50"
+msgstr "Hasta $50"
+
+#: core/templates/core/partials/search.html:80
+msgid "Up to $100"
+msgstr "Hasta $100"
+
+#: core/templates/core/register.html:15
+msgid "Your career journey"
+msgstr "Tu trayectoria profesional"
+
+#: core/templates/core/register.html:16
+msgid "starts here"
+msgstr "comienza aquí"
+
+#: core/templates/core/register.html:19
+msgid ""
+"\n"
+"                        Join thousands of freelancers and clients who trust "
+"HireLoop to connect,\n"
+"                        collaborate, and grow their businesses. Whether "
+"you're offering services,\n"
+"                        seeking projects, or looking for mentorship, we "
+"provide the complete\n"
+"                        ecosystem to accelerate your professional success.\n"
+"                        "
+msgstr ""
+
+#: core/templates/core/register.html:32
+msgid "Premium Services"
+msgstr "Servicios Premium"
+
+#: core/templates/core/register.html:36
+msgid "Expert Mentorship"
+msgstr "Mentoría Experta"
+
+#: core/templates/core/register.html:42
+msgid "Quality Projects"
+msgstr "Proyectos de Calidad"
+
+#: core/templates/core/register.html:46
+msgid "Secure Payments"
+msgstr "Pagos Seguros"
+
+#: core/templates/core/register.html:86
+msgid "Already have an account?"
+msgstr "¿Ya tienes una cuenta?"
+
+#: core/utils/validators.py:12
+msgid "You cannot have more than 20 skills"
+msgstr "No puedes tener más de 20 habilidades"
+
+#: hireloop/settings.py:192
+msgid "English"
+msgstr "Inglés"
+
+#: hireloop/settings.py:193
+msgid "Español"
+msgstr "Español"
+
+#: mentorship_session/forms/mentorship_form.py:16
+#: mentorship_session/forms/mentorship_form.py:36
+#: mentorship_session/models.py:22
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:33
+msgid "Topic"
+msgstr "Tema"
+
+#: mentorship_session/forms/mentorship_form.py:17
+#: mentorship_session/forms/mentorship_form.py:37
+#: mentorship_session/models.py:26
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:48
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:34
+msgid "Start Time"
+msgstr "Hora de Inicio"
+
+#: mentorship_session/forms/mentorship_form.py:18
+#: mentorship_session/forms/mentorship_form.py:38
+#: mentorship_session/models.py:30
+msgid "Duration (minutes)"
+msgstr "Duración (minutos)"
+
+#: mentorship_session/forms/mentorship_form.py:19
+#: mentorship_session/forms/mentorship_form.py:39
+#: mentorship_session/models.py:51
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:76
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:35
+#: payments/models.py:67 projects/forms/projects_form.py:56
+#: projects/forms/projects_form.py:113
+#: projects/templates/projects/assignment_form.html:74
+#: projects/templates/projects/project_detail.html:98
+#: projects/templates/projects/project_form.html:48
+msgid "Status"
+msgstr "Estado"
+
+#: mentorship_session/forms/mentorship_form.py:22
+#: mentorship_session/forms/mentorship_form.py:42
+msgid "Brief description of the mentorship session topic."
+msgstr "Breve descripción del tema de la sesión de mentoría."
+
+#: mentorship_session/forms/mentorship_form.py:23
+#: mentorship_session/forms/mentorship_form.py:43
+msgid "Select the date and time when the session will start."
+msgstr "Selecciona la fecha y hora en que comenzará la sesión."
+
+#: mentorship_session/forms/mentorship_form.py:24
+#: mentorship_session/forms/mentorship_form.py:44
+msgid "Duration of the session in minutes (e.g., 30, 60)."
+msgstr "Duración de la sesión en minutos (ej: 30, 60)."
+
+#: mentorship_session/models.py:12
+msgid "Scheduled"
+msgstr "Programado"
+
+#: mentorship_session/models.py:13 projects/models.py:14
+msgid "Completed"
+msgstr "Completado"
+
+#: mentorship_session/models.py:14 payments/models.py:19
+msgid "Canceled"
+msgstr "Cancelado"
+
+#: mentorship_session/models.py:15
+msgid "No Show"
+msgstr "No se presentó"
+
+#: mentorship_session/models.py:23
+msgid "The main topic of the mentorship session"
+msgstr "El tema principal de la sesión de mentoría"
+
+#: mentorship_session/models.py:27
+msgid "When the session will begin"
+msgstr "Cuándo comenzará la sesión"
+
+#: mentorship_session/models.py:31
+msgid "How long the session will last in minutes"
+msgstr "Cuánto durará la sesión en minutos"
+
+#: mentorship_session/models.py:37
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:49
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:26
+msgid "Mentor"
+msgstr "Mentor"
+
+#: mentorship_session/models.py:45
+msgid "Mentee"
+msgstr "Aprendiz"
+
+#: mentorship_session/models.py:57 microservices/models.py:96
+msgid "Image Path"
+msgstr "Ruta de la Imagen"
+
+#: mentorship_session/models.py:59 microservices/models.py:101
+#: payments/models.py:72
+msgid "Created At"
+msgstr "Creado El"
+
+#: mentorship_session/models.py:60 microservices/models.py:105
+#: payments/models.py:77
+msgid "Updated At"
+msgstr "Actualizado El"
+
+#: mentorship_session/models.py:63
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:24
+msgid "Mentorship Session"
+msgstr "Sesión de Mentoría"
+
+#: mentorship_session/models.py:64
+msgid "Mentorship Sessions"
+msgstr "Sesiones de Mentoría"
+
+#: mentorship_session/models.py:75
+#, python-brace-format
+msgid "Mentorship: {topic}"
+msgstr ""
+
+#: mentorship_session/models.py:79
+#, python-brace-format
+msgid "Mentorship session about '{topic}', duration {duration} minutes."
+msgstr ""
+
+#: mentorship_session/models.py:83
+msgid "Mentorship"
+msgstr "Mentoría"
+
+#: mentorship_session/services/mentorship_service.py:26
+#: mentorship_session/services/mentorship_service.py:28
+msgid "Mentorship session not found"
+msgstr "Sesión de mentoría no encontrada"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:11
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:13
+msgid "My Mentorship"
+msgstr "Mi Mentoría"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:13
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:111
+msgid "Update Session"
+msgstr "Actualizar Sesión"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:13
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:115
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:28
+msgid "Create Session"
+msgstr "Crear Sesión"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:24
+msgid "Update Mentorship Session"
+msgstr "Actualizar Sesión de Mentoría"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:24
+msgid "Create New Mentorship Session"
+msgstr "Crear Nueva Sesión de Mentoría"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:62
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:58
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:31
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1868
+msgid "Duration"
+msgstr "Duración"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:90
+msgid "Mentorship Image"
+msgstr "Imagen de Mentoría"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:101
+#: microservices/templates/microservices/create_microservice.html:136
+#: projects/templates/projects/project_form.html:97
+msgid "Optional. Supported formats: JPEG, PNG, GIF. Max size: 5MB."
+msgstr "Opcional. Formatos soportados: JPEG, PNG, GIF. Tamaño máximo: 5MB."
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:126
+msgid "Tips for a Successful Mentorship"
+msgstr "Consejos para una Mentoría Exitosa"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:131
+msgid "Clear Topic"
+msgstr "Tema Claro"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:133
+msgid "Be specific about what the session covers"
+msgstr "Sé específico sobre lo que cubre la sesión"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:134
+msgid "Mention the key skills or knowledge areas"
+msgstr "Menciona las habilidades clave o áreas de conocimiento"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:138
+msgid "Scheduling"
+msgstr "Programación"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:140
+msgid "Set a clear start time and duration"
+msgstr "Establece una hora de inicio y duración clara"
+
+#: mentorship_session/templates/mentorship_session/create_mentorship_session.html:141
+msgid "Make sure both mentor and mentee are available"
+msgstr "Asegúrate de que tanto el mentor como el aprendiz estén disponibles"
+
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:14
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:24
+msgid "My Mentorship Sessions"
+msgstr "Mis Sesiones de Mentoría"
+
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:43
+#: projects/models.py:13
+#: projects/templates/projects/client_projects_list.html:41
+msgid "Cancelled"
+msgstr "Cancelado"
+
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:57
+msgid "Start"
+msgstr "Inicio"
+
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:58
+msgid "mins"
+msgstr "mins"
+
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:76
+#: microservices/templates/microservices/freelancer_microservices_list.html:74
+#: projects/templates/projects/client_projects_list.html:72
+msgid "Updated"
+msgstr "Actualizado"
+
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:85
+#: microservices/templates/microservices/freelancer_microservices_list.html:83
+msgid "Page navigation"
+msgstr "Navegación de páginas"
+
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:126
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:124
+#: microservices/templates/microservices/freelancer_microservices_list.html:124
+#: microservices/templates/microservices/microservices_list.html:114
+#: projects/templates/projects/client_projects_list.html:122
+#: projects/templates/projects/projects_list.html:121
+#, python-format
+msgid "Page %(current)s of %(total)s"
+msgstr ""
+
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:133
+msgid "You haven't created any mentorship sessions"
+msgstr "No has creado ninguna sesión de mentoría"
+
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:134
+msgid "Create your first session to start mentoring!"
+msgstr "¡Crea tu primera sesión para comenzar a dar mentoría!"
+
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:137
+msgid "Create My First Session"
+msgstr "Crear Mi Primera Sesión"
+
+#: mentorship_session/templates/mentorship_session/freelancer_mentorship_session.html:142
+msgid "You need a freelancer profile to create sessions."
+msgstr "Necesitas un perfil de freelancer para crear sesiones."
+
+#: mentorship_session/templates/mentorship_session/mentorship_session_confirm_delete.html:6
+#, python-format
+msgid "Are you sure you want to delete \"%(topic)s\"?"
+msgstr ""
+
+#: mentorship_session/templates/mentorship_session/mentorship_session_confirm_delete.html:10
+#: microservices/templates/microservices/microservice_confirm_delete.html:10
+#: projects/templates/projects/project_confirm_delete.html:10
+msgid "Yes, delete"
+msgstr "Sí, eliminar"
+
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:20
+#: microservices/templates/microservices/microservice_detail.html:21
+#: projects/templates/projects/project_detail.html:25
+msgid "By"
+msgstr "Por"
+
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:33
+#, python-format
+msgid "Duration: %(duration)s minute%(duration|pluralize)s"
+msgstr ""
+
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:45
+#: microservices/templates/microservices/microservice_detail.html:57
+msgid "Actions"
+msgstr "Acciones"
+
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:51
+msgid "This is your own mentorship session"
+msgstr "Esta es tu propia sesión de mentoría"
+
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:71
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:51
+msgid "Book Session"
+msgstr "Reservar Sesión"
+
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:78
+#: microservices/templates/microservices/microservice_detail.html:92
+msgid "Remove from Cart"
+msgstr "Quitar del Carrito"
+
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:91
+#: microservices/templates/microservices/microservice_detail.html:105
+msgid "Add to Wishlist"
+msgstr "Añadir a Lista de Deseos"
+
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:98
+#: microservices/templates/microservices/microservice_detail.html:112
+msgid "Remove from Wishlist"
+msgstr "Quitar de Lista de Deseos"
+
+#: mentorship_session/templates/mentorship_session/mentorship_session_detail.html:113
+#: microservices/templates/microservices/microservice_detail.html:127
+msgid "Log In to Purchase"
+msgstr "Inicia Sesión para Comprar"
+
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:9
+msgid "Available Mentorship Sessions"
+msgstr "Sesiones de Mentoría Disponibles"
+
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:74
+msgid "No mentorship sessions found"
+msgstr "No se encontraron sesiones de mentoría"
+
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:75
+msgid "Currently, no mentorship sessions are available."
+msgstr "Actualmente, no hay sesiones de mentoría disponibles."
+
+#: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:83
+msgid "Sessions pagination"
+msgstr "Paginación de sesiones"
+
+#: microservices/forms/microservices_form.py:9
+msgid "Service Image"
+msgstr "Imagen del Servicio"
+
+#: microservices/forms/microservices_form.py:11
+msgid ""
+"Optional. Upload an image for your microservice (JPEG, PNG, GIF). Max 5MB."
+msgstr ""
+
+#: microservices/forms/microservices_form.py:28
+msgid "Price"
+msgstr "Precio"
+
+#: microservices/forms/microservices_form.py:29
+msgid "Delivery Time"
+msgstr "Tiempo de Entrega"
+
+#: microservices/forms/microservices_form.py:30 microservices/models.py:89
+msgid "Active"
+msgstr "Activo"
+
+#: microservices/forms/microservices_form.py:33
+msgid "A clear and attractive title for your service."
+msgstr "Un título claro y atractivo para tu servicio."
+
+#: microservices/forms/microservices_form.py:34
+msgid ""
+"Describe what you offer in detail. Include what’s included and any "
+"requirements."
+msgstr ""
+
+#: microservices/forms/microservices_form.py:35
+msgid "Fixed price for this service (in USD)."
+msgstr "Precio fijo para este servicio (en USD)."
+
+#: microservices/forms/microservices_form.py:36
+msgid "Example: 3 days, 1 week, etc."
+msgstr "Ejemplo: 3 días, 1 semana, etc."
+
+#: microservices/forms/microservices_form.py:37 microservices/models.py:90
+msgid "Uncheck to hide this service from the marketplace."
+msgstr "Desmarca para ocultar este servicio del mercado."
+
+#: microservices/forms/microservices_form.py:40
+msgid "e.g., I will design a professional logo"
+msgstr "ej: Diseñaré un logo profesional"
+
+#: microservices/forms/microservices_form.py:41
+msgid "Detailed description..."
+msgstr "Descripción detallada..."
+
+#: microservices/forms/microservices_form.py:43
+msgid "e.g., 3 days"
+msgstr "ej: 3 días"
+
+#: microservices/models.py:18 microservices/models.py:51 payments/models.py:28
+msgid "ID"
+msgstr "ID"
+
+#: microservices/models.py:23
+msgid "Name"
+msgstr "Nombre"
+
+#: microservices/models.py:24
+msgid "Enter a unique category name."
+msgstr "Ingresa un nombre de categoría único."
+
+#: microservices/models.py:29
+msgid "Slug"
+msgstr "Slug"
+
+#: microservices/models.py:30
+msgid "URL-friendly version of the name."
+msgstr "Versión amigable para URL del nombre."
+
+#: microservices/models.py:35
+msgid "Categories"
+msgstr "Categorías"
+
+#: microservices/models.py:58
+msgid "The freelancer offering this microservice."
+msgstr "El freelancer que ofrece este microservicio."
+
+#: microservices/models.py:65
+msgid "Select the category that best fits this service."
+msgstr "Selecciona la categoría que mejor se ajuste a este servicio."
+
+#: microservices/models.py:70
+msgid "A clear, compelling title for your service."
+msgstr "Un título claro y convincente para tu servicio."
+
+#: microservices/models.py:74
+msgid "Describe what you offer, what’s included, and any requirements."
+msgstr ""
+
+#: microservices/models.py:80
+#: microservices/templates/microservices/create_microservice.html:79
+msgid "Price (USD)"
+msgstr "Precio (USD)"
+
+#: microservices/models.py:81
+msgid "Fixed price for this service in USD."
+msgstr "Precio fijo para este servicio en USD."
+
+#: microservices/models.py:84
+#: microservices/templates/microservices/create_microservice.html:96
+msgid "Delivery Time (days)"
+msgstr "Tiempo de Entrega (días)"
+
+#: microservices/models.py:85
+msgid "How many days it takes to deliver the final work."
+msgstr "Cuántos días toma entregar el trabajo final."
+
+#: microservices/models.py:97
+msgid "Path to the uploaded service image."
+msgstr "Ruta a la imagen del servicio subida."
+
+#: microservices/models.py:109 microservices/models.py:140
+msgid "MicroService"
+msgstr "Microservicio"
+
+#: microservices/models.py:110
+msgid "MicroServices"
+msgstr "Microservicios"
+
+#: microservices/services/image_service.py:26
+#: projects/services/image_service.py:30
+msgid "Invalid image file. Must be JPEG, PNG, or GIF and under 5MB."
+msgstr "Archivo de imagen inválido. Debe ser JPEG, PNG o GIF y menor a 5MB."
+
+#: microservices/services/microservices_service.py:27
+msgid "Freelancer profile is required."
+msgstr "Se requiere perfil de freelancer."
+
+#: microservices/services/microservices_service.py:39
+#: microservices/services/microservices_service.py:65
+msgid "Microservice does not exist."
+msgstr "El microservicio no existe."
+
+#: microservices/services/microservices_service.py:68
+msgid "Microservice is already inactive."
+msgstr "El microservicio ya está inactivo."
+
+#: microservices/templates/microservices/create_microservice.html:11
+msgid "My Services"
+msgstr "Mis Servicios"
+
+#: microservices/templates/microservices/create_microservice.html:13
+#: microservices/templates/microservices/create_microservice.html:24
+msgid "Update MicroService"
+msgstr "Actualizar Microservicio"
+
+#: microservices/templates/microservices/create_microservice.html:13
+#: microservices/templates/microservices/create_microservice.html:152
+#: microservices/templates/microservices/freelancer_microservices_list.html:28
+msgid "Create MicroService"
+msgstr "Crear Microservicio"
+
+#: microservices/templates/microservices/create_microservice.html:24
+msgid "Create New MicroService"
+msgstr "Crear Nuevo Microservicio"
+
+#: microservices/templates/microservices/create_microservice.html:35
+msgid "Service Title"
+msgstr "Título del Servicio"
+
+#: microservices/templates/microservices/create_microservice.html:113
+msgid "Publish service (visible to the public)"
+msgstr "Publicar servicio (visible al público)"
+
+#: microservices/templates/microservices/create_microservice.html:126
+msgid "MicroService Image"
+msgstr "Imagen del Microservicio"
+
+#: microservices/templates/microservices/create_microservice.html:148
+msgid "Update Service"
+msgstr "Actualizar Servicio"
+
+#: microservices/templates/microservices/create_microservice.html:163
+msgid "Tips for a Great Service"
+msgstr "Consejos para un Gran Servicio"
+
+#: microservices/templates/microservices/create_microservice.html:168
+msgid "Effective Title"
+msgstr "Título Efectivo"
+
+#: microservices/templates/microservices/create_microservice.html:170
+msgid "Be specific and clear"
+msgstr "Sé específico y claro"
+
+#: microservices/templates/microservices/create_microservice.html:171
+msgid "Include relevant keywords"
+msgstr "Incluye palabras clave relevantes"
+
+#: microservices/templates/microservices/create_microservice.html:172
+msgid "Avoid excessive technical jargon"
+msgstr "Evita jerga técnica excesiva"
+
+#: microservices/templates/microservices/create_microservice.html:176
+msgid "Detailed Description"
+msgstr "Descripción Detallada"
+
+#: microservices/templates/microservices/create_microservice.html:178
+msgid "Explain what is included"
+msgstr "Explica qué está incluido"
+
+#: microservices/templates/microservices/create_microservice.html:179
+msgid "Mention your methodology"
+msgstr "Menciona tu metodología"
+
+#: microservices/templates/microservices/create_microservice.html:180
+msgid "Specify deliverables"
+msgstr "Especifica los entregables"
+
+#: microservices/templates/microservices/freelancer_microservices_list.html:14
+#: microservices/templates/microservices/freelancer_microservices_list.html:24
+msgid "My MicroServices"
+msgstr "Mis Microservicios"
+
+#: microservices/templates/microservices/freelancer_microservices_list.html:42
+msgid "Inactive"
+msgstr "Inactivo"
+
+#: microservices/templates/microservices/freelancer_microservices_list.html:51
+#: microservices/templates/microservices/microservices_list.html:22
+msgid "General"
+msgstr "General"
+
+#: microservices/templates/microservices/freelancer_microservices_list.html:56
+msgid "days"
+msgstr "días"
+
+#: microservices/templates/microservices/freelancer_microservices_list.html:131
+msgid "You haven't created any microservices"
+msgstr "No has creado ningún microservicio"
+
+#: microservices/templates/microservices/freelancer_microservices_list.html:132
+msgid "Create your first service to start offering your skills!"
+msgstr "¡Crea tu primer servicio para comenzar a ofrecer tus habilidades!"
+
+#: microservices/templates/microservices/freelancer_microservices_list.html:135
+msgid "Create My First Service"
+msgstr "Crear Mi Primer Servicio"
+
+#: microservices/templates/microservices/freelancer_microservices_list.html:140
+msgid "You need a freelancer profile to create microservices."
+msgstr "Necesitas un perfil de freelancer para crear microservicios."
+
+#: microservices/templates/microservices/microservice_confirm_delete.html:6
+#: projects/templates/projects/project_confirm_delete.html:6
+#, python-format
+msgid "Are you sure you want to delete \"%(title)s\"?"
+msgstr ""
+
+#: microservices/templates/microservices/microservice_detail.html:43
+msgid "Delivery time"
+msgstr "Tiempo de entrega"
+
+#: microservices/templates/microservices/microservice_detail.html:44
+#, python-format
+msgid ""
+"\n"
+"                        %(days)s day%(days|pluralize)s\n"
+"                        "
+msgstr ""
+
+#: microservices/templates/microservices/microservice_detail.html:63
+msgid "This is your own microservice"
+msgstr "Este es tu propio microservicio"
+
+#: microservices/templates/microservices/microservices_list.html:10
+msgid "Available Microservices"
+msgstr "Microservicios Disponibles"
+
+#: microservices/templates/microservices/microservices_list.html:38
+#, python-format
+msgid ""
+"\n"
+"                                    %(days)s day%(days|pluralize)s\n"
+"                                    "
+msgstr ""
+
+#: microservices/templates/microservices/microservices_list.html:64
+msgid "No microservices found"
+msgstr "No se encontraron microservicios"
+
+#: microservices/templates/microservices/microservices_list.html:65
+msgid "Currently, no microservices are available."
+msgstr "Actualmente, no hay microservicios disponibles."
+
+#: microservices/templates/microservices/microservices_list.html:73
+msgid "Microservices pagination"
+msgstr "Paginación de microservicios"
+
+#: payments/models.py:16 projects/models.py:77
+msgid "Pending"
+msgstr "Pendiente"
+
+#: payments/models.py:17
+msgid "Succeeded"
+msgstr "Exitoso"
+
+#: payments/models.py:18
+msgid "Failed"
+msgstr "Fallido"
+
+#: payments/models.py:20
+msgid "Requires Payment Method"
+msgstr "Requiere Método de Pago"
+
+#: payments/models.py:21
+msgid "Requires Confirmation"
+msgstr "Requiere Confirmación"
+
+#: payments/models.py:22
+msgid "Requires Action"
+msgstr "Requiere Acción"
+
+#: payments/models.py:35
+msgid "The user who initiated this payment."
+msgstr "El usuario que inició este pago."
+
+#: payments/models.py:40
+msgid "Stripe Checkout Session ID"
+msgstr "ID de Sesión de Pago Stripe"
+
+#: payments/models.py:41
+msgid "Unique identifier for the Stripe Checkout Session."
+msgstr "Identificador único para la Sesión de Pago Stripe."
+
+#: payments/models.py:47
+msgid "Stripe Payment Intent ID"
+msgstr "ID de Intención de Pago Stripe"
+
+#: payments/models.py:48
+msgid "Payment Intent ID if using Payment Intents API."
+msgstr "ID de Intención de Pago si se usa la API de Payment Intents."
+
+#: payments/models.py:54
+msgid "Amount"
+msgstr "Monto"
+
+#: payments/models.py:55
+msgid "Total amount in the currency's smallest unit (e.g., cents for USD)."
+msgstr "Monto total en la unidad más pequeña de la moneda (ej: centavos para USD)."
+
+#: payments/models.py:60
+msgid "Currency"
+msgstr "Moneda"
+
+#: payments/models.py:61
+msgid "ISO 4217 currency code (e.g., usd, eur)."
+msgstr "Código de moneda ISO 4217 (ej: usd, eur)."
+
+#: payments/models.py:68
+msgid "Current status of the payment."
+msgstr "Estado actual del pago."
+
+#: payments/models.py:73
+msgid "When the payment record was created."
+msgstr "Cuándo se creó el registro de pago."
+
+#: payments/models.py:78
+msgid "Last time the payment status was updated."
+msgstr "Última vez que se actualizó el estado del pago."
+
+#: payments/models.py:82
+msgid "Payment"
+msgstr "Pago"
+
+#: payments/models.py:83
+msgid "Payments"
+msgstr "Pagos"
+
+#: payments/models.py:93
+#, python-brace-format
+msgid "Payment {id} - {status} (${amount} {currency})"
+msgstr ""
+
+#: payments/templates/payments/cancel.html:4
+#: payments/templates/payments/cancel.html:14
+msgid "Payment Canceled"
+msgstr "Pago Cancelado"
+
+#: payments/templates/payments/cancel.html:16
+msgid "The payment process was canceled. No charges were made."
+msgstr "El proceso de pago fue cancelado. No se realizaron cargos."
+
+#: payments/templates/payments/cancel.html:19
+msgid "You can try again whenever you’re ready."
+msgstr ""
+
+#: payments/templates/payments/cancel.html:23
+#: payments/templates/payments/success.html:23
+msgid "Back to Home"
+msgstr "Volver al Inicio"
+
+#: payments/templates/payments/cancel.html:26
+msgid "View Cart"
+msgstr "Ver Carrito"
+
+#: payments/templates/payments/success.html:4
+msgid "Payment Successful"
+msgstr "Pago Exitoso"
+
+#: payments/templates/payments/success.html:16
+msgid "Payment Successful!"
+msgstr "¡Pago Exitoso!"
+
+#: payments/templates/payments/success.html:19
+msgid ""
+"Thank you for your purchase. Your order has been confirmed and your cart is "
+"now empty."
+msgstr ""
+
+#: payments/templates/payments/success.html:26
+msgid "Browse Services"
+msgstr "Explorar Servicios"
+
+#: payments/templates/payments/success.html:29
+msgid "View Orders"
+msgstr "Ver Pedidos"
+
+#: payments/views.py:30
+msgid "Authentication required."
+msgstr "Se requiere autenticación."
+
+#: payments/views.py:36
+msgid "Your cart is empty."
+msgstr "Tu carrito está vacío."
+
+#: payments/views.py:67
+msgid "Invalid item in cart."
+msgstr "Artículo inválido en el carrito."
+
+#: payments/views.py:70
+msgid "Cart total must be greater than zero."
+msgstr "El total del carrito debe ser mayor a cero."
+
+#: payments/views.py:105
+msgid "Payment processing failed. Please try again."
+msgstr "Error al procesar el pago. Por favor intenta de nuevo."
+
+#: payments/views.py:119
+msgid "You must be logged in to view this page."
+msgstr "Debes iniciar sesión para ver esta página."
+
+#: payments/views.py:130
+msgid "Payment was not completed."
+msgstr "El pago no se completó."
+
+#: payments/views.py:134
+msgid "Could not verify payment. Please contact support."
+msgstr "No se pudo verificar el pago. Por favor contacta a soporte."
+
+#: payments/views.py:142
+msgid "No pending payment found."
+msgstr "No se encontró ningún pago pendiente."
+
+#: payments/views.py:168
+msgid "Payment successful! Your order is confirmed."
+msgstr "¡Pago exitoso! Tu pedido está confirmado."
+
+#: payments/views.py:194
+msgid "Payment was canceled. Your cart has been preserved."
+msgstr "El pago fue cancelado. Tu carrito se ha preservado."
+
+#: projects/forms/projects_form.py:14
+#: projects/templates/projects/project_form.html:86
+msgid "Project Image"
+msgstr "Imagen del Proyecto"
+
+#: projects/forms/projects_form.py:16
+msgid "Optional. Upload a relevant image (JPEG, PNG, GIF). Max 5MB."
+msgstr "Opcional. Sube una imagen relevante (JPEG, PNG, GIF). Máximo 5MB."
+
+#: projects/forms/projects_form.py:23 projects/forms/projects_form.py:53
+#: projects/templates/projects/project_form.html:36
+msgid "Project Title"
+msgstr "Título del Proyecto"
+
+#: projects/forms/projects_form.py:25 projects/forms/projects_form.py:55
+#: projects/templates/projects/project_form.html:71
+msgid "Budget (USD)"
+msgstr "Presupuesto (USD)"
+
+#: projects/forms/projects_form.py:28
+msgid "A clear and descriptive title for your project."
+msgstr "Un título claro y descriptivo para tu proyecto."
+
+#: projects/forms/projects_form.py:29
+msgid "Explain what you need, requirements, and deliverables."
+msgstr "Explica lo que necesitas, requisitos y entregables."
+
+#: projects/forms/projects_form.py:30
+msgid "Total budget in USD. This is the maximum you’re willing to pay."
+msgstr ""
+
+#: projects/forms/projects_form.py:33
+msgid "e.g., Build a responsive website"
+msgstr "ej: Construir un sitio web responsivo"
+
+#: projects/forms/projects_form.py:34
+msgid "Detailed project description..."
+msgstr "Descripción detallada del proyecto..."
+
+#: projects/forms/projects_form.py:44
+msgid "Update Project Image"
+msgstr "Actualizar Imagen del Proyecto"
+
+#: projects/forms/projects_form.py:46
+msgid "Optional. Upload a new image to replace the current one."
+msgstr "Opcional. Sube una nueva imagen para reemplazar la actual."
+
+#: projects/forms/projects_form.py:76 projects/forms/projects_form.py:111
+#: projects/templates/projects/assignment_form.html:48
+msgid "Role"
+msgstr "Rol"
+
+#: projects/forms/projects_form.py:77 projects/forms/projects_form.py:112
+#: projects/templates/projects/assignment_form.html:60
+msgid "Agreed Payment (USD)"
+msgstr "Pago Acordado (USD)"
+
+#: projects/forms/projects_form.py:81
+msgid "e.g., Frontend Developer"
+msgstr "ej: Desarrollador Frontend"
+
+#: projects/forms/projects_form.py:96
+#, python-format
+msgid "Agreed payment cannot exceed the project's total budget of $%(budget)s."
+msgstr ""
+
+#: projects/forms/projects_form.py:135
+#, python-format
+msgid "Cannot update payment. Available budget: $%(available)s"
+msgstr ""
+
+#: projects/forms/projects_form.py:150
+#: projects/templates/projects/application_form.html:35
+#: projects/templates/projects/application_form.html:80
+#: projects/templates/projects/project_detail.html:96
+#: projects/templates/projects/project_detail.html:142
+msgid "Cover Letter"
+msgstr "Carta de Presentación"
+
+#: projects/forms/projects_form.py:151
+#: projects/templates/projects/application_form.html:46
+msgid "Proposed Payment (USD)"
+msgstr "Pago Propuesto (USD)"
+
+#: projects/forms/projects_form.py:154
+msgid "Explain why you're the best fit for this project."
+msgstr "Explica por qué eres el mejor candidato para este proyecto."
+
+#: projects/forms/projects_form.py:155
+msgid "Your proposed compensation for completing the work."
+msgstr "Tu compensación propuesta por completar el trabajo."
+
+#: projects/forms/projects_form.py:158
+msgid "Tell us about your experience..."
+msgstr "Cuéntanos sobre tu experiencia..."
+
+#: projects/forms/projects_form.py:170
+#, python-format
+msgid "Your proposal exceeds the project budget of $%(budget)s."
+msgstr ""
+
+#: projects/models.py:11
+msgid "In Progress"
+msgstr "En Progreso"
+
+#: projects/models.py:12
+msgid "Delivered"
+msgstr "Entregado"
+
+#: projects/models.py:17
+msgid "client"
+msgstr "cliente"
+
+#: projects/models.py:18
+msgid "title"
+msgstr "título"
+
+#: projects/models.py:19
+msgid "description"
+msgstr "descripción"
+
+#: projects/models.py:21 projects/models.py:62 projects/models.py:97
+msgid "status"
+msgstr "estado"
+
+#: projects/models.py:23
+msgid "budget"
+msgstr "presupuesto"
+
+#: projects/models.py:24
+msgid "image path"
+msgstr "ruta de imagen"
+
+#: projects/models.py:25 projects/models.py:64 projects/models.py:99
+msgid "created at"
+msgstr "creado el"
+
+#: projects/models.py:26 projects/models.py:65 projects/models.py:100
+msgid "updated at"
+msgstr "actualizado el"
+
+#: projects/models.py:29 projects/models.py:49 projects/models.py:84
+msgid "project"
+msgstr "proyecto"
+
+#: projects/models.py:30
+msgid "projects"
+msgstr "proyectos"
+
+#: projects/models.py:42
+msgid "Invited"
+msgstr "Invitado"
+
+#: projects/models.py:43 projects/models.py:78
+msgid "Accepted"
+msgstr "Aceptado"
+
+#: projects/models.py:44 projects/models.py:79
+msgid "Rejected"
+msgstr "Rechazado"
+
+#: projects/models.py:45
+msgid "Removed"
+msgstr "Eliminado"
+
+#: projects/models.py:52 projects/models.py:87
+msgid "freelancer"
+msgstr "freelancer"
+
+#: projects/models.py:54
+msgid "role"
+msgstr "rol"
+
+#: projects/models.py:56
+msgid "agreed payment"
+msgstr "pago acordado"
+
+#: projects/models.py:68
+msgid "project assignment"
+msgstr "asignación de proyecto"
+
+#: projects/models.py:69
+msgid "project assignments"
+msgstr "asignaciones de proyecto"
+
+#: projects/models.py:80
+msgid "Withdrawn"
+msgstr "Retirado"
+
+#: projects/models.py:89
+msgid "cover letter"
+msgstr "carta de presentación"
+
+#: projects/models.py:91
+msgid "proposed payment"
+msgstr "pago propuesto"
+
+#: projects/models.py:104
+msgid "project application"
+msgstr "aplicación de proyecto"
+
+#: projects/models.py:105
+msgid "project applications"
+msgstr "aplicaciones de proyecto"
+
+#: projects/services/project_service.py:34
+msgid "Already applied to this project."
+msgstr "Ya aplicaste a este proyecto."
+
+#: projects/services/project_service.py:46
+msgid "Application not found"
+msgstr "Aplicación no encontrada"
+
+#: projects/services/project_service.py:72
+msgid "Project not found"
+msgstr "Proyecto no encontrado"
+
+#: projects/services/project_service.py:113
+msgid "Freelancer already registered or assigned to this project."
+msgstr "Freelancer ya registrado o asignado a este proyecto."
+
+#: projects/services/project_service.py:130
+#: projects/services/project_service.py:154
+msgid "Assignment not found"
+msgstr "Asignación no encontrada"
+
+#: projects/services/project_service.py:135
+msgid "Not enough budget for this assignment"
+msgstr "No hay suficiente presupuesto para esta asignación"
+
+#: projects/templates/projects/application_form.html:11
+#: projects/templates/projects/assignment_form.html:11
+msgid "Project Detail"
+msgstr "Detalle del Proyecto"
+
+#: projects/templates/projects/application_form.html:14
+#: projects/templates/projects/project_detail.html:154
+msgid "Apply to Project"
+msgstr "Aplicar al Proyecto"
+
+#: projects/templates/projects/application_form.html:25
+#, python-format
+msgid "Apply to %(title)s"
+msgstr ""
+
+#: projects/templates/projects/application_form.html:65
+msgid "Submit Application"
+msgstr "Enviar Aplicación"
+
+#: projects/templates/projects/application_form.html:75
+msgid "Tips for a Strong Application"
+msgstr "Consejos para una Aplicación Sólida"
+
+#: projects/templates/projects/application_form.html:82
+msgid "Be concise and professional"
+msgstr "Sé conciso y profesional"
+
+#: projects/templates/projects/application_form.html:83
+msgid "Highlight relevant experience"
+msgstr "Destaca experiencia relevante"
+
+#: projects/templates/projects/application_form.html:84
+msgid "Show enthusiasm for the project"
+msgstr "Muestra entusiasmo por el proyecto"
+
+#: projects/templates/projects/application_form.html:90
+msgid "Offer a fair and realistic amount"
+msgstr "Ofrece un monto justo y realista"
+
+#: projects/templates/projects/application_form.html:91
+msgid "Justify your rate briefly"
+msgstr "Justifica tu tarifa brevemente"
+
+#: projects/templates/projects/application_form.html:92
+msgid "Be transparent with costs"
+msgstr "Sé transparente con los costos"
+
+#: projects/templates/projects/assignment_form.html:14
+msgid "Edit Assignment"
+msgstr "Editar Asignación"
+
+#: projects/templates/projects/assignment_form.html:14
+msgid "Assign Freelancer"
+msgstr "Asignar Freelancer"
+
+#: projects/templates/projects/assignment_form.html:25
+#: projects/templates/projects/assignment_form.html:98
+msgid "Update Assignment"
+msgstr "Actualizar Asignación"
+
+#: projects/templates/projects/assignment_form.html:25
+#: projects/templates/projects/assignment_form.html:102
+msgid "Create Assignment"
+msgstr "Crear Asignación"
+
+#: projects/templates/projects/assignment_form.html:113
+msgid "Tips for Assignments"
+msgstr "Consejos para Asignaciones"
+
+#: projects/templates/projects/assignment_form.html:118
+msgid "Fair Payment"
+msgstr "Pago Justo"
+
+#: projects/templates/projects/assignment_form.html:120
+msgid "Ensure payment fits within budget"
+msgstr "Asegúrate de que el pago esté dentro del presupuesto"
+
+#: projects/templates/projects/assignment_form.html:121
+msgid "Offer transparency with freelancers"
+msgstr "Ofrece transparencia con los freelancers"
+
+#: projects/templates/projects/assignment_form.html:122
+msgid "Keep negotiation records"
+msgstr "Mantén registros de negociación"
+
+#: projects/templates/projects/assignment_form.html:126
+msgid "Clear Roles"
+msgstr "Roles Claros"
+
+#: projects/templates/projects/assignment_form.html:128
+msgid "Define roles explicitly"
+msgstr "Define roles explícitamente"
+
+#: projects/templates/projects/assignment_form.html:129
+msgid "Match skills to tasks"
+msgstr "Relaciona habilidades con tareas"
+
+#: projects/templates/projects/assignment_form.html:130
+msgid "Set measurable deliverables"
+msgstr "Establece entregables medibles"
+
+#: projects/templates/projects/client_projects_list.html:14
+#: projects/templates/projects/client_projects_list.html:24
+#: projects/templates/projects/project_form.html:12
+msgid "My Projects"
+msgstr "Mis Proyectos"
+
+#: projects/templates/projects/client_projects_list.html:27
+#: projects/templates/projects/project_form.html:14
+#: projects/templates/projects/project_form.html:111
+msgid "Create Project"
+msgstr "Crear Proyecto"
+
+#: projects/templates/projects/client_projects_list.html:129
+msgid "You haven't created any projects"
+msgstr "No has creado ningún proyecto"
+
+#: projects/templates/projects/client_projects_list.html:130
+msgid "Start by creating your first project to hire freelancers!"
+msgstr "¡Comienza creando tu primer proyecto para contratar freelancers!"
+
+#: projects/templates/projects/client_projects_list.html:132
+msgid "Create My First Project"
+msgstr "Crear Mi Primer Proyecto"
+
+#: projects/templates/projects/project_detail.html:5 templates/base.html:9
+#: templates/base.html:27 templates/base.html:125 templates/base.html:164
+msgid "HireLoop"
+msgstr "HireLoop"
+
+#: projects/templates/projects/project_detail.html:14 templates/base.html:43
+#: templates/base.html:136
+msgid "Projects"
+msgstr "Proyectos"
+
+#: projects/templates/projects/project_detail.html:27
+msgid "ago"
+msgstr "hace"
+
+#: projects/templates/projects/project_detail.html:55
+msgid "Deadline"
+msgstr "Fecha límite"
+
+#: projects/templates/projects/project_detail.html:62
+#, python-format
+msgid ""
+"\n"
+"                %(counter)s freelancer applied\n"
+"                "
+msgid_plural ""
+"\n"
+"                %(counter)s freelancers applied\n"
+"                "
+msgstr[0] ""
+msgstr[1] ""
+
+#: projects/templates/projects/project_detail.html:87
+msgid "Freelancer Applications"
+msgstr "Aplicaciones de Freelancers"
+
+#: projects/templates/projects/project_detail.html:99
+msgid "Applied"
+msgstr "Aplicado"
+
+#: projects/templates/projects/project_detail.html:107
+msgid "Accept"
+msgstr "Aceptar"
+
+#: projects/templates/projects/project_detail.html:113
+msgid "Reject"
+msgstr "Rechazar"
+
+#: projects/templates/projects/project_detail.html:125
+msgid "No applications yet."
+msgstr "Aún no hay aplicaciones."
+
+#: projects/templates/projects/project_detail.html:134
+msgid "You have already applied to this project."
+msgstr "Ya has aplicado a este proyecto."
+
+#: projects/templates/projects/project_detail.html:162
+msgid "This project is not accepting new applications."
+msgstr "Este proyecto no está aceptando nuevas aplicaciones."
+
+#: projects/templates/projects/project_detail.html:169
+msgid "Create a freelancer profile"
+msgstr "Crear un perfil de freelancer"
+
+#: projects/templates/projects/project_detail.html:170
+#: projects/templates/projects/project_detail.html:177
+msgid "to apply to this project."
+msgstr "para aplicar a este proyecto."
+
+#: projects/templates/projects/project_detail.html:176
+msgid "Log in"
+msgstr "Iniciar sesión"
+
+#: projects/templates/projects/project_form.html:14
+msgid "Edit Project"
+msgstr "Editar Proyecto"
+
+#: projects/templates/projects/project_form.html:25
+#: projects/templates/projects/project_form.html:107
+msgid "Update Project"
+msgstr "Actualizar Proyecto"
+
+#: projects/templates/projects/project_form.html:25
+msgid "Create New Project"
+msgstr "Crear Nuevo Proyecto"
+
+#: projects/templates/projects/project_form.html:122
+msgid "Tips for a Great Project"
+msgstr "Consejos para un Gran Proyecto"
+
+#: projects/templates/projects/project_form.html:127
+msgid "Clear Scope"
+msgstr "Alcance Claro"
+
+#: projects/templates/projects/project_form.html:129
+msgid "Define deliverables clearly"
+msgstr "Define los entregables claramente"
+
+#: projects/templates/projects/project_form.html:130
+msgid "Add realistic deadlines"
+msgstr "Añade plazos realistas"
+
+#: projects/templates/projects/project_form.html:131
+msgid "Include success criteria"
+msgstr "Incluye criterios de éxito"
+
+#: projects/templates/projects/project_form.html:135
+msgid "Budgeting"
+msgstr "Presupuesto"
+
+#: projects/templates/projects/project_form.html:137
+msgid "Allocate enough budget for quality"
+msgstr "Asigna suficiente presupuesto para calidad"
+
+#: projects/templates/projects/project_form.html:138
+msgid "Be transparent with freelancers"
+msgstr "Sé transparente con los freelancers"
+
+#: projects/templates/projects/project_form.html:139
+msgid "Keep contingency in mind"
+msgstr "Ten en cuenta contingencias"
+
+#: projects/templates/projects/projects_list.html:9
+msgid "Available Projects"
+msgstr "Proyectos Disponibles"
+
+#: projects/templates/projects/projects_list.html:51
+msgid "Apply"
+msgstr "Aplicar"
+
+#: projects/templates/projects/projects_list.html:53
+msgid "Already Applied"
+msgstr "Ya Aplicado"
+
+#: projects/templates/projects/projects_list.html:71
+msgid "No projects found"
+msgstr "No se encontraron proyectos"
+
+#: projects/templates/projects/projects_list.html:72
+msgid "Currently, no projects are available."
+msgstr "Actualmente, no hay proyectos disponibles."
+
+#: projects/templates/projects/projects_list.html:80
+msgid "Projects pagination"
+msgstr "Paginación de proyectos"
+
+#: templates/base.html:26
+msgid " HireLoop Logo"
+msgstr " Logo de HireLoop"
+
+#: templates/base.html:38
+msgid "Browse MicroServices"
+msgstr "Explorar Microservicios"
+
+#: templates/base.html:48 templates/base.html:140
+msgid "Mentorships"
+msgstr "Mentorías"
+
+#: templates/base.html:53
+msgid "Dashboard"
+msgstr "Panel"
+
+#: templates/base.html:84
+msgid "Cart"
+msgstr ""
+
+#: templates/base.html:126
+msgid "Connecting freelancers with clients and mentors worldwide."
+msgstr "Conectando freelancers con clientes y mentores alrededor del mundo."
+
+#: templates/base.html:129
+msgid "Services"
+msgstr "Servicios"
+
+#: templates/base.html:133
+msgid "Freelance Services"
+msgstr "Servicios Freelance"
+
+#: templates/base.html:145
+msgid "Quick Links"
+msgstr "Enlaces Rápidos"
+
+#: templates/base.html:148
+msgid "About Us"
+msgstr "Acerca de Nosotros"
+
+#: templates/base.html:151
+msgid "Contact"
+msgstr "Contacto"
+
+#: templates/base.html:154
+msgid "Privacy Policy"
+msgstr "Política de Privacidad"
+
+#: templates/base.html:157
+msgid "Terms of Service"
+msgstr "Términos de Servicio"
+
+#: templates/base.html:164
+msgid "All rights reserved."
+msgstr "Todos los derechos reservados."
+
+#: venv/lib/python3.13/site-packages/click/_termui_impl.py:608
+#, python-brace-format
+msgid "{editor}: Editing failed"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/_termui_impl.py:612
+#, python-brace-format
+msgid "{editor}: Editing failed: {e}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1104
+#: venv/lib/python3.13/site-packages/click/core.py:1141
+#, python-brace-format
+msgid "{text} {deprecated_message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1160
+msgid "Options"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1222
+#, python-brace-format
+msgid "Got unexpected extra argument ({args})"
+msgid_plural "Got unexpected extra arguments ({args})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1241
+msgid "DeprecationWarning: The command {name!r} is deprecated.{extra_message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1425
+msgid "Aborted!"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1799
+msgid "Commands"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1830
+msgid "Missing command."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:1908
+msgid "No such command {name!r}."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2332
+msgid "Value must be an iterable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2355
+#, python-brace-format
+msgid "Takes {nargs} values but 1 was given."
+msgid_plural "Takes {nargs} values but {len} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2505
+msgid ""
+"DeprecationWarning: The {param_type} {name!r} is deprecated.{extra_message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2956
+#, python-brace-format
+msgid "env var: {var}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:2959
+#, python-brace-format
+msgid "default: {default}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/core.py:3023
+msgid "(dynamic)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/decorators.py:465
+#, python-format
+msgid "%(prog)s, version %(version)s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/decorators.py:522
+msgid "Show the version and exit."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/decorators.py:548
+msgid "Show this message and exit."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:50
+#: venv/lib/python3.13/site-packages/click/exceptions.py:89
+#, python-brace-format
+msgid "Error: {message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:81
+#, python-brace-format
+msgid "Try '{command} {option}' for help."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:130
+#, python-brace-format
+msgid "Invalid value: {message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:132
+#, python-brace-format
+msgid "Invalid value for {param_hint}: {message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:190
+msgid "Missing argument"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:192
+msgid "Missing option"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:194
+msgid "Missing parameter"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:196
+#, python-brace-format
+msgid "Missing {param_type}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:203
+#, python-brace-format
+msgid "Missing parameter: {param_name}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:223
+#, python-brace-format
+msgid "No such option: {name}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:235
+#, python-brace-format
+msgid "Did you mean {possibility}?"
+msgid_plural "(Possible options: {possibilities})"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:282
+msgid "unknown error"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/exceptions.py:289
+msgid "Could not open file {filename!r}: {message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/formatting.py:156
+msgid "Usage:"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/parser.py:199
+msgid "Argument {name!r} takes {nargs} values."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/parser.py:381
+msgid "Option {name!r} does not take a value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/parser.py:444
+msgid "Option {name!r} requires an argument."
+msgid_plural "Option {name!r} requires {nargs} arguments."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/shell_completion.py:332
+msgid "Shell completion is not supported for Bash versions older than 4.4."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/shell_completion.py:339
+msgid "Couldn't detect Bash version, shell completion is not supported."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:162
+msgid "Repeat for confirmation"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:178
+msgid "Error: The value you entered was invalid."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:180
+#, python-brace-format
+msgid "Error: {e.message}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:191
+msgid "Error: The two entered values do not match."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:247
+msgid "Error: invalid input"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/termui.py:866
+msgid "Press any key to continue..."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:332
+#, python-brace-format
+msgid ""
+"Choose from:\n"
+"\t{choices}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:369
+msgid "{value!r} is not {choice}."
+msgid_plural "{value!r} is not one of {choices}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:460
+msgid "{value!r} does not match the format {format}."
+msgid_plural "{value!r} does not match the formats {formats}."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:482
+msgid "{value!r} is not a valid {number_type}."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:538
+#, python-brace-format
+msgid "{value} is not in the range {range}."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:719
+msgid "{value!r} is not a valid boolean. Recognized values: {states}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:747
+msgid "{value!r} is not a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:937
+msgid "file"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:939
+msgid "directory"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:941
+msgid "path"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:988
+msgid "{name} {filename!r} does not exist."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:997
+msgid "{name} {filename!r} is a file."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1005
+msgid "{name} {filename!r} is a directory."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1014
+msgid "{name} {filename!r} is not readable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1023
+msgid "{name} {filename!r} is not writable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1032
+msgid "{name} {filename!r} is not executable."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/click/types.py:1099
+#, python-brace-format
+msgid "{len_type} values are required, but {len_value} was given."
+msgid_plural "{len_type} values are required, but {len_value} were given."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/contrib/messages/apps.py:16
+msgid "Messages"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/contrib/sitemaps/apps.py:8
+msgid "Site Maps"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/contrib/staticfiles/apps.py:9
+msgid "Static Files"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/contrib/syndication/apps.py:7
+msgid "Syndication"
+msgstr ""
+
+#. Translators: String used to replace omitted page numbers in elided page
+#. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
+#: venv/lib/python3.13/site-packages/django/core/paginator.py:30
+msgid "…"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/paginator.py:32
+msgid "That page number is not an integer"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/paginator.py:33
+msgid "That page number is less than 1"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/paginator.py:34
+msgid "That page contains no results"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:22
+msgid "Enter a valid value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:70
+msgid "Enter a valid domain name."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:153
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:775
+msgid "Enter a valid URL."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:200
+msgid "Enter a valid integer."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:211
+msgid "Enter a valid email address."
+msgstr ""
+
+#. Translators: "letters" means latin letters: a-z and A-Z.
+#: venv/lib/python3.13/site-packages/django/core/validators.py:289
+msgid ""
+"Enter a valid “slug” consisting of letters, numbers, underscores or hyphens."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:297
+msgid ""
+"Enter a valid “slug” consisting of Unicode letters, numbers, underscores, or "
+"hyphens."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:309
+#: venv/lib/python3.13/site-packages/django/core/validators.py:318
+#: venv/lib/python3.13/site-packages/django/core/validators.py:332
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2220
+#, python-format
+msgid "Enter a valid %(protocol)s address."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:311
+msgid "IPv4"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:320
+#: venv/lib/python3.13/site-packages/django/utils/ipv6.py:43
+msgid "IPv6"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:334
+msgid "IPv4 or IPv6"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:375
+msgid "Enter only digits separated by commas."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:381
+#, python-format
+msgid "Ensure this value is %(limit_value)s (it is %(show_value)s)."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:416
+#, python-format
+msgid "Ensure this value is less than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:425
+#, python-format
+msgid "Ensure this value is greater than or equal to %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:434
+#, python-format
+msgid "Ensure this value is a multiple of step size %(limit_value)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:441
+#, python-format
+msgid ""
+"Ensure this value is a multiple of step size %(limit_value)s, starting from "
+"%(offset)s, e.g. %(offset)s, %(valid_value1)s, %(valid_value2)s, and so on."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:473
+#, python-format
+msgid ""
+"Ensure this value has at least %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at least %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:491
+#, python-format
+msgid ""
+"Ensure this value has at most %(limit_value)d character (it has "
+"%(show_value)d)."
+msgid_plural ""
+"Ensure this value has at most %(limit_value)d characters (it has "
+"%(show_value)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:514
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:366
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:405
+msgid "Enter a number."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:516
+#, python-format
+msgid "Ensure that there are no more than %(max)s digit in total."
+msgid_plural "Ensure that there are no more than %(max)s digits in total."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:521
+#, python-format
+msgid "Ensure that there are no more than %(max)s decimal place."
+msgid_plural "Ensure that there are no more than %(max)s decimal places."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:526
+#, python-format
+msgid ""
+"Ensure that there are no more than %(max)s digit before the decimal point."
+msgid_plural ""
+"Ensure that there are no more than %(max)s digits before the decimal point."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:597
+#, python-format
+msgid ""
+"File extension “%(extension)s” is not allowed. Allowed extensions are: "
+"%(allowed_extensions)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/core/validators.py:659
+msgid "Null characters are not allowed."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/base.py:1600
+#: venv/lib/python3.13/site-packages/django/forms/models.py:908
+msgid "and"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/base.py:1602
+#, python-format
+msgid "%(model_name)s with this %(field_labels)s already exists."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/constraints.py:22
+#, python-format
+msgid "Constraint “%(name)s” is violated."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:134
+#, python-format
+msgid "Value %(value)r is not a valid choice."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:135
+msgid "This field cannot be null."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:136
+msgid "This field cannot be blank."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:137
+#, python-format
+msgid "%(model_name)s with this %(field_label)s already exists."
+msgstr ""
+
+#. Translators: The 'lookup_type' is one of 'date', 'year' or
+#. 'month'. Eg: "Title must be unique for pub_date year"
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:141
+#, python-format
+msgid ""
+"%(field_label)s must be unique for %(date_field_label)s %(lookup_type)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:180
+#, python-format
+msgid "Field of type: %(field_type)s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1162
+#, python-format
+msgid "“%(value)s” value must be either True or False."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1163
+#, python-format
+msgid "“%(value)s” value must be either True, False, or None."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1165
+msgid "Boolean (Either True or False)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1215
+#, python-format
+msgid "String (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1217
+msgid "String (unlimited)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1326
+msgid "Comma-separated integers"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1427
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid date format. It must be in YYYY-MM-DD "
+"format."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1431
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1566
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD) but it is an invalid "
+"date."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1435
+msgid "Date (without time)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1562
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in YYYY-MM-DD "
+"HH:MM[:ss[.uuuuuu]][TZ] format."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1570
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (YYYY-MM-DD HH:MM[:ss[.uuuuuu]]"
+"[TZ]) but it is an invalid date/time."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1575
+msgid "Date (with time)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1702
+#, python-format
+msgid "“%(value)s” value must be a decimal number."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1704
+msgid "Decimal number"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1864
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in [DD] "
+"[[HH:]MM:]ss[.uuuuuu] format."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1920
+msgid "Email address"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:1945
+msgid "File path"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2023
+#, python-format
+msgid "“%(value)s” value must be a float."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2025
+msgid "Floating point number"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2065
+#, python-format
+msgid "“%(value)s” value must be an integer."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2067
+msgid "Integer"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2163
+msgid "Big (8 byte) integer"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2180
+msgid "Small integer"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2188
+msgid "IPv4 address"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2219
+msgid "IP address"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2310
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2311
+#, python-format
+msgid "“%(value)s” value must be either None, True or False."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2313
+msgid "Boolean (Either True, False or None)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2364
+msgid "Positive big integer"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2379
+msgid "Positive integer"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2394
+msgid "Positive small integer"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2410
+#, python-format
+msgid "Slug (up to %(max_length)s)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2446
+msgid "Text"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2526
+#, python-format
+msgid ""
+"“%(value)s” value has an invalid format. It must be in HH:MM[:ss[.uuuuuu]] "
+"format."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2530
+#, python-format
+msgid ""
+"“%(value)s” value has the correct format (HH:MM[:ss[.uuuuuu]]) but it is an "
+"invalid time."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2534
+msgid "Time"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2642
+msgid "URL"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2666
+msgid "Raw binary data"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2731
+#, python-format
+msgid "“%(value)s” is not a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py:2733
+msgid "Universally unique identifier"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/files.py:244
+msgid "File"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/json.py:24
+msgid "A JSON object"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/json.py:26
+msgid "Value must be valid JSON."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:979
+#, python-format
+msgid "%(model)s instance with %(field)s %(value)r is not a valid choice."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:982
+msgid "Foreign Key (type determined by related field)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1276
+msgid "One-to-one relationship"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1333
+#, python-format
+msgid "%(from)s-%(to)s relationship"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1335
+#, python-format
+msgid "%(from)s-%(to)s relationships"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/db/models/fields/related.py:1383
+msgid "Many-to-many relationship"
+msgstr ""
+
+#. Translators: If found as last label character, these punctuation
+#. characters will prevent the default label_suffix to be appended to the label
+#: venv/lib/python3.13/site-packages/django/forms/boundfield.py:185
+msgid ":?.!"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:95
+msgid "This field is required."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:315
+msgid "Enter a whole number."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:486
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:1267
+msgid "Enter a valid date."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:509
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:1268
+msgid "Enter a valid time."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:536
+msgid "Enter a valid date/time."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:570
+msgid "Enter a valid duration."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:571
+#, python-brace-format
+msgid "The number of days must be between {min_days} and {max_days}."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:640
+msgid "No file was submitted. Check the encoding type on the form."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:641
+msgid "No file was submitted."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:642
+msgid "The submitted file is empty."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:644
+#, python-format
+msgid "Ensure this filename has at most %(max)d character (it has %(length)d)."
+msgid_plural ""
+"Ensure this filename has at most %(max)d characters (it has %(length)d)."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:649
+msgid "Please either submit a file or check the clear checkbox, not both."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:717
+msgid ""
+"Upload a valid image. The file you uploaded was either not an image or a "
+"corrupted image."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:889
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:975
+#: venv/lib/python3.13/site-packages/django/forms/models.py:1592
+#, python-format
+msgid "Select a valid choice. %(value)s is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:977
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:1096
+#: venv/lib/python3.13/site-packages/django/forms/models.py:1590
+msgid "Enter a list of values."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:1097
+msgid "Enter a complete value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:1339
+msgid "Enter a valid UUID."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/fields.py:1369
+msgid "Enter a valid JSON."
+msgstr ""
+
+#. Translators: This is the default suffix added to form field labels
+#: venv/lib/python3.13/site-packages/django/forms/forms.py:97
+msgid ":"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/forms.py:239
+#, python-format
+msgid "(Hidden field %(name)s) %(error)s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/formsets.py:61
+#, python-format
+msgid ""
+"ManagementForm data is missing or has been tampered with. Missing fields: "
+"%(field_names)s. You may need to file a bug report if the issue persists."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/formsets.py:65
+#, python-format
+msgid "Please submit at most %(num)d form."
+msgid_plural "Please submit at most %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/forms/formsets.py:70
+#, python-format
+msgid "Please submit at least %(num)d form."
+msgid_plural "Please submit at least %(num)d forms."
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/forms/formsets.py:484
+#: venv/lib/python3.13/site-packages/django/forms/formsets.py:491
+msgid "Order"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/models.py:901
+#, python-format
+msgid "Please correct the duplicate data for %(field)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/models.py:906
+#, python-format
+msgid "Please correct the duplicate data for %(field)s, which must be unique."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/models.py:913
+#, python-format
+msgid ""
+"Please correct the duplicate data for %(field_name)s which must be unique "
+"for the %(lookup)s in %(date_field)s."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/models.py:922
+msgid "Please correct the duplicate values below."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/models.py:1359
+msgid "The inline value did not match the parent instance."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/models.py:1450
+msgid "Select a valid choice. That choice is not one of the available choices."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/models.py:1594
+#, python-format
+msgid "“%(pk)s” is not a valid value."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/utils.py:229
+#, python-format
+msgid ""
+"%(datetime)s couldn’t be interpreted in time zone %(current_timezone)s; it "
+"may be ambiguous or it may not exist."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/widgets.py:527
+msgid "Clear"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/widgets.py:528
+msgid "Currently"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/widgets.py:529
+msgid "Change"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/widgets.py:866
+msgid "Unknown"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/widgets.py:867
+msgid "Yes"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/forms/widgets.py:868
+msgid "No"
+msgstr ""
+
+#. Translators: Please do not add spaces around commas.
+#: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:873
+msgid "yes,no,maybe"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:903
+#: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:920
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:922
+#, python-format
+msgid "%s KB"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:924
+#, python-format
+msgid "%s MB"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:926
+#, python-format
+msgid "%s GB"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:928
+#, python-format
+msgid "%s TB"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/template/defaultfilters.py:930
+#, python-format
+msgid "%s PB"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dateformat.py:74
+msgid "p.m."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dateformat.py:75
+msgid "a.m."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dateformat.py:80
+msgid "PM"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dateformat.py:81
+msgid "AM"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dateformat.py:153
+msgid "midnight"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dateformat.py:155
+msgid "noon"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:7
+msgid "Monday"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:8
+msgid "Tuesday"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:9
+msgid "Wednesday"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:10
+msgid "Thursday"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:11
+msgid "Friday"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:12
+msgid "Saturday"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:13
+msgid "Sunday"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:16
+msgid "Mon"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:17
+msgid "Tue"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:18
+msgid "Wed"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:19
+msgid "Thu"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:20
+msgid "Fri"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:21
+msgid "Sat"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:22
+msgid "Sun"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:25
+msgid "January"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:26
+msgid "February"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:27
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:28
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:29
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:30
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:31
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:32
+msgid "August"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:33
+msgid "September"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:34
+msgid "October"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:35
+msgid "November"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:36
+msgid "December"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:39
+msgid "jan"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:40
+msgid "feb"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:41
+msgid "mar"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:42
+msgid "apr"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:43
+msgid "may"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:44
+msgid "jun"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:45
+msgid "jul"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:46
+msgid "aug"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:47
+msgid "sep"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:48
+msgid "oct"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:49
+msgid "nov"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:50
+msgid "dec"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:53
+msgctxt "abbrev. month"
+msgid "Jan."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:54
+msgctxt "abbrev. month"
+msgid "Feb."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:55
+msgctxt "abbrev. month"
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:56
+msgctxt "abbrev. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:57
+msgctxt "abbrev. month"
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:58
+msgctxt "abbrev. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:59
+msgctxt "abbrev. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:60
+msgctxt "abbrev. month"
+msgid "Aug."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:61
+msgctxt "abbrev. month"
+msgid "Sept."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:62
+msgctxt "abbrev. month"
+msgid "Oct."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:63
+msgctxt "abbrev. month"
+msgid "Nov."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:64
+msgctxt "abbrev. month"
+msgid "Dec."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:67
+msgctxt "alt. month"
+msgid "January"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:68
+msgctxt "alt. month"
+msgid "February"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:69
+msgctxt "alt. month"
+msgid "March"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:70
+msgctxt "alt. month"
+msgid "April"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:71
+msgctxt "alt. month"
+msgid "May"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:72
+msgctxt "alt. month"
+msgid "June"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:73
+msgctxt "alt. month"
+msgid "July"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:74
+msgctxt "alt. month"
+msgid "August"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:75
+msgctxt "alt. month"
+msgid "September"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:76
+msgctxt "alt. month"
+msgid "October"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:77
+msgctxt "alt. month"
+msgid "November"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/dates.py:78
+msgctxt "alt. month"
+msgid "December"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/ipv6.py:20
+msgid "This is not a valid IPv6 address."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/text.py:76
+#, python-format
+msgctxt "String to return when truncating text"
+msgid "%(truncated_text)s…"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/text.py:287
+msgid "or"
+msgstr ""
+
+#. Translators: This string is used as a separator between list elements
+#: venv/lib/python3.13/site-packages/django/utils/text.py:306
+#: venv/lib/python3.13/site-packages/django/utils/timesince.py:135
+msgid ", "
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/utils/timesince.py:8
+#, python-format
+msgid "%(num)d year"
+msgid_plural "%(num)d years"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/utils/timesince.py:9
+#, python-format
+msgid "%(num)d month"
+msgid_plural "%(num)d months"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/utils/timesince.py:10
+#, python-format
+msgid "%(num)d week"
+msgid_plural "%(num)d weeks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/utils/timesince.py:11
+#, python-format
+msgid "%(num)d day"
+msgid_plural "%(num)d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/utils/timesince.py:12
+#, python-format
+msgid "%(num)d hour"
+msgid_plural "%(num)d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/utils/timesince.py:13
+#, python-format
+msgid "%(num)d minute"
+msgid_plural "%(num)d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: venv/lib/python3.13/site-packages/django/views/csrf.py:29
+msgid "Forbidden"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/csrf.py:30
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/csrf.py:34
+msgid ""
+"You are seeing this message because this HTTPS site requires a “Referer "
+"header” to be sent by your web browser, but none was sent. This header is "
+"required for security reasons, to ensure that your browser is not being "
+"hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/csrf.py:40
+msgid ""
+"If you have configured your browser to disable “Referer” headers, please re-"
+"enable them, at least for this site, or for HTTPS connections, or for “same-"
+"origin” requests."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/csrf.py:45
+msgid ""
+"If you are using the <meta name=\"referrer\" content=\"no-referrer\"> tag or "
+"including the “Referrer-Policy: no-referrer” header, please remove them. The "
+"CSRF protection requires the “Referer” header to do strict referer checking. "
+"If you’re concerned about privacy, use alternatives like <a "
+"rel=\"noreferrer\" …> for links to third-party sites."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/csrf.py:54
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when "
+"submitting forms. This cookie is required for security reasons, to ensure "
+"that your browser is not being hijacked by third parties."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/csrf.py:60
+msgid ""
+"If you have configured your browser to disable cookies, please re-enable "
+"them, at least for this site, or for “same-origin” requests."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/csrf.py:66
+msgid "More information is available with DEBUG=True."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/dates.py:44
+msgid "No year specified"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/dates.py:64
+#: venv/lib/python3.13/site-packages/django/views/generic/dates.py:115
+#: venv/lib/python3.13/site-packages/django/views/generic/dates.py:214
+msgid "Date out of range"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/dates.py:94
+msgid "No month specified"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/dates.py:147
+msgid "No day specified"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/dates.py:194
+msgid "No week specified"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/dates.py:353
+#: venv/lib/python3.13/site-packages/django/views/generic/dates.py:384
+#, python-format
+msgid "No %(verbose_name_plural)s available"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/dates.py:680
+#, python-format
+msgid ""
+"Future %(verbose_name_plural)s not available because "
+"%(class_name)s.allow_future is False."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/dates.py:720
+#, python-format
+msgid "Invalid date string “%(datestr)s” given format “%(format)s”"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/detail.py:56
+#, python-format
+msgid "No %(verbose_name)s found matching the query"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/list.py:70
+msgid "Page is not “last”, nor can it be converted to an int."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/list.py:77
+#, python-format
+msgid "Invalid page (%(page_number)s): %(message)s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/generic/list.py:173
+#, python-format
+msgid "Empty list and “%(class_name)s.allow_empty” is False."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/static.py:49
+msgid "Directory indexes are not allowed here."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/static.py:51
+#, python-format
+msgid "“%(path)s” does not exist"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/static.py:68
+#: venv/lib/python3.13/site-packages/django/views/templates/directory_index.html:8
+#: venv/lib/python3.13/site-packages/django/views/templates/directory_index.html:11
+#, python-format
+msgid "Index of %(directory)s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:7
+#: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:204
+msgid "The install worked successfully! Congratulations!"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:206
+#, python-format
+msgid ""
+"View <a href=\"https://docs.djangoproject.com/en/%(version)s/releases/\" "
+"target=\"_blank\" rel=\"noopener\">release notes</a> for Django %(version)s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:208
+#, python-format
+msgid ""
+"You are seeing this page because <a href=\"https://docs.djangoproject.com/en/"
+"%(version)s/ref/settings/#debug\" target=\"_blank\" "
+"rel=\"noopener\">DEBUG=True</a> is in your settings file and you have not "
+"configured any URLs."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:217
+msgid "Django Documentation"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:218
+msgid "Topics, references, &amp; how-to’s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:226
+msgid "Tutorial: A Polling App"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:227
+msgid "Get started with Django"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:235
+msgid "Django Community"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django/views/templates/default_urlconf.html:236
+msgid "Connect, get help, or contribute"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django_plotly_dash/templates/admin/django_plotly_dash/statelessapp/change_list.html:7
+msgid "Find Apps"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/django_plotly_dash/templates/admin/django_plotly_dash/statelessapp/change_list.html:13
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:139
+#, python-format
+msgid "Error: Cannot handle glob %s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:375
+#, python-format
+msgid "Cannot read %s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:557
+#, python-format
+msgid "Unimplemented function: %s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:707
+#, python-format
+msgid "new name needed for rename of %s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:729
+#, python-format
+msgid "Unhandled filechange type: %s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1138
+msgid "Couldn't parse rename source"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1168
+#, python-format
+msgid "Malformed %(refname)s line: '%(line)s'"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1550
+#, python-format
+msgid "Unsupported command: '%s'"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1552
+#, python-format
+msgid "Could not parse line: '%s'"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1569
+#, python-format
+msgid ""
+"\n"
+"NEXT STEPS FOR YOUR SENSITIVE DATA REMOVAL:\n"
+"  * If you are doing your rewrite in multiple steps, ignore these next "
+"steps\n"
+"    until you have completed all your invocations of git-filter-repo.\n"
+"  * See the \"Sensitive Data Removal\" subsection of the \"DISCUSSION\" "
+"section\n"
+"    of the manual for more details about any of the steps below.\n"
+"  * Inspect this repository and verify that the sensitive data is indeed\n"
+"    completely removed from all commits.\n"
+"  * Force push the rewritten history to the server:\n"
+"      %s\n"
+"  * Contact the server admins for additional steps they need to take; the\n"
+"    First Changed Commit(s)%s may come in handy here.\n"
+"  * Have other colleagues with a clone either discard their clone and "
+"reclone\n"
+"    OR follow the detailed steps in the manual to repeatedly rebase and\n"
+"    purge the sensitive data from their copy.  Again, the First Changed\n"
+"    Commit(s)%s may come in handy.\n"
+"  * See the \"Prevent repeats and avoid future sensitive data spills\" "
+"section\n"
+"    of the manual.\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1640
+#, python-format
+msgid "%s does not appear to be a valid git repository"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1699
+#, python-format
+msgid "Processed %d blob sizes"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1718
+#, python-format
+msgid "Error: unexpected `git cat-file` output: \"%s\"\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1777
+msgid ""
+"Error: --path-rename expects one colon in its argument: <old_name:new_name>."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1781
+msgid ""
+"Error: With --path-rename, if OLD_NAME and NEW_NAME are both non-empty and "
+"either ends with a slash then both must."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1785
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1792
+msgid "Error: Pathnames cannot begin with a '/'"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1795
+#, python-format
+msgid "Error: Invalid path component '%s' found in '%s'"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1818
+#, python-format
+msgid "Error: HelperFilter given invalid option_string: %s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1830
+msgid ""
+"Rewrite (or analyze) repository history\n"
+"\n"
+"    git-filter-repo destructively rewrites history (unless --analyze or\n"
+"    --dry-run are given) according to specified rules.  It refuses to do "
+"any\n"
+"    rewriting unless either run from a clean fresh clone, or --force was\n"
+"    given.\n"
+"\n"
+"    Basic Usage:\n"
+"      git-filter-repo --analyze\n"
+"      git-filter-repo [FILTER/RENAME/CONTROL OPTIONS]\n"
+"\n"
+"    See EXAMPLES section for details.\n"
+"    "
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1845
+msgid ""
+"CALLBACKS\n"
+"\n"
+"    Most callback functions are of the same general format.  For a command "
+"line\n"
+"    argument like\n"
+"      --foo-callback 'BODY'\n"
+"\n"
+"    the following code will be compiled and called:\n"
+"      def foo_callback(foo):\n"
+"        BODY\n"
+"\n"
+"    The exception on callbacks is the --file-info-callback, which will be\n"
+"    discussed further below.\n"
+"\n"
+"    Given the callback style, we can thus make a simple callback to replace\n"
+"    'Jon' with 'John' in author/committer/tagger names:\n"
+"      git filter-repo --name-callback 'return name.replace(b\"Jon\", "
+"b\"John\")'\n"
+"\n"
+"    To remove all 'Tested-by' tags in commit (or tag) messages:\n"
+"      git filter-repo --message-callback 'return re.sub(br\"\\nTested-"
+"by:.*\", \"\", message)'\n"
+"\n"
+"    To remove all .DS_Store files:\n"
+"      git filter-repo --filename-callback 'return None if "
+"os.path.basename(filename) == b\".DS_Store\" else filename'\n"
+"\n"
+"    Note that if BODY resolves to a filename, then the contents of that "
+"file\n"
+"    will be used as the BODY in the callback function.\n"
+"\n"
+"    The --file-info-callback has a more involved function callback; for it "
+"the\n"
+"    following code will be compiled and called:\n"
+"      def file_info_callback(filename, mode, blob_id, value):\n"
+"        BODY\n"
+"\n"
+"    It is designed to be used in cases where filtering depends on both\n"
+"    filename and contents (and maybe mode).  It is called for file changes\n"
+"    other than deletions (since deletions have no file contents to operate\n"
+"    on).  This callback is expected to return a tuple of (filename, mode,\n"
+"    blob_id).  It can make use of the following functions from the value\n"
+"    instance:\n"
+"      value.get_contents_by_identifier(blob_id) -> contents (bytestring)\n"
+"      value.get_size_by_identifier(blob_id) -> size_of_blob (int)\n"
+"      value.insert_file_with_contents(contents) -> blob_id\n"
+"      value.is_binary(contents) -> bool\n"
+"      value.apply_replace_text(contents) -> new_contents (bytestring)\n"
+"    and can read/write the following data member from the value instance:\n"
+"      value.data (dict)\n"
+"\n"
+"    The filename can be used for renaming the file similar to\n"
+"    --filename-callback (or None to drop the change), and mode is one\n"
+"    of b'100644', b'100755', b'120000', or b'160000'.\n"
+"\n"
+"    For more detailed examples and explanations AND caveats, see\n"
+"      https://htmlpreview.github.io/?https://github.com/newren/git-filter-"
+"repo/blob/docs/html/git-filter-repo.html#CALLBACKS\n"
+"\n"
+"EXAMPLES\n"
+"\n"
+"    To get a bunch of reports mentioning renames that have occurred in\n"
+"    your repo and listing sizes of objects aggregated by any of path,\n"
+"    directory, extension, or blob-id:\n"
+"      git filter-repo --analyze\n"
+"\n"
+"    (These reports can help you choose how to filter your repo; it can\n"
+"    be useful to re-run this command after filtering to regenerate the\n"
+"    report and verify the changes look correct.)\n"
+"\n"
+"    To extract the history that touched just 'guides' and 'tools/releases':\n"
+"      git filter-repo --path guides/ --path tools/releases\n"
+"\n"
+"    To remove foo.zip and bar/baz/zips from every revision in history:\n"
+"      git filter-repo --path foo.zip --path bar/baz/zips/ --invert-paths\n"
+"\n"
+"    To replace the text 'password' with 'p455w0rd':\n"
+"      git filter-repo --replace-text <(echo \"password==>p455w0rd\")\n"
+"\n"
+"    To use the current version of the .mailmap file to update authors,\n"
+"    committers, and taggers throughout history and make it permanent:\n"
+"      git filter-repo --use-mailmap\n"
+"\n"
+"    To extract the history of 'src/', rename all files to have a new "
+"leading\n"
+"    directory 'my-module' (e.g. src/foo.java -> my-module/src/foo.java), "
+"and\n"
+"    add a 'my-module-' prefix to all tags:\n"
+"      git filter-repo --path src/ --to-subdirectory-filter my-module --tag-"
+"rename '':'my-module-'\n"
+"\n"
+"    For more detailed examples and explanations, see\n"
+"      https://htmlpreview.github.io/?https://github.com/newren/git-filter-"
+"repo/blob/docs/html/git-filter-repo.html#EXAMPLES"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1936
+msgid "Analysis"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1938
+msgid ""
+"Analyze repository history and create a report that may be useful in "
+"determining what to filter in a subsequent run. Will not modify your repo."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1945
+msgid ""
+"Directory to write report, defaults to GIT_DIR/filter_repo/analysis,refuses "
+"to run if exists, --force delete existing dir first."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1948
+msgid "Filtering based on paths (see also --filename-callback)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1950
+msgid ""
+"\n"
+"           These options specify the paths to select.  Note that much like "
+"git\n"
+"           itself, renames are NOT followed so you may need to specify "
+"multiple\n"
+"           paths, e.g. `--path olddir/ --path newdir/`\n"
+"           "
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1957
+msgid ""
+"Invert the selection of files from the specified --path-{match,glob,regex} "
+"options below, i.e. only select files matching none of those options."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1964
+msgid ""
+"Exact paths (files or directories) to include in filtered history.  Multiple "
+"--path options can be specified to get a union of paths."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1969
+msgid ""
+"Glob of paths to include in filtered history. Multiple --path-glob options "
+"can be specified to get a union of paths."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1974
+msgid ""
+"Regex of paths to include in filtered history. Multiple --path-regex options "
+"can be specified to get a union of paths"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1978
+msgid ""
+"Match on file base name instead of full path from the top of the repo.  "
+"Incompatible with --path-rename, and incompatible with matching against "
+"directory names."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1982
+msgid "Renaming based on paths (see also --filename-callback)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1987
+msgid ""
+"Path to rename; if filename or directory matches OLD_NAME rename to "
+"NEW_NAME.  Multiple --path-rename options can be specified.  NOTE: If you "
+"combine filtering options with renaming ones, do not rely on a rename "
+"argument to select paths; you also need a filter to select them."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1993
+msgid "Path shortcuts"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:1998
+msgid ""
+"Specify several path filtering and renaming directives, one per line.  Lines "
+"with '==>' in them specify path renames, and lines can begin with 'literal:' "
+"(the default), 'glob:', or 'regex:' to specify different matching styles.  "
+"Blank lines and lines starting with a '#' are ignored."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2005
+msgid ""
+"Only look at history that touches the given subdirectory and treat that "
+"directory as the project root.  Equivalent to using '--path DIRECTORY/ --"
+"path-rename DIRECTORY/:'"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2010
+msgid ""
+"Treat the project root as if it were under DIRECTORY. Equivalent to using '--"
+"path-rename :DIRECTORY/'"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2013
+msgid "Content editing filters (see also --blob-callback)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2016
+msgid ""
+"A file with expressions that, if found, will be replaced. By default, each "
+"expression is treated as literal text, but 'regex:' and 'glob:' prefixes are "
+"supported.  You can end the line with '==>' and some replacement text to "
+"choose a replacement choice other than the default of '{}'."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2024
+msgid "Strip blobs (files) bigger than specified size (e.g. '5M', '2G', etc)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2027
+msgid ""
+"Read git object ids from each line of the given file, and strip all of them "
+"from history"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2030
+msgid "Renaming of refs (see also --refname-callback)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2033
+msgid ""
+"Rename tags starting with OLD to start with NEW.  For example, --tag-rename "
+"foo:bar will rename tag foo-1.2.3 to bar-1.2.3; either OLD or NEW can be "
+"empty."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2037
+msgid "Filtering of commit messages (see also --message-callback)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2040
+msgid ""
+"A file with expressions that, if found in commit or tag messages, will be "
+"replaced. This file uses the same syntax as --replace-text."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2044
+msgid ""
+"By default, since commits are rewritten and thus gain new hashes, references "
+"to old commit hashes in commit messages are replaced with new commit hashes "
+"(abbreviated to the same length as the old reference).  Use this flag to "
+"turn off updating commit hashes in commit messages."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2050
+msgid ""
+"Do not reencode commit messages into UTF-8.  By default, if the commit "
+"object specifies an encoding for the commit message, the message is re-"
+"encoded into UTF-8."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2054
+msgid ""
+"Filtering of names & emails (see also --name-callback and --email-callback)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2059
+msgid ""
+"Use specified mailmap file (see git-shortlog(1) for details on the format) "
+"when rewriting author, committer, and tagger names and emails.  If the "
+"specified file is part of git history, historical versions of the file will "
+"be ignored; only the current contents are consulted."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2066
+msgid "Same as: '--mailmap .mailmap' "
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2068
+msgid "Parent rewriting"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2073
+msgid ""
+"How to handle replace refs (see git-replace(1)).  Replace refs can be added "
+"during the history rewrite as a way to allow users to pass old commit IDs "
+"(from before git-filter-repo was run) to git commands and have git know how "
+"to translate those old commit IDs to the new (post-rewrite) commit IDs.  "
+"Also, replace refs that existed before the rewrite can either be deleted or "
+"updated.  The choices to pass to --replace-refs thus need to specify both "
+"what to do with existing refs and what to do with commit rewrites.  Thus "
+"'update-and-add' means to update existing replace refs, and for any commit "
+"rewrite (even if already pointed at by a replace ref) add a new refs/"
+"replace/ reference to map from the old commit ID to the new commit ID.  The "
+"default is update-no-add, meaning update existing replace refs but do not "
+"add any new ones.  There is also a special 'old-default' option for picking "
+"the default used in versions prior to git-filter-repo-2.45, namely 'update-"
+"and-add' upon the first run of git-filter-repo in a repository and 'update-"
+"or-add' if running git-filter-repo again on a repository."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2095
+msgid ""
+"Whether to prune empty commits.  'auto' (the default) means only prune "
+"commits which become empty (not commits which were empty in the original "
+"repo, unless their parent was pruned). When the parent of a commit is "
+"pruned, the first non-pruned ancestor becomes the new parent."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2102
+msgid ""
+"Since merge commits are needed for history topology, they are typically "
+"exempt from pruning.  However, they can become degenerate with the pruning "
+"of other commits (having fewer than two parents, having one commit serve as "
+"both parents, or having one parent as the ancestor of the other.)  If such "
+"merge commits have no file changes, they can be pruned.  The default "
+"('auto') is to only prune empty merge commits which become degenerate (not "
+"which started as such)."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2111
+msgid ""
+"Even if the first parent is or becomes an ancestor of another parent, do not "
+"prune it.  This modifies how --prune-degenerate behaves, and may be useful "
+"in projects who always use merge --no-ff."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2116
+msgid "Generic callback code snippets"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2118
+msgid ""
+"Python code body for processing filenames; see CALLBACKS sections below."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2121
+msgid ""
+"Python code body for processing file and metadata; see CALLBACKS sections "
+"below."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2124
+msgid ""
+"Python code body for processing messages (both commit messages and tag "
+"messages); see CALLBACKS section below."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2127
+msgid ""
+"Python code body for processing names of people; see CALLBACKS section below."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2130
+msgid ""
+"Python code body for processing emails addresses; see CALLBACKS section "
+"below."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2133
+msgid "Python code body for processing refnames; see CALLBACKS section below."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2137
+msgid ""
+"Python code body for processing blob objects; see CALLBACKS section below."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2140
+msgid ""
+"Python code body for processing commit objects; see CALLBACKS section below."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2143
+msgid ""
+"Python code body for processing tag objects.  Note that lightweight tags "
+"have no tag object and are thus not handled by this callback. See CALLBACKS "
+"section below."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2147
+msgid ""
+"Python code body for processing reset objects; see CALLBACKS section below."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2150
+msgid "Sensitive Data Removal Handling"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2152
+msgid ""
+"This rewrite is intended to remove sensitive data from a repository.  Gather "
+"extra information from the rewrite needed to provide additional instructions "
+"on how to clean up other copies."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2157
+msgid ""
+"By default, --sensitive-data-removal will trigger a mirror-like fetch of all "
+"refs from origin, discarding local changes, but ensuring that _all_ "
+"fetchable refs that hold on to the sensitve data are rewritten.  This flag "
+"removes that fetch, risking that other refs continue holding on to the "
+"sensitive data.  This option is implied by --partial or any flag that "
+"implies --partial."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2166
+msgid ""
+"Specifying alternate source or target locations implies --partial,\n"
+"except that the normal default for --replace-refs is used.  However,\n"
+"unlike normal uses of --partial, this doesn't risk mixing old and new\n"
+"history since the old and new histories are in different repositories."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2170
+msgid "Location to filter from/to"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2173
+msgid "Git repository to read from"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2175
+msgid "Git repository to overwrite with filtered history"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2177
+msgid "Ordering of commits"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2179
+msgid "Processes commits in commit timestamp order."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2181
+msgid "Miscellaneous options"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2183
+msgid "Show this help message and exit."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2185
+msgid "Display filter-repo's version and exit."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2187
+msgid "Avoid triggering the no-arguments-specified check."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2189
+msgid ""
+"Rewrite repository history even if the current repo does not look like a "
+"fresh clone.  History rewriting is irreversible (and includes immediate "
+"pruning of reflogs and old objects), so be cautious about using this flag."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2194
+msgid ""
+"Do a partial history rewrite, resulting in the mixture of old and new "
+"history.  This disables rewriting refs/remotes/origin/* to refs/heads/*, "
+"disables removing of the 'origin' remote, disables removing unexported refs, "
+"disables expiring the reflog, and disables the automatic post-filter gc.  "
+"Also, this modifies --tag-rename and --refname-callback options such that "
+"instead of replacing old refs with new refnames, it will instead create new "
+"refs and keep the old ones around.  Use with caution."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2204
+msgid "Do not run 'git gc' after filtering."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2211
+msgid ""
+"Limit history rewriting to the specified refs.  Implies --partial.  In "
+"addition to the normal caveats of --partial (mixing old and new history, no "
+"automatic remapping of refs/remotes/origin/* to refs/heads/*, etc.), this "
+"also may cause problems for pruning of degenerate empty merge commits when "
+"negative revisions are specified."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2219
+msgid ""
+"Do not change the repository.  Run `git fast-export` and filter its output, "
+"and save both the original and the filtered version for comparison.  This "
+"also disables rewriting commit messages due to not knowing new commit IDs "
+"and disables filtering of some empty commits due to inability to query the "
+"fast-import backend."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2226
+msgid ""
+"Print additional information about operations being performed and commands "
+"being run.  When used together with --dry-run, also show extra information "
+"about what would be run."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2248
+msgid ""
+"Instead of running `git fast-export` and filtering its output, filter the "
+"fast-export stream from stdin.    The stdin must be in the expected input "
+"format (e.g. it needs to include original-oid directives)."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2253
+msgid "Pass --quiet to other git commands called"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2259
+msgid ""
+"Error: --analyze is incompatible with --path* flags; it's a read-only "
+"operation."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2262
+msgid "Error: --analyze is incompatible with --stdin."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2277
+msgid "Error: --use-base-name and --path-rename are incompatible."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2292
+msgid "Error: need git >= 2.24.0"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2296
+msgid "Error: need git >= 2.23.0"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2309
+msgid "Error: need git >= 2.22.0"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2316
+#, python-format
+msgid "Error: could not parse --strip-blobs-bigger-than argument %s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2324
+msgid ""
+"Error: --file-info-callback is incompatible with --stdin, --blob-callback,\n"
+"and --filename-callback."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2385
+#, python-format
+msgid ""
+"Error: In %s, 'glob:' and '==>' are incompatible (renaming globs makes no "
+"sense)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2393
+msgid ""
+"Error: When rename directories, if OLDNAME and NEW_NAME are both non-empty "
+"and either ends with a slash then both must."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2416
+msgid "No arguments specified."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2545
+#, python-format
+msgid "Unhandled change type(s): %(change_type)s (in commit %(commit)s)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2564
+#, python-format
+msgid "Processed %d commits"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2574
+msgid "Nothing to analyze; repository is empty."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2631
+msgid "Error: rev-list|diff-tree pipeline failed; see above."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2638
+msgid "<present>"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2688
+msgid "Overall Statistics"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2689
+msgid "Number of commits"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2691
+msgid "Number of filenames"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2693
+msgid "Number of directories"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2695
+msgid "Number of file extensions"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2698
+msgid "Total unpacked size (bytes)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2700
+msgid "Total packed size (bytes)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2705
+msgid "Caveats"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2706
+msgid "Sizes"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2707
+msgid ""
+"\n"
+"        Packed size represents what size your repository would be if no\n"
+"        trees, commits, tags, or other metadata were included (though it "
+"may\n"
+"        fail to represent de-duplication; see below).  It also represents "
+"the\n"
+"        current packing, which may be suboptimal if you haven't gc'ed for a\n"
+"        while.\n"
+"\n"
+"        Unpacked size represents what size your repository would be if no\n"
+"        trees, commits, tags, or other metadata were included AND if no\n"
+"        files were packed; i.e., without delta-ing or compression.\n"
+"\n"
+"        Both unpacked and packed sizes can be slightly misleading.  "
+"Deleting\n"
+"        a blob from history not save as much space as the unpacked size,\n"
+"        because it is obviously normally stored in packed form.  Also,\n"
+"        deleting a blob from history may not save as much space as its "
+"packed\n"
+"        size either, because another blob could be stored as a delta "
+"against\n"
+"        that blob, so when you remove one blob another blob's packed size "
+"may\n"
+"        grow.\n"
+"\n"
+"        Also, the sum of the packed sizes can add up to more than the\n"
+"        repository size; if the same contents appeared in the repository in\n"
+"        multiple places, git will automatically de-dupe and store only one\n"
+"        copy, while the way sizes are added in this analysis adds the size\n"
+"        for each file path that has those contents.  Further, if a file is\n"
+"        ever reverted to a previous version's contents, the previous\n"
+"        version's size will be counted multiple times in this analysis, "
+"even\n"
+"        though git will only store it once.\n"
+"        "
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2736
+msgid "Deletions"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2737
+#, python-format
+msgid ""
+"\n"
+"        Whether a file is deleted is not a binary quality, since it can be\n"
+"        deleted on some branches but still exist in others.  Also, it might\n"
+"        exist in an old tag, but have been deleted in versions newer than\n"
+"        that.  More thorough tracking could be done, including looking at\n"
+"        merge commits where one side of history deleted and the other "
+"modified,\n"
+"        in order to give a more holistic picture of deletions.  However, "
+"that\n"
+"        algorithm would not only be more complex to implement, it'd also be\n"
+"        quite difficult to present and interpret by users.  Since --analyze\n"
+"        is just about getting a high-level rough picture of history, it "
+"instead\n"
+"        implements the simplistic rule that is good enough for 98% of "
+"cases:\n"
+"          A file is marked as deleted if the last commit in the fast-export\n"
+"          stream that mentions the file lists it as deleted.\n"
+"        This makes it dependent on topological ordering, but generally "
+"gives\n"
+"        the \"right\" answer.\n"
+"        "
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2754
+msgid "Renames"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2755
+msgid ""
+"\n"
+"        Renames share the same non-binary nature that deletions do, plus\n"
+"        additional challenges:\n"
+"          * If the renamed file is renamed again, instead of just two names "
+"for\n"
+"            a path you can have three or more.\n"
+"          * Rename pairs of the form (oldname, newname) that we consider to "
+"be\n"
+"            different names of the \"same file\" might only be valid over "
+"certain\n"
+"            commit ranges.  For example, if a new commit reintroduces a "
+"file\n"
+"            named oldname, then new versions of oldname aren't the \"same "
+"file\"\n"
+"            anymore.  We could try to portray this to the user, but it's "
+"easier\n"
+"            for the user to just break the pairing and only report unbroken\n"
+"            rename pairings to the user.\n"
+"          * The ability for users to rename files differently in different\n"
+"            branches means that our chains of renames will not necessarily "
+"be\n"
+"            linear but may branch out.\n"
+"        "
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2789
+msgid "Deleted directories by reverse size"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2791
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2803
+msgid "Format: unpacked size, packed size, date deleted, directory name\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2799
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2810
+msgid "<toplevel>"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2802
+msgid "All directories by reverse size"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2814
+msgid "Deleted extensions by reverse size"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2816
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2828
+msgid "Format: unpacked size, packed size, date deleted, extension name\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2824
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2835
+msgid "<no extension>"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2827
+msgid "All extensions by reverse size"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2839
+msgid "Deleted paths by reverse accumulated size"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2841
+msgid "Format: unpacked size, packed size, date deleted, path name(s)\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2853
+msgid "All paths by reverse accumulated size"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2855
+msgid "Format: unpacked size, packed size, date deleted, path name\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2867
+msgid "Files by sha and associated pathnames in reverse size"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2868
+msgid "Format: sha, unpacked size, packed size, filename(s) object stored as\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2900
+#, python-format
+msgid "Warning: Removing recursively: \"%s\""
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2903
+#, python-format
+msgid "Error: dir already exists (use --force to delete): \"%s\"\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2912
+#, python-format
+msgid "Writing reports to %s..."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:2915
+msgid "done.\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3216
+#, python-format
+msgid "Parsed %d commits"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3241
+#, python-format
+msgid "Error: Cannot pass a %s_callback to RepoFilter AND pass --%s-callback"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3246
+#, python-format
+msgid "Error: --%s-callback should have a return statement"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3297
+msgid ""
+"      Error: Cannot specify --sensitive-data-removal on a follow-up "
+"invocation\n"
+"             of git-filter-repo unless it was specified in previously runs."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3313
+msgid "Error: sensitive data removal is incompatible with --stdin"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3316
+msgid ""
+"Error: sensitive data removal is incompatible with --source and --target"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3399
+msgid ""
+"Note: when cloning local repositories, you need to pass\n"
+"      --no-local to git clone to avoid this issue.\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3402
+#, python-format
+msgid ""
+"Aborting: Refusing to destructively overwrite repo history since\n"
+"this does not look like a fresh clone.\n"
+"  (%s)\n"
+"%sPlease operate on a fresh clone instead.  If you want to proceed\n"
+"anyway, use --force."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3412
+msgid "GIT_DIR must be ."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3414
+msgid "GIT_DIR must be .git"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3427
+#, python-format
+msgid ""
+"Aborting: Cannot rewrite history on a case insensitive\n"
+"filesystem since you have refs that differ in case only:\n"
+"%s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3442
+#, python-format
+msgid ""
+"Aborting: Cannot rewrite history on a character normalizing\n"
+"filesystem since you have refs that differ in normalization:\n"
+"%s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3459
+msgid "expected freshly packed repo"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3465
+msgid "expected one remote, origin"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3475
+#, python-format
+msgid "expected at most one entry in the reflog for %s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3480
+msgid "has stashed changes"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3486
+msgid "you have uncommitted changes"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3488
+msgid "you have unstaged changes"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3498
+msgid "you have untracked changes"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3506
+#, python-format
+msgid "%s exists, but %s not found"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3509
+#, python-format
+msgid "%s does not match %s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3515
+msgid "you have multiple worktrees"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3526
+msgid "Repacking your repo and cleaning out old unneeded objects"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3925
+msgid "File renaming caused colliding pathnames!\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3926
+msgid "  Commit: {}\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:3927
+msgid "  Filename: {}"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4219
+#, python-format
+msgid "Failed loading %s from %s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4244
+#, python-format
+msgid "Failed to find %s to save to %s"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4312
+msgid "Rewrote the stash."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4415
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4530
+msgid "git update-ref failed; see above"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4445
+msgid ""
+"NOTICE: Fetching all refs from origin to make sure we rewrite\n"
+"        all history that may reference the sensitive data, via\n"
+"      "
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4452
+msgid "WARNING: Fetching all refs from origin failed"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4459
+#, python-format
+msgid ""
+"NOTICE: Removing 'origin' remote; see 'Why is my origin removed?'\n"
+"        in the manual if you want to push back there.\n"
+"        (was %s)"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4783
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4789
+msgid "old"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4783
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4789
+msgid "new"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4789
+msgid "ref"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4809
+msgid ""
+"\n"
+"          The following commits used to be merge commits but due to "
+"filtering\n"
+"          are now regular commits; they likely have suboptimal commit "
+"messages\n"
+"          (e.g. \"Merge branch next into master\").  Original commit hash on "
+"the\n"
+"          left, commit hash after filtering/rewriting on the right:\n"
+"          "
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4821
+msgid ""
+"\n"
+"          The following commits were filtered out, but referenced in "
+"another\n"
+"          commit message.  The reference to the now-nonexistent commit hash\n"
+"          (or a substring thereof) was left as-is in any commit messages:\n"
+"          "
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4831
+msgid "No filtering problems encountered.\n"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4834
+msgid ""
+"This file exists to allow you to filter again without --force,\n"
+"and to specify that metadata files should be updated instead\n"
+"of rewritten"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4898
+msgid "Error: fast-export failed; see above."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4908
+msgid "Error: fast-import failed; see above."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4922
+msgid "NOTE: Not running fast-import or cleaning up; --dry-run passed."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4924
+msgid "      Requested filtering can be seen by comparing:"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4927
+msgid "      Requested filtering can be seen at:"
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4947
+msgid "Completely finished after {:.2f} seconds."
+msgstr ""
+
+#: venv/lib/python3.13/site-packages/git_filter_repo.py:4955
+msgid " and LFS Objects Orphaned"
+msgstr ""

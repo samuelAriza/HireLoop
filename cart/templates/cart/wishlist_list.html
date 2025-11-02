@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
-{% block title %}Wishlist{% endblock %}
+{% block title %}{% trans "Wishlist" %}{% endblock %}
 
 {% block content %}
 <div class="container mt-4">
     <div class="row">
         <div class="col-12">
-            <h1>My Wishlist</h1>
+            <h1>{% trans "My Wishlist" %}</h1>
 
             {% if wishlist_items %}
             <div class="row">
@@ -29,9 +30,9 @@
                                 <small class="text-muted">
                                     <i class="fas fa-clock me-1"></i>
                                     {% if item.content_type.model == "mentorshipsession" %}
-                                    {{ item.content_object.duration_minutes }} minute{{ item.content_object.duration_minutes|pluralize }}
+                                    {% blocktrans with duration=item.content_object.duration_minutes %}{{ duration }} minute{{ duration|pluralize }}{% endblocktrans %}
                                     {% else %}
-                                    {{ item.content_object.delivery_time }} day{{ item.content_object.delivery_time|pluralize }}
+                                    {% blocktrans with delivery=item.content_object.delivery_time %}{{ delivery }} day{{ delivery|pluralize }}{% endblocktrans %}
                                     {% endif %}
                                 </small>
                             </div>
@@ -40,7 +41,7 @@
                             <div class="d-flex justify-content-between">
                                 {% if item.id %}
                                 <a href="{% url item.content_object.get_absolute_url %}" class="btn btn-sm btn-outline-primary">
-                                    View Details
+                                    {% trans "View Details" %}
                                 </a>
                                 <div class="d-flex gap-2">
                                     <form method="post" action="{% url 'cart:add_to_cart' %}" class="d-inline">
@@ -49,19 +50,19 @@
                                         <input type="hidden" name="object_id" value="{{ item.content_object.id }}">
                                         <input type="hidden" name="quantity" value="1">
                                         <button type="submit" class="btn btn-sm btn-outline-success">
-                                            Add to Cart
+                                            {% trans "Add to Cart" %}
                                         </button>
                                     </form>
                                     <form method="post" action="{% url 'cart:remove_from_wishlist' item.id %}"
                                         class="d-inline">
                                         {% csrf_token %}
                                         <button type="submit" class="btn btn-sm btn-outline-danger">
-                                            Remove
+                                            {% trans "Remove" %}
                                         </button>
                                     </form>
                                 </div>
                                 {% else %}
-                                <span class="text-muted">ID not available</span>
+                                <span class="text-muted">{% trans "ID not available" %}</span>
                                 {% endif %}
                             </div>
                         </div>
@@ -73,17 +74,17 @@
 
             <!-- Pagination -->
             {% if is_paginated %}
-            <nav aria-label="Wishlist pagination" class="mt-5">
+            <nav aria-label="{% trans 'Wishlist pagination' %}" class="mt-5">
                 <ul class="pagination justify-content-center">
                     {% if page_obj.has_previous %}
                     <li class="page-item">
-                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page=1" aria-label="First">
-                            First Page
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page=1" aria-label="{% trans 'First' %}">
+                            {% trans "First Page" %}
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.previous_page_number }}" aria-label="Previous">
-                            Previous
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.previous_page_number }}" aria-label="{% trans 'Previous' %}">
+                            {% trans "Previous" %}
                         </a>
                     </li>
                     {% endif %}
@@ -102,19 +103,19 @@
 
                     {% if page_obj.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.next_page_number }}" aria-label="Next">
-                            Next
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.next_page_number }}" aria-label="{% trans 'Next' %}">
+                            {% trans "Next" %}
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.paginator.num_pages }}" aria-label="Last">
-                            Last Page
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.paginator.num_pages }}" aria-label="{% trans 'Last' %}">
+                            {% trans "Last Page" %}
                         </a>
                     </li>
                     {% endif %}
                 </ul>
                 <p class="text-center mt-3 text-muted small">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    {% blocktrans with current_page=page_obj.number total_pages=page_obj.paginator.num_pages %}Page {{ current_page }} of {{ total_pages }}{% endblocktrans %}
                 </p>
             </nav>
             {% endif %}
@@ -122,10 +123,10 @@
             {% else %}
             <div class="text-center py-5">
                 <i class="fas fa-heart fa-4x text-muted mb-3"></i>
-                <h3>Your wishlist is empty</h3>
-                <p class="text-muted">Add services to your wishlist to find them easily later!</p>
+                <h3>{% trans "Your wishlist is empty" %}</h3>
+                <p class="text-muted">{% trans "Add services to your wishlist to find them easily later!" %}</p>
                 <a href="{% url 'microservices:microservices_list' %}" class="btn btn-primary">
-                    Explore Services
+                    {% trans "Explore Services" %}
                 </a>
             </div>
             {% endif %}

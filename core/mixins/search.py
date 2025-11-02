@@ -1,4 +1,5 @@
 from django.db.models import Q
+from django.utils.translation import gettext_lazy as _
 
 
 class SearchFilterMixin:
@@ -40,6 +41,15 @@ class SearchFilterMixin:
         }
         ctx["has_filters"] = any(ctx["current_filters"].values())
         ctx["popular_categories"] = self.get_popular_categories()
+
+        # Add translated filter labels for template use
+        ctx["filter_labels"] = {
+            "search": _("Search"),
+            "category": _("Category"),
+            "min_price": _("Min Price"),
+            "max_price": _("Max Price"),
+        }
+
         return ctx
 
     def get_popular_categories(self):

@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="container">
     <div class="main-body">
         <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'projects:projects_list' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'projects:projects_list' %}">{% trans "Home" %}</a></li>
                 <li class="breadcrumb-item"><a
-                        href="{% url 'projects:projects_client_list' user.client_profile.id %}">My Projects</a></li>
+                        href="{% url 'projects:projects_client_list' user.client_profile.id %}">{% trans "My Projects" %}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    {% if is_edit %}Edit Project{% else %}Create Project{% endif %}
+                    {% if is_edit %}{% trans "Edit Project" %}{% else %}{% trans "Create Project" %}{% endif %}
                 </li>
             </ol>
         </nav>
@@ -21,18 +22,18 @@
                     <div class="card-header">
                         <h4 class="mb-0">
                             <i class="fas fa-plus me-2"></i>
-                            {% if is_edit %}Update Project{% else %}Create New Project{% endif %}
+                            {% if is_edit %}{% trans "Update Project" %}{% else %}{% trans "Create New Project" %}{% endif %}
                         </h4>
                     </div>
                     <div class="card-body">
-                        <form method="post", enctype="multipart/form-data">
+                        <form method="post" enctype="multipart/form-data">
                             {% csrf_token %}
 
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="mb-3">
                                         <label for="{{ form.title.id_for_label }}" class="form-label">
-                                            <i class="fas fa-heading me-1"></i>Project Title *
+                                            <i class="fas fa-heading me-1"></i>{% trans "Project Title" %} *
                                         </label>
                                         {{ form.title }}
                                         {% if form.title.errors %}
@@ -44,7 +45,7 @@
                                     {% if form.status %}
                                     <div class="mb-3">
                                         <label for="{{ form.status.id_for_label }}" class="form-label">
-                                            <i class="fas fa-flag me-1"></i>Status
+                                            <i class="fas fa-flag me-1"></i>{% trans "Status" %}
                                         </label>
                                         {{ form.status }}
                                         {% if form.status.errors %}
@@ -57,7 +58,7 @@
 
                             <div class="mb-3">
                                 <label for="{{ form.description.id_for_label }}" class="form-label">
-                                    <i class="fas fa-align-left me-1"></i>Description *
+                                    <i class="fas fa-align-left me-1"></i>{% trans "Description" %} *
                                 </label>
                                 {{ form.description }}
                                 {% if form.description.errors %}
@@ -67,7 +68,7 @@
 
                             <div class="mb-3">
                                 <label for="{{ form.budget.id_for_label }}" class="form-label">
-                                    <i class="fas fa-dollar-sign me-1"></i>Budget (USD) *
+                                    <i class="fas fa-dollar-sign me-1"></i>{% trans "Budget (USD)" %} *
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text">$</span>
@@ -82,7 +83,7 @@
 
                             <div class="mb-3">
                                 <label for="id_image" class="form-label">
-                                    <i class="fas fa-image me-1"></i>Project Image
+                                    <i class="fas fa-image me-1"></i>{% trans "Project Image" %}
                                 </label>
 
                                 {% if is_edit and form.instance.image_path %}
@@ -93,21 +94,21 @@
                                 {% endif %}
 
                                 <input type="file" name="image" id="id_image" class="form-control">
-                                <div class="form-text">Optional. Supported formats: JPEG, PNG, GIF. Max size: 5MB.</div>
+                                <div class="form-text">{% trans "Optional. Supported formats: JPEG, PNG, GIF. Max size: 5MB." %}</div>
                             </div>
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <a href="{% url 'projects:projects_client_list' user.client_profile.id %}"
                                     class="btn btn-secondary me-md-2">
-                                    <i class="fas fa-times me-1"></i>Cancel
+                                    <i class="fas fa-times me-1"></i>{% trans "Cancel" %}
                                 </a>
                                 {% if is_edit %}
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save me-1"></i>Update Project
+                                    <i class="fas fa-save me-1"></i>{% trans "Update Project" %}
                                 </button>
                                 {% else %}
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save me-1"></i>Create Project
+                                    <i class="fas fa-save me-1"></i>{% trans "Create Project" %}
                                 </button>
                                 {% endif %}
                             </div>
@@ -118,24 +119,24 @@
                 <!-- Help Card -->
                 <div class="card mt-4">
                     <div class="card-header bg-info text-white">
-                        <h6 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Tips for a Great Project</h6>
+                        <h6 class="mb-0"><i class="fas fa-lightbulb me-2"></i>{% trans "Tips for a Great Project" %}</h6>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <h6><i class="fas fa-check text-success me-2"></i>Clear Scope</h6>
+                                <h6><i class="fas fa-check text-success me-2"></i>{% trans "Clear Scope" %}</h6>
                                 <ul class="list-unstyled text-muted small">
-                                    <li>• Define deliverables clearly</li>
-                                    <li>• Add realistic deadlines</li>
-                                    <li>• Include success criteria</li>
+                                    <li>• {% trans "Define deliverables clearly" %}</li>
+                                    <li>• {% trans "Add realistic deadlines" %}</li>
+                                    <li>• {% trans "Include success criteria" %}</li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
-                                <h6><i class="fas fa-check text-success me-2"></i>Budgeting</h6>
+                                <h6><i class="fas fa-check text-success me-2"></i>{% trans "Budgeting" %}</h6>
                                 <ul class="list-unstyled text-muted small">
-                                    <li>• Allocate enough budget for quality</li>
-                                    <li>• Be transparent with freelancers</li>
-                                    <li>• Keep contingency in mind</li>
+                                    <li>• {% trans "Allocate enough budget for quality" %}</li>
+                                    <li>• {% trans "Be transparent with freelancers" %}</li>
+                                    <li>• {% trans "Keep contingency in mind" %}</li>
                                 </ul>
                             </div>
                         </div>

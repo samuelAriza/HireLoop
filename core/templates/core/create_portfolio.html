@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="container">
     <div class="main-body">
-        <nav aria-label="breadcrumb" class="main-breadcrumb">
+        <nav aria-label="{% trans 'breadcrumb' %}" class="main-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="">Home</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'core:profile_detail' %}">My Profile</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'core:home' %}">{% trans "Home" %}</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'core:profile_detail' %}">{% trans "My Profile" %}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Create Portfolio Item
+                    {% trans "Create Portfolio Item" %}
                 </li>
             </ol>
         </nav>
@@ -20,7 +21,7 @@
                     <div class="card-header">
                         <h4 class="mb-0">
                             <i class="fas fa-plus me-2"></i>
-                            Create Portfolio Item
+                            {% trans "Create Portfolio Item" %}
                         </h4>
                     </div>
                     <div class="card-body">
@@ -32,7 +33,7 @@
                             {% for field in form %}
                             <div class="mb-3">
                                 <label for="{{ field.id_for_label }}" class="form-label">
-                                    {{ field.label }}
+                                    {% trans field.label %}
                                     {% if field.field.required %}
                                     <span class="text-danger">*</span>
                                     {% endif %}
@@ -49,10 +50,10 @@
 
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <a href="{% url 'core:profile_detail' %}" class="btn btn-secondary me-md-2">
-                                    <i class="fas fa-times me-1"></i>Cancel
+                                    <i class="fas fa-times me-1"></i>{% trans "Cancel" %}
                                 </a>
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save me-1"></i>Create Portfolio Item
+                                    <i class="fas fa-save me-1"></i>{% trans "Create Portfolio Item" %}
                                 </button>
                             </div>
                         </form>

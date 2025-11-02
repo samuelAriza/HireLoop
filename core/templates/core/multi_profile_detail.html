@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block extra_css %}
 <style>
@@ -33,11 +34,11 @@
 <div class="container">
     <div class="main-body">
         <!-- Breadcrumb -->
-        <nav aria-label="breadcrumb" class="main-breadcrumb">
+        <nav aria-label="{% trans 'breadcrumb' %}" class="main-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="">Home</a></li>
-                <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                <li class="breadcrumb-item"><a href="{% trans 'Home' %}">{% trans 'Home' %}</a></li>
+                <li class="breadcrumb-item"><a href="javascript:void(0)">{% trans 'User' %}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{% trans 'Profile' %}</li>
             </ol>
         </nav>
 
@@ -49,7 +50,8 @@
                         <div class="d-flex flex-column align-items-center text-center">
                             <!-- Profile Image -->
                             <div class="profile-image-container mb-3">
-                                <img src="{{ profile_image_url }}" alt="Profile" class="rounded-circle profile-image">
+                                <img src="{{ profile_image_url }}" alt="{% trans 'Profile' %}"
+                                    class="rounded-circle profile-image">
                             </div>
 
                             <div class="mt-3 w-100">
@@ -58,7 +60,7 @@
                                     {% for role in user_roles %}
                                     <span class="badge bg-primary me-1">{{ role|title }}</span>
                                     {% empty %}
-                                    <span class="badge bg-secondary">No role defined</span>
+                                    <span class="badge bg-secondary">{% trans 'No role defined' %}</span>
                                     {% endfor %}
                                 </div>
                                 <p class="text-muted font-size-sm">{{ user_profile.email }}</p>
@@ -68,17 +70,20 @@
                                 <div class="mb-3">
                                     <button class="btn btn-outline-primary btn-sm w-100 mb-2" data-bs-toggle="collapse"
                                         data-bs-target="#imageUploadForm">
-                                        <i class="fas fa-camera me-1"></i>Change Photo
+                                        <i class="fas fa-camera me-1"></i>{% trans 'Change Photo' %}
                                     </button>
 
                                     {% if user_profile.profile_image %}
                                     <form method="post" style="display: inline;" class="w-100">
                                         {% csrf_token %}
                                         <input type="hidden" name="action" value="delete_image">
+                                        {% trans "Are you sure you want to delete your profile image?" as
+                                        confirm_message %}
                                         <button type="submit" class="btn btn-outline-danger btn-sm w-100"
-                                            onclick="return confirm('Are you sure you want to delete your profile image?')">
-                                            <i class="fas fa-trash me-1"></i>Delete Photo
+                                            onclick="return confirm('{{ confirm_message|escapejs }}')">
+                                            <i class="fas fa-trash me-1"></i>{% trans "Delete Photo" %}
                                         </button>
+
                                     </form>
                                     {% endif %}
                                 </div>
@@ -87,25 +92,26 @@
                                 <div class="collapse w-100 mb-3" id="imageUploadForm">
                                     <div class="card bg-light">
                                         <div class="card-body">
-                                            <h6 class="mb-3">Update Profile Image</h6>
+                                            <h6 class="mb-3">{% trans 'Update Profile Image' %}</h6>
                                             <form method="post" enctype="multipart/form-data">
                                                 {% csrf_token %}
                                                 <input type="hidden" name="action" value="update_image">
 
                                                 <div class="mb-3">
                                                     <label for="{{ image_form.profile_image.id_for_label }}"
-                                                        class="form-label">Choose Image</label>
+                                                        class="form-label">{% trans 'Choose Image' %}</label>
                                                     {{ image_form.profile_image }}
-                                                    <div class="form-text">Max size: 5MB. Supported: JPG, PNG, GIF</div>
+                                                    <div class="form-text">{% trans 'Max size: 5MB. Supported: JPG, PNG,
+                                                        GIF' %}</div>
                                                 </div>
 
                                                 <div class="d-flex justify-content-end gap-2">
                                                     <button class="btn btn-secondary btn-sm" type="button"
                                                         data-bs-toggle="collapse" data-bs-target="#imageUploadForm">
-                                                        Cancel
+                                                        {% trans 'Cancel' %}
                                                     </button>
                                                     <button type="submit" class="btn btn-primary btn-sm">
-                                                        <i class="fas fa-upload me-1"></i>Upload
+                                                        <i class="fas fa-upload me-1"></i>{% trans 'Upload' %}
                                                     </button>
                                                 </div>
                                             </form>
@@ -117,14 +123,14 @@
                                 {% if not has_freelancer %}
                                 <a href="{% url 'core:freelancer_profile_create' %}"
                                     class="btn btn-outline-primary profile-action-btn mb-2">
-                                    <i class="fas fa-plus me-2"></i>Create Freelancer Profile
+                                    <i class="fas fa-plus me-2"></i>{% trans 'Create Freelancer Profile' %}
                                 </a>
                                 {% endif %}
 
                                 {% if not has_client %}
                                 <a href="{% url 'core:client_profile_create' %}"
                                     class="btn btn-outline-success profile-action-btn">
-                                    <i class="fas fa-plus me-2"></i>Create Client Profile
+                                    <i class="fas fa-plus me-2"></i>{% trans 'Create Client Profile' %}
                                 </a>
                                 {% endif %}
                                 {% endif %}
@@ -146,19 +152,19 @@
                                 <button class="nav-link {% if primary_role == 'freelancer' %}active{% endif %}"
                                     id="freelancer-tab" data-bs-toggle="tab" data-bs-target="#freelancer-content"
                                     type="button" role="tab">
-                                    <i class="fas fa-code me-1"></i>Freelancer
+                                    <i class="fas fa-code me-1"></i>{% trans 'Freelancer' %}
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="portfolio-tab" data-bs-toggle="tab"
                                     data-bs-target="#portfolio-content" type="button" role="tab">
-                                    <i class="fas fa-briefcase me-1"></i>Portfolio
+                                    <i class="fas fa-briefcase me-1"></i>{% trans 'Portfolio' %}
                                 </button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="application-tab" data-bs-toggle="tab"
                                     data-bs-target="#application-content" type="button" role="tab">
-                                    <i class="fas fa-file-alt me-1"></i>Applications
+                                    <i class="fas fa-file-alt me-1"></i>{% trans 'Applications' %}
                                 </button>
                             </li>
                             {% endif %}
@@ -168,7 +174,7 @@
                                     class="nav-link {% if primary_role == 'client' or not has_freelancer %}active{% endif %}"
                                     id="client-tab" data-bs-toggle="tab" data-bs-target="#client-content" type="button"
                                     role="tab">
-                                    <i class="fas fa-briefcase me-1"></i>Client
+                                    <i class="fas fa-briefcase me-1"></i>{% trans 'Client' %}
                                 </button>
                             </li>
                             {% endif %}
@@ -186,7 +192,7 @@
                                 <div class="d-flex justify-content-end mb-3 gap-2">
                                     <button class="btn btn-outline-primary btn-sm" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#editFreelancerForm">
-                                        <i class="fas fa-edit me-1"></i>Edit
+                                        <i class="fas fa-edit me-1"></i>{% trans 'Edit' %}
                                     </button>
 
                                     <!-- DELETE FORM -->
@@ -194,10 +200,13 @@
                                         {% csrf_token %}
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="profile_type" value="freelancer">
+                                        {% trans "Are you sure you want to delete your freelancer profile? This action
+                                        cannot be undone." as confirm_message %}
                                         <button type="submit" class="btn btn-outline-danger btn-sm"
-                                            onclick="return confirm('Are you sure you want to delete your freelancer profile? This action cannot be undone.')">
-                                            <i class="fas fa-trash me-1"></i>Delete
+                                            onclick="return confirm('{{ confirm_message|escapejs }}')">
+                                            <i class="fas fa-trash me-1"></i>{% trans "Delete" %}
                                         </button>
+
                                     </form>
                                 </div>
 
@@ -211,7 +220,7 @@
 
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0">Skills</h6>
+                                                        <h6 class="mb-0">{% trans 'Skills' %}</h6>
                                                     </div>
                                                     <div class="col-sm-9">
                                                         {{ freelancer_form.skills }}
@@ -222,7 +231,7 @@
 
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0">Bio</h6>
+                                                        <h6 class="mb-0">{% trans 'Bio' %}</h6>
                                                     </div>
                                                     <div class="col-sm-9">
                                                         {{ freelancer_form.bio }}
@@ -233,10 +242,10 @@
                                                 <div class="d-flex justify-content-end gap-2">
                                                     <button class="btn btn-secondary btn-sm" type="button"
                                                         data-bs-toggle="collapse" data-bs-target="#editFreelancerForm">
-                                                        Cancel
+                                                        {% trans 'Cancel' %}
                                                     </button>
                                                     <button type="submit" class="btn btn-primary btn-sm">
-                                                        <i class="fas fa-save me-1"></i>Save
+                                                        <i class="fas fa-save me-1"></i>{% trans 'Save' %}
                                                     </button>
                                                 </div>
                                             </form>
@@ -248,7 +257,7 @@
                                 <!-- Freelancer Info Display -->
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Skills</h6>
+                                        <h6 class="mb-0">{% trans 'Skills' %}</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
                                         {% if profiles.freelancer_skills %}
@@ -256,17 +265,17 @@
                                         <span class="badge bg-primary me-1 mb-1">{{ skill.name }}</span>
                                         {% endfor %}
                                         {% else %}
-                                        <span class="text-muted">No skills registered</span>
+                                        <span class="text-muted">{% trans 'No skills registered' %}</span>
                                         {% endif %}
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Bio</h6>
+                                        <h6 class="mb-0">{% trans 'Bio' %}</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        {{ profiles.freelancer.bio|default:"No bio available" }}
+                                        {{ profiles.freelancer.bio|default:_("No bio available") }}
                                     </div>
                                 </div>
                             </div>
@@ -280,13 +289,13 @@
                                 <!-- Portfolio Actions (Only for Owner) -->
                                 {% if is_owner %}
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h5 class="mb-0">My Portfolio Items</h5>
+                                    <h5 class="mb-0">{% trans 'My Portfolio Items' %}</h5>
                                     <a href="{% url 'core:portfolio_create' %}" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-plus me-1"></i>Add Portfolio Item
+                                        <i class="fas fa-plus me-1"></i>{% trans 'Add Portfolio Item' %}
                                     </a>
                                 </div>
                                 {% else %}
-                                <h5 class="mb-3">Portfolio Items</h5>
+                                <h5 class="mb-3">{% trans 'Portfolio Items' %}</h5>
                                 {% endif %}
 
                                 <!-- Portfolio Items List -->
@@ -318,7 +327,8 @@
                                                         {% if portfolio.url_demo %}
                                                         <a href="{{ portfolio.url_demo }}" target="_blank"
                                                             class="btn btn-outline-primary btn-sm me-2">
-                                                            <i class="fas fa-external-link-alt me-1"></i>View Project
+                                                            <i class="fas fa-external-link-alt me-1"></i>{% trans 'View
+                                                            Project' %}
                                                         </a>
                                                         {% endif %}
                                                     </div>
@@ -338,7 +348,7 @@
 
                                                                 <!-- Title Field -->
                                                                 <div class="mb-3">
-                                                                    <label class="form-label">Title <span
+                                                                    <label class="form-label">{% trans 'Title' %} <span
                                                                             class="text-danger">*</span></label>
                                                                     <input type="text" name="title" class="form-control"
                                                                         value="{{ portfolio.title }}" required>
@@ -346,28 +356,31 @@
 
                                                                 <!-- Description Field -->
                                                                 <div class="mb-3">
-                                                                    <label class="form-label">Description</label>
+                                                                    <label class="form-label">{% trans 'Description'
+                                                                        %}</label>
                                                                     <textarea name="description" class="form-control"
                                                                         rows="3">{{ portfolio.description }}</textarea>
                                                                 </div>
 
                                                                 <!-- Demo URL Field -->
                                                                 <div class="mb-3">
-                                                                    <label class="form-label">Demo URL</label>
+                                                                    <label class="form-label">{% trans 'Demo URL'
+                                                                        %}</label>
                                                                     <input type="url" name="url_demo"
                                                                         class="form-control"
                                                                         value="{{ portfolio.url_demo }}"
-                                                                        placeholder="https://your-demo-site.com">
+                                                                        placeholder="{% trans 'https://your-demo-site.com' %}">
                                                                 </div>
 
                                                                 <!-- Image Field -->
                                                                 <div class="mb-3">
-                                                                    <label class="form-label">Project Image</label>
+                                                                    <label class="form-label">{% trans 'Project Image'
+                                                                        %}</label>
                                                                     <input type="file" name="image" class="form-control"
                                                                         accept="image/*">
                                                                     {% if portfolio.image %}
-                                                                    <div class="form-text">Current: {{
-                                                                        portfolio.image.name }}</div>
+                                                                    <div class="form-text">{% blocktrans %}Current: {{
+                                                                        image_name }}{% endblocktrans %}</div>
                                                                     {% endif %}
                                                                 </div>
 
@@ -376,11 +389,12 @@
                                                                     <button class="btn btn-secondary btn-sm"
                                                                         type="button" data-bs-toggle="collapse"
                                                                         data-bs-target="#editPortfolioForm-{{ portfolio.pk }}">
-                                                                        Cancel
+                                                                        {% trans 'Cancel' %}
                                                                     </button>
                                                                     <button type="submit"
                                                                         class="btn btn-primary btn-sm">
-                                                                        <i class="fas fa-save me-1"></i>Save Changes
+                                                                        <i class="fas fa-save me-1"></i>{% trans 'Save
+                                                                        Changes' %}
                                                                     </button>
                                                                 </div>
                                                             </form>
@@ -392,7 +406,7 @@
                                                 <!-- Action Buttons (Only for Owner) -->
                                                 <div class="d-flex justify-content-between mt-auto">
                                                     <small class="text-muted">
-                                                        Created: {{ portfolio.created_at|date:"M d, Y" }}
+                                                        {% trans 'Created' %}: {{ portfolio.created_at|date:"M d, Y" }}
                                                     </small>
 
                                                     {% if is_owner %}
@@ -401,7 +415,7 @@
                                                         <button class="btn btn-outline-primary btn-sm" type="button"
                                                             data-bs-toggle="collapse"
                                                             data-bs-target="#editPortfolioForm-{{ portfolio.pk }}"
-                                                            title="Edit Portfolio">
+                                                            title="{% trans 'Edit Portfolio' %}">
                                                             <i class="fas fa-edit"></i>
                                                         </button>
 
@@ -412,8 +426,8 @@
                                                             <input type="hidden" name="portfolio_id"
                                                                 value="{{ portfolio.pk }}">
                                                             <button type="submit" class="btn btn-outline-danger btn-sm"
-                                                                title="Delete Portfolio"
-                                                                onclick="return confirm('Are you sure you want to delete this portfolio item: {{ portfolio.title }}?')">
+                                                                title="{% trans 'Delete Portfolio' %}"
+                                                                onclick="return confirm('{% blocktrans %}Are you sure you want to delete this portfolio item: {{ title }}?{% endblocktrans %}')">
                                                                 <i class="fas fa-trash"></i>
                                                             </button>
                                                         </form>
@@ -431,17 +445,17 @@
                                     <div class="mb-3">
                                         <i class="fas fa-folder-open fa-4x text-muted"></i>
                                     </div>
-                                    <h5 class="text-muted">No Portfolio Items Yet</h5>
+                                    <h5 class="text-muted">{% trans 'No Portfolio Items Yet' %}</h5>
                                     {% if is_owner %}
                                     <p class="text-muted mb-3">
-                                        Showcase your work by creating your first portfolio item.
+                                        {% trans 'Showcase your work by creating your first portfolio item.' %}
                                     </p>
                                     <a href="{% url 'core:portfolio_create' %}" class="btn btn-primary">
-                                        <i class="fas fa-plus me-2"></i>Create Your First Portfolio Item
+                                        <i class="fas fa-plus me-2"></i>{% trans 'Create Your First Portfolio Item' %}
                                     </a>
                                     {% else %}
                                     <p class="text-muted mb-3">
-                                        This user hasn't added any portfolio items yet.
+                                        {% trans "This user hasn't added any portfolio items yet." %}
                                     </p>
                                     {% endif %}
                                 </div>
@@ -457,13 +471,13 @@
                                 <!-- Application Actions (Only for Owner) -->
                                 {% if is_owner %}
                                 <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <h5 class="mb-0">My Applications</h5>
+                                    <h5 class="mb-0">{% trans 'My Applications' %}</h5>
                                     <a href="{% url 'projects:projects_list' %}" class="btn btn-primary btn-sm">
-                                        <i class="fas fa-plus me-1"></i>Add Application
+                                        <i class="fas fa-plus me-1"></i>{% trans 'Add Application' %}
                                     </a>
                                 </div>
                                 {% else %}
-                                <h5 class="mb-3">Applications</h5>
+                                <h5 class="mb-3">{% trans 'Applications' %}</h5>
                                 {% endif %}
 
                                 <!-- Applications List -->
@@ -496,7 +510,8 @@
                                                     <i class="fas fa-calendar me-1"></i>
                                                     {{ application.created_at|date:"M d, Y" }}
                                                 </p>
-                                                <p><strong>Proposed Payment:</strong> ${{ application.proposed_payment }}</p>
+                                                <p><strong>{% trans 'Proposed Payment' %}:</strong> ${{
+                                                    application.proposed_payment }}</p>
                                                 <p class="mb-3">{{ application.cover_letter|linebreaksbr }}</p>
                                             </div>
                                         </div>
@@ -509,17 +524,17 @@
                                     <div class="mb-3">
                                         <i class="fas fa-folder-open fa-4x text-muted"></i>
                                     </div>
-                                    <h5 class="text-muted">No Applications Yet</h5>
+                                    <h5 class="text-muted">{% trans 'No Applications Yet' %}</h5>
                                     {% if is_owner %}
                                     <p class="text-muted mb-3">
-                                        Showcase your applications by creating your first application.
+                                        {% trans 'Showcase your applications by creating your first application.' %}
                                     </p>
                                     <a href="{% url 'projects:projects_list' %}" class="btn btn-primary">
-                                        <i class="fas fa-plus me-2"></i>Create Your First Application
+                                        <i class="fas fa-plus me-2"></i>{% trans 'Create Your First Application' %}
                                     </a>
                                     {% else %}
                                     <p class="text-muted mb-3">
-                                        This user hasn't added any applications yet.
+                                        {% trans "This user hasn't added any applications yet." %}
                                     </p>
                                     {% endif %}
                                 </div>
@@ -538,7 +553,7 @@
                                 <div class="d-flex justify-content-end mb-3 gap-2">
                                     <button class="btn btn-outline-primary btn-sm" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#editClientForm">
-                                        <i class="fas fa-edit me-1"></i>Edit
+                                        <i class="fas fa-edit me-1"></i>{% trans 'Edit' %}
                                     </button>
 
                                     <!-- DELETE FORM -->
@@ -546,10 +561,13 @@
                                         {% csrf_token %}
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="profile_type" value="client">
+                                        {% trans "Are you sure you want to delete your client profile? This action
+                                        cannot be undone." as delete_msg %}
                                         <button type="submit" class="btn btn-outline-danger btn-sm"
-                                            onclick="return confirm('Are you sure you want to delete your client profile? This action cannot be undone.')">
-                                            <i class="fas fa-trash me-1"></i>Delete
+                                            onclick="return confirm('{{ delete_msg|escapejs }}')">
+                                            <i class="fas fa-trash me-1"></i>{% trans "Delete" %}
                                         </button>
+
                                     </form>
                                 </div>
 
@@ -563,7 +581,7 @@
 
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0">Company</h6>
+                                                        <h6 class="mb-0">{% trans 'Company' %}</h6>
                                                     </div>
                                                     <div class="col-sm-9">
                                                         {{ client_form.company }}
@@ -571,7 +589,7 @@
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0">Billing Address</h6>
+                                                        <h6 class="mb-0">{% trans 'Billing Address' %}</h6>
                                                     </div>
                                                     <div class="col-sm-9">
                                                         {{ client_form.billing_address }}
@@ -580,7 +598,7 @@
 
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0">Billing Email</h6>
+                                                        <h6 class="mb-0">{% trans 'Billing Email' %}</h6>
                                                     </div>
                                                     <div class="col-sm-9">
                                                         {{ client_form.billing_email }}
@@ -590,10 +608,10 @@
                                                 <div class="d-flex justify-content-end gap-2">
                                                     <button class="btn btn-secondary btn-sm" type="button"
                                                         data-bs-toggle="collapse" data-bs-target="#editClientForm">
-                                                        Cancel
+                                                        {% trans 'Cancel' %}
                                                     </button>
                                                     <button type="submit" class="btn btn-primary btn-sm">
-                                                        <i class="fas fa-save me-1"></i>Save
+                                                        <i class="fas fa-save me-1"></i>{% trans 'Save' %}
                                                     </button>
                                                 </div>
                                             </form>
@@ -605,19 +623,19 @@
                                 <!-- Client Info Display -->
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Company</h6>
+                                        <h6 class="mb-0">{% trans 'Company' %}</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        {{ profiles.client.company|default:"No company registered" }}
+                                        {{ profiles.client.company|default:_("No company registered") }}
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <h6 class="mb-0">Billing Email</h6>
+                                        <h6 class="mb-0">{% trans 'Billing Email' %}</h6>
                                     </div>
                                     <div class="col-sm-9 text-secondary">
-                                        {{ profiles.client.billing_email|default:"No billing email"|linebreaks }}
+                                        {{ profiles.client.billing_email|default:_("No billing email")|linebreaks }}
                                     </div>
                                 </div>
                             </div>
@@ -629,19 +647,20 @@
                 <!-- No profiles message -->
                 <div class="card mb-3">
                     <div class="card-body text-center">
-                        <h5>No Profiles Available</h5>
+                        <h5>{% trans 'No Profiles Available' %}</h5>
                         {% if is_owner %}
-                        <p class="text-muted">You need at least one profile to start using the platform.</p>
+                        <p class="text-muted">{% trans 'You need at least one profile to start using the platform.' %}
+                        </p>
                         <div class="d-flex justify-content-center gap-3">
                             <a href="{% url 'core:freelancer_profile_create' %}" class="btn btn-primary">
-                                <i class="fas fa-code me-1"></i>Be a Freelancer
+                                <i class="fas fa-code me-1"></i>{% trans 'Be a Freelancer' %}
                             </a>
                             <a href="{% url 'core:client_profile_create' %}" class="btn btn-success">
-                                <i class="fas fa-briefcase me-1"></i>Be a Client
+                                <i class="fas fa-briefcase me-1"></i>{% trans 'Be a Client' %}
                             </a>
                         </div>
                         {% else %}
-                        <p class="text-muted">This user has not created any profiles yet.</p>
+                        <p class="text-muted">{% trans 'This user has not created any profiles yet.' %}</p>
                         {% endif %}
                     </div>
                 </div>
@@ -653,11 +672,11 @@
                         <div class="card h-100">
                             <div class="card-body">
                                 <h6 class="d-flex align-items-center mb-3">
-                                    <i class="fas fa-chart-line text-info me-2"></i>Recent Activity
+                                    <i class="fas fa-chart-line text-info me-2"></i>{% trans 'Recent Activity' %}
                                 </h6>
                                 <div class="text-center">
                                     <div class="display-6 text-primary mb-2">{{ user_roles|length }}</div>
-                                    <p class="text-muted">Active Profiles</p>
+                                    <p class="text-muted">{% trans 'Active Profiles' %}</p>
                                 </div>
                             </div>
                         </div>

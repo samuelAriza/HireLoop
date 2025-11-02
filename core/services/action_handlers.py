@@ -2,6 +2,8 @@ from abc import ABC, abstractmethod
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
+
 
 class ActionHandler(ABC):
     """Abstract base class for handling actions - Interface Segregation Principle."""
@@ -15,6 +17,7 @@ class ActionHandler(ABC):
     def can_handle(self, action: str) -> bool:
         """Check if this handler can process the given action."""
         pass
+
 
 class ProfileImageUpdateHandler(ActionHandler):
     """Handle profile image updates - Single Responsibility Principle."""
@@ -37,15 +40,16 @@ class ProfileImageUpdateHandler(ActionHandler):
             )
 
             if success:
-                messages.success(request, "Profile image updated successfully!")
+                messages.success(request, _("Profile image updated successfully!"))
             else:
-                messages.error(request, "Failed to update profile image.")
+                messages.error(request, _("Failed to update profile image."))
         else:
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.error(request, f"{field}: {error}")
 
         return redirect("core:profile_detail")
+
 
 class ProfileImageDeleteHandler(ActionHandler):
     """Handle profile image deletion - Single Responsibility Principle."""
@@ -60,11 +64,12 @@ class ProfileImageDeleteHandler(ActionHandler):
         success = self.profile_service.delete_user_profile_image(request.user)
 
         if success:
-            messages.success(request, "Profile image deleted successfully!")
+            messages.success(request, _("Profile image deleted successfully!"))
         else:
-            messages.error(request, "Failed to delete profile image.")
+            messages.error(request, _("Failed to delete profile image."))
 
         return redirect("core:profile_detail")
+
 
 class ProfileDeleteHandler(ActionHandler):
     """Handle profile deletion - Single Responsibility Principle."""
@@ -80,22 +85,27 @@ class ProfileDeleteHandler(ActionHandler):
 
         if profile_type == "freelancer":
             success = self.profile_service.delete_freelancer_profile(request.user)
-            profile_name = "Freelancer"
+            profile_name = _("Freelancer")
         elif profile_type == "client":
             success = self.profile_service.delete_client_profile(request.user)
-            profile_name = "Client"
+            profile_name = _("Client")
         else:
-            messages.error(request, "Invalid profile type for deletion.")
+            messages.error(request, _("Invalid profile type for deletion."))
             return redirect("core:profile_detail")
 
         if success:
-            messages.success(request, f"{profile_name} profile deleted successfully!")
+            messages.success(
+                request,
+                _("%(profile)s profile deleted successfully!") % {"profile": profile_name}
+            )
         else:
             messages.error(
-                request, f"{profile_name} profile not found or could not be deleted."
+                request,
+                _("%(profile)s profile not found or could not be deleted.") % {"profile": profile_name}
             )
 
         return redirect("core:profile_detail")
+
 
 class ProfileUpdateHandler(ActionHandler):
     """Handle profile updates - Single Responsibility Principle."""
@@ -112,7 +122,7 @@ class ProfileUpdateHandler(ActionHandler):
         profile_type = request.POST.get("profile_type")
 
         if profile_type not in ["freelancer", "client"]:
-            messages.error(request, "Invalid profile type.")
+            messages.error(request, _("Invalid profile type."))
             return redirect("core:profile_detail")
 
         form_classes = {
@@ -129,7 +139,10 @@ class ProfileUpdateHandler(ActionHandler):
         profile_instance = profiles.get(profile_type)
 
         if not profile_instance:
-            messages.error(request, f"{profile_type.title()} profile not found.")
+            messages.error(
+                request,
+                _("%(profile_type)s profile not found.") % {"profile_type": profile_type.title()}
+            )
             return redirect("core:profile_detail")
 
         form = form_classes[profile_type](request.POST, instance=profile_instance)
@@ -141,14 +154,18 @@ class ProfileUpdateHandler(ActionHandler):
                 )
                 if updated_profile:
                     messages.success(
-                        request, f"{profile_type.title()} profile updated successfully!"
+                        request,
+                        _("%(profile_type)s profile updated successfully!") % {"profile_type": profile_type.title()}
                     )
                 else:
-                    messages.error(request, f"Failed to update {profile_type} profile.")
+                    messages.error(
+                        request,
+                        _("Failed to update %(profile_type)s profile.") % {"profile_type": profile_type}
+                    )
             except Exception as e:
-                messages.error(request, f"Error updating profile: {str(e)}")
+                messages.error(request, _("Error updating profile: %(error)s") % {"error": str(e)})
         else:
-            messages.error(request, "Please correct the errors in the form.")
+            messages.error(request, _("Please correct the errors in the form."))
             for field, errors in form.errors.items():
                 for error in errors:
                     messages.error(request, f"{field}: {error}")
@@ -168,7 +185,7 @@ class PortfolioUpdateHandler(ActionHandler):
         portfolio_id = request.POST.get("portfolio_id")
 
         if not portfolio_id:
-            messages.error(request, "Portfolio ID not provided.")
+            messages.error(request, _("Portfolio ID not provided."))
             return redirect("core:profile_detail")
 
         try:
@@ -176,7 +193,7 @@ class PortfolioUpdateHandler(ActionHandler):
             portfolio_item = portfolio_service.get_item(portfolio_id)
 
             if not portfolio_item:
-                messages.error(request, "Portfolio item not found.")
+                messages.error(request, _("Portfolio item not found."))
                 return redirect("core:profile_detail")
 
             # Check ownership
@@ -186,7 +203,7 @@ class PortfolioUpdateHandler(ActionHandler):
             print(f"DEBUG PortfolioUpdateHandler - Request user: {request.user}")
             if portfolio_item.freelancer.user != request.user:
                 messages.error(
-                    request, "You do not have permission to edit this portfolio item."
+                    request, _("You do not have permission to edit this portfolio item.")
                 )
                 return redirect("core:profile_detail")
 
@@ -205,12 +222,12 @@ class PortfolioUpdateHandler(ActionHandler):
             success = portfolio_service.update_portfolio(portfolio_item, update_data)
 
             if success:
-                messages.success(request, "Portfolio item updated successfully!")
+                messages.success(request, _("Portfolio item updated successfully!"))
             else:
-                messages.error(request, "Failed to update portfolio item.")
+                messages.error(request, _("Failed to update portfolio item."))
 
         except Exception as e:
-            messages.error(request, f"Error updating portfolio item: {str(e)}")
+            messages.error(request, _("Error updating portfolio item: %(error)s") % {"error": str(e)})
 
         return redirect("core:profile_detail")
 
@@ -227,7 +244,7 @@ class PortfolioDeleteHandler(ActionHandler):
         portfolio_id = request.POST.get("portfolio_id")
 
         if not portfolio_id:
-            messages.error(request, "Portfolio ID not provided.")
+            messages.error(request, _("Portfolio ID not provided."))
             return redirect("core:profile_detail")
 
         try:
@@ -235,7 +252,7 @@ class PortfolioDeleteHandler(ActionHandler):
             portfolio_item = portfolio_service.get_item(portfolio_id)
 
             if not portfolio_item:
-                messages.error(request, "Portfolio item not found.")
+                messages.error(request, _("Portfolio item not found."))
                 return redirect("core:profile_detail")
 
             # Check ownership
@@ -245,7 +262,7 @@ class PortfolioDeleteHandler(ActionHandler):
             print(f"DEBUG PortfolioDeleteHandler - Request user: {request.user}")
             if portfolio_item.freelancer.user != request.user:
                 messages.error(
-                    request, "You do not have permission to delete this portfolio item."
+                    request, _("You do not have permission to delete this portfolio item.")
                 )
                 return redirect("core:profile_detail")
 
@@ -256,12 +273,13 @@ class PortfolioDeleteHandler(ActionHandler):
 
             if success:
                 messages.success(
-                    request, f'Portfolio "{portfolio_title}" deleted successfully!'
+                    request,
+                    _('Portfolio "%(title)s" deleted successfully!') % {"title": portfolio_title}
                 )
             else:
-                messages.error(request, "Failed to delete portfolio item.")
+                messages.error(request, _("Failed to delete portfolio item."))
 
         except Exception as e:
-            messages.error(request, f"Error deleting portfolio item: {str(e)}")
+            messages.error(request, _("Error deleting portfolio item: %(error)s") % {"error": str(e)})
 
         return redirect("core:profile_detail")

@@ -1,14 +1,33 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
+{% load i18n %}
 
-<head>
-    <title>Pago cancelado</title>
-</head>
+{% block title %}{% trans 'Payment Canceled' %} - HireLoop{% endblock %}
 
-<body>
-    <h1>❌ El pago fue cancelado</h1>
-    <p>Puedes intentar nuevamente cuando lo desees.</p>
-    <a href="{% url 'payments:index' %}">Volver al inicio</a>
-</body>
-
-</html>
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="text-center py-5">
+                <div class="mb-4">
+                    <i class="fas fa-times-circle fa-5x text-danger"></i>
+                </div>
+                <h1 class="display-5 fw-bold text-danger">{% trans 'Payment Canceled' %}</h1>
+                <p class="lead text-muted mt-3">
+                    {% trans 'The payment process was canceled. No charges were made.' %}
+                </p>
+                <p class="text-muted">
+                    {% trans 'You can try again whenever you’re ready.' %}
+                </p>
+                <div class="mt-4">
+                    <a href="{% url 'payments:index' %}" class="btn btn-primary btn-lg me-2">
+                        <i class="fas fa-home me-1"></i>{% trans 'Back to Home' %}
+                    </a>
+                    <a href="{% url 'cart:cart_detail' %}" class="btn btn-outline-secondary btn-lg">
+                        <i class="fas fa-shopping-cart me-1"></i>{% trans 'View Cart' %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

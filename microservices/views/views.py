@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect
-from core.mixins.views import ProfileRequiredMixin
+from django.urls import reverse, reverse_lazy
 from django.views.generic import (
     ListView,
     CreateView,
@@ -7,22 +7,26 @@ from django.views.generic import (
     DeleteView,
     DetailView,
 )
-from django.urls import reverse, reverse_lazy
 from django.contrib.contenttypes.models import ContentType
+from django.utils.translation import gettext_lazy as _
+from core.mixins.views import ProfileRequiredMixin
+from core.mixins.search import SearchFilterMixin
+from core.models import FreelancerProfile
 from ..forms import MicroServiceForm
 from ..models import MicroService, Category
 from ..services.microservices_service import MicroServiceService
 from ..services.image_service import MicroserviceImageService
-from core.mixins.search import SearchFilterMixin
-from core.models import FreelancerProfile
 from cart.services.cart_service import CartService, WishlistService
+
+
+microservice_service = MicroServiceService()
+image_service = MicroserviceImageService()
 
 
 class MicroServiceListView(SearchFilterMixin, ListView):
     model = MicroService
     template_name = "microservices/microservices_list.html"
     context_object_name = "microservices"
-    service = MicroServiceService()
     search_fields = [
         "title",
         "description",
@@ -36,11 +40,14 @@ class MicroServiceListView(SearchFilterMixin, ListView):
     ordering = ["-created_at"]
 
     def get_queryset(self):
-        qs = super().get_queryset()
-        return qs.filter(is_active=True)
+        """Return only active microservices."""
+        return super().get_queryset().filter(is_active=True)
 
-    def get_popular_categories(self):
-        return Category.objects.values_list("name", flat=True).order_by("name")
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Optional: Add popular categories if needed in template
+        context["popular_categories"] = Category.objects.values_list("name", flat=True).order_by("name")
+        return context
 
 
 class MicroServiceFreelancerListView(ProfileRequiredMixin, ListView):
@@ -48,21 +55,17 @@ class MicroServiceFreelancerListView(ProfileRequiredMixin, ListView):
     model = MicroService
     template_name = "microservices/freelancer_microservices_list.html"
     context_object_name = "microservices"
-    service = MicroServiceService()
     paginate_by = 12
     ordering = ["-created_at"]
 
     def get_queryset(self):
-        freelancer = get_object_or_404(
-            FreelancerProfile, pk=self.kwargs["freelancer_id"]
-        )
-        return self.service.list_freelancer_microservices(freelancer)
+        """List all microservices for the specified freelancer."""
+        freelancer = get_object_or_404(FreelancerProfile, pk=self.kwargs["freelancer_id"])
+        return microservice_service.list_freelancer_microservices(freelancer)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        freelancer = get_object_or_404(
-            FreelancerProfile, pk=self.kwargs["freelancer_id"]
-        )
+        freelancer = get_object_or_404(FreelancerProfile, pk=self.kwargs["freelancer_id"])
         context["freelancer"] = freelancer
         context["is_freelancer"] = hasattr(self.request.user, "freelancer_profile")
         return context
@@ -78,6 +81,13 @@ class MicroServiceDetailView(DetailView):
         user = self.request.user
         item = self.object
 
+        is_owner = (
+            user.is_authenticated
+            and hasattr(user, "freelancer_profile")
+            and item.freelancer == user.freelancer_profile
+        )
+        context["is_owner"] = is_owner
+
         if user.is_authenticated:
             cart_service = CartService()
             wishlist_service = WishlistService()
@@ -87,19 +97,11 @@ class MicroServiceDetailView(DetailView):
             ct = ContentType.objects.get_for_model(item)
 
             cart_item = next(
-                (
-                    ci
-                    for ci in cart_items
-                    if ci.content_type_id == ct.id and ci.object_id == item.id
-                ),
+                (ci for ci in cart_items if ci.content_type_id == ct.id and ci.object_id == item.id),
                 None,
             )
             wishlist_item = next(
-                (
-                    wi
-                    for wi in wishlist_items
-                    if wi.content_type_id == ct.id and wi.object_id == item.id
-                ),
+                (wi for wi in wishlist_items if wi.content_type_id == ct.id and wi.object_id == item.id),
                 None,
             )
 
@@ -109,8 +111,6 @@ class MicroServiceDetailView(DetailView):
                     "wishlist_item": wishlist_item,
                     "in_cart": bool(cart_item),
                     "in_wishlist": bool(wishlist_item),
-                    "is_owner": hasattr(user, "freelancer_profile") 
-                                 and item.freelancer == user.freelancer_profile,
                 }
             )
         else:
@@ -120,7 +120,6 @@ class MicroServiceDetailView(DetailView):
                     "wishlist_item": None,
                     "in_cart": False,
                     "in_wishlist": False,
-                    "is_owner": False,
                 }
             )
 
@@ -132,27 +131,26 @@ class MicroServiceCreateView(ProfileRequiredMixin, CreateView):
     model = MicroService
     form_class = MicroServiceForm
     template_name = "microservices/create_microservice.html"
-    success_url = reverse_lazy("microservices:microservices_freelancer_list")
-    service = MicroServiceService()
-    image_service = MicroserviceImageService()
 
     def form_valid(self, form):
-        self.object = self.service.create_microservice(
-            freelancer=self.request.user.freelancer_profile, data=form.cleaned_data
+        """Create microservice and handle image upload."""
+        freelancer = self.request.user.freelancer_profile
+        microservice = microservice_service.create_microservice(
+            freelancer=freelancer, data=form.cleaned_data
         )
 
         image_file = self.request.FILES.get("image")
         if image_file:
-            image_path = self.image_service.upload_microservice_image(
-                microservice_id=self.object.id, image_file=image_file
+            image_path = image_service.upload_microservice_image(
+                microservice_id=microservice.id, image_file=image_file
             )
-            self.object.image_path = image_path
-            self.object.save()
+            microservice.image_path = image_path
+            microservice.save()
 
         return redirect(
             reverse(
                 "microservices:microservices_freelancer_list",
-                kwargs={"freelancer_id": self.request.user.freelancer_profile.id},
+                kwargs={"freelancer_id": freelancer.id},
             )
         )
 
@@ -167,23 +165,23 @@ class MicroServiceUpdateView(ProfileRequiredMixin, UpdateView):
     model = MicroService
     form_class = MicroServiceForm
     template_name = "microservices/create_microservice.html"
-    success_url = reverse_lazy("microservices:microservices_freelancer_list")
-    service = MicroServiceService()
-    image_service = MicroserviceImageService()
+
+    def get_queryset(self):
+        """Ensure only owned microservices can be updated."""
+        return super().get_queryset().filter(freelancer=self.request.user.freelancer_profile)
 
     def form_valid(self, form):
+        """Update microservice and handle image replacement."""
         microservice = self.get_object()
-        self.service.update_microservice(
-            microservice=microservice, data=form.cleaned_data
-        )
+        microservice_service.update_microservice(microservice=microservice, data=form.cleaned_data)
 
         image_file = self.request.FILES.get("image")
         if image_file:
             if microservice.image_path:
-                self.image_service.delete_microservice_image(microservice.image_path)
+                image_service.delete_microservice_image(microservice.image_path)
 
-            image_path = self.image_service.upload_microservice_image(
-                microservice.id, image_file
+            image_path = image_service.upload_microservice_image(
+                microservice_id=microservice.id, image_file=image_file
             )
             microservice.image_path = image_path
             microservice.save()
@@ -204,15 +202,25 @@ class MicroServiceUpdateView(ProfileRequiredMixin, UpdateView):
 class MicroServiceDeleteView(ProfileRequiredMixin, DeleteView):
     required_profile = "freelancer"
     model = MicroService
-    success_url = reverse_lazy("microservices:microservices_list")
-    service = MicroServiceService()
-    image_service = MicroserviceImageService()
+    template_name = "microservices/microservice_confirm_delete.html"
+
+    def get_queryset(self):
+        """Ensure only owned microservices can be deleted."""
+        return super().get_queryset().filter(freelancer=self.request.user.freelancer_profile)
 
     def delete(self, request, *args, **kwargs):
-        obj = self.get_object()
+        """Delete microservice and associated image."""
+        microservice = self.get_object()
 
-        if obj.image_path:
-            self.image_service.delete_microservice_image(obj.image_path)
+        if microservice.image_path:
+            image_service.delete_microservice_image(microservice.image_path)
 
-        self.service.delete_microservice(microservice=obj)
+        microservice_service.delete_microservice(microservice=microservice)
         return super().delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        """Redirect to freelancer's microservices list."""
+        return reverse(
+            "microservices:microservices_freelancer_list",
+            kwargs={"freelancer_id": self.request.user.freelancer_profile.id},
+        )

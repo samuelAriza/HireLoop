@@ -2,6 +2,7 @@ from typing import List
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 
 from .action_handlers import ActionHandler
 from .profile_service import ProfileService
@@ -51,5 +52,5 @@ class ActionDispatcher:
                 return handler.handle(request, **kwargs)
 
         # No handler found
-        messages.error(request, f"Unknown action: {action}")
+        messages.error(request, _("Unknown action: %(action)s") % {"action": action})
         return redirect("core:profile_detail")

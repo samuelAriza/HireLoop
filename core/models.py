@@ -1,16 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
 import uuid
 
 
 class User(AbstractUser):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    email = models.EmailField(unique=True)
+    email = models.EmailField(_('email address'), unique=True)
     profile_image = models.ImageField(
         upload_to="profiles/",
         blank=True,
         null=True,
-        help_text="Upload a profile image",
+        help_text=_("Upload a profile image"),
     )
 
     USERNAME_FIELD = "username"
@@ -22,9 +23,9 @@ class User(AbstractUser):
     def get_roles(self):
         roles = []
         if hasattr(self, "freelancer_profile"):
-            roles.append("Freelancer")
+            roles.append(_("Freelancer"))
         if hasattr(self, "client_profile"):
-            roles.append("Client")
+            roles.append(_("Client"))
         return roles
 
     def get_profile_image_url(self):
@@ -45,8 +46,8 @@ class FreelancerProfile(models.Model):
     skills = models.CharField(
         max_length=500,
         blank=True,
-        help_text="Enter skills separated by commas",
-        verbose_name="Skills",
+        help_text=_("Enter skills separated by commas"),
+        verbose_name=_("Skills"),
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -81,19 +82,21 @@ class ItemPortfolio(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     url_demo = models.URLField(
-        blank=True, null=True, help_text="Link to the portfolio item"
+        blank=True, null=True, help_text=_("Link to the portfolio item")
     )
     image = models.ImageField(
         upload_to="portfolios/",
         blank=True,
         null=True,
-        help_text="Upload a portfolio item image",
+        help_text=_("Upload a portfolio item image"),
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         ordering = ["-created_at"]
+        verbose_name = _("Portfolio Item")
+        verbose_name_plural = _("Portfolio Items")
 
     def __str__(self):
         return f"{self.title} ({self.freelancer.user.email})"

@@ -1,6 +1,7 @@
 import uuid
 from typing import Optional, Dict, Any
 from django.core.files.uploadedfile import UploadedFile
+from django.utils.translation import gettext_lazy as _
 from core.models import ItemPortfolio, FreelancerProfile
 from core.repositories.portfolio_repository import PortfolioRepository
 from .image_service import PortfolioImageService
@@ -50,7 +51,7 @@ class PortfolioService:
             except ValueError as e:
                 # If image upload fails, delete the created item
                 self.repository.delete(item)
-                raise e
+                raise ValueError(_("Failed to upload image: %(error)s") % {"error": str(e)})
 
         return item
 
@@ -150,4 +151,3 @@ class PortfolioService:
         except Exception as e:
             print(f"Error deleting portfolio: {e}")
             return False
-

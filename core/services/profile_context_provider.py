@@ -1,11 +1,13 @@
 from typing import Dict, Any
 from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
 from .profile_service import ProfileService
 from ..forms.profile_forms import (
     ClientProfileForm,
     FreelancerProfileForm,
     ProfileImageForm,
 )
+
 
 class ProfileContextProvider:
     def __init__(self, profile_service: ProfileService):
@@ -59,7 +61,7 @@ class ProfileContextProvider:
 
             return []
         except Exception as e:
-            print(f"Error getting public portfolio items: {e}")
+            print(_("Error getting public portfolio items: %(error)s") % {"error": e})
             return []
 
     def _get_public_microservices(self, user):
@@ -106,7 +108,7 @@ class ProfileContextProvider:
             portfolio_service = PortfolioService()
             return portfolio_service.list_items(freelancer_profile)
         except Exception as e:
-            print(f"Error getting portfolios: {e}")
+            print(_("Error getting portfolios: %(error)s") % {"error": e})
             return []
 
     def _get_freelancer_form(self, profile_data):

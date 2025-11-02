@@ -1,5 +1,6 @@
 import uuid
 from django.core.files.uploadedfile import UploadedFile
+from django.utils.translation import gettext_lazy as _
 from ..interfaces.storage_interface import StorageInterface
 from ..factories.storage_factory import StorageFactory
 
@@ -21,7 +22,7 @@ class BaseImageService:
 
         # Validate image
         if not self._is_valid_image(image_file):
-            raise ValueError("Invalid image file")
+            raise ValueError(_("Invalid image file"))
 
         # Save image
         saved_path = self._storage.save(image_file, path)
@@ -58,11 +59,11 @@ class BaseImageService:
 
     def get_upload_directory(self) -> str:
         """Get the upload directory for this service. Override in subclasses."""
-        raise NotImplementedError("Subclasses must implement get_upload_directory")
+        raise NotImplementedError(_("Subclasses must implement get_upload_directory"))
 
     def _get_default_image_url(self) -> str:
         """Get default image URL. Override in subclasses."""
-        raise NotImplementedError("Subclasses must implement _get_default_image_url")
+        raise NotImplementedError(_("Subclasses must implement _get_default_image_url"))
 
 
 class ProfileImageService(BaseImageService):
@@ -105,4 +106,3 @@ class PortfolioImageService(BaseImageService):
     def _get_default_image_url(self) -> str:
         """Get default portfolio image URL."""
         return "/static/core/images/default_portfolio.png"
-
