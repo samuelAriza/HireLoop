@@ -44,14 +44,18 @@ class BaseImageService:
         return self._get_default_image_url()
 
     def _is_valid_image(self, image_file: UploadedFile) -> bool:
-        """Validate image file."""
-        # Size validation (max 5MB)
+        print("Validating image...")
+        print("Name:", image_file.name)
+        print("Content type:", image_file.content_type)
+        print("Size:", image_file.size)
+
         if image_file.size > 5 * 1024 * 1024:
+            print("Image too large")
             return False
 
-        # Type validation
         allowed_types = ["image/jpeg", "image/png", "image/gif", "image/webp"]
         if image_file.content_type not in allowed_types:
+            print("Unsupported type")
             return False
 
         return True
