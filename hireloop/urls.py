@@ -26,6 +26,7 @@ def health_check(request):
     except Exception as e:
         return HttpResponse(f"ERROR: {str(e)}", status=503, content_type="text/plain")
 
+@csrf_exempt
 @require_http_methods(["GET"])
 def readiness_check(request):
     """

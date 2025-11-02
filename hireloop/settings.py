@@ -54,7 +54,8 @@ LOGOUT_REDIRECT_URL = '/'
 if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
-    SECURE_SSL_REDIRECT = True
+    # NO forzar SSL redirect - el Load Balancer maneja HTTPS
+    SECURE_SSL_REDIRECT = False  # Cambiado a False
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
