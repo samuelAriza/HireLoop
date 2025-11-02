@@ -83,6 +83,12 @@ class ItemPortfolio(models.Model):
     url_demo = models.URLField(
         blank=True, null=True, help_text="Link to the portfolio item"
     )
+    image = models.ImageField(
+        upload_to="portfolios/",
+        blank=True,
+        null=True,
+        help_text="Upload a portfolio item image",
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -91,3 +97,9 @@ class ItemPortfolio(models.Model):
 
     def __str__(self):
         return f"{self.title} ({self.freelancer.user.email})"
+
+    def get_image_url(self):
+        from .services.image_service import PortfolioImageService
+
+        service = PortfolioImageService()
+        return service.get_image_url(self.image.name if self.image else None)

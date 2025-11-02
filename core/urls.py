@@ -11,6 +11,8 @@ from core.views.profile_views import (
 from core.views.image_views import ProfileImageUpdateView, ProfileImageDeleteView
 from core.views.portfolio_views import (
     PortfolioCreateView,
+    PortfolioImageUpdateView,
+    PortfolioImageDeleteView,
 )
 
 app_name = "core"
@@ -45,8 +47,19 @@ urlpatterns = [
     # Portfolio management
     path("portfolio/create/", PortfolioCreateView.as_view(), name="portfolio_create"),
     path(
+        "portfolio/<uuid:portfolio_id>/image/update/",
+        PortfolioImageUpdateView.as_view(),
+        name="portfolio_image_update",
+    ),
+    path(
+        "portfolio/<uuid:portfolio_id>/image/delete/",
+        PortfolioImageDeleteView.as_view(),
+        name="portfolio_image_delete",
+    ),
+    path(
         "profile/public/<str:username>/",
         PublicProfileDetailView.as_view(),
         name="public_profile_detail",
     ),
 ]
+
