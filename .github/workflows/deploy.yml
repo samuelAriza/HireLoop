@@ -87,6 +87,7 @@ jobs:
               spec:
                 serviceAccountName: hireloop-ksa
                 restartPolicy: Never
+                shareProcessNamespace: true
                 imagePullSecrets:
                   - name: gcp-artifact-registry
                 
@@ -118,7 +119,7 @@ jobs:
                         echo "✅ Cloud SQL Proxy is ready"
                         break
                       fi
-                      echo "Waiting for proxy... attempt $i/20"
+                      echo "Waiting for proxy... attempt \$i/20"
                       sleep 2
                     done
                     
@@ -129,6 +130,11 @@ jobs:
                     python manage.py collectstatic --noinput --clear
                     
                     echo "✅ Migrations completed successfully"
+                    
+                    # Matar el proxy para que el Job termine
+                    echo "=== Stopping Cloud SQL Proxy ==="
+                    killall cloud-sql-proxy 2>/dev/null || killall -9 cloud-sql-proxy 2>/dev/null || true
+                    sleep 2
                   resources:
                     requests:
                       cpu: "100m"
@@ -136,6 +142,10 @@ jobs:
                     limits:
                       cpu: "500m"
                       memory: "512Mi"
+                  lifecycle:
+                    preStop:
+                      exec:
+                        command: ["/bin/sh", "-c", "killall cloud-sql-proxy 2>/dev/null || true"]
                 
                 # ============ CLOUD SQL PROXY SIDECAR ============
                 - name: cloud-sql-proxy
@@ -152,6 +162,9 @@ jobs:
                     readOnly: true
                   securityContext:
                     runAsNonRoot: true
+                    capabilities:
+                      add:
+                      - KILL
                   resources:
                     requests:
                       memory: "128Mi"
