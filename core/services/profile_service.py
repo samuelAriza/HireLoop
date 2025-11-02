@@ -102,7 +102,9 @@ class ProfileService:
                 saved_path = self._image_service.upload_profile_image(
                     user.id, image_file
                 )
-                user.profile_image = saved_path
+                # Django's ImageField expects just the filename, not the full path
+                # The upload_to is automatically prepended
+                user.profile_image.name = saved_path
             else:
                 user.profile_image = None
 
