@@ -133,7 +133,7 @@ jobs:
                     
                     # Detener el Cloud SQL Proxy para que el Job termine
                     echo "=== Stopping Cloud SQL Proxy ==="
-                    curl -X POST http://localhost:9090/quitquitquit || true
+                    python -c "import urllib.request; urllib.request.urlopen('http://localhost:9091/quitquitquit', data=b'').read()" 2>/dev/null || true
                     sleep 5
                   resources:
                     requests:
@@ -153,16 +153,10 @@ jobs:
                   args:
                   - "--address=0.0.0.0"
                   - "--port=5432"
-                  - "--http-address=0.0.0.0"
-                  - "--http-port=9090"
                   - "--quitquitquit"
                   - "--structured-logs"
                   - "--credentials-file=/secrets/credentials.json"
                   - "hireloop-476222:us-central1:hireloop-db"
-                  ports:
-                  - name: health
-                    containerPort: 9090
-                    protocol: TCP
                   volumeMounts:
                   - name: cloudsql-credentials
                     mountPath: /secrets
