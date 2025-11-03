@@ -234,7 +234,29 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # WhiteNoise configuration for efficient static file serving
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-PROFILE_STORAGE_TYPE = "local"
+# ==============================================================================
+# GOOGLE CLOUD STORAGE (GCS) for MEDIA FILES
+# ==============================================================================
+# Set credentials BEFORE importing storages
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/app/creds/credentials.json"
+
+# Modern Django 5.x STORAGES setting
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.gcloud.GoogleCloudStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
+
+# GCS Configuration
+GS_BUCKET_NAME = 'hireloop-media'
+GS_DEFAULT_ACL = None
+GS_QUERYSTRING_AUTH = False  # URLs públicas sin firma
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
+
+PROFILE_STORAGE_TYPE = "gcs"
 
 # ==============================================================================
 # DJANGO PLOTLY DASH
@@ -261,9 +283,3 @@ STATICFILES_FINDERS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "core.User"
 X_FRAME_OPTIONS = "SAMEORIGIN"
-
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'hireloop-media'
-GS_DEFAULT_ACL = None
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/app/creds/hireloop-media-key.json"
