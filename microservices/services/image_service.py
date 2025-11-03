@@ -24,15 +24,36 @@ class MicroserviceImageService:
         return filename
 
     def delete_microservice_image(self, image_path: str) -> None:
+        """Delete microservice image from storage."""
         if not image_path:
             return True
-        return self._storage.delete(image_path)
+        
+        # If it's just a filename, prepend the microservices directory
+        if '/' not in image_path:
+            full_path = f"microservices/{image_path}"
+        else:
+            full_path = image_path
+        
+        return self._storage.delete(full_path)
 
     def get_image_url(self, image_path: str) -> str:
+        """
+        Get URL for microservice image.
+        image_path can be either:
+        - Just the filename (e.g., 'microservice_xxx.jpg')
+        - Full path (e.g., 'microservices/microservice_xxx.jpg')
+        """
         if not image_path:
             return self._get_default_image_url()
-        if self._storage.exists(image_path):
-            return self._storage.url(image_path)
+        
+        # If it's just a filename, prepend the microservices directory
+        if '/' not in image_path:
+            full_path = f"microservices/{image_path}"
+        else:
+            full_path = image_path
+        
+        if self._storage.exists(full_path):
+            return self._storage.url(full_path)
         return self._get_default_image_url()
 
     def _is_valid_image(self, image_file: UploadedFile) -> bool:

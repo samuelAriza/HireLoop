@@ -21,14 +21,36 @@ class MentorshipImageService:
         return filename
 
     def delete_mentorship_image(self, image_path: str) -> None:
-        if image_path:
-            return self.storage.delete(image_path)
+        """Delete mentorship image from storage."""
+        if not image_path:
+            return
+        
+        # If it's just a filename, prepend the mentorships directory
+        if '/' not in image_path:
+            full_path = f"mentorships/{image_path}"
+        else:
+            full_path = image_path
+        
+        return self.storage.delete(full_path)
 
     def get_image_url(self, image_path: str) -> str:
+        """
+        Get URL for mentorship image.
+        image_path can be either:
+        - Just the filename (e.g., 'mentorship_xxx.jpg')
+        - Full path (e.g., 'mentorships/mentorship_xxx.jpg')
+        """
         if not image_path:
             return self._get_default_image_url()
-        if self.storage.exists(image_path):
-            return self.storage.url(image_path)
+        
+        # If it's just a filename, prepend the mentorships directory
+        if '/' not in image_path:
+            full_path = f"mentorships/{image_path}"
+        else:
+            full_path = image_path
+        
+        if self.storage.exists(full_path):
+            return self.storage.url(full_path)
         return self._get_default_image_url()
 
     def _is_valid_image(self, image_file: UploadedFile) -> bool:
