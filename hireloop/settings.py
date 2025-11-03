@@ -234,9 +234,6 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # WhiteNoise configuration for efficient static file serving
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
 PROFILE_STORAGE_TYPE = "local"
 
 # ==============================================================================
