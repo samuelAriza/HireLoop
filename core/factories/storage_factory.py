@@ -1,6 +1,7 @@
 from django.conf import settings
 from ..interfaces.storage_interface import StorageInterface
 from ..storage.local_storage import LocalStorage
+from ..storage.gcs_storage import GCSStorage
 
 
 class StorageFactory:
@@ -15,9 +16,8 @@ class StorageFactory:
 
         if storage_type == "local":
             return LocalStorage()
+        elif storage_type == "gcs":
+            return GCSStorage()
         else:
             raise ValueError(f"Unsupported storage type: {storage_type}")
-        """
-        elif storage_type == 's3':
-            return S3Storage()
-        """
+
