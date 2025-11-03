@@ -124,6 +124,7 @@ INSTALLED_APPS = [
     "channels",
     "analytics",
     "rest_framework",
+    'storages',
 ]
 
 REST_FRAMEWORK = {
@@ -263,3 +264,9 @@ STATICFILES_FINDERS = [
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "core.User"
 X_FRAME_OPTIONS = "SAMEORIGIN"
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'hireloop-media'
+GS_DEFAULT_ACL = None
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/app/creds/hireloop-media-key.json"
