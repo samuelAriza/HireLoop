@@ -40,4 +40,4 @@ RUN python manage.py collectstatic --noinput --clear || \
 EXPOSE 8000
 
 # Entrypoint (ruta relativa al WORKDIR /app)
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
