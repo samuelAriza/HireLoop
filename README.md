@@ -736,21 +736,19 @@ NAMESPACE: default
 ### Application Features
 
 > **Screenshot Placeholders**:
-> - **Homepage**: Landing page with microservices marketplace
-> - **User Dashboard**: Freelancer/Client profile switching
-> - **Microservices Listing**: Card-based service catalog with search/filter
-> - **Project Details**: Project collaboration interface with assignments
-> - **Mentorship Sessions**: Calendar view of scheduled sessions
-> - **Shopping Cart**: Multi-item cart with different product types
-> - **Analytics Dashboard**: Plotly Dash charts and visualizations
-> - **Payment Checkout**: Stripe integration payment flow
+![WhatsApp Image 2025-11-04 at 2 03 58 PM](https://github.com/user-attachments/assets/58802e7b-d79e-4caf-bf3b-1a680c73b81a)
+![WhatsApp Image 2025-11-04 at 2 04 30 PM](https://github.com/user-attachments/assets/42538d61-5fa7-4d12-9bae-2cd549cbaf85)
+![WhatsApp Image 2025-11-04 at 2 04 48 PM](https://github.com/user-attachments/assets/6787ac81-a82e-4899-8d07-91c0948432d8)
+![WhatsApp Image 2025-11-04 at 2 05 00 PM (1)](https://github.com/user-attachments/assets/203ccd66-afc3-44e5-a8e5-2589f7773437)
+![WhatsApp Image 2025-11-04 at 2 05 30 PM](https://github.com/user-attachments/assets/a3a930ee-b051-4cef-87f0-b86a93be2b88)
+![WhatsApp Image 2025-11-04 at 2 05 43 PM](https://github.com/user-attachments/assets/8c822532-dbb8-44a5-8453-766ef7d0402f)
+![WhatsApp Image 2025-11-04 at 2 06 26 PM](https://github.com/user-attachments/assets/96452bfe-e1b6-4514-bdbb-5c889c8cb15b)
 
 ### API Endpoints
 
 > **Screenshot Placeholder**: API response examples:
-> - `GET /api/microservices/` - JSON list of all microservices
-> - `GET /api/microservices/{id}/` - JSON microservice details
-> - Response format with serialized data
+![WhatsApp Image 2025-11-04 at 2 12 15 PM](https://github.com/user-attachments/assets/26ec820c-4a81-4fb3-9cfa-12d95a4ee92d)
+
 
 ---
 
