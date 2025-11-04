@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-01 21:21-0500\n"
+"POT-Creation-Date: 2025-11-04 02:04-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -83,6 +83,30 @@ msgstr "Ícono de Birrete"
 #: cart/templates/cart/cart_list.html:24
 msgid "Briefcase Icon"
 msgstr "Ícono de Maletín"
+
+#: cart/templates/cart/cart_list.html:30
+#, fuzzy, python-format
+#| msgid ""
+msgid ""
+"\n"
+"                                Mentorship by %(mentor_name)s\n"
+"                                "
+msgstr ""
+"\n"
+"                                    %(days)s día%(days|pluralize)s\n"
+"                                    "
+
+#: cart/templates/cart/cart_list.html:34
+#, fuzzy, python-format
+#| msgid ""
+msgid ""
+"\n"
+"                                By %(freelancer_name)s\n"
+"                                "
+msgstr ""
+"\n"
+"                                    %(days)s día%(days|pluralize)s\n"
+"                                    "
 
 #: cart/templates/cart/cart_list.html:47
 msgid "Clock Icon"
@@ -225,7 +249,7 @@ msgstr "Explorar Servicios"
 
 #: cart/templates/cart/wishlist_list.html:5
 #: mentorship_session/templates/mentorship_session/mentorship_sessions_list.html:60
-#: templates/base.html:90
+#: templates/base.html:91
 msgid "Wishlist"
 msgstr "Lista de Deseos"
 
@@ -760,7 +784,7 @@ msgid "Create Profile"
 msgstr "Crear Perfil"
 
 #: core/templates/core/login.html:13 core/templates/core/register.html:87
-#: templates/base.html:98
+#: templates/base.html:153
 msgid "Log In"
 msgstr "Iniciar Sesión"
 
@@ -773,7 +797,7 @@ msgid "Don’t have an account?"
 msgstr "¿No tiene una cuenta?"
 
 #: core/templates/core/login.html:38 core/templates/core/register.html:56
-#: core/templates/core/register.html:80 templates/base.html:103
+#: core/templates/core/register.html:80 templates/base.html:158
 msgid "Sign Up"
 msgstr "Registrarse"
 
@@ -782,7 +806,7 @@ msgid "User"
 msgstr "Usuario"
 
 #: core/templates/core/multi_profile_detail.html:41
-#: core/templates/core/multi_profile_detail.html:53
+#: core/templates/core/multi_profile_detail.html:53 templates/base.html:107
 msgid "Profile"
 msgstr "Perfil"
 
@@ -1121,11 +1145,11 @@ msgstr "¿Ya tienes una cuenta?"
 msgid "You cannot have more than 20 skills"
 msgstr "No puedes tener más de 20 habilidades"
 
-#: hireloop/settings.py:192
+#: hireloop/settings.py:200
 msgid "English"
 msgstr "Inglés"
 
-#: hireloop/settings.py:193
+#: hireloop/settings.py:201
 msgid "Español"
 msgstr "Español"
 
@@ -1249,7 +1273,7 @@ msgstr "Mentoría: {topic}"
 msgid "Mentorship session about '{topic}', duration {duration} minutes."
 msgstr "Sesión de mentoría sobre '{topic}', duración {duration} minutos."
 
-#: mentorship_session/models.py:83
+#: mentorship_session/models.py:83 templates/landing.html:148
 msgid "Mentorship"
 msgstr "Mentoría"
 
@@ -1674,6 +1698,7 @@ msgstr "Especifica los entregables"
 
 #: microservices/templates/microservices/freelancer_microservices_list.html:14
 #: microservices/templates/microservices/freelancer_microservices_list.html:24
+#: templates/base.html:118
 msgid "My MicroServices"
 msgstr "Mis Microservicios"
 
@@ -1732,6 +1757,7 @@ msgid "This is your own microservice"
 msgstr "Este es tu propio microservicio"
 
 #: microservices/templates/microservices/microservices_list.html:10
+#: templates/landing.html:268
 msgid "Available Microservices"
 msgstr "Microservicios Disponibles"
 
@@ -2269,7 +2295,7 @@ msgstr "Establece entregables medibles"
 
 #: projects/templates/projects/client_projects_list.html:14
 #: projects/templates/projects/client_projects_list.html:24
-#: projects/templates/projects/project_form.html:12
+#: projects/templates/projects/project_form.html:12 templates/base.html:133
 msgid "My Projects"
 msgstr "Mis Proyectos"
 
@@ -2292,12 +2318,12 @@ msgid "Create My First Project"
 msgstr "Crear Mi Primer Proyecto"
 
 #: projects/templates/projects/project_detail.html:5 templates/base.html:9
-#: templates/base.html:27 templates/base.html:125 templates/base.html:164
+#: templates/base.html:181 templates/base.html:220
 msgid "HireLoop"
 msgstr "HireLoop"
 
 #: projects/templates/projects/project_detail.html:14 templates/base.html:43
-#: templates/base.html:136
+#: templates/base.html:192 templates/landing.html:136
 msgid "Projects"
 msgstr "Proyectos"
 
@@ -2440,61 +2466,354 @@ msgstr "Actualmente, no hay proyectos disponibles."
 msgid "Projects pagination"
 msgstr "Paginación de proyectos"
 
-#: templates/base.html:26
-msgid " HireLoop Logo"
-msgstr " Logo de HireLoop"
-
 #: templates/base.html:38
 msgid "Browse MicroServices"
 msgstr "Explorar Microservicios"
 
-#: templates/base.html:48 templates/base.html:140
+#: templates/base.html:48 templates/base.html:196
 msgid "Mentorships"
 msgstr "Mentorías"
 
-#: templates/base.html:53
+#: templates/base.html:53 templates/landing.html:280
 msgid "Dashboard"
 msgstr "Panel"
 
-#: templates/base.html:84
+#: templates/base.html:85
 msgid "Cart"
 msgstr "Carrito"
 
-#: templates/base.html:126
+#: templates/base.html:103
+#, fuzzy
+#| msgid "Amount"
+msgid "My Account"
+msgstr "Monto"
+
+#: templates/base.html:124
+#, fuzzy
+#| msgid "My Mentorship"
+msgid "My Mentorships"
+msgstr "Mi Mentoría"
+
+#: templates/base.html:144
+#, fuzzy
+#| msgid "Log In"
+msgid "Log Out"
+msgstr "Iniciar Sesión"
+
+#: templates/base.html:182
 msgid "Connecting freelancers with clients and mentors worldwide."
 msgstr "Conectando freelancers con clientes y mentores alrededor del mundo."
 
-#: templates/base.html:129
+#: templates/base.html:185
 msgid "Services"
 msgstr "Servicios"
 
-#: templates/base.html:133
+#: templates/base.html:189
 msgid "Freelance Services"
 msgstr "Servicios Freelance"
 
-#: templates/base.html:145
+#: templates/base.html:201
 msgid "Quick Links"
 msgstr "Enlaces Rápidos"
 
-#: templates/base.html:148
+#: templates/base.html:204
 msgid "About Us"
 msgstr "Acerca de Nosotros"
 
-#: templates/base.html:151
+#: templates/base.html:207
 msgid "Contact"
 msgstr "Contacto"
 
-#: templates/base.html:154
+#: templates/base.html:210
 msgid "Privacy Policy"
 msgstr "Política de Privacidad"
 
-#: templates/base.html:157
+#: templates/base.html:213
 msgid "Terms of Service"
 msgstr "Términos de Servicio"
 
-#: templates/base.html:164
+#: templates/base.html:220
 msgid "All rights reserved."
 msgstr "Todos los derechos reservados."
+
+#: templates/landing.html:4
+msgid "HireLoop - Connect Freelancers and Clients"
+msgstr "HireLoop - Conecta Freelancers y Clientes"
+
+#: templates/landing.html:99
+msgid "Connect, Collaborate, Grow"
+msgstr "Conecta, Colabora, Crece"
+
+#: templates/landing.html:101
+msgid ""
+"HireLoop is the platform that connects freelancers with clients, manages "
+"collaborative projects, and offers specialized mentoring to boost your "
+"professional career."
+msgstr ""
+"HireLoop es la plataforma que conecta freelancers con clientes, gestiona "
+"proyectos colaborativos y ofrece mentoría especializada para impulsar tu "
+"carrera profesional."
+
+#: templates/landing.html:104
+#, fuzzy
+#| msgid "Get started with Django"
+msgid "Get Started Now"
+msgstr "Comience con Django"
+
+#: templates/landing.html:115
+msgid "Our Main Areas"
+msgstr "Nuestras Áreas Principales"
+
+#: templates/landing.html:116
+msgid "Three fundamental pillars for your professional success"
+msgstr "Tres pilares fundamentales para tu éxito profesional"
+
+#: templates/landing.html:124
+#, fuzzy
+#| msgid "MicroServices"
+msgid "Microservices"
+msgstr "Microservicios"
+
+#: templates/landing.html:126
+msgid ""
+"Fixed-price services offered by freelancers with transparent pricing and "
+"defined deliverables. Find exactly what you need."
+msgstr ""
+"Servicios a precio fijo ofrecidos por freelancers con precios transparentes y "
+"entregables definidos. Encuentra exactamente lo que necesitas."
+
+#: templates/landing.html:138
+msgid ""
+"Collaborative work with flexible budgets. Post your project and receive "
+"proposals from qualified freelancers."
+msgstr ""
+"Trabajo colaborativo con presupuestos flexibles. Publica tu proyecto y recibe "
+"propuestas de freelancers calificados."
+
+#: templates/landing.html:150
+msgid ""
+"Personalized sessions between mentors and students. Accelerate your learning "
+"with experts in your field."
+msgstr ""
+"Sesiones personalizadas entre mentores y estudiantes. Acelera tu aprendizaje "
+"con expertos en tu área."
+
+#: templates/landing.html:163
+#, fuzzy
+#| msgid "HireLoop"
+msgid "Why HireLoop?"
+msgstr "HireLoop"
+
+#: templates/landing.html:164
+msgid "Advantages that drive your success"
+msgstr "Ventajas que impulsan tu éxito"
+
+#: templates/landing.html:172
+msgid "Efficiency"
+msgstr "Eficiencia"
+
+#: templates/landing.html:174
+msgid "Find and hire qualified professionals quickly. Save time and resources."
+msgstr ""
+"Encuentra y contrata profesionales calificados rápidamente. Ahorra tiempo y "
+"recursos."
+
+#: templates/landing.html:184
+#, fuzzy
+#| msgid "Currency"
+msgid "Transparency"
+msgstr "Moneda"
+
+#: templates/landing.html:186
+msgid "Clear prices, verified profiles, and a reliable rating system."
+msgstr ""
+"Precios claros, perfiles verificados y un sistema de calificación confiable."
+
+#: templates/landing.html:196
+msgid "Flexibility"
+msgstr "Flexibilidad"
+
+#: templates/landing.html:198
+msgid "Work your way with budgets and deadlines tailored to your needs."
+msgstr ""
+"Trabaja a tu manera con presupuestos y plazos adaptados a tus necesidades."
+
+#: templates/landing.html:208
+msgid "Professional Growth"
+msgstr "Crecimiento Profesional"
+
+#: templates/landing.html:210
+msgid ""
+"Build your portfolio, gain experience, and access mentorship opportunities."
+msgstr ""
+"Construye tu portafolio, gana experiencia y accede a oportunidades de "
+"mentoría."
+
+#: templates/landing.html:220
+#, fuzzy
+#| msgid "Payment Successful"
+msgid "Payment Security"
+msgstr "Pago Exitoso"
+
+#: templates/landing.html:222
+msgid "Protected payment system that ensures secure transactions for all."
+msgstr ""
+"Sistema de pago protegido que garantiza transacciones seguras para todos."
+
+#: templates/landing.html:232
+#, fuzzy
+#| msgid "Django Community"
+msgid "Global Community"
+msgstr "Comunidad Django"
+
+#: templates/landing.html:234
+msgid "Connect with professionals worldwide and expand your network."
+msgstr "Conéctate con profesionales de todo el mundo y expande tu red."
+
+#: templates/landing.html:247
+#, fuzzy
+#| msgid " HireLoop Logo"
+msgid "HireLoop in Action"
+msgstr " Logo de HireLoop"
+
+#: templates/landing.html:248
+msgid "Discover how our platform works"
+msgstr "Descubre cómo funciona nuestra plataforma"
+
+#: templates/landing.html:255
+#, fuzzy
+#| msgid "Create Freelancer Profile"
+msgid "Verified Freelancer Profiles"
+msgstr "Crear Perfil de Freelancer"
+
+#: templates/landing.html:257
+#, fuzzy
+#| msgid "Active Profiles"
+msgid "Verified Profiles"
+msgstr "Perfiles Activos"
+
+#: templates/landing.html:259
+msgid ""
+"Explore detailed profiles with portfolios, skills, and ratings from "
+"freelancers."
+msgstr ""
+"Explora perfiles detallados con portafolios, habilidades y calificaciones de "
+"freelancers."
+
+#: templates/landing.html:270
+#, fuzzy
+#| msgid "Service Image"
+msgid "Service Catalog"
+msgstr "Imagen del Servicio"
+
+#: templates/landing.html:272
+msgid ""
+"Browse thousands of microservices with fixed prices and guaranteed delivery."
+msgstr "Navega miles de microservicios con precios fijos y entrega garantizada."
+
+#: templates/landing.html:282
+msgid "Complete Management"
+msgstr "Gestión Completa"
+
+#: templates/landing.html:284
+msgid ""
+"Intuitive dashboard to manage your projects, applications, and mentorships."
+msgstr "Panel intuitivo para gestionar tus proyectos, aplicaciones y mentorías."
+
+#: templates/landing.html:304
+msgid ""
+"HireLoop transformed my business. I found amazing developers for my project "
+"in just a few days. The platform is intuitive and secure."
+msgstr ""
+"HireLoop transformó mi negocio. Encontré desarrolladores increíbles para mi "
+"proyecto en solo unos días. La plataforma es intuitiva y segura."
+
+#: templates/landing.html:308 templates/landing.html:310
+msgid "María García"
+msgstr "María García"
+
+#: templates/landing.html:311
+msgid "Client - Tech Company"
+msgstr "Cliente - Empresa Tecnológica"
+
+#: templates/landing.html:329
+msgid "\\"
+msgstr "\\"
+
+#: templates/landing.html:333 templates/landing.html:336
+msgid "Carlos Mendoza"
+msgstr "Carlos Mendoza"
+
+#: templates/landing.html:337
+msgid "Freelancer - Web Development"
+msgstr "Freelancer - Desarrollo Web"
+
+#: templates/landing.html:351
+msgid "Our Team"
+msgstr "Nuestro Equipo"
+
+#: templates/landing.html:352
+msgid "Meet who leads HireLoop"
+msgstr "Conoce a quienes lideran HireLoop"
+
+#: templates/landing.html:360 templates/landing.html:361
+msgid "Samuel Andrés Ariza Gómez"
+msgstr "Samuel Andrés Ariza Gómez"
+
+#: templates/landing.html:363
+msgid ""
+"CS Student at EAFIT University | Applied Mathematics Enthusiast | Software "
+"Development | Open to Internship Opportunities to Solve Complex Challenges"
+msgstr ""
+"Estudiante de Ciencias de la Computación en la Universidad EAFIT | Entusiasta "
+"de Matemáticas Aplicadas | Desarrollo de Software | Abierto a Oportunidades "
+"de Prácticas para Resolver Desafíos Complejos"
+
+#: templates/landing.html:366
+msgid ""
+"I am a seventh-semester Computer Science student at EAFIT University, with a "
+"strong interest in solving complex problems and software development. I am "
+"passionate about applying mathematics and computer science to improve "
+"people’s quality of life, always driven by a genuine love for learning. I see "
+"myself as a human and empathetic person, convinced that technology must serve "
+"society. I am currently seeking an internship at a company that tackles "
+"significant technical challenges and allows me to strengthen both my "
+"professional and personal skills."
+msgstr ""
+"Soy estudiante de séptimo semestre de Ciencias de la Computación en la "
+"Universidad EAFIT, con un gran interés en resolver problemas complejos y en "
+"el desarrollo de software. Me apasiona aplicar las matemáticas y la "
+"informática para mejorar la calidad de vida de las personas, siempre "
+"impulsado por un genuino amor por el aprendizaje. Me considero una persona "
+"humana y empática, convencida de que la tecnología debe servir a la sociedad. "
+"Actualmente busco una práctica profesional en una empresa que enfrente "
+"desafíos técnicos significativos y me permita fortalecer tanto mis "
+"habilidades profesionales como personales."
+
+#: templates/landing.html:388
+msgid "Ready to Get Started?"
+msgstr "¿Listo para comenzar?"
+
+#: templates/landing.html:390
+msgid "Join thousands of freelancers and clients already growing with HireLoop"
+msgstr ""
+"Únete a miles de freelancers y clientes que ya están creciendo con HireLoop"
+
+#: templates/landing.html:396
+#, fuzzy
+#| msgid "Assign Freelancer"
+msgid "Sign Up as Freelancer"
+msgstr "Asignar Freelancer"
+
+#: templates/landing.html:399
+#, fuzzy
+#| msgid "Be a Client"
+msgid "Sign Up as Client"
+msgstr "Ser Cliente"
+
+#: templates/landing.html:405
+msgid "No credit card required • Start free today"
+msgstr "No se requiere tarjeta de crédito • Comienza gratis hoy"
 
 #: venv/lib/python3.13/site-packages/click/_termui_impl.py:608
 #, python-brace-format
