@@ -50,20 +50,30 @@ class CreateCheckoutSessionView(View):
                 item_total = price * quantity
                 total_amount += item_total
 
+                # Prepare product data
+                product_data = {
+                    "name": obj.get_title()[:255],
+                    "description": (obj.get_description() or "")[:500],
+                }
+                
+                # Only add images if we have a valid HTTPS URL
+                if hasattr(obj, "get_image_path") and obj.get_image_path():
+                    image_path = obj.get_image_path()
+                    # Stripe requires HTTPS URLs
+                    if image_path.startswith("https://"):
+                        product_data["images"] = [image_path]
+
                 line_items.append({
                     "price_data": {
                         "currency": "usd",
                         "unit_amount": int(price * 100),  # Convert to cents
-                        "product_data": {
-                            "name": obj.get_title()[:255],
-                            "description": (obj.get_description() or "")[:500],
-                            "images": [obj.get_image_path()] if hasattr(obj, "get_image_path") and obj.get_image_path() else [],
-                        },
+                        "product_data": product_data,
                     },
                     "quantity": quantity,
                 })
             except Exception as e:
                 logger.error(f"Error processing cart item {item.id}: {e}")
+                logger.exception("Full traceback:")  # Log full traceback for debugging
                 return JsonResponse({"error": _("Invalid item in cart.")}, status=400)
 
         if total_amount <= 0:
@@ -101,8 +111,10 @@ class CreateCheckoutSessionView(View):
             logger.error(f"Stripe error for user {user.id}: {e}")
             return JsonResponse({"error": str(e.user_message or e)}, status=400)
         except Exception as e:
-            logger.exception(f"Unexpected error creating checkout session for user {user.id}")
-            return JsonResponse({"error": _("Payment processing failed. Please try again.")}, status=500)
+            logger.exception(f"Unexpected error creating checkout session for user {user.id}: {e}")
+            # Return more detailed error in development
+            error_detail = str(e) if settings.DEBUG else _("Payment processing failed. Please try again.")
+            return JsonResponse({"error": error_detail}, status=500)
 
 
 class PaymentSuccessView(View):
