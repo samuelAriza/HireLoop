@@ -36,7 +36,7 @@
         <!-- Breadcrumb -->
         <nav aria-label="{% trans 'breadcrumb' %}" class="main-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% trans 'Home' %}">{% trans 'Home' %}</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'microservices:microservices_list' %}">{% trans 'Home' %}</a></li>
                 <li class="breadcrumb-item"><a href="javascript:void(0)">{% trans 'User' %}</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{% trans 'Profile' %}</li>
             </ol>
@@ -504,8 +504,7 @@
                                                     <i class="fas fa-calendar me-1"></i>
                                                     {{ application.created_at|date:"M d, Y" }}
                                                 </p>
-                                                <p><strong>{% trans 'Proposed Payment' %}:</strong> ${{
-                                                    application.proposed_payment }}</p>
+                                                <p><strong>{% trans 'Proposed Payment' %}:</strong> ${{ application.proposed_payment }}</p>
                                                 <p class="mb-3">{{ application.cover_letter|linebreaksbr }}</p>
                                             </div>
                                         </div>

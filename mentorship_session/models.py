@@ -72,11 +72,11 @@ class MentorshipSession(models.Model):
         return float(self.PRICE_PER_MINUTE * self.duration_minutes)
 
     def get_title(self) -> str:
-        return _("Mentorship: {topic}").format(topic=self.topic)
+        return _("{topic}").format(topic=self.topic)
 
     def get_description(self) -> str:
         return _(
-            "Mentorship session about '{topic}', duration {duration} minutes."
+            "Mentorship session about '{topic}'"
         ).format(topic=self.topic, duration=self.duration_minutes)
 
     def get_type(self) -> str:

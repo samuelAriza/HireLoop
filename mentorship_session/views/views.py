@@ -32,19 +32,39 @@ class MentorshipSessionListView(SearchFilterMixin, ListView):
     context_object_name = "sessions"
     search_fields = ["topic", "mentor__user__email", "mentee__user__email"]
     category_field = None
-    price_field = "price"
+    price_field = None  # Deshabilitamos el filtro de precio porque usamos anotación
     paginate_by = 12
     ordering = ["-created_at"]
 
     def get_queryset(self):
-        qs = super().get_queryset()
-        qs = qs.annotate(
-            price=ExpressionWrapper(
+        # Primero obtenemos el queryset base y aplicamos la anotación
+        qs = MentorshipSession.objects.annotate(
+            calculated_price=ExpressionWrapper(
                 F("duration_minutes") * MentorshipSession.PRICE_PER_MINUTE,
                 output_field=DecimalField(max_digits=10, decimal_places=2),
             )
         )
-        return qs
+        
+        # Aplicamos los filtros de búsqueda manualmente
+        request = self.request
+        search = request.GET.get("search")
+        min_price = request.GET.get("min_price")
+        max_price = request.GET.get("max_price")
+
+        if search and self.search_fields:
+            from django.db.models import Q
+            q_objects = Q()
+            for field in self.search_fields:
+                q_objects |= Q(**{f"{field}__icontains": search})
+            qs = qs.filter(q_objects)
+
+        # Ahora sí podemos filtrar por el precio anotado
+        if min_price:
+            qs = qs.filter(calculated_price__gte=min_price)
+        if max_price:
+            qs = qs.filter(calculated_price__lte=max_price)
+            
+        return qs.order_by(*self.ordering)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

@@ -40,7 +40,7 @@
                         <div class="card-footer bg-light">
                             <div class="d-flex justify-content-between">
                                 {% if item.id %}
-                                <a href="{% url item.content_object.get_absolute_url %}" class="btn btn-sm btn-outline-primary">
+                                <a href="{{ item.content_object.get_absolute_url }}" class="btn btn-sm btn-outline-primary">
                                     {% trans "View Details" %}
                                 </a>
                                 <div class="d-flex gap-2">

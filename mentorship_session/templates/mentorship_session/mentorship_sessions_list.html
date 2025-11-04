@@ -17,8 +17,8 @@
                         <img src="{{ session.get_image_path }}" class="card-img-top" alt="{{ session.title }}" style="height:200px; object-fit:cover;">
                         <div class="card-body d-flex flex-column">
                             <div class="d-flex justify-content-between align-items-start mb-3">
-27                                <span class="badge bg-info">{{ session.get_status_display }}</span>
-                                <small class="text-muted">{{ session.start_time|date:"m/d/Y H:i" }}</small>
+                                <span class="badge bg-info">{{ session.get_status_display }}</span>
+                                <span class="text-success fw-bold">${{ session.get_price }}</span>
                             </div>
 
                             <h5 class="card-title">{{ session.topic }}</h5>
@@ -28,7 +28,11 @@
 
                             <div class="session-meta mb-3">
                                 <small class="text-muted">
-                                    <i class="fas fa-clock me-1"></i>{% trans 'Duration' %}: {{ session.duration_minutes }}
+                                    <i class="fas fa-clock me-1"></i>{% trans 'Duration' %}: {{ session.duration_minutes }} {% trans 'minutes' %}
+                                </small>
+                                <br>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar me-1"></i>{{ session.start_time|date:"m/d/Y H:i" }}
                                 </small>
                             </div>
                             <div class="d-flex gap-2 mt-auto">
