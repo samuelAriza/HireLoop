@@ -1,8 +1,10 @@
 from typing import Dict, Any, Optional
 from django.core.files.uploadedfile import UploadedFile
+from django.utils.translation import gettext_lazy as _
 from ..services.image_service import ProfileImageService
 from ..repositories.profile_repository import ProfileRepository
 from ..models import User
+
 
 class ProfileService:
     """
@@ -68,7 +70,7 @@ class ProfileService:
                 return True
             return False
         except Exception as e:
-            print(f"Error deleting freelancer profile: {e}")
+            print(_("Error deleting freelancer profile: %(error)s") % {"error": e})
             return False
 
     def delete_client_profile(self, user: User) -> bool:
@@ -79,7 +81,7 @@ class ProfileService:
                 return True
             return False
         except Exception as e:
-            print(f"Error deleting client profile: {e}")
+            print(_("Error deleting client profile: %(error)s") % {"error": e})
             return False
 
     def delete_all_profiles(self, user: User) -> Dict[str, bool]:
@@ -111,7 +113,7 @@ class ProfileService:
             return True
 
         except Exception as e:
-            print(f"Error updating profile image: {e}")
+            print(_("Error updating profile image: %(error)s") % {"error": e})
             return False
 
     def delete_user_profile_image(self, user: User) -> bool:
@@ -129,7 +131,7 @@ class ProfileService:
             return False
 
         except Exception as e:
-            print(f"Error deleting profile image: {e}")
+            print(_("Error deleting profile image: %(error)s") % {"error": e})
             return False
 
     def get_user_profile_image_url(self, user: User) -> str:

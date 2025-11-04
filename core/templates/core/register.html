@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <!-- Section: Design Block -->
@@ -11,14 +12,16 @@
                 <!-- Left Side -->
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <h1 class="my-5 display-3 fw-bold ls-tight">
-                        Your career journey <br />
-                        <span class="text-primary">starts here</span>
+                        {% trans "Your career journey" %} <br />
+                        <span class="text-primary">{% trans "starts here" %}</span>
                     </h1>
                     <p class="text-muted">
+                        {% blocktrans %}
                         Join thousands of freelancers and clients who trust HireLoop to connect,
                         collaborate, and grow their businesses. Whether you're offering services,
                         seeking projects, or looking for mentorship, we provide the complete
                         ecosystem to accelerate your professional success.
+                        {% endblocktrans %}
                     </p>
 
                     <!-- Value propositions -->
@@ -26,21 +29,21 @@
                         <div class="col-6">
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fas fa-briefcase text-primary me-2"></i>
-                                <span class="fw-semibold">Premium Services</span>
+                                <span class="fw-semibold">{% trans "Premium Services" %}</span>
                             </div>
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fas fa-graduation-cap text-primary me-2"></i>
-                                <span class="fw-semibold">Expert Mentorship</span>
+                                <span class="fw-semibold">{% trans "Expert Mentorship" %}</span>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fas fa-project-diagram text-primary me-2"></i>
-                                <span class="fw-semibold">Quality Projects</span>
+                                <span class="fw-semibold">{% trans "Quality Projects" %}</span>
                             </div>
                             <div class="d-flex align-items-center mb-3">
                                 <i class="fas fa-shield-alt text-primary me-2"></i>
-                                <span class="fw-semibold">Secure Payments</span>
+                                <span class="fw-semibold">{% trans "Secure Payments" %}</span>
                             </div>
                         </div>
                     </div>
@@ -50,7 +53,7 @@
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <div class="card shadow">
                         <div class="card-body py-5 px-md-5">
-                            <h2 class="text-center mb-4">Sign Up</h2>
+                            <h2 class="text-center mb-4">{% trans "Sign Up" %}</h2>
 
                             <!-- Form -->
                             <form method="POST">
@@ -74,14 +77,14 @@
 
                                 <!-- Submit -->
                                 <button type="submit" class="btn btn-primary btn-block w-100 mb-4">
-                                    <i class="fas fa-user-plus me-1"></i> Sign Up
+                                    <i class="fas fa-user-plus me-1"></i> {% trans "Sign Up" %}
                                 </button>
 
                                 <!-- Extra links -->
                                 <div class="text-center">
                                     <p class="mb-0">
-                                        Already have an account?
-                                        <a href="{% url 'core:login' %}" class="text-primary fw-bold">Log In</a>
+                                        {% blocktrans %}Already have an account?{% endblocktrans %}
+                                        <a href="{% url 'core:login' %}" class="text-primary fw-bold">{% trans "Log In" %}</a>
                                     </p>
                                 </div>
                             </form>

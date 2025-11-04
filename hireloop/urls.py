@@ -7,6 +7,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import HttpResponse, JsonResponse
 from django.db import connection
 from django.views.decorators.http import require_http_methods
+from django.views.decorators.cache import never_cache
+from core.views.landing_view import landing_page
 
 @csrf_exempt
 @require_http_methods(["GET"])
@@ -35,11 +37,11 @@ def readiness_check(request):
     """
     return HttpResponse("READY", status=200, content_type="text/plain")
 
-
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("core/", include("core.urls", namespace="core")),
-    path("", include("microservices.urls", namespace="microservices")),
+    path("", landing_page, name="landing_page"),
+    path("microservices/", include("microservices.urls", namespace="microservices")),
     path("projects/", include("projects.urls", namespace="projects")),
     path(
         "mentorship_sessions/",
@@ -53,6 +55,7 @@ urlpatterns = [
 
     path("health/", health_check, name="root_health_check"),
     path("ready/", readiness_check, name="root_readiness_check"),
+    path("i18n/", include("django.conf.urls.i18n")),
 ]
 
 

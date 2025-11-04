@@ -1,13 +1,14 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 <div class="container mt-4">
-    <h2>Are you sure you want to delete "{{ object.title }}"?</h2>
+    <h2>{% blocktrans with title=object.title %}Are you sure you want to delete "{{ title }}"?{% endblocktrans %}</h2>
 
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Yes, delete</button>
-        <a href="{% url 'microservices:microservices_list' %}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-danger">{% trans 'Yes, delete' %}</button>
+        <a href="{% url 'microservices:microservices_freelancer_list' user.freelancer_profile.id %}" class="btn btn-secondary">{% trans 'Cancel' %}</a>
     </form>
 </div>
 {% endblock %}

@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load static dict_extras %}
+{% load i18n %}
 
 {% block content %}
 <div class="container mt-4">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-            <h1><i class="fas fa-folder-open me-2"></i>Available Projects</h1>
+            <h1><i class="fas fa-folder-open me-2"></i>{% trans "Available Projects" %}</h1>
             {% include "core/partials/search.html" %}
             <!-- Projects Grid -->
             <div class="row">
@@ -38,26 +39,26 @@
                                 </small>
                                 <br>
                                 <small class="text-muted">
-                                    <i class="fas fa-calendar-alt me-1"></i>Created {{ project.created_at|date:"M d, Y"}}
+                                    <i class="fas fa-calendar-alt me-1"></i>{% trans "Created" %} {{ project.created_at|date:"M d, Y"}}
                                 </small>
                             </div>
                             <div class="d-flex gap-2 mt-auto">
                                 <a href="{% url 'projects:project_detail' project.pk %}"
-                                    class="btn btn-sm btn-primary">View Details</a>
+                                    class="btn btn-sm btn-primary">{% trans "View Details" %}</a>
                                 {% if "freelancer" in user_type and user.is_authenticated and project.client.user != user %}
                                 {% if not has_applied_map|get_item:project.id %}
                                 <a href="{% url 'projects:application_create' project.id %}"
-                                    class="btn btn-sm btn-outline-primary">Apply</a>
+                                    class="btn btn-sm btn-outline-primary">{% trans "Apply" %}</a>
                                 {% else %}
-                                <span class="badge bg-success align-self-center">Already Applied</span>
+                                <span class="badge bg-success align-self-center">{% trans "Already Applied" %}</span>
                                 {% endif %}
                                 {% endif %}
                                 {% if user.is_authenticated and project.client.user == user %}
                                 <!-- Botones para el dueño -->
                                 <a href="{% url 'projects:project_update' project.id %}"
-                                    class="btn btn-sm btn-warning">Edit</a>
+                                    class="btn btn-sm btn-warning">{% trans "Edit" %}</a>
                                 <a href="{% url 'projects:project_delete' project.id %}"
-                                    class="btn btn-sm btn-danger">Delete</a>
+                                    class="btn btn-sm btn-danger">{% trans "Delete" %}</a>
                                 {% endif %}
                             </div>
                         </div>
@@ -67,8 +68,8 @@
                 <div class="col-12">
                     <div class="text-center py-5">
                         <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
-                        <h4 class="text-muted">No projects found</h4>
-                        <p class="text-muted">Currently, no projects are available.</p>
+                        <h4 class="text-muted">{% trans "No projects found" %}</h4>
+                        <p class="text-muted">{% trans "Currently, no projects are available." %}</p>
                     </div>
                 </div>
                 {% endfor %}
@@ -76,16 +77,16 @@
 
             <!-- Pagination -->
             {% if is_paginated %}
-            <nav aria-label="Projects pagination" class="mt-5">
+            <nav aria-label="{% trans 'Projects pagination' %}" class="mt-5">
                 <ul class="pagination justify-content-center">
                     {% if page_obj.has_previous %}
                     <li class="page-item">
-                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page=1" aria-label="First">
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page=1" aria-label="{% trans 'First' %}">
                             <i class="fas fa-angle-double-left"></i>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.previous_page_number }}" aria-label="{% trans 'Previous' %}">
                             <i class="fas fa-angle-left"></i>
                         </a>
                     </li>
@@ -105,19 +106,19 @@
 
                     {% if page_obj.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.next_page_number }}" aria-label="Next">
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.next_page_number }}" aria-label="{% trans 'Next' %}">
                             <i class="fas fa-angle-right"></i>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                        <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.paginator.num_pages }}" aria-label="{% trans 'Last' %}">
                             <i class="fas fa-angle-double-right"></i>
                         </a>
                     </li>
                     {% endif %}
                 </ul>
                 <p class="text-center mt-3 text-muted small">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    {% blocktrans with current=page_obj.number total=page_obj.paginator.num_pages %}Page {{ current }} of {{ total }}{% endblocktrans %}
                 </p>
             </nav>
             {% endif %}

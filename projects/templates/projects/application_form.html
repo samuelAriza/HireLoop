@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="container">
     <div class="main-body">
         <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'projects:projects_list' %}">Home</a></li>
-                <li class="breadcrumb-item"><a href="">Project Detail</a>
+                <li class="breadcrumb-item"><a href="{% url 'projects:projects_list' %}">{% trans "Home" %}</a></li>
+                <li class="breadcrumb-item"><a href="">{% trans "Project Detail" %}</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    Apply to Project
+                    {% trans "Apply to Project" %}
                 </li>
             </ol>
         </nav>
@@ -21,7 +22,7 @@
                     <div class="card-header">
                         <h4 class="mb-0">
                             <i class="fas fa-file-signature me-2"></i>
-                            Apply to {{ project.title }}
+                            {% blocktrans with title=project.title %}Apply to {{ title }}{% endblocktrans %}
                         </h4>
                     </div>
                     <div class="card-body">
@@ -31,7 +32,7 @@
                             <!-- Cover Letter -->
                             <div class="mb-3">
                                 <label for="{{ form.cover_letter.id_for_label }}" class="form-label">
-                                    <i class="fas fa-align-left me-1"></i>Cover Letter *
+                                    <i class="fas fa-align-left me-1"></i>{% trans "Cover Letter" %} *
                                 </label>
                                 {{ form.cover_letter }}
                                 {% if form.cover_letter.errors %}
@@ -42,7 +43,7 @@
                             <!-- Proposed Payment -->
                             <div class="mb-3">
                                 <label for="{{ form.proposed_payment.id_for_label }}" class="form-label">
-                                    <i class="fas fa-dollar-sign me-1"></i>Proposed Payment (USD) *
+                                    <i class="fas fa-dollar-sign me-1"></i>{% trans "Proposed Payment (USD)" %} *
                                 </label>
                                 <div class="input-group">
                                     <span class="input-group-text">$</span>
@@ -58,10 +59,10 @@
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                 <a href="{% url 'projects:projects_list'%}"
                                     class="btn btn-secondary me-md-2">
-                                    <i class="fas fa-times me-1"></i>Cancel
+                                    <i class="fas fa-times me-1"></i>{% trans "Cancel" %}
                                 </a>
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-paper-plane me-1"></i>Submit Application
+                                    <i class="fas fa-paper-plane me-1"></i>{% trans "Submit Application" %}
                                 </button>
                             </div>
                         </form>
@@ -71,24 +72,24 @@
                 <!-- Help Card -->
                 <div class="card mt-4">
                     <div class="card-header bg-info text-white">
-                        <h6 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Tips for a Strong Application</h6>
+                        <h6 class="mb-0"><i class="fas fa-lightbulb me-2"></i>{% trans "Tips for a Strong Application" %}</h6>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <h6><i class="fas fa-check text-success me-2"></i>Cover Letter</h6>
+                                <h6><i class="fas fa-check text-success me-2"></i>{% trans "Cover Letter" %}</h6>
                                 <ul class="list-unstyled text-muted small">
-                                    <li>• Be concise and professional</li>
-                                    <li>• Highlight relevant experience</li>
-                                    <li>• Show enthusiasm for the project</li>
+                                    <li>• {% trans "Be concise and professional" %}</li>
+                                    <li>• {% trans "Highlight relevant experience" %}</li>
+                                    <li>• {% trans "Show enthusiasm for the project" %}</li>
                                 </ul>
                             </div>
                             <div class="col-md-6">
-                                <h6><i class="fas fa-check text-success me-2"></i>Proposed Payment</h6>
+                                <h6><i class="fas fa-check text-success me-2"></i>{% trans "Proposed Payment" %}</h6>
                                 <ul class="list-unstyled text-muted small">
-                                    <li>• Offer a fair and realistic amount</li>
-                                    <li>• Justify your rate briefly</li>
-                                    <li>• Be transparent with costs</li>
+                                    <li>• {% trans "Offer a fair and realistic amount" %}</li>
+                                    <li>• {% trans "Justify your rate briefly" %}</li>
+                                    <li>• {% trans "Be transparent with costs" %}</li>
                                 </ul>
                             </div>
                         </div>

@@ -9,6 +9,8 @@ from django.views.generic import (
     DeleteView,
 )
 from django.views import View
+from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 from core.mixins import ProfileRequiredMixin
 from ..models import Project, ProjectAssignment, ProjectApplication
 from ..repositories.project_repository import (
@@ -271,10 +273,10 @@ class ProjectApplicationAcceptView(ProfileRequiredMixin, View):
         try:
             project_service.review_application(pk, accept=True)
             return redirect("projects:projects_list")
-        except ValueError:
+        except ValueError as e:
             messages.error(
                 request,
-                "Invalid application or you are not authorized to perform this action.",
+                _(str(e)),
             )
             return redirect("projects:projects_list")
 

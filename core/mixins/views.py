@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
 
 
 class ProfileRequiredMixin(LoginRequiredMixin):
@@ -12,9 +13,10 @@ class ProfileRequiredMixin(LoginRequiredMixin):
 
     def dispatch(self, request, *args, **kwargs):
         if not self.user_has_required_profile(request.user):
+            profile_name = _(self.required_profile.capitalize()) if self.required_profile else ""
             messages.warning(
                 request,
-                f"You need a {self.required_profile} profile to access this page.",
+                _("You need a %(profile)s profile to access this page.") % {"profile": profile_name},
             )
             return redirect("core:profile_detail")
         return super().dispatch(request, *args, **kwargs)

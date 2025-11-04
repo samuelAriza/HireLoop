@@ -1,5 +1,6 @@
 from typing import List
 from django.db import transaction
+from django.utils.translation import gettext_lazy as _
 from ..models import Project, ProjectAssignment, ProjectApplication
 from ..repositories.project_repository import (
     ProjectRepository,
@@ -30,7 +31,7 @@ class ProjectService:
             .first()
         )
         if existing:
-            raise ValueError("Already applied to this project.")
+            raise ValueError(_("Already applied to this project."))
 
         return self.application_repo.create(
             project=project,
@@ -42,7 +43,7 @@ class ProjectService:
     def review_application(self, application_id, accept: bool):
         application = self.application_repo.get_by_id(application_id)
         if not application:
-            raise ValueError("Application not found")
+            raise ValueError(_("Application not found"))
 
         if accept:
             application.status = ProjectApplication.ApplicationStatus.ACCEPTED
@@ -68,7 +69,7 @@ class ProjectService:
     def get_project(self, project_id) -> Project:
         project = self.project_repo.get_by_id(project_id)
         if not project:
-            raise ValueError("Project not found")
+            raise ValueError(_("Project not found"))
         return project
 
     def update_project(self, project_id, **kwargs) -> Project:
@@ -109,7 +110,7 @@ class ProjectService:
         )
         if existing:
             raise ValueError(
-                "Freelancer already registered or assigned to this project."
+                _("Freelancer already registered or assigned to this project.")
             )
 
         return self.assignment_repo.create(
@@ -126,12 +127,12 @@ class ProjectService:
         """
         assignment = self.assignment_repo.get_by_id(assignment_id)
         if not assignment:
-            raise ValueError("Assignment not found")
+            raise ValueError(_("Assignment not found"))
 
         project = assignment.project
 
         if project.budget < agreed_payment:
-            raise ValueError("Not enough budget for this assignment")
+            raise ValueError(_("Not enough budget for this assignment"))
 
         # Actualizar asignación
         assignment.agreed_payment = agreed_payment
@@ -150,7 +151,7 @@ class ProjectService:
         """
         assignment = self.assignment_repo.get_by_id(assignment_id)
         if not assignment:
-            raise ValueError("Assignment not found")
+            raise ValueError(_("Assignment not found"))
 
         assignment.status = ProjectAssignment.ProjectAssignmentStatus.REJECTED
         return self.assignment_repo.update(assignment)

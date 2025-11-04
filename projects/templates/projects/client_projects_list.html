@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="container">
@@ -8,9 +9,9 @@
         <!-- Breadcrumb -->
         <nav aria-label="breadcrumb" class="main-breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'microservices:microservices_list' %}">Home</a></li>
-                <li class="breadcrumb-item"><a href="{% url 'core:profile_detail' %}">My Profile</a></li>
-                <li class="breadcrumb-item active" aria-current="page">My Projects</li>
+                <li class="breadcrumb-item"><a href="{% url 'microservices:microservices_list' %}">{% trans "Home" %}</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'core:profile_detail' %}">{% trans "My Profile" %}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{% trans "My Projects" %}</li>
             </ol>
         </nav>
 
@@ -20,10 +21,10 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4 class="mb-0">
-                                <i class="fas fa-briefcase me-2"></i>My Projects
+                                <i class="fas fa-briefcase me-2"></i>{% trans "My Projects" %}
                             </h4>
                             <a href="{% url 'projects:project_create' %}" class="btn btn-primary">
-                                <i class="fas fa-plus me-1"></i>Create Project
+                                <i class="fas fa-plus me-1"></i>{% trans "Create Project" %}
                             </a>
                         </div>
                     </div>
@@ -37,7 +38,7 @@
                                     class="card h-100 {% if project.status == 'CANCELLED' %}border-secondary{% endif %}">
                                     {% if project.status == 'CANCELLED' %}
                                     <div class="card-header bg-secondary text-white">
-                                        <small><i class="fas fa-ban me-1"></i>Cancelled</small>
+                                        <small><i class="fas fa-ban me-1"></i>{% trans "Cancelled" %}</small>
                                     </div>
                                     {% endif %}
                                     <div class="card-body">
@@ -54,11 +55,11 @@
                                             </div>
                                             <div class="btn-group btn-group-sm" role="group">
                                                 <a href="{% url 'projects:project_update' project.id %}"
-                                                    class="btn btn-outline-primary" title="Edit">
+                                                    class="btn btn-outline-primary" title="{% trans 'Edit' %}">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
                                                 <a href="{% url 'projects:project_delete' project.id %}"
-                                                    class="btn btn-outline-danger" title="Delete">
+                                                    class="btn btn-outline-danger" title="{% trans 'Delete' %}">
                                                     <i class="fas fa-trash"></i>
                                                 </a>
                                             </div>
@@ -66,9 +67,9 @@
                                     </div>
                                     <div class="card-footer text-muted small">
                                         <i class="fas fa-calendar me-1"></i>
-                                        Created: {{ project.created_at|date:"m/d/Y" }}
+                                        {% trans "Created" %}: {{ project.created_at|date:"m/d/Y" }}
                                         -
-                                        Updated: {{ project.updated_at|date:"m/d/Y" }}
+                                        {% trans "Updated" %}: {{ project.updated_at|date:"m/d/Y" }}
                                     </div>
                                 </div>
                             </div>
@@ -81,12 +82,12 @@
                             <ul class="pagination justify-content-center">
                                 {% if page_obj.has_previous %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page=1" aria-label="First">
+                                    <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page=1" aria-label="{% trans 'First' %}">
                                         <i class="fas fa-angle-double-left"></i>
                                     </a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.previous_page_number }}" aria-label="Previous">
+                                    <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.previous_page_number }}" aria-label="{% trans 'Previous' %}">
                                         <i class="fas fa-angle-left"></i>
                                     </a>
                                 </li>
@@ -106,29 +107,29 @@
 
                                 {% if page_obj.has_next %}
                                 <li class="page-item">
-                                    <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.next_page_number }}" aria-label="Next">
+                                    <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.next_page_number }}" aria-label="{% trans 'Next' %}">
                                         <i class="fas fa-angle-right"></i>
                                     </a>
                                 </li>
                                 <li class="page-item">
-                                    <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.paginator.num_pages }}" aria-label="Last">
+                                    <a class="page-link" href="?{% if request.GET %}{% for k,v in request.GET.items %}{% if k != 'page' %}{{ k }}={{ v }}{% if not forloop.last %}&{% endif %}{% endif %}{% endfor %}{% endif %}&page={{ page_obj.paginator.num_pages }}" aria-label="{% trans 'Last' %}">
                                         <i class="fas fa-angle-double-right"></i>
                                     </a>
                                 </li>
                                 {% endif %}
                             </ul>
                             <p class="text-center mt-3 text-muted small">
-                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                                {% blocktrans with current=page_obj.number total=page_obj.paginator.num_pages %}Page {{ current }} of {{ total }}{% endblocktrans %}
                             </p>
                         </nav>
                         {% endif %}
                         {% else %}
                         <div class="text-center py-5">
                             <i class="fas fa-briefcase fa-4x text-muted mb-3"></i>
-                            <h5>You haven't created any projects</h5>
-                            <p class="text-muted">Start by creating your first project to hire freelancers!</p>
+                            <h5>{% trans "You haven't created any projects" %}</h5>
+                            <p class="text-muted">{% trans "Start by creating your first project to hire freelancers!" %}</p>
                             <a href="{% url 'projects:project_create' %}" class="btn btn-primary btn-lg">
-                                <i class="fas fa-plus me-1"></i>Create My First Project
+                                <i class="fas fa-plus me-1"></i>{% trans "Create My First Project" %}
                             </a>
                         </div>
                         {% endif %}

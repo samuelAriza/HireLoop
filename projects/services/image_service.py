@@ -1,19 +1,30 @@
 import uuid
 from django.core.files.uploadedfile import UploadedFile
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from core.interfaces.storage_interface import StorageInterface
 from core.factories.storage_factory import StorageFactory
 
 
 class ProjectImageService:
+    """
+    Service for handling project image upload, deletion, and URL generation.
+    Supports local or cloud storage via StorageInterface.
+    """
+
+    MAX_SIZE = 5 * 1024 * 1024  # 5MB
+    ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif"]
+
     def __init__(self, storage: StorageInterface = None):
-        self._storage = storage or StorageFactory.create_storage()
+        self._storage: StorageInterface = storage or StorageFactory.create_storage()
 
     def upload_project_image(
         self, project_id: uuid.UUID, image_file: UploadedFile
     ) -> str:
-        ext = image_file.name.split(".")[-1]
-        filename = f"project_{project_id}_{uuid.uuid4().hex}.{ext}"
-        path = f"projects/{filename}"
+        """
+        Upload project image and return storage path.
+        Raises ValidationError if file is invalid.
+        """
         if not self._is_valid_image(image_file):
             raise ValueError("Invalid image file")
         # Storage saves with full path, but return only filename for ImageField
@@ -54,10 +65,12 @@ class ProjectImageService:
         return self._get_default_image_url()
 
     def _is_valid_image(self, image_file: UploadedFile) -> bool:
-        if image_file.size > 5 * 1024 * 1024:
-            return False
-        allowed_types = ["image/jpeg", "image/png", "image/gif"]
-        return image_file.content_type in allowed_types
+        """Validate file size and content type."""
+        return (
+            image_file.size <= self.MAX_SIZE
+            and image_file.content_type in self.ALLOWED_TYPES
+        )
 
     def _get_default_image_url(self) -> str:
+        """Return path to default placeholder image."""
         return "/static/core/images/default_project.png"

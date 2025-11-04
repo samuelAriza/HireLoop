@@ -1,4 +1,6 @@
 from typing import List
+from django.core.exceptions import ObjectDoesNotExist
+from django.utils.translation import gettext_lazy as _
 from ..models import MentorshipSession
 from ..repositories.mentorship_repository import MentorshipRepository
 
@@ -18,9 +20,12 @@ class MentorshipService:
         )
 
     def get_session(self, session_id) -> MentorshipSession:
-        session = self.repository.get_by_id(session_id)
+        try:
+            session = self.repository.get_by_id(session_id)
+        except ObjectDoesNotExist:
+            raise ValueError(_("Mentorship session not found"))
         if not session:
-            raise ValueError("Mentorship session not found")
+            raise ValueError(_("Mentorship session not found"))
         return session
 
     def update_session(self, session_id, **kwargs) -> MentorshipSession:

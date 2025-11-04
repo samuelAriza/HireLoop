@@ -1,12 +1,22 @@
 import uuid
 from django.core.files.uploadedfile import UploadedFile
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from core.interfaces.storage_interface import StorageInterface
 from core.factories.storage_factory import StorageFactory
 
 
 class MicroserviceImageService:
+    """
+    Service for handling microservice image upload, deletion, and URL generation.
+    Supports local or cloud storage via StorageInterface.
+    """
+
+    MAX_SIZE = 5 * 1024 * 1024  # 5MB
+    ALLOWED_TYPES = ["image/jpeg", "image/png", "image/gif"]
+
     def __init__(self, storage: StorageInterface = None):
-        self._storage = storage or StorageFactory.create_storage()
+        self._storage: StorageInterface = storage or StorageFactory.create_storage()
 
     def upload_microservice_image(
         self, microservice_id: uuid.UUID, image_file: UploadedFile
@@ -57,10 +67,12 @@ class MicroserviceImageService:
         return self._get_default_image_url()
 
     def _is_valid_image(self, image_file: UploadedFile) -> bool:
-        if image_file.size > 5 * 1024 * 1024:
-            return False
-        allowed_types = ["image/jpeg", "image/png", "image/gif"]
-        return image_file.content_type in allowed_types
+        """Validate file size and content type."""
+        return (
+            image_file.size <= self.MAX_SIZE
+            and image_file.content_type in self.ALLOWED_TYPES
+        )
 
     def _get_default_image_url(self) -> str:
+        """Return path to default placeholder image."""
         return "/static/core/images/default_microservice.png"

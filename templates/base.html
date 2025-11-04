@@ -1,6 +1,7 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{% get_current_language as LANGUAGE_CODE %}">
 
 <head>
     <meta charset="UTF-8">
@@ -21,7 +22,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="{% url 'microservices:microservices_list' %}">
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'landing_page' %}">
                 <img src="{% static 'images/logo.png' %}" alt="HireLoop Logo" height="40" class="me-2">
                 <span>HireLoop</span>
             </a>
@@ -34,40 +35,64 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'microservices:microservices_list' %}">
-                            <i class="fas fa-search me-1"></i>Browse MicroServices
+                            <i class="fas fa-search me-1"></i>{% trans "Browse MicroServices" %}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'projects:projects_list' %}">
-                            <i class="fas fa-project-diagram me-1"></i>Projects
+                            <i class="fas fa-project-diagram me-1"></i>{% trans "Projects" %}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'mentorship_session:session_list' %}">
-                            <i class="fas fa-graduation-cap me-1"></i>Mentorships
+                            <i class="fas fa-graduation-cap me-1"></i>{% trans "Mentorships" %}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'analytics:market_dashboard' %}">
-                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                            <i class="fas fa-tachometer-alt"></i> {% trans "Dashboard" %}
                         </a>
                     </li>
                 </ul>
 
                 <ul class="navbar-nav">
+                    <!-- 🌐 Language Selector -->
+                    <li class="nav-item dropdown me-2">
+                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-globe me-1"></i>{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|upper }}
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                            <li>
+                                <form action="{% url 'set_language' %}" method="post">
+                                    {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ request.get_full_path }}">
+                                    <button type="submit" name="language" value="en" class="dropdown-item">
+                                        English
+                                    </button>
+                                    <button type="submit" name="language" value="es" class="dropdown-item">
+                                        Español
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- 🌐 End Language Selector -->
+
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'cart:cart_list' %}">
-                            <i class="fas fa-shopping-cart me-1"></i>Cart
+                            <i class="fas fa-shopping-cart me-1"></i>{% trans "Cart" %}
                             <span class="badge bg-primary">{{ cart_count|default:0 }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'cart:wishlist_list' %}">
-                            <i class="fas fa-heart me-1"></i>Wishlist
+                            <i class="fas fa-heart me-1"></i>{% trans "Wishlist" %}
                             <span class="badge bg-danger">{{ wishlist_count|default:0 }}</span>
                         </a>
                     </li>
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -75,51 +100,62 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>
-                                <h6 class="dropdown-header">My Account</h6>
+                                <h6 class="dropdown-header">{% trans "My Account" %}</h6>
                             </li>
-                            <li><a class="dropdown-item" href="{% url 'core:profile_detail' %}">
-                                    <i class="fas fa-user-circle me-2"></i>Profile
-                                </a></li>
+                            <li>
+                                <a class="dropdown-item" href="{% url 'core:profile_detail' %}">
+                                    <i class="fas fa-user-circle me-2"></i>{% trans "Profile" %}
+                                </a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
 
                             {% if "freelancer" in user_type %}
-                            <li><a class="dropdown-item"
+                            <li>
+                                <a class="dropdown-item"
                                     href="{% url 'microservices:microservices_freelancer_list' user.freelancer_profile.id %}">
-                                    <i class="fas fa-briefcase me-2"></i>My MicroServices
-                                </a></li>
-                            <li><a class="dropdown-item"
+                                    <i class="fas fa-briefcase me-2"></i>{% trans "My MicroServices" %}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item"
                                     href="{% url 'mentorship_session:sessions_freelancer_list' user.freelancer_profile.id %}">
-                                    <i class="fas fa-chalkboard-teacher me-2"></i>My Mentorships
-                                </a></li>
+                                    <i class="fas fa-chalkboard-teacher me-2"></i>{% trans "My Mentorships" %}
+                                </a>
+                            </li>
                             {% endif %}
+
                             {% if "client" in user_type %}
-                            <li><a class="dropdown-item"
-                                    href="{% url 'projects:projects_client_list' user.client_profile.id%}">
-                                    <i class="fas fa-project-diagram me-2"></i>My Projects
-                                </a></li>
+                            <li>
+                                <a class="dropdown-item"
+                                    href="{% url 'projects:projects_client_list' user.client_profile.id %}">
+                                    <i class="fas fa-project-diagram me-2"></i>{% trans "My Projects" %}
+                                </a>
+                            </li>
                             {% endif %}
+
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <form method="post" action="{% url 'core:logout' %}">
                                 {% csrf_token %}
                                 <button type="submit" class="dropdown-item">
-                                    <i class="fas fa-sign-out-alt me-2"></i>Log Out
+                                    <i class="fas fa-sign-out-alt me-2"></i>{% trans "Log Out" %}
                                 </button>
                             </form>
                         </ul>
                     </li>
+
                     {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'core:login' %}">
-                            <i class="fas fa-sign-in-alt me-1"></i>Log In
+                            <i class="fas fa-sign-in-alt me-1"></i>{% trans "Log In" %}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'core:register' %}">
-                            <i class="fas fa-user-plus me-1"></i>Sign Up
+                            <i class="fas fa-user-plus me-1"></i>{% trans "Sign Up" %}
                         </a>
                     </li>
                     {% endif %}
@@ -127,6 +163,8 @@
             </div>
         </div>
     </nav>
+
+
     <!-- End Navigation -->
 
     <!-- Main Content -->
@@ -140,46 +178,46 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5>HireLoop</h5>
-                    <p>Connecting freelancers with clients and mentors worldwide.</p>
+                    <h5>{% trans "HireLoop" %}</h5>
+                    <p>{% trans "Connecting freelancers with clients and mentors worldwide." %}</p>
                 </div>
                 <div class="col-md-4">
-                    <h5>Services</h5>
+                    <h5>{% trans "Services" %}</h5>
                     <ul class="list-unstyled">
                         <li><a href="{% url 'microservices:microservices_list' %}"
                                 class="text-light text-decoration-none">
-                                <i class="fas fa-briefcase me-1"></i>Freelance Services
+                                <i class="fas fa-briefcase me-1"></i>{% trans "Freelance Services" %}
                             </a></li>
                         <li><a href="{% url 'projects:projects_list' %}" class="text-light text-decoration-none">
-                                <i class="fas fa-project-diagram me-1"></i>Projects
+                                <i class="fas fa-project-diagram me-1"></i>{% trans "Projects" %}
                             </a></li>
                         <li><a href="{% url 'mentorship_session:session_list' %}"
                                 class="text-light text-decoration-none">
-                                <i class="fas fa-graduation-cap me-1"></i>Mentorships
+                                <i class="fas fa-graduation-cap me-1"></i>{% trans "Mentorships" %}
                             </a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
-                    <h5>Quick Links</h5>
+                    <h5>{% trans "Quick Links" %}</h5>
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-light text-decoration-none">
-                                <i class="fas fa-info-circle me-1"></i>About Us
+                                <i class="fas fa-info-circle me-1"></i>{% trans "About Us" %}
                             </a></li>
                         <li><a href="#" class="text-light text-decoration-none">
-                                <i class="fas fa-envelope me-1"></i>Contact
+                                <i class="fas fa-envelope me-1"></i>{% trans "Contact" %}
                             </a></li>
                         <li><a href="#" class="text-light text-decoration-none">
-                                <i class="fas fa-shield-alt me-1"></i>Privacy Policy
+                                <i class="fas fa-shield-alt me-1"></i>{% trans "Privacy Policy" %}
                             </a></li>
                         <li><a href="#" class="text-light text-decoration-none">
-                                <i class="fas fa-file-contract me-1"></i>Terms of Service
+                                <i class="fas fa-file-contract me-1"></i>{% trans "Terms of Service" %}
                             </a></li>
                     </ul>
                 </div>
             </div>
             <hr class="my-4">
             <div class="text-center">
-                <small>&copy; {% now "Y" %} HireLoop. All rights reserved.</small>
+                <small>&copy; {% now "Y" %} {% trans "HireLoop" %}. {% trans "All rights reserved." %}</small>
             </div>
         </div>
     </footer>

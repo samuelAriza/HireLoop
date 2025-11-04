@@ -9,6 +9,7 @@ from django.views.generic import (
     DetailView,
 )
 from django.contrib.contenttypes.models import ContentType
+from django.utils.translation import gettext_lazy as _
 from core.mixins.views import ProfileRequiredMixin
 from core.mixins.search import SearchFilterMixin
 from core.models import FreelancerProfile
@@ -140,6 +141,7 @@ class MentorshipSessionCreateView(ProfileRequiredMixin, CreateView):
     form_class = MentorshipSessionCreateForm
     template_name = "mentorship_session/create_mentorship_session.html"
     img_service = MentorshipImageService()
+    success_url = reverse_lazy("mentorship_session:session_list")
 
     def form_valid(self, form):
         freelancer = self.request.user.freelancer_profile

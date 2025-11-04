@@ -1,17 +1,19 @@
+{% load i18n %}
+
 <div class="card shadow-sm mb-5">
     <div class="card-body">
         <form method="get" class="row g-3 align-items-end">
             <div class="col-md-3">
-                <label for="id_search" class="form-label">Search</label>
+                <label for="id_search" class="form-label">{% trans "Search" %}</label>
                 <input type="text" class="form-control" id="id_search" name="search"
-                    value="{{ current_filters.search }}" placeholder="E.g., mentorship, design, project...">
+                    value="{{ current_filters.search }}" placeholder="{% trans 'E.g., mentorship, design, project...' %}">
             </div>
 
             {% if popular_categories %}
             <div class="col-md-3">
-                <label for="id_category" class="form-label">Category</label>
+                <label for="id_category" class="form-label">{% trans "Category" %}</label>
                 <select class="form-select" id="id_category" name="category">
-                    <option value="">All categories</option>
+                    <option value="">{% trans "All categories" %}</option>
                     {% for cat in popular_categories %}
                     <option value="{{ cat }}" {% if current_filters.category == cat %}selected{% endif %}>
                         {{ cat }}
@@ -22,31 +24,35 @@
             {% endif %}
 
             <div class="col-md-2">
-                <label for="id_min_price" class="form-label">Min. price</label>
+                <label for="id_min_price" class="form-label">{% trans "Min. price" %}</label>
                 <input type="number" class="form-control" id="id_min_price" name="min_price"
                     value="{{ current_filters.min_price }}" placeholder="10">
             </div>
             <div class="col-md-2">
-                <label for="id_max_price" class="form-label">Max. price</label>
+                <label for="id_max_price" class="form-label">{% trans "Max. price" %}</label>
                 <input type="number" class="form-control" id="id_max_price" name="max_price"
                     value="{{ current_filters.max_price }}" placeholder="500">
             </div>
             <div class="col-md-2">
-                <button type="submit" class="btn btn-primary">Search</button>
+                <button type="submit" class="btn btn-primary">{% trans "Search" %}</button>
             </div>
 
             {% if has_filters %}
             <div class="col-12">
                 <div class="alert alert-info">
                     <i class="fas fa-filter"></i>
-                    Showing {{ object_list|length }} results
-                    {% if current_filters.search %} containing "<strong>{{ current_filters.search }}</strong>"{% endif %}
-                    {% if current_filters.category %} in category: <strong>{{ current_filters.category }}</strong>{% endif %}
-                    {% if current_filters.min_price %} price from: <strong>${{ current_filters.min_price }}</strong>{% endif %}
-                    {% if current_filters.max_price %} up to: <strong>${{ current_filters.max_price }}</strong>{% endif %}
+                    {% blocktrans count count=object_list|length %}
+                    Showing {{ count }} result
+                    {% plural %}
+                    Showing {{ count }} results
+                    {% endblocktrans %}
+                    {% if current_filters.search %} {% trans 'containing' %} "<strong>{{ current_filters.search }}</strong>"{% endif %}
+                    {% if current_filters.category %} {% trans 'in category' %}: <strong>{{ current_filters.category }}</strong>{% endif %}
+                    {% if current_filters.min_price %} {% trans 'price from' %}: <strong>${{ current_filters.min_price }}</strong>{% endif %}
+                    {% if current_filters.max_price %} {% trans 'up to' %}: <strong>${{ current_filters.max_price }}</strong>{% endif %}
                 </div>
                 <a href="?" class="btn btn-outline-secondary btn-sm">
-                    <i class="fas fa-times"></i> Clear filters
+                    <i class="fas fa-times"></i> {% trans "Clear filters" %}
                 </a>
             </div>
             {% endif %}
@@ -56,7 +62,7 @@
 
 <!-- Quick Filter Chips -->
 <div class="mb-4">
-    <h6 class="mb-2">Quick filters:</h6>
+    <h6 class="mb-2">{% trans "Quick filters:" %}</h6>
     <div class="d-flex flex-wrap gap-2">
         {% for cat in popular_categories %}
         <a href="?category={{ cat }}"
@@ -67,11 +73,11 @@
 
         <a href="?max_price=50"
             class="btn btn-sm btn-outline-success {% if current_filters.max_price == '50' %}active{% endif %}">
-            <i class="fas fa-dollar-sign me-1"></i>Up to $50
+            <i class="fas fa-dollar-sign me-1"></i>{% trans "Up to $50" %}
         </a>
         <a href="?max_price=100"
             class="btn btn-sm btn-outline-success {% if current_filters.max_price == '100' %}active{% endif %}">
-            <i class="fas fa-dollar-sign me-1"></i>Up to $100
+            <i class="fas fa-dollar-sign me-1"></i>{% trans "Up to $100" %}
         </a>
     </div>
 </div>

@@ -5,6 +5,8 @@ Django settings for hireloop project.
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+from django.utils.translation import gettext_lazy as _
+
 
 load_dotenv()
 
@@ -148,6 +150,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_plotly_dash.middleware.BaseMiddleware",
     "django_plotly_dash.middleware.ExternalRedirectionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 
@@ -219,6 +222,19 @@ AUTH_PASSWORD_VALIDATORS = [
 # ==============================================================================
 
 LANGUAGE_CODE = "en-us"
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('es', _('Español')),
+]
+
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
+
+USE_I18N = True
+USE_L10N = True
+
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True

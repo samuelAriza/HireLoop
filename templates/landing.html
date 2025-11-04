@@ -1,0 +1,410 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block title %}{% trans "HireLoop - Connect Freelancers and Clients" %}{% endblock %}
+
+
+
+{% block content %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HireLoop - Conecta Freelancers y Clientes</title>
+    <meta name="description"
+        content="HireLoop conecta freelancers con clientes, gestiona proyectos colaborativos y ofrece mentoría especializada.">
+
+    <!-- Bootstrap 5 CSS -->
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 100px 0;
+            min-height: 600px;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card {
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+            color: white;
+            padding: 80px 0;
+        }
+
+        .testimonial-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .team-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        footer {
+            background-color: #2c2c2c;
+            color: white;
+            padding: 30px 0;
+        }
+
+        .btn-primary-custom {
+            background-color: var(--accent-color);
+            border: none;
+            padding: 12px 40px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary-custom:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-3 fw-bold mb-4">{% trans "Connect, Collaborate, Grow" %}</h1>
+                <p class="lead mb-4">
+                    {% trans "HireLoop is the platform that connects freelancers with clients, manages collaborative projects, and offers specialized mentoring to boost your professional career." %}
+                </p>
+                <a href="{% url 'core:register' %}" class="btn btn-primary-custom btn-lg">
+                    {% trans "Get Started Now" %} <i class="bi bi-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Areas -->
+<section id="services" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">{% trans "Our Main Areas" %}</h2>
+            <p class="lead text-muted">{% trans "Three fundamental pillars for your professional success" %}</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 text-center p-4">
+                    <div class="card-body">
+                        <i class="bi bi-briefcase-fill feature-icon"></i>
+                        <h3 class="h4 mb-3">{% trans "Microservices" %}</h3>
+                        <p class="text-muted">
+                            {% trans "Fixed-price services offered by freelancers with transparent pricing and defined deliverables. Find exactly what you need." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 text-center p-4">
+                    <div class="card-body">
+                        <i class="bi bi-diagram-3-fill feature-icon"></i>
+                        <h3 class="h4 mb-3">{% trans "Projects" %}</h3>
+                        <p class="text-muted">
+                            {% trans "Collaborative work with flexible budgets. Post your project and receive proposals from qualified freelancers." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card border-0 shadow-sm h-100 text-center p-4">
+                    <div class="card-body">
+                        <i class="bi bi-mortarboard-fill feature-icon"></i>
+                        <h3 class="h4 mb-3">{% trans "Mentorship" %}</h3>
+                        <p class="text-muted">
+                            {% trans "Personalized sessions between mentors and students. Accelerate your learning with experts in your field." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits -->
+<section id="benefits" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">{% trans "Why HireLoop?" %}</h2>
+            <p class="lead text-muted">{% trans "Advantages that drive your success" %}</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card benefit-card border-0 shadow-sm p-4">
+                    <div class="card-body text-center">
+                        <i class="bi bi-lightning-charge-fill feature-icon"></i>
+                        <h4 class="mb-3">{% trans "Efficiency" %}</h4>
+                        <p class="text-muted">
+                            {% trans "Find and hire qualified professionals quickly. Save time and resources." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card benefit-card border-0 shadow-sm p-4">
+                    <div class="card-body text-center">
+                        <i class="bi bi-eye-fill feature-icon"></i>
+                        <h4 class="mb-3">{% trans "Transparency" %}</h4>
+                        <p class="text-muted">
+                            {% trans "Clear prices, verified profiles, and a reliable rating system." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card benefit-card border-0 shadow-sm p-4">
+                    <div class="card-body text-center">
+                        <i class="bi bi-gear-fill feature-icon"></i>
+                        <h4 class="mb-3">{% trans "Flexibility" %}</h4>
+                        <p class="text-muted">
+                            {% trans "Work your way with budgets and deadlines tailored to your needs." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card benefit-card border-0 shadow-sm p-4">
+                    <div class="card-body text-center">
+                        <i class="bi bi-graph-up-arrow feature-icon"></i>
+                        <h4 class="mb-3">{% trans "Professional Growth" %}</h4>
+                        <p class="text-muted">
+                            {% trans "Build your portfolio, gain experience, and access mentorship opportunities." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card benefit-card border-0 shadow-sm p-4">
+                    <div class="card-body text-center">
+                        <i class="bi bi-shield-check feature-icon"></i>
+                        <h4 class="mb-3">{% trans "Payment Security" %}</h4>
+                        <p class="text-muted">
+                            {% trans "Protected payment system that ensures secure transactions for all." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card benefit-card border-0 shadow-sm p-4">
+                    <div class="card-body text-center">
+                        <i class="bi bi-people-fill feature-icon"></i>
+                        <h4 class="mb-3">{% trans "Global Community" %}</h4>
+                        <p class="text-muted">
+                            {% trans "Connect with professionals worldwide and expand your network." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Platform in Action -->
+<section id="testimonials" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">{% trans "HireLoop in Action" %}</h2>
+            <p class="lead text-muted">{% trans "Discover how our platform works" %}</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow">
+                    <img src="{% static 'images/verificado.jpg' %}" class="testimonial-img"
+                        alt="{% trans 'Verified Freelancer Profiles' %}">
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans "Verified Profiles" %}</h5>
+                        <p class="card-text text-muted">
+                            {% trans "Explore detailed profiles with portfolios, skills, and ratings from freelancers."%}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow">
+                    <img src="{% static 'images/catalogo.jpg' %}" class="testimonial-img"
+                        alt="{% trans 'Available Microservices' %}">
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans "Service Catalog" %}</h5>
+                        <p class="card-text text-muted">
+                            {% trans "Browse thousands of microservices with fixed prices and guaranteed delivery." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow">
+                    <img src="{% static 'images/gestion.jpg' %}" class="testimonial-img" alt="{% trans 'Dashboard' %}">
+                    <div class="card-body">
+                        <h5 class="card-title">{% trans "Complete Management" %}</h5>
+                        <p class="card-text text-muted">
+                            {% trans "Intuitive dashboard to manage your projects, applications, and mentorships." %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- User Testimonials -->
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="card border-0 bg-light p-4">
+                    <div class="card-body">
+                        <div class="d-flex mb-3">
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                        </div>
+                        <p class="mb-3">
+                            {% trans "HireLoop transformed my business. I found amazing developers for my project in just a few days. The platform is intuitive and secure." %}
+                        </p>
+                        <div class="d-flex align-items-center">
+                            <img src="{% static 'images/maria.png' %}" class="rounded-circle me-3"
+                                alt="{% trans 'María García' %}" style="width: 50px; height: 50px; object-fit: cover;">
+                            <div>
+                                <strong>{% trans "María García" %}</strong><br>
+                                <small class="text-muted">{% trans "Client - Tech Company" %}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card border-0 bg-light p-4">
+                    <div class="card-body">
+                        <div class="d-flex mb-3">
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning me-1"></i>
+                            <i class="bi bi-star-fill text-warning"></i>
+                        </div>
+                        <p class="mb-3">
+                            {% trans "As a freelancer, HireLoop allowed me to build my career. I’ve landed amazing clients and the mentorship helped me improve my skills." %}
+                        </p>
+                        <div class="d-flex align-items-center">
+                            <img src="{% static 'images/carlos.jpg' %}" class="rounded-circle me-3"
+                                alt="{% trans 'Carlos Mendoza' %}"
+                                style="width: 50px; height: 50px; object-fit: cover;">
+                            <div>
+                                <strong>{% trans "Carlos Mendoza" %}</strong><br>
+                                <small class="text-muted">{% trans "Freelancer - Web Development" %}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Us -->
+<section id="about" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold">{% trans "Our Team" %}</h2>
+            <p class="lead text-muted">{% trans "Meet who leads HireLoop" %}</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6">
+                <div class="card border-0 shadow-lg">
+                    <div class="card-body text-center p-5">
+                        <img src="{% static 'images/profile.jpeg' %}" class="team-img mb-4"
+                            alt="{% trans 'Samuel Andrés Ariza Gómez' %}">
+                        <h3 class="mb-2">{% trans "Samuel Andrés Ariza Gómez" %}</h3>
+                        <p class="text-muted mb-3">
+                            <i class="bi bi-award-fill text-primary"></i> {% trans "CS Student at EAFIT University | Applied Mathematics Enthusiast | Software Development | Open to Internship Opportunities to Solve Complex Challenges" %}
+                        </p>
+                        <p class="mb-4">
+                            {% trans "I am a seventh-semester Computer Science student at EAFIT University, with a strong interest in solving complex problems and software development. I am passionate about applying mathematics and computer science to improve people’s quality of life, always driven by a genuine love for learning. I see myself as a human and empathetic person, convinced that technology must serve society. I am currently seeking an internship at a company that tackles significant technical challenges and allows me to strengthen both my professional and personal skills." %}
+                        </p>
+                        <div class="d-flex justify-content-center gap-3">
+                            <a href="https://www.linkedin.com/in/samargo" class="btn btn-outline-primary"
+                                target="_blank" rel="noopener">
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/samuelAriza" class="btn btn-outline-dark" target="_blank"
+                                rel="noopener">
+                                <i class="bi bi-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section id="signup" class="cta-section">
+    <div class="container text-center">
+        <h2 class="display-4 fw-bold mb-4">{% trans "Ready to Get Started?" %}</h2>
+        <p class="lead mb-5">
+            {% trans "Join thousands of freelancers and clients already growing with HireLoop" %}
+        </p>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="btn-group-lg d-flex flex-wrap gap-3 justify-content-center">
+                    <a href="{% url 'core:register' %}?role=freelancer" class="btn btn-light btn-lg px-5">
+                        <i class="bi bi-person-plus"></i> {% trans "Sign Up as Freelancer" %}
+                    </a>
+                    <a href="{% url 'core:register' %}?role=client" class="btn btn-outline-light btn-lg px-5">
+                        <i class="bi bi-briefcase"></i> {% trans "Sign Up as Client" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p class="mt-4 mb-0">
+            <small>{% trans "No credit card required • Start free today" %}</small>
+        </p>
+    </div>
+</section>
+
+{% endblock %}

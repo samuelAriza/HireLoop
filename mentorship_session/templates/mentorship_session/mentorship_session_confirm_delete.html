@@ -1,13 +1,14 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block content %}
 <div class="container mt-4">
-    <h2>Are you sure you want to delete "{{ object.topic }}"?</h2>
+    <h2>{% blocktrans with topic=object.topic %}Are you sure you want to delete "{{ topic }}"?{% endblocktrans %}</h2>
 
     <form method="post">
         {% csrf_token %}
-        <button type="submit" class="btn btn-danger">Yes, delete</button>
-        <a href="{% url 'mentorship_session:session_list' %}" class="btn btn-secondary">Cancel</a>
+        <button type="submit" class="btn btn-danger">{% trans 'Yes, delete' %}</button>
+        <a href="{% url 'mentorship_session:session_list' %}" class="btn btn-secondary">{% trans 'Cancel' %}</a>
     </form>
 </div>
 {% endblock %}

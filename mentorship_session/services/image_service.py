@@ -1,5 +1,7 @@
 import uuid
 from django.core.files.uploadedfile import UploadedFile
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 from core.interfaces.storage_interface import StorageInterface
 from core.factories.storage_factory import StorageFactory
 
@@ -15,10 +17,15 @@ class MentorshipImageService:
         filename = f"mentorship_{mentorship_id}_{uuid.uuid4().hex}.{ext}"
         path = f"mentorships/{filename}"
         if not self._is_valid_image(image_file):
+<<<<<<< HEAD
             raise ValueError("Invalid image file")
         # Storage saves with full path, but return only filename for ImageField
         self.storage.save(image_file, path)
         return filename
+=======
+            raise ValidationError(_("Invalid image file"))
+        return self.storage.save(image_file, path)
+>>>>>>> feature/languages
 
     def delete_mentorship_image(self, image_path: str) -> None:
         """Delete mentorship image from storage."""

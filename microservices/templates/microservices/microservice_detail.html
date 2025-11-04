@@ -2,6 +2,7 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load content_type_tags %}
+{% load i18n %}
 
 {% block title %}{{ item.title }} - HireLoop{% endblock %}
 
@@ -12,11 +13,13 @@
         <div class="col-md-8">
             <div class="card mb-4">
                 {% if item.image_path %}
-                <img src="{{ item.get_image_path }}" class="card-img-top" style="height:300px; object-fit:cover;">
+                <img src="{{ item.get_image_path }}" class="card-img-top" style="height:300px; object-fit:cover;" alt="{{ item.title }}">
                 {% endif %}
                 <div class="card-body">
                     <h1 class="card-title">{{ item.title }}</h1>
-                    <p class="text-muted">By {{ item.freelancer.user.get_full_name|default:item.freelancer.user.username }}</p>
+                    <p class="text-muted">
+                        {% trans 'By' %} {{ item.freelancer.user.get_full_name|default:item.freelancer.user.username }}
+                    </p>
 
                     <div class="row mb-3">
                         <div class="col-md-6">
@@ -30,14 +33,17 @@
                     </div>
 
                     <div class="mb-3">
-                        <h5>Description</h5>
+                        <h5>{% trans 'Description' %}</h5>
                         <p>{{ item.description|linebreaks }}</p>
                     </div>
 
                     {% if item.delivery_time %}
                     <div class="mb-3">
                         <i class="fas fa-clock"></i>
-                        <strong>Delivery time:</strong> {{ item.delivery_time }} day{{ item.delivery_time|pluralize }}
+                        <strong>{% trans 'Delivery time' %}:</strong>
+                        {% blocktrans with days=item.delivery_time %}
+                        {{ days }} day{{ days|pluralize }}
+                        {% endblocktrans %}
                     </div>
                     {% endif %}
                 </div>
@@ -48,78 +54,79 @@
         <div class="col-md-4">
             <div class="card sticky-top mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">Actions</h5>
+                    <h5 class="card-title">{% trans 'Actions' %}</h5>
 
                     {% if user.is_authenticated %}
-                    {% if is_owner %}
-                    <!-- Botones para el owner -->
-                    <div class="alert alert-warning">
-                        <i class="fas fa-info-circle"></i> This is your own microservice
-                    </div>
-                    <div class="d-grid gap-2">
-                        <a href="{% url 'microservices:microservices_update' item.id %}"
-                            class="btn btn-outline-primary">
-                            <i class="fas fa-edit"></i> Edit
-                        </a>
-                        <a href="{% url 'microservices:microservices_delete' item.id %}" class="btn btn-outline-danger">
-                            <i class="fas fa-trash"></i> Delete
-                        </a>
-                    </div>
-                    {% elif "client" in user_type %}
-                    <!-- Botones para clientes -->
-                    <div class="d-grid gap-2">
-                        {% if not in_cart %}
-                        <form method="post" action="{% url 'cart:add_to_cart' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="content_type" value="{{ item|content_type_id }}">
-                            <input type="hidden" name="object_id" value="{{ item.id }}">
-                            <input type="hidden" name="quantity" value="1">
-                            <button type="submit" class="btn btn-primary btn-lg w-100">
-                                <i class="fas fa-cart-plus"></i> Add to Cart
-                            </button>
-                        </form>
-                        {% else %}
-                        <form method="post" action="{% url 'cart:remove_from_cart' cart_item.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-danger w-100">
-                                <i class="fas fa-cart-arrow-down"></i> Remove from Cart
-                            </button>
-                        </form>
-                        {% endif %}
+                        {% if is_owner %}
+                            <!-- Owner Actions -->
+                            <div class="alert alert-warning">
+                                <i class="fas fa-info-circle"></i> {% trans 'This is your own microservice' %}
+                            </div>
+                            <div class="d-grid gap-2">
+                                <a href="{% url 'microservices:microservices_update' item.id %}"
+                                   class="btn btn-outline-primary">
+                                    <i class="fas fa-edit"></i> {% trans 'Edit' %}
+                                </a>
+                                <a href="{% url 'microservices:microservices_delete' item.id %}"
+                                   class="btn btn-outline-danger">
+                                    <i class="fas fa-trash"></i> {% trans 'Delete' %}
+                                </a>
+                            </div>
+                        {% elif "client" in user_type %}
+                            <!-- Client Actions -->
+                            <div class="d-grid gap-2">
+                                {% if not in_cart %}
+                                <form method="post" action="{% url 'cart:add_to_cart' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="content_type" value="{{ item|content_type_id }}">
+                                    <input type="hidden" name="object_id" value="{{ item.id }}">
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn btn-primary btn-lg w-100">
+                                        <i class="fas fa-cart-plus"></i> {% trans 'Add to Cart' %}
+                                    </button>
+                                </form>
+                                {% else %}
+                                <form method="post" action="{% url 'cart:remove_from_cart' cart_item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger w-100">
+                                        <i class="fas fa-cart-arrow-down"></i> {% trans 'Remove from Cart' %}
+                                    </button>
+                                </form>
+                                {% endif %}
 
-                        <hr>
+                                <hr>
 
-                        {% if not in_wishlist %}
-                        <form method="post" action="{% url 'cart:add_to_wishlist' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="content_type" value="{{ item|content_type_id }}">
-                            <input type="hidden" name="object_id" value="{{ item.id }}">
-                            <button type="submit" class="btn btn-outline-secondary w-100">
-                                <i class="fas fa-heart"></i> Add to Wishlist
-                            </button>
-                        </form>
+                                {% if not in_wishlist %}
+                                <form method="post" action="{% url 'cart:add_to_wishlist' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="content_type" value="{{ item|content_type_id }}">
+                                    <input type="hidden" name="object_id" value="{{ item.id }}">
+                                    <button type="submit" class="btn btn-outline-secondary w-100">
+                                        <i class="fas fa-heart"></i> {% trans 'Add to Wishlist' %}
+                                    </button>
+                                </form>
+                                {% else %}
+                                <form method="post" action="{% url 'cart:remove_from_wishlist' wishlist_item.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-danger w-100">
+                                        <i class="fas fa-heart-broken"></i> {% trans 'Remove from Wishlist' %}
+                                    </button>
+                                </form>
+                                {% endif %}
+                            </div>
                         {% else %}
-                        <form method="post" action="{% url 'cart:remove_from_wishlist' wishlist_item.id %}">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-outline-danger w-100">
-                                <i class="fas fa-heart-broken"></i> Remove from Wishlist
-                            </button>
-                        </form>
+                            <!-- Authenticated but not a client -->
+                            <a href="{% url 'core:client_profile_create' %}" class="btn btn-primary w-100">
+                                <i class="fas fa-user-plus"></i> {% trans 'Create Client Profile' %}
+                            </a>
                         {% endif %}
-                    </div>
                     {% else %}
-                    <!-- Usuario autenticado pero no cliente -->
-                    <a href="{% url 'core:client_profile_create' %}" class="btn btn-primary w-100">
-                        <i class="fas fa-user-plus"></i> Create Client Profile
-                    </a>
-                    {% endif %}
-                    {% else %}
-                    <!-- Usuario no autenticado -->
-                    <div class="alert alert-info">
-                        <a href="{% url 'core:login' %}" class="btn btn-primary w-100">
-                            <i class="fas fa-sign-in-alt"></i> Log In to Purchase
-                        </a>
-                    </div>
+                        <!-- Not authenticated -->
+                        <div class="alert alert-info">
+                            <a href="{% url 'core:login' %}" class="btn btn-primary w-100">
+                                <i class="fas fa-sign-in-alt"></i> {% trans 'Log In to Purchase' %}
+                            </a>
+                        </div>
                     {% endif %}
                 </div>
             </div>
