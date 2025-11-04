@@ -77,8 +77,7 @@
                                     <form method="post" style="display: inline;" class="w-100">
                                         {% csrf_token %}
                                         <input type="hidden" name="action" value="delete_image">
-                                        {% trans "Are you sure you want to delete your profile image?" as
-                                        confirm_message %}
+                                        {% trans "Are you sure you want to delete your profile image?" as confirm_message %}
                                         <button type="submit" class="btn btn-outline-danger btn-sm w-100"
                                             onclick="return confirm('{{ confirm_message|escapejs }}')">
                                             <i class="fas fa-trash me-1"></i>{% trans "Delete Photo" %}
@@ -200,8 +199,7 @@
                                         {% csrf_token %}
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="profile_type" value="freelancer">
-                                        {% trans "Are you sure you want to delete your freelancer profile? This action
-                                        cannot be undone." as confirm_message %}
+                                        {% trans "Are you sure you want to delete your freelancer profile? This action cannot be undone." as confirm_message %}
                                         <button type="submit" class="btn btn-outline-danger btn-sm"
                                             onclick="return confirm('{{ confirm_message|escapejs }}')">
                                             <i class="fas fa-trash me-1"></i>{% trans "Delete" %}
