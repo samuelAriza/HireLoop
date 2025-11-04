@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.http import JsonResponse
 from django.views.decorators.cache import never_cache
+from core.views.landing_view import landing_page
 
 @never_cache
 def root_health_check(request):
@@ -13,7 +14,8 @@ def root_health_check(request):
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("core/", include("core.urls", namespace="core")),
-    path("", include("microservices.urls", namespace="microservices")),
+    path("", landing_page, name="landing_page"),
+    path("microservices/", include("microservices.urls", namespace="microservices")),
     path("projects/", include("projects.urls", namespace="projects")),
     path(
         "mentorship_sessions/",
