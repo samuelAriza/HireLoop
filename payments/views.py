@@ -80,6 +80,10 @@ class CreateCheckoutSessionView(View):
             return JsonResponse({"error": _("Cart total must be greater than zero.")}, status=400)
 
         try:
+            # Calculate expiration time (max 24 hours for Stripe, we'll use 30 minutes)
+            import time
+            expires_at = int(time.time() + (30 * 60))  # 30 minutes from now
+            
             checkout_session = stripe.checkout.Session.create(
                 payment_method_types=["card"],
                 line_items=line_items,
@@ -91,7 +95,7 @@ class CreateCheckoutSessionView(View):
                     "user_id": str(user.id),
                     "cart_items": ",".join(str(ci.id) for ci in cart_items),
                 },
-                expires_at=int((settings.SESSION_COOKIE_AGE or 1800) + __import__("time").time()),
+                expires_at=expires_at,
             )
 
             # Create pending payment record
