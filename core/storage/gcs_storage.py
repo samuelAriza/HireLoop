@@ -9,11 +9,11 @@ class GCSStorage(StorageInterface):
     def save(self, file: UploadedFile, path: str) -> str:
         """
         Save file to GCS.
-        Returns only the filename (not the full path) to be compatible with ImageField.
+        Returns the full path as saved in storage.
         """
         saved_path = default_storage.save(path, file)
-        # Return only the filename part (after the last /)
-        return saved_path.split('/')[-1] if '/' in saved_path else saved_path
+        print(f"GCSStorage.save - Input path: {path}, Saved path: {saved_path}")
+        return saved_path
 
     def delete(self, path: str) -> bool:
         """Delete file from GCS."""

@@ -105,4 +105,5 @@ class ItemPortfolio(models.Model):
         from .services.image_service import PortfolioImageService
 
         service = PortfolioImageService()
+        # image.name already contains the full path (e.g., "portfolios/portfolio_uuid_hash.jpg")
         return service.get_image_url(self.image.name if self.image else None)

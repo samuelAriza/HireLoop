@@ -26,11 +26,10 @@ class BaseImageService:
 
         # Save image - storage returns the full path
         full_path = self._storage.save(image_file, path)
-        print(f"Storage saved to: {full_path}")
+        print(f"ImageService.upload_image - Storage saved to: {full_path}")
         
-        # Return only the filename for ImageField compatibility
-        # ImageField will automatically prepend upload_to directory
-        return filename
+        # Return the full path as saved by storage
+        return full_path
 
     def delete_image(self, image_path: str) -> bool:
         """Delete image."""

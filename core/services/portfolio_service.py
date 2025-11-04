@@ -43,11 +43,13 @@ class PortfolioService:
         # Handle image upload if provided
         if image:
             try:
-                filename = self.image_service.upload_portfolio_image(
+                # upload_portfolio_image returns the full path (e.g., "portfolios/portfolio_uuid_hash.jpg")
+                image_path = self.image_service.upload_portfolio_image(
                     str(item.id), image
                 )
-                # Assign only filename - ImageField handles upload_to path
-                item.image.name = filename
+                print(f"PortfolioService.add_item - Image uploaded to: {image_path}")
+                # Save the full path returned by the storage
+                item.image.name = image_path
                 item.save()
             except ValueError as e:
                 # If image upload fails, delete the created item
@@ -114,12 +116,13 @@ class PortfolioService:
             if portfolio_item.image:
                 self.image_service.delete_portfolio_image(portfolio_item.image.name)
 
-            # Upload new image - returns only filename
-            filename = self.image_service.upload_portfolio_image(
+            # Upload new image - returns full path (e.g., "portfolios/portfolio_uuid_hash.jpg")
+            image_path = self.image_service.upload_portfolio_image(
                 str(portfolio_item.id), image_file
             )
-            # Assign only filename - ImageField handles upload_to path
-            portfolio_item.image.name = filename
+            print(f"PortfolioService.update_portfolio_image - Image uploaded to: {image_path}")
+            # Save the full path returned by the storage
+            portfolio_item.image.name = image_path
             portfolio_item.save()
             return True
 
