@@ -1,5 +1,3 @@
-![architecture_diagram](https://github.com/user-attachments/assets/b893d80f-b482-4edc-a639-c18715155a4d)# HireLoop
-
 > A production-ready freelancing platform connecting clients with talented freelancers through projects, microservices, and mentorship sessions. Built with Django and deployed on Google Kubernetes Engine (GKE).
 
 [![Django](https://img.shields.io/badge/Django-5.2.6-green.svg)](https://www.djangoproject.com/) [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/) [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)](https://www.postgresql.org/) [![GKE](https://img.shields.io/badge/GKE-Deployed-4285F4.svg)](https://cloud.google.com/kubernetes-engine) [![Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
