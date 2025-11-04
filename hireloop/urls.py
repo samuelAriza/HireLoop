@@ -48,7 +48,7 @@ urlpatterns = [
         include("mentorship_session.urls", namespace="mentorship_session"),
     ),
     path("cart/", include("cart.urls", namespace="cart")),
-    path("payments/", include("payments.urls", namespace="payment")),
+    path("payments/", include("payments.urls", namespace="payments")),
     path("analytics/", include("analytics.urls", namespace="analytics")),
     path("django_plotly_dash/", include("django_plotly_dash.urls")),
     path("api/", include("microservices.api.urls")),

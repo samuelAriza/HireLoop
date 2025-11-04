@@ -88,7 +88,7 @@
                     </div>
                     <hr>
                     <div class="d-grid">
-                        <form action="{% url 'payments:create-checkout-session' %}" method="POST">
+                        <form action="{% url 'payments:checkout' %}" method="POST">
                             {% csrf_token %}
                             <button class="btn btn-success btn-lg" type="submit">
                                 {% trans "Credit Card Icon" %} {% trans "Proceed to Payment" %}
