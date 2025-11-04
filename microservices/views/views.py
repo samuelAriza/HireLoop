@@ -141,20 +141,12 @@ class MicroServiceCreateView(ProfileRequiredMixin, CreateView):
 
         image_file = self.request.FILES.get("image")
         if image_file:
-<<<<<<< HEAD
             filename = self.image_service.upload_microservice_image(
                 microservice_id=self.object.id, image_file=image_file
             )
             # Assign only filename - field's upload_to handles the directory
             self.object.image_path = filename
             self.object.save()
-=======
-            image_path = image_service.upload_microservice_image(
-                microservice_id=microservice.id, image_file=image_file
-            )
-            microservice.image_path = image_path
-            microservice.save()
->>>>>>> feature/languages
 
         return redirect(
             reverse(
