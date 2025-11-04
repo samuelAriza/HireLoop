@@ -23,7 +23,8 @@ class HealthCheckMiddleware:
             
         response = self.get_response(request)
         return response
-    
+
+'''
 class HttpCatMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
@@ -35,3 +36,4 @@ class HttpCatMiddleware:
             r = requests.get(url)
             return HttpResponse(r.content, content_type="image/jpeg", status=response.status_code)
         return response
+'''

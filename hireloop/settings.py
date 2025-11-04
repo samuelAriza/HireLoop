@@ -24,7 +24,8 @@ SECRET_KEY = os.getenv(
 )
 
 # DEBUG should be False in production
-DEBUG = False
+DEBUG = True
+
 
 # Allowed hosts from environment
 ALLOWED_HOSTS_ENV = os.getenv(
@@ -151,7 +152,7 @@ MIDDLEWARE = [
     "django_plotly_dash.middleware.BaseMiddleware",
     "django_plotly_dash.middleware.ExternalRedirectionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
-    'core.middleware.HttpCatMiddleware',
+    #'core.middleware.HttpCatMiddleware',
 ]
 
 
