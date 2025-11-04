@@ -17,14 +17,14 @@
                 <div class="card-body">
                     <div class="row align-items-center">
                         <div class="col-md-8">
-                        <h5 class="card-title">
-                            {% if item.content_type.model == 'mentorshipsession' %}
-                                <i class="bi bi-mortarboard"></i>  {# Ícono de birrete #}
-                            {% else %}
-                                <i class="bi bi-briefcase"></i>  {# Ícono de maletín #}
-                            {% endif %}
-                            {{ item.content_object.get_title }}
-                        </h5>
+                            <h5 class="card-title">
+                                {% if item.content_type.model == 'mentorshipsession' %}
+                                <i class="bi bi-mortarboard"></i> {# Ícono de birrete #}
+                                {% else %}
+                                <i class="bi bi-briefcase"></i> {# Ícono de maletín #}
+                                {% endif %}
+                                {{ item.content_object.get_title }}
+                            </h5>
                             <p class="text-muted">
                                 {% if item.content_type.model == 'mentorshipsession' %}
                                 {% blocktrans with mentor_name=item.content_object.mentor.user.get_full_name|default:item.content_object.mentor.user.username %}
@@ -49,7 +49,8 @@
                                 {% blocktrans with duration=item.content_object.duration_minutes %}{{ duration }}
                                 minute{{ duration|pluralize }}{% endblocktrans %}
                                 {% else %}
-                                {% blocktrans with delivery=item.content_object.delivery_time %}{{ delivery }} day{{ delivery|pluralize }}{% endblocktrans %}
+                                {% blocktrans with delivery=item.content_object.delivery_time %}{{ delivery }} day{{
+                                delivery|pluralize }}{% endblocktrans %}
                                 {% endif %}
                             </small>
                         </div>
@@ -164,7 +165,7 @@
         <h3>{% trans "Your cart is empty" %}</h3>
         <p class="text-muted">{% trans "Explore our services and add some to your cart" %}</p>
         <a href="{% url 'microservices:microservices_list' %}" class="btn btn-primary">
-            {% trans "Search Icon" %} {% trans "Explore Services" %}
+            <i class="fas fa-search"></i> {% trans "Explore Services" %}
         </a>
     </div>
     {% endif %}

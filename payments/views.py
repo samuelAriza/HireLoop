@@ -167,7 +167,7 @@ class PaymentSuccessView(View):
                 checkout_session = None
 
         # Clear the user's cart
-        deleted_count, _ = CartItem.objects.filter(user=user).delete()
+        deleted_count, _deleted_details = CartItem.objects.filter(user=user).delete()
         if deleted_count > 0:
             logger.info(f"Cleared {deleted_count} cart items for user {user.id}")
 
@@ -179,7 +179,20 @@ class PaymentSuccessView(View):
         if payment and (not checkout_session or checkout_session.payment_status == "paid"):
             payment.status = Payment.PaymentStatus.SUCCEEDED
             if checkout_session and checkout_session.payment_intent:
-                payment.stripe_payment_intent = checkout_session.payment_intent.id
+                # payment_intent can be a string ID or an expanded object/dict
+                logger.info(f"payment_intent type: {type(checkout_session.payment_intent)}")
+                logger.info(f"payment_intent value: {checkout_session.payment_intent}")
+                if isinstance(checkout_session.payment_intent, str):
+                    payment.stripe_payment_intent = checkout_session.payment_intent
+                else:
+                    # Try to get ID from dict or object attribute
+                    try:
+                        payment.stripe_payment_intent = checkout_session.payment_intent['id']
+                    except (TypeError, KeyError):
+                        payment.stripe_payment_intent = getattr(checkout_session.payment_intent, 'id', '')
+            
+            logger.info(f"About to save payment: {payment}, type: {type(payment)}")
+            logger.info(f"payment.save type: {type(payment.save)}")
             payment.save()
             messages.success(request, _("Payment successful! Your order is confirmed."))
 

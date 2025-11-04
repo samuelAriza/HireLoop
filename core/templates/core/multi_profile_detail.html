@@ -553,8 +553,7 @@
                                         {% csrf_token %}
                                         <input type="hidden" name="action" value="delete">
                                         <input type="hidden" name="profile_type" value="client">
-                                        {% trans "Are you sure you want to delete your client profile? This action
-                                        cannot be undone." as delete_msg %}
+                                        {% trans "Are you sure you want to delete your client profile? This action cannot be undone." as delete_msg %}
                                         <button type="submit" class="btn btn-outline-danger btn-sm"
                                             onclick="return confirm('{{ delete_msg|escapejs }}')">
                                             <i class="fas fa-trash me-1"></i>{% trans "Delete" %}

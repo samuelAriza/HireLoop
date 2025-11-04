@@ -126,7 +126,7 @@
                 <h3>{% trans "Your wishlist is empty" %}</h3>
                 <p class="text-muted">{% trans "Add services to your wishlist to find them easily later!" %}</p>
                 <a href="{% url 'microservices:microservices_list' %}" class="btn btn-primary">
-                    {% trans "Explore Services" %}
+                    <i class="fas fa-search"></i> {% trans "Explore Services" %}
                 </a>
             </div>
             {% endif %}
