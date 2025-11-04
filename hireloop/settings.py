@@ -24,7 +24,7 @@ SECRET_KEY = os.getenv(
 )
 
 # DEBUG should be False in production
-DEBUG = True
+DEBUG = False
 
 # Allowed hosts from environment
 ALLOWED_HOSTS_ENV = os.getenv(
