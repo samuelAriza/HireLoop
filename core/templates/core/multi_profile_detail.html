@@ -348,16 +348,14 @@
 
                                                                 <!-- Description Field -->
                                                                 <div class="mb-3">
-                                                                    <label class="form-label">{% trans 'Description'
-                                                                        %}</label>
+                                                                    <label class="form-label">{% trans 'Description' %}</label>
                                                                     <textarea name="description" class="form-control"
                                                                         rows="3">{{ portfolio.description }}</textarea>
                                                                 </div>
 
                                                                 <!-- Demo URL Field -->
                                                                 <div class="mb-3">
-                                                                    <label class="form-label">{% trans 'Demo URL'
-                                                                        %}</label>
+                                                                    <label class="form-label">{% trans 'Demo URL' %}</label>
                                                                     <input type="url" name="url_demo"
                                                                         class="form-control"
                                                                         value="{{ portfolio.url_demo }}"
@@ -366,13 +364,11 @@
 
                                                                 <!-- Image Field -->
                                                                 <div class="mb-3">
-                                                                    <label class="form-label">{% trans 'Project Image'
-                                                                        %}</label>
+                                                                    <label class="form-label">{% trans 'Project Image' %}</label>
                                                                     <input type="file" name="image" class="form-control"
                                                                         accept="image/*">
                                                                     {% if portfolio.image %}
-                                                                    <div class="form-text">{% blocktrans %}Current: {{
-                                                                        image_name }}{% endblocktrans %}</div>
+                                                                    <div class="form-text">{% blocktrans %}Current: {{ portfolio.image.name }}{% endblocktrans %}</div>
                                                                     {% endif %}
                                                                 </div>
 
@@ -385,8 +381,7 @@
                                                                     </button>
                                                                     <button type="submit"
                                                                         class="btn btn-primary btn-sm">
-                                                                        <i class="fas fa-save me-1"></i>{% trans 'Save
-                                                                        Changes' %}
+                                                                        <i class="fas fa-save me-1"></i>{% trans 'Save Changes' %}
                                                                     </button>
                                                                 </div>
                                                             </form>
