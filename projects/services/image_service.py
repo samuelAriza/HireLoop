@@ -25,6 +25,10 @@ class ProjectImageService:
         Upload project image and return storage path.
         Raises ValidationError if file is invalid.
         """
+        file_extension = image_file.name.split(".")[-1]
+        filename = f"project_{project_id}_{uuid.uuid4().hex}.{file_extension}"
+        path = f"projects/{filename}"
+
         if not self._is_valid_image(image_file):
             raise ValueError("Invalid image file")
         # Storage saves with full path, but return only filename for ImageField
