@@ -714,34 +714,24 @@ NAMESPACE: default
 ### Database View
 
 > **Screenshot Placeholder**: Cloud SQL PostgreSQL instance showing:
-> - Database name: `hireloop-db`
-> - Version: PostgreSQL 15
-> - Instance type: db-custom-1-3840
-> - Storage: 10GB SSD
-> - Tables: Users, Profiles, Projects, Microservices, MentorshipSessions, Cart, Payments
+![WhatsApp Image 2025-11-04 at 1 54 26 PM](https://github.com/user-attachments/assets/909d4438-71c3-4c3e-9cc9-0ff138cb7469)
+
 
 ### Running Containers (GKE)
 
 > **Screenshot Placeholder**: GKE cluster dashboard displaying:
-> - Cluster name: `hireloop-cluster`
-> - Running pods: 2-5 replicas (HPA controlled)
-> - Deployment: `hireloop-deployment` status
-> - Container images: Django app + Cloud SQL Proxy sidecar
-> - Pod health status (startup, readiness, liveness probes)
-> - Resource utilization (CPU/Memory)
+![WhatsApp Image 2025-11-04 at 1 58 06 PM](https://github.com/user-attachments/assets/e75b1f51-269a-4b7b-be4a-89d208f16d67)
+![WhatsApp Image 2025-11-04 at 1 58 38 PM](https://github.com/user-attachments/assets/b91a9397-93af-4329-96a7-cd2571c83ec6)
+![WhatsApp Image 2025-11-04 at 1 59 23 PM](https://github.com/user-attachments/assets/f57cc182-22b3-4c63-b7f5-9c49efdc3978)
+![WhatsApp Image 2025-11-04 at 1 59 32 PM](https://github.com/user-attachments/assets/93935959-ee3a-4d27-b45d-506a5b6abc1b)
+![WhatsApp Image 2025-11-04 at 1 59 48 PM](https://github.com/user-attachments/assets/ccde846c-c968-47b0-b00e-cd94953b76e2)
+![WhatsApp Image 2025-11-04 at 2 00 02 PM](https://github.com/user-attachments/assets/9c9c764d-332c-4726-b6ca-a09ba142ddfc)
 
 ### Storage Bucket (GCS)
 
 > **Screenshot Placeholder**: Google Cloud Storage bucket view:
-> - Bucket name: `hireloop-media`
-> - Directory structure:
->   - `/microservices/` - Microservice images
->   - `/portfolios/` - Portfolio images
->   - `/profiles/` - User profile pictures
->   - `/projects/` - Project images
->   - `/mentorships/` - Mentorship session images
-> - Total objects and storage size
-> - Access control: Public Read
+![WhatsApp Image 2025-11-04 at 2 00 43 PM](https://github.com/user-attachments/assets/589ba194-5ac9-4b38-a75b-55be3c49b371)
+
 
 ### Application Features
 
