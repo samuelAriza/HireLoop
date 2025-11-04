@@ -50,7 +50,7 @@ HireLoop is a comprehensive freelancing platform that facilitates professional c
 ## Architecture Diagrams
 
 ### Application Architecture (MVT + REST API)
-Visita [Drive](https://drive.google.com/drive/folders/1GnYvcA3UMGRrXTgvmgY9vzVono0-OBej?usp=sharing) para ver el diagrama.
+Clic [Drive](https://drive.google.com/drive/folders/1GnYvcA3UMGRrXTgvmgY9vzVono0-OBej?usp=sharing) for more info.
 
 The application follows Django's **Model-View-Template (MVT)** pattern enhanced with a **REST API layer** for external integrations. The architecture is organized in distinct layers following **clean architecture principles**.
 
@@ -140,7 +140,8 @@ The application follows Django's **Model-View-Template (MVT)** pattern enhanced 
 
 The domain model represents the core business entities and their relationships within HireLoop. All entities use **UUIDField** as primary keys for enhanced security and distributed system compatibility.
 
-Visita [Drive](https://drive.google.com/drive/folders/1GnYvcA3UMGRrXTgvmgY9vzVono0-OBej?usp=sharing) para ver el diagrama.
+Clic [Drive](https://drive.google.com/drive/folders/1GnYvcA3UMGRrXTgvmgY9vzVono0-OBej?usp=sharing) for more info.
+
 
 #### Core Domain
 
@@ -282,7 +283,8 @@ Visita [Drive](https://drive.google.com/drive/folders/1GnYvcA3UMGRrXTgvmgY9vzVon
 
 HireLoop is deployed on **Google Cloud Platform (GCP)** using **Google Kubernetes Engine (GKE)** with a fully automated CI/CD pipeline. The infrastructure follows cloud-native best practices with high availability, auto-scaling, and secure database connections.
 
-Visita [Drive](https://drive.google.com/drive/folders/1GnYvcA3UMGRrXTgvmgY9vzVono0-OBej?usp=sharing) para ver el diagrama.
+Clic [Drive](https://drive.google.com/drive/folders/1GnYvcA3UMGRrXTgvmgY9vzVono0-OBej?usp=sharing) for more info.
+
 
 #### Google Cloud Platform Resources
 
