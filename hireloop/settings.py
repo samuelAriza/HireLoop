@@ -151,6 +151,7 @@ MIDDLEWARE = [
     "django_plotly_dash.middleware.BaseMiddleware",
     "django_plotly_dash.middleware.ExternalRedirectionMiddleware",
     "django.middleware.locale.LocaleMiddleware",
+    'core.middleware.HttpCatMiddleware',
 ]
 
 
